@@ -29,8 +29,6 @@ type ServerResponse struct {
 var people []Person
 
 
-
-
 // our main function
 func main() {
 

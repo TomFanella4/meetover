@@ -2,6 +2,7 @@
   "main": "_universe/entry.js",
   "private": true,
   "scripts": {
+    "start": "exp start",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll"
   },
   "jest": {

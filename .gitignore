@@ -1,2 +1,7 @@
 backend/backend
 backend/.main.go.swp
+backend/.vscode/
+backend/.vscode/
+backend/backend.exe
+backend/debug
+client/

@@ -1,17 +1,25 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 // LIAPI - linkedIn api site
 // https://developer.linkedin.com/docs/fields/basic-profile
 // https://developer.linkedin.com/docs/signin-with-linkedin
 const LIAPI string = "https://api.linkedin.com"
+
+// ATokenResponse from Code exchange with LI
+type ATokenResponse struct {
+	AToken string `json:"access_token"`
+	Expiry uint   `json:"expires_in"`
+}
 
 // LiProfile is the JSON object we get from the linkedin profile
 type LiProfile struct {
@@ -147,12 +155,47 @@ var sampleProfile = `
   "summary": "Senior (Graduation May 2018) at MIT pursuing a BSc in Computer Science looking to apply my knowledge in the field of software development, system security and blockchain solutions through full-time opportunities."
 }`
 
+// ExchangeToken does
+func ExchangeToken(TempClientCode string, RedirectURL string) string {
+
+	code := url.QueryEscape(TempClientCode)
+	rurl := url.QueryEscape(RedirectURL)
+	cid, fail := os.LookupEnv("LI_CLIENT_ID")
+	if fail {
+		log.Fatal("Unable to get client id from env var")
+	}
+	csecret, fail := os.LookupEnv("LI_CLIENT_SECRET")
+	if fail {
+		log.Fatal("Unable to get client secret from env var")
+	}
+	content := fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s&"+
+		"client_id=%s&client_secret=%s", code, rurl, cid, csecret)
+
+	endpoint := "www.linkedin.com/oauth/v2/accessToken"
+	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byte(content)))
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Host", "www.linkedin.com")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	// body, _ := ioutil.ReadAll(resp.Body)
+	// Fill the record with the data from the JSON response
+	var record ATokenResponse
+	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
+		log.Println(err)
+	}
+	return record.AToken
+}
+
 // GetLiProfile uses access token and REST call to get the user's linkedIn profile
 func GetLiProfile(AccessToken string) LiProfile {
 	// Fill the record with the data from the JSON
 	var record LiProfile
-	// QueryEscape escapes the phone string so
-	// it can be safely placed inside a URL query
+	// QueryEscape escapes the parama
 	items := "(id,first-name,last-name,maiden-name,formatted-name,phonetic-first-name," +
 		"phonetic-last-name,formatted-phonetic-name,headline,location," +
 		"industry,current-share,num-connections,num-connections-capped," +
@@ -169,30 +212,20 @@ func GetLiProfile(AccessToken string) LiProfile {
 		return record
 	}
 
-	// For control over HTTP client headers,
-	// redirect policy, and other settings,
-	// create a Client
-	// A Client is an HTTP client
+	// For control over HTTP client headers,redirect policy, and other settings,
 	client := &http.Client{}
 
-	// Send the request via a client
-	// Do sends an HTTP request and
 	// returns an HTTP response
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal("client.do failed ", err)
 		return record
 	}
-	// Callers should close resp.Body
-	// when done reading from it
-	// Defer the closing of the body
 	defer resp.Body.Close()
-
 	// Use json.Decode for reading streams of JSON data
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
 		log.Println(err)
 	}
-
 	// temprary place holder
 	// Use json.Decode for reading streams of JSON data
 	if err := json.Unmarshal([]byte(sampleProfile), &record); err != nil {

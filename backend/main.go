@@ -9,12 +9,16 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// ClientID - temp
+var ClientID string
+
 // Person is user on MeetOver
 type Person struct {
-	ID        string   `json:"id,omitempty"`
-	Firstname string   `json:"firstname,omitempty"`
-	Lastname  string   `json:"lastname,omitempty"`
-	Address   *Address `json:"address,omitempty"`
+	ID          string   `json:"id,omitempty"`
+	Firstname   string   `json:"firstname,omitempty"`
+	Lastname    string   `json:"lastname,omitempty"`
+	Address     *Address `json:"address,omitempty"`
+	AccessToken string   `json:"accesstoken"`
 }
 
 // Address is a our location metric
@@ -44,7 +48,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/location/{coords}", GetAddress).Methods("GET")
 	router.HandleFunc("/people/{id}", GetPeople).Methods("GET")
-	router.HandleFunc("/login/{cred}", VerifyUser).Methods("POST")
+	router.HandleFunc("/login/{code}", VerifyUser).Methods("POST")
 	router.HandleFunc("/userinfo/{code}", GetUserProfile).Methods("POST")
 	router.HandleFunc("/match/{ouser}", Match).Methods("POST")
 
@@ -80,15 +84,10 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 // VerifyUser will get a code object to obtain an access token
 func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	// var person Person
-	//  _ = json.NewDecoder(r.Body).Decode(&person)
-	//  person.ID = params["id"]
-	//  people = append(people, person)
-	cred := params["cred"]
-	msg := cred + " Login Successful"
-	sr := ServerResponse{Code: 200, Message: msg, Success: true}
-	json.NewEncoder(w).Encode(sr)
-
+	TempUserCode := params["code"]
+	AToken := ExchangeToken(TempUserCode, "https://meetover407.herokuapp.com")
+	profile := GetLiProfile(AToken)
+	json.NewEncoder(w).Encode(profile)
 }
 
 // Match will set a flag to notify the system the suer is matched

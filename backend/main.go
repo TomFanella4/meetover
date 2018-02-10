@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -47,7 +48,12 @@ func main() {
 	router.HandleFunc("/userinfo/{code}", GetUserProfile).Methods("POST")
 	router.HandleFunc("/match/{ouser}", Match).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port, deployMode := os.LookupEnv("PORT")
+	if !deployMode {
+		log.Fatal(http.ListenAndServe(":"+port, router))
+	} else {
+		log.Fatal(http.ListenAndServe(":8080", router))
+	}
 }
 
 // GetUserProfile will give back a json object of user's LinkedIn Profile

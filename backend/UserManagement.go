@@ -156,22 +156,22 @@ var sampleProfile = `
 }`
 
 // ExchangeToken does
-func ExchangeToken(TempClientCode string, RedirectURL string) string {
+func ExchangeToken(TempClientCode string, RedirectURL string) ATokenResponse {
 
 	code := url.QueryEscape(TempClientCode)
 	rurl := url.QueryEscape(RedirectURL)
-	cid, fail := os.LookupEnv("LI_CLIENT_ID")
-	if fail {
+	cid, found := os.LookupEnv("LI_CLIENT_ID")
+	if !found {
 		log.Fatal("Unable to get client id from env var")
 	}
-	csecret, fail := os.LookupEnv("LI_CLIENT_SECRET")
-	if fail {
+	csecret, found := os.LookupEnv("LI_CLIENT_SECRET")
+	if !found {
 		log.Fatal("Unable to get client secret from env var")
 	}
 	content := fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s&"+
 		"client_id=%s&client_secret=%s", code, rurl, cid, csecret)
 
-	endpoint := "www.linkedin.com/oauth/v2/accessToken"
+	endpoint := "https://www.linkedin.com/oauth/v2/accessToken"
 	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byte(content)))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Host", "www.linkedin.com")
@@ -182,13 +182,13 @@ func ExchangeToken(TempClientCode string, RedirectURL string) string {
 		panic(err)
 	}
 	defer resp.Body.Close()
-	// body, _ := ioutil.ReadAll(resp.Body)
+
 	// Fill the record with the data from the JSON response
 	var record ATokenResponse
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
 		log.Println(err)
 	}
-	return record.AToken
+	return record
 }
 
 // GetLiProfile uses access token and REST call to get the user's linkedIn profile

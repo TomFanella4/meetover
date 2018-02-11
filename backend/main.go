@@ -53,7 +53,7 @@ func main() {
 	router.HandleFunc("/match/{ouser}", Match).Methods("POST")
 
 	port, deployMode := os.LookupEnv("PORT")
-	if !deployMode {
+	if deployMode {
 		log.Fatal(http.ListenAndServe(":"+port, router))
 	} else {
 		log.Fatal(http.ListenAndServe(":8080", router))

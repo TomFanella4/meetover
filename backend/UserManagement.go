@@ -157,10 +157,8 @@ var sampleProfile = `
 }`
 
 // ExchangeToken does
-func ExchangeToken(TempClientCode string, RedirectURL string) ATokenResponse {
+func ExchangeToken(TempClientCode string) ATokenResponse {
 
-	code := url.QueryEscape(TempClientCode)
-	rurl := url.QueryEscape(RedirectURL)
 	cid, found := os.LookupEnv("LI_CLIENT_ID")
 	if !found {
 		log.Fatal("Unable to get client id from env var")
@@ -169,8 +167,14 @@ func ExchangeToken(TempClientCode string, RedirectURL string) ATokenResponse {
 	if !found {
 		log.Fatal("Unable to get client secret from env var")
 	}
+	ruri, found := os.LookupEnv("LI_REDIRECT_URI")
+	if !found {
+		log.Fatal("Unable to get redirect uri from env var")
+	}
+	code := url.QueryEscape(TempClientCode)
+	ruri = url.QueryEscape(ruri)
 	content := fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s&"+
-		"client_id=%s&client_secret=%s", code, rurl, cid, csecret)
+		"client_id=%s&client_secret=%s", code, ruri, cid, csecret)
 
 	endpoint := "https://www.linkedin.com/oauth/v2/accessToken"
 	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byte(content)))

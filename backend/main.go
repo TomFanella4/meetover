@@ -85,7 +85,7 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	TempUserCode := params["code"]
-	ATokenResp := ExchangeToken(TempUserCode, "https://meetover407.herokuapp.com")
+	ATokenResp := ExchangeToken(TempUserCode)
 	// profile := GetLiProfile(ATokenResp.AToken)
 	json.NewEncoder(w).Encode(ATokenResp)
 }

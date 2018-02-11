@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -187,9 +186,9 @@ func ExchangeToken(TempClientCode string) ATokenResponse {
 		panic(err)
 	}
 	defer resp.Body.Close()
-	bodyBytes, _ := ioutil.ReadAll(resp.Body)
-	bodyString := string(bodyBytes)
-	log.Print(bodyString)
+	// bodyBytes, _ := ioutil.ReadAll(resp.Body)
+	// bodyString := string(bodyBytes)
+	// log.Print(bodyString)
 
 	// Fill the record with the data from the JSON response
 	var record ATokenResponse

@@ -1,4 +1,10 @@
 
+https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
+
+
+git subtree push --prefix backend heroku master
+
+
 {
   "currentShare": {
     "attribution": {"share": {

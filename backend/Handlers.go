@@ -41,9 +41,9 @@ var people []Person
 type ResponseCode int
 
 const (
-	FailedTokenExchange ResponseCode = 100
-	FailedDBCall        ResponseCode = 102
-	FailedProfileFetch  ResponseCode = 103
+	FailedTokenExchange ResponseCode = 506
+	FailedDBCall        ResponseCode = 507
+	FailedProfileFetch  ResponseCode = 508
 )
 
 // GetUserProfile will give back a json object of user's LinkedIn Profile
@@ -117,13 +117,18 @@ func Match(w http.ResponseWriter, r *http.Request) {
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {
-	respondWithJSON(w, code, map[string]string{"error": message})
+	content := ServerResponse{Success: false, Message: message}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(int(code))
+	if err := json.NewEncoder(w).Encode(content); err != nil {
+		fmt.Println("Unable to respond with JSON")
+	}
 }
 
 func respondWithJSON(w http.ResponseWriter, code ResponseCode, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(int(code))
 	if err := json.NewEncoder(w).Encode(payload); err != nil {
-		panic(err)
+		fmt.Println("Unable to respond with JSON")
 	}
 }

@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -156,19 +156,19 @@ var sampleProfile = `
 }`
 
 // ExchangeToken does the auhentication using client code and secret
-func ExchangeToken(TempClientCode string) ATokenResponse {
+func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
 
 	cid, found := os.LookupEnv("LI_CLIENT_ID")
 	if !found {
-		log.Fatal("Unable to get client id from env var")
+		return ATokenResponse{}, errors.New("Unable to get client id from env var")
 	}
 	csecret, found := os.LookupEnv("LI_CLIENT_SECRET")
 	if !found {
-		log.Fatal("Unable to get client secret from env var")
+		return ATokenResponse{}, errors.New("Unable to get client secret from env var")
 	}
 	ruri, found := os.LookupEnv("LI_REDIRECT_URI")
 	if !found {
-		log.Fatal("Unable to get redirect uri from env var")
+		return ATokenResponse{}, errors.New("Unable to get redirect uri from env var")
 	}
 	code := url.QueryEscape(TempClientCode)
 	ruri = url.QueryEscape(ruri)
@@ -183,23 +183,19 @@ func ExchangeToken(TempClientCode string) ATokenResponse {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		panic(err)
+		return ATokenResponse{}, errors.New("Unable to call LI API")
 	}
 	defer resp.Body.Close()
-	// bodyBytes, _ := ioutil.ReadAll(resp.Body)
-	// bodyString := string(bodyBytes)
-	// log.Print(bodyString)
-
 	// Fill the record with the data from the JSON response
 	var record ATokenResponse
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
-		log.Println(err)
+		return ATokenResponse{}, errors.New("Unable to decode LI JSON")
 	}
-	return record
+	return record, nil
 }
 
 // GetLiProfile uses access token and REST call to get the user's linkedIn profile
-func GetLiProfile(AccessToken string) LiProfile {
+func GetLiProfile(AccessToken string) (LiProfile, error) {
 	// Fill the record with the data from the JSON
 	var record LiProfile
 	// QueryEscape escapes the parama
@@ -212,31 +208,24 @@ func GetLiProfile(AccessToken string) LiProfile {
 	itm := url.QueryEscape(items)
 	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, itm, at)
 
-	// Build the request
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		log.Fatal("NewRequest: ", err)
-		return record
+		return LiProfile{}, errors.New("Unable to form HTTP request")
 	}
-
 	// For control over HTTP client headers,redirect policy, and other settings,
 	client := &http.Client{}
-
 	// returns an HTTP response
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal("client.do failed ", err)
-		return record
+		return LiProfile{}, errors.New("Unable to make REST call to get profile data")
 	}
 	defer resp.Body.Close()
-	// Use json.Decode for reading streams of JSON data
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
-		log.Println(err)
+		fmt.Println(err)
 	}
 	// temprary place holder
-	// Use json.Decode for reading streams of JSON data
 	if err := json.Unmarshal([]byte(sampleProfile), &record); err != nil {
-		log.Println(err)
+		fmt.Println(err)
 	}
-	return record
+	return record, nil
 }

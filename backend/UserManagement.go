@@ -130,7 +130,10 @@ func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
 		return ATokenResponse{}, errors.New("Unable to decode LI JSON")
 	}
-	return record, nil
+	if len(record.AToken) > 0 {
+		return record, nil
+	}
+	return ATokenResponse{}, errors.New("No access token returned from linkedIn API")
 }
 
 // GetLiProfile uses access token and REST call to get the user's linkedIn profile

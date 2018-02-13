@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -61,7 +62,7 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tt := params["testType"]
 	if tt == "liprofile" {
-		json.NewEncoder(w).Encode(sampleProfile)
+		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
 	}
 }
 

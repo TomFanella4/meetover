@@ -155,7 +155,7 @@ var sampleProfile = `
   "summary": "Senior (Graduation May 2018) at MIT pursuing a BSc in Computer Science looking to apply my knowledge in the field of software development, system security and blockchain solutions through full-time opportunities."
 }`
 
-// ExchangeToken does
+// ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string) ATokenResponse {
 
 	cid, found := os.LookupEnv("LI_CLIENT_ID")

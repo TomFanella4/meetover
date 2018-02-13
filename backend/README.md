@@ -15,6 +15,7 @@ stored in a local JSON object
 
 ## Deployment on Heroku
 Some steps here...
+``git subtree push --prefix backend heroku master``
 
 ## Installation instructions
 Place current directory in GOPATH

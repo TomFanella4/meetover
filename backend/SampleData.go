@@ -1,17 +1,6 @@
-# github pull request steps
-git commit // any pending changes
-git pull origin development
-// fix any merge conflicts and add the conflicted files to new commit
-git push //current feature branch
-// make pull request in github.com
+package main
 
-
-https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
-
-
-git subtree push --prefix backend heroku master
-
-
+var sampleProfile = `
 {
   "currentShare": {
     "attribution": {"share": {
@@ -24,23 +13,23 @@ git subtree push --prefix backend heroku master
       "id": "s6362854320802713600"
     }},
     "author": {
-      "firstName": "Krutarth",
+      "firstName": "James",
       "id": "HJSNGIIRCj",
-      "lastName": "Rao"
+      "lastName": "Baker"
     },
-    "comment": "Purdue University ",
+    "comment": "MIT ",
     "id": "s6361684091376668672",
     "source": {"serviceProvider": {"name": "FLAGSHIP"}},
     "timestamp": 1516743681760,
     "visibility": {"code": "anyone"}
   },
-  "emailAddress": "krk91@outlook.com",
-  "firstName": "Krutarth",
-  "formattedName": "Krutarth Rao",
-  "headline": "Software Engineering Intern at Aruba, a Hewlett Packard Enterprise company",
+  "emailAddress": "abc.google.com",
+  "firstName": "James",
+  "formattedName": "James Baker",
+  "headline": "Software Engineering Manager",
   "id": "HJSNGIIRCj",
   "industry": "Computer Software",
-  "lastName": "Rao",
+  "lastName": "Baker",
   "location": {
     "country": {"code": "us"},
     "name": "United States"
@@ -54,13 +43,13 @@ git subtree push --prefix backend heroku master
       "company": {
         "id": 3846,
         "industry": "Higher Education",
-        "name": "Purdue University",
+        "name": "MIT",
         "size": "10001+",
         "type": "Educational"
       },
       "id": 827836295,
       "isCurrent": true,
-      "location": {"name": "West Lafayette, Indiana"},
+      "location": {"name": "New Jersey, New York"},
       "startDate": {
         "month": 5,
         "year": 2016
@@ -69,5 +58,5 @@ git subtree push --prefix backend heroku master
       "title": "Research Assistant"
     }]
   },
-  "summary": "Senior (Graduation May 2018) at Purdue university pursuing a BSc in Computer Science looking to apply my knowledge in the field of software development, system security and blockchain solutions through full-time opportunities."
-}
+  "summary": "Senior (Graduation May 2018) at MIT pursuing a BSc in Computer Science looking to apply my knowledge in the field of software development, system security and blockchain solutions through full-time opportunities."
+}`

@@ -22,8 +22,8 @@ class ListScreen extends React.Component {
 
   render() {
     const { matches } = this.props;
-    const list = matches.map(match => <ListItem key={match}>
-      <PTSansText>{match}</PTSansText>
+    const list = matches.map(match => <ListItem key={match.id}>
+      <PTSansText>{match.formattedName}</PTSansText>
     </ListItem>);
 
     return (

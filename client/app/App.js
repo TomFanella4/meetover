@@ -1,8 +1,9 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Root } from "native-base";
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import RootNavigation from './navigation/RootNavigation';
+import AppNavigation from './navigation';
 import { Provider } from 'react-redux';
 
 import store from './store';
@@ -25,9 +26,9 @@ export default class App extends React.Component {
       return (
         <Provider store={store}>
           <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-            <RootNavigation />
+            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+            {/* {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />} */}
+            <AppNavigation />
           </View>
         </Provider>
       );
@@ -45,6 +46,8 @@ export default class App extends React.Component {
         ...Ionicons.font,
         // PT-Sans is the main font for MeetOver
         'pt-sans': require('../assets/fonts/PT_Sans-Web-Regular.ttf'),
+        'Roboto': require("native-base/Fonts/Roboto.ttf"),
+        'Roboto_medium': require("native-base/Fonts/Roboto_medium.ttf")
       }),
     ]);
   };

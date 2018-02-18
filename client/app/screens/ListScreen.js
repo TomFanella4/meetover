@@ -1,11 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-// import { connect } from 'react-redux';
+import { Container, Content, List, ListItem } from 'native-base'
+import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
-import { PTSansText } from '../components/StyledText'
+import { PTSansText } from '../components/StyledText';
+import { fetchMatchesAsync } from '../actions';
 
-export default class ListScreen extends React.Component {
+class ListScreen extends React.Component {
   static navigationOptions = {
     title: 'List',
     headerStyle: {
@@ -14,33 +16,42 @@ export default class ListScreen extends React.Component {
     headerTintColor: Colors.header,
   };
 
+  componentDidMount() {
+    this.props.fetchMatchesAsync('userId');
+  }
+
   render() {
+    const { matches } = this.props;
+    const list = matches.map(match => <ListItem key={match}>
+      <PTSansText>{match}</PTSansText>
+    </ListItem>);
+
     return (
-      <ScrollView style={styles.container}>
-        <PTSansText>List Screen</PTSansText>
-      </ScrollView>
+      <Container style={styles.container}>
+        <Content>
+          <List>{list}</List>
+        </Content>
+      </Container>
     );
   }
 };
 
-// TODO: Implement ListScreen functionality
-// const mapStateToProps = state => ({
-//
-// });
-//
-// const mapDispatchToProps = {
-//
-// };
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(ListScreen);
+const mapStateToProps = state => ({
+  matches: state.matchList.matches
+});
+
+const mapDispatchToProps = {
+  fetchMatchesAsync
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   }
 });

@@ -5,7 +5,7 @@ import {
 } from '../actions/actionTypes';
 
 const initalUserProfile = {
-  isAuthenticated: false,
+  isAuthenticated: true,
 };
 
 export default userProfile = (state = initalUserProfile, action) => {

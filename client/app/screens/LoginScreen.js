@@ -62,7 +62,6 @@ class LoginScreen extends React.Component {
       const response = await fetch(uri, init);
       const userProfile = await response.json();
 
-      // console.log(userProfile);
       this.props.login(userProfile);
     }
   }

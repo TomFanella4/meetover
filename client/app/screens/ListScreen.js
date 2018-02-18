@@ -1,6 +1,14 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { Container, Content, List, ListItem } from 'native-base'
+import {
+  Body,
+  Container,
+  Content,
+  Left,
+  List,
+  ListItem,
+  Thumbnail
+} from 'native-base'
 import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
@@ -22,9 +30,23 @@ class ListScreen extends React.Component {
 
   render() {
     const { matches } = this.props;
-    const list = matches.map(match => <ListItem key={match.id}>
-      <PTSansText>{match.formattedName}</PTSansText>
-    </ListItem>);
+    const list = matches.map(match => {
+      const position = match.positions.values[0];
+
+      return (
+        <ListItem style={styles.container} key={match.id}>
+          <Left style={styles.thumbnail}>
+            <Thumbnail source={{ uri: match.pictureUrl }} />
+          </Left>
+          <Body>
+            <PTSansText style={styles.name}>{match.formattedName}</PTSansText>
+            <PTSansText style={styles.title}>
+              {position.title} at {position.company.name}
+            </PTSansText>
+          </Body>
+        </ListItem>
+      );
+    });
 
     return (
       <Container style={styles.container}>
@@ -53,5 +75,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  thumbnail: {
+    flex: 0
+  },
+  name: {
+    fontSize: 20
+  },
+  title: {
+    fontSize: 12
   }
 });

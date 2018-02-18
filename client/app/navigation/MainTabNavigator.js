@@ -46,6 +46,8 @@ export default TabNavigator(
           />
         );
       },
+      gesturesEnabled: false,
+      headerLeft: null
     }),
     tabBarOptions: {
       activeTintColor: Colors.tabIconSelected,

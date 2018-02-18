@@ -1,11 +1,16 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
+import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText'
 
 export default class ChatsScreen extends React.Component {
   static navigationOptions = {
     title: 'Chats',
+    headerStyle: {
+      backgroundColor: Colors.tintColor,
+    },
+    headerTintColor: Colors.header,
   };
 
   render() {

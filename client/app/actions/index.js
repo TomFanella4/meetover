@@ -5,6 +5,10 @@ import {
   UPDATE_USER_PROFILE,
 } from './actionTypes';
 
+import matchesMock from '../mocks/matches';
+
+const useMocks = true;
+
 export const fetchMatches = matches => ({
   type: FETCH_MATCHES,
   matches
@@ -12,13 +16,17 @@ export const fetchMatches = matches => ({
 
 export const fetchMatchesAsync = userId => {
   return async dispatch => {
-    const uri = `https://meetover.herokuapp.com/match/${userId}`;
-    const init = { method: 'POST' };
+    let matches;
 
-    // const response = await fetch(uri, init);
-    // const matches = await response.json();
+    if (useMocks) {
+      matches = matchesMock;
+    } else {
+      const uri = `https://meetover.herokuapp.com/match/${userId}`;
+      const init = { method: 'POST' };
 
-    const matches = ['Matt', 'Tom', 'Colin', 'Ryan', 'Krutarth', 'Austin', 'Alec', 'Janet', 'Doug', 'Joey', 'Mark'];
+      const response = await fetch(uri, init);
+      matches = await response.json();
+    }
 
     dispatch(fetchMatches(matches));
   };

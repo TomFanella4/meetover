@@ -1,8 +1,36 @@
 import {
+  FETCH_MATCHES,
   LOGIN,
   LOGOUT,
   UPDATE_USER_PROFILE,
 } from './actionTypes';
+
+import matchesMock from '../mocks/matches';
+
+const useMocks = true;
+
+export const fetchMatches = matches => ({
+  type: FETCH_MATCHES,
+  matches
+});
+
+export const fetchMatchesAsync = userId => {
+  return async dispatch => {
+    let matches;
+
+    if (useMocks) {
+      matches = matchesMock;
+    } else {
+      const uri = `https://meetover.herokuapp.com/match/${userId}`;
+      const init = { method: 'POST' };
+
+      const response = await fetch(uri, init);
+      matches = await response.json();
+    }
+
+    dispatch(fetchMatches(matches));
+  };
+};
 
 export const login = userProfile => ({
   type: LOGIN,

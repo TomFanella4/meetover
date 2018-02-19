@@ -1,11 +1,28 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-// import { connect } from 'react-redux';
+import { RefreshControl, ScrollView, StyleSheet } from 'react-native';
+import {
+  Body,
+  Container,
+  Content,
+  Left,
+  List,
+  ListItem,
+  Thumbnail
+} from 'native-base'
+import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
-import { PTSansText } from '../components/StyledText'
+import { PTSansText } from '../components/StyledText';
+import { fetchMatchesAsync } from '../actions';
 
-export default class ListScreen extends React.Component {
+class ListScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refreshing: false
+    };
+  }
+
   static navigationOptions = {
     title: 'List',
     headerStyle: {
@@ -14,33 +31,72 @@ export default class ListScreen extends React.Component {
     headerTintColor: Colors.header,
   };
 
+  componentDidMount() {
+    this.props.fetchMatchesAsync('userId');
+  }
+
+  _onRefresh(userId) {
+    this.setState({ refreshing: true });
+    this.props.fetchMatchesAsync(userId)
+      .then(() => this.setState({ refreshing: false }));
+  }
+
   render() {
+    const { matches } = this.props;
+    const list = matches.map(match =>
+      <ListItem style={styles.container} key={match.id}>
+        <Left style={styles.thumbnail}>
+          <Thumbnail source={{ uri: match.pictureUrl }} />
+        </Left>
+        <Body>
+          <PTSansText style={styles.name}>{match.formattedName}</PTSansText>
+          <PTSansText style={styles.headline}>{match.headline}</PTSansText>
+        </Body>
+      </ListItem>
+    );
+
+    const refresh = (
+      <RefreshControl
+        onRefresh={() => this._onRefresh('userId')}
+        refreshing={this.state.refreshing}
+      />
+    );
+
     return (
-      <ScrollView style={styles.container}>
-        <PTSansText>List Screen</PTSansText>
-      </ScrollView>
+      <Container style={styles.container}>
+        <Content refreshControl={refresh}>
+          <List>{list}</List>
+        </Content>
+      </Container>
     );
   }
 };
 
-// TODO: Implement ListScreen functionality
-// const mapStateToProps = state => ({
-//
-// });
-//
-// const mapDispatchToProps = {
-//
-// };
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(ListScreen);
+const mapStateToProps = state => ({
+  matches: state.matchList.matches
+});
+
+const mapDispatchToProps = {
+  fetchMatchesAsync
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
+  },
+  thumbnail: {
+    flex: 0
+  },
+  name: {
+    fontSize: 20
+  },
+  headline: {
+    fontSize: 12
   }
 });

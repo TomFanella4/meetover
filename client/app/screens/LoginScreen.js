@@ -36,14 +36,14 @@ class LoginScreen extends React.Component {
         <View style={styles.content}>
           {
             this.state.isLoading ?
-            <Spinner color={Colors.tintColor} />
-          :
-            <Button
-              style={styles.button}
-              onPress={this._handleSignInPressAsync}
-            >
-              <PTSansText>Sign in with LinkedIn</PTSansText>
-            </Button>
+              <Spinner color={Colors.tintColor} />
+            :
+              <Button
+                style={styles.button}
+                onPress={this._handleSignInPressAsync}
+              >
+                <PTSansText>Sign in with LinkedIn</PTSansText>
+              </Button>
           }
           <PTSansText style={styles.termsText}>
             By signing in you accept our terms of service

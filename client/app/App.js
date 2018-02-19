@@ -1,16 +1,21 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Root } from "native-base";
-import { AppLoading, Asset, Font } from 'expo';
+import Expo, { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import AppNavigation from './navigation';
+
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-import store from './store';
+import { middleware } from './store/middleware';
+import reducers from './reducers';
 
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
+    store: {},
+    preloadedState: {}
   };
 
   render() {
@@ -24,7 +29,7 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <Provider store={store}>
+        <Provider store={this.state.store}>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
             {/* {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />} */}
@@ -49,6 +54,12 @@ export default class App extends React.Component {
         'Roboto': require("native-base/Fonts/Roboto.ttf"),
         'Roboto_medium': require("native-base/Fonts/Roboto_medium.ttf")
       }),
+      Expo.SecureStore.getItemAsync('userProfile')
+      .then(userProfile => userProfile && this.setState({
+        preloadedState: {
+          userProfile: JSON.parse(userProfile)
+        }
+      }))
     ]);
   };
 
@@ -59,7 +70,14 @@ export default class App extends React.Component {
   };
 
   _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
+    this.setState({
+      isLoadingComplete: true,
+      store: createStore(
+        reducers,
+        this.state.preloadedState,
+        applyMiddleware(...middleware)
+      )
+    });
   };
 }
 

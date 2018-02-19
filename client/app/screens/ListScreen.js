@@ -30,23 +30,17 @@ class ListScreen extends React.Component {
 
   render() {
     const { matches } = this.props;
-    const list = matches.map(match => {
-      const position = match.positions.values[0];
-
-      return (
-        <ListItem style={styles.container} key={match.id}>
-          <Left style={styles.thumbnail}>
-            <Thumbnail source={{ uri: match.pictureUrl }} />
-          </Left>
-          <Body>
-            <PTSansText style={styles.name}>{match.formattedName}</PTSansText>
-            <PTSansText style={styles.title}>
-              {position.title} at {position.company.name}
-            </PTSansText>
-          </Body>
-        </ListItem>
-      );
-    });
+    const list = matches.map(match =>
+      <ListItem style={styles.container} key={match.id}>
+        <Left style={styles.thumbnail}>
+          <Thumbnail source={{ uri: match.pictureUrl }} />
+        </Left>
+        <Body>
+          <PTSansText style={styles.name}>{match.formattedName}</PTSansText>
+          <PTSansText style={styles.headline}>{match.headline}</PTSansText>
+        </Body>
+      </ListItem>
+    );
 
     return (
       <Container style={styles.container}>
@@ -82,7 +76,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20
   },
-  title: {
+  headline: {
     fontSize: 12
   }
 });

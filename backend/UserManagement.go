@@ -132,6 +132,7 @@ func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
 	}
 	if len(record.AToken) > 0 {
 		return record, nil
+		// stash to firebase save( data ( = token), flag)
 	}
 	return ATokenResponse{}, errors.New("No access token returned from linkedIn API")
 }
@@ -147,8 +148,7 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 		"summary,specialties,positions,picture-url,email-address)"
 
 	at := url.QueryEscape(AccessToken)
-	itm := url.QueryEscape(items)
-	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, itm, at)
+	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, items, at)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -161,13 +161,19 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 	if err != nil {
 		return LiProfile{}, errors.New("Unable to make REST call to get profile data")
 	}
-	defer resp.Body.Close()
+	// bodyBytes, _ := ioutil.ReadAll(resp.Body)
+	// bodyString := string(bodyBytes)
+	// fmt.Println(bodyString)
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(resp.Body)
+
 	// // temprary place holder
 	// if err := json.Unmarshal([]byte(sampleProfile), &record); err != nil {
 	// 	fmt.Println(err)
 	// }
+	fmt.Println(record)
+	defer resp.Body.Close()
 	return record, nil
 }

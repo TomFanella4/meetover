@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet } from 'react-native';
 import {
   Body,
   Container,
@@ -16,6 +16,13 @@ import { PTSansText } from '../components/StyledText';
 import { fetchMatchesAsync } from '../actions';
 
 class ListScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refreshing: false
+    };
+  }
+
   static navigationOptions = {
     title: 'List',
     headerStyle: {
@@ -26,6 +33,12 @@ class ListScreen extends React.Component {
 
   componentDidMount() {
     this.props.fetchMatchesAsync('userId');
+  }
+
+  _onRefresh(userId) {
+    this.setState({ refreshing: true });
+    this.props.fetchMatchesAsync(userId)
+      .then(() => this.setState({ refreshing: false }));
   }
 
   render() {
@@ -42,9 +55,16 @@ class ListScreen extends React.Component {
       </ListItem>
     );
 
+    const refresh = (
+      <RefreshControl
+        onRefresh={() => this._onRefresh('userId')}
+        refreshing={this.state.refreshing}
+      />
+    );
+
     return (
       <Container style={styles.container}>
-        <Content>
+        <Content refreshControl={refresh}>
           <List>{list}</List>
         </Content>
       </Container>

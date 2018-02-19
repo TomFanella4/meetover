@@ -165,9 +165,9 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
 		fmt.Println(err)
 	}
-	// temprary place holder
-	if err := json.Unmarshal([]byte(sampleProfile), &record); err != nil {
-		fmt.Println(err)
-	}
+	// // temprary place holder
+	// if err := json.Unmarshal([]byte(sampleProfile), &record); err != nil {
+	// 	fmt.Println(err)
+	// }
 	return record, nil
 }

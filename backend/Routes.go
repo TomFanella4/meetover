@@ -32,7 +32,7 @@ var routes = Routes{
 	},
 	Route{
 		"LinkedIn Profile",
-		"POST",
+		"GET",
 		"/userinfo/{accessToken}",
 		GetUserProfile,
 	},

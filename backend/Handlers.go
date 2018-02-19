@@ -49,8 +49,8 @@ const (
 // GetUserProfile will give back a json object of user's LinkedIn Profile
 func GetUserProfile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	accessCode := params["code"]
-	profile, err := GetLiProfile(accessCode)
+	accessToken := params["accessToken"]
+	profile, err := GetLiProfile(accessToken)
 	if err != nil {
 		respondWithError(w, FailedProfileFetch, err.Error())
 	}

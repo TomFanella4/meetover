@@ -16,6 +16,8 @@ func main() {
 
 	router := NewRouter()
 
+  InitializeFirebase()
+
 	port, deployMode := os.LookupEnv("PORT")
 	if deployMode {
 		fmt.Println(http.ListenAndServe(":"+port, router))

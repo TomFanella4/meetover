@@ -95,11 +95,12 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	tempUserCode := params["code"]
 	fmt.Println(tempUserCode)
 	aTokenResp, err := ExchangeToken(tempUserCode)
+	lip, err := GetLiProfile(aTokenResp.AToken)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")
 	} else {
-		json.NewEncoder(w).Encode(aTokenResp)
+		json.NewEncoder(w).Encode(lip)
 		fmt.Println(aTokenResp.AToken)
 	}
 }

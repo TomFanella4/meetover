@@ -16,12 +16,9 @@ import { PTSansText } from '../components/StyledText';
 import { fetchMatchesAsync } from '../actions';
 
 class ListScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       refreshing: false
-    };
-  }
+  };
 
   static navigationOptions = {
     title: 'List',

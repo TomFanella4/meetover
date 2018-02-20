@@ -34,6 +34,10 @@ type ServerResponse struct {
 	Message string       `json:"message"`
 	Success bool         `json:"success"`
 }
+type AuthResponse struct {
+	LiProfile   LiProfile      `json:"profile"`
+	AccessToken ATokenResponse `json:"token"`
+}
 
 var people []Person
 
@@ -96,12 +100,14 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tempUserCode)
 	aTokenResp, err := ExchangeToken(tempUserCode)
 	lip, err := GetLiProfile(aTokenResp.AToken)
+	var resp AuthResponse
+	resp.AccessToken = aTokenResp
+	resp.LiProfile = lip
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")
 	} else {
-		json.NewEncoder(w).Encode(lip)
-		fmt.Println(aTokenResp.AToken)
+		json.NewEncoder(w).Encode(resp)
 	}
 }
 

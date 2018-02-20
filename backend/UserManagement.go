@@ -149,7 +149,6 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 
 	at := url.QueryEscape(AccessToken)
 	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, items, at)
-
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return LiProfile{}, errors.New("Unable to form HTTP request")

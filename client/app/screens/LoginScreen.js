@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { AuthSession } from 'expo';
-import { Button, View } from 'native-base';
+import { Button, View, Spinner } from 'native-base';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,12 +11,16 @@ import { LI_APP_ID } from 'react-native-dotenv';
 
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { login } from '../actions';
+import { saveProfileAndLoginAsync } from '../actions';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  state = {
+    isLoading: false
+  }
 
   render() {
     return (
@@ -30,12 +34,17 @@ class LoginScreen extends React.Component {
           </PTSansText>
         </View>
         <View style={styles.content}>
-          <Button
-            style={styles.button}
-            onPress={this._handleSignInPressAsync}
-          >
-            <PTSansText>Sign in with LinkedIn</PTSansText>
-          </Button>
+          {
+            this.state.isLoading ?
+              <Spinner color={Colors.tintColor} />
+            :
+              <Button
+                style={styles.button}
+                onPress={this._handleSignInPressAsync}
+              >
+                <PTSansText>Sign in with LinkedIn</PTSansText>
+              </Button>
+          }
           <PTSansText style={styles.termsText}>
             By signing in you accept our terms of service
           </PTSansText>
@@ -55,20 +64,23 @@ class LoginScreen extends React.Component {
     });
 
     if (result.type === 'success') {
+      this.setState({ isLoading: true });
 
       const uri = `https://meetover.herokuapp.com/login/${result.params.code}`;
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
       const userProfile = await response.json();
+      userProfile = { ...userProfile, isAuthenticated: true }
 
-      this.props.login(userProfile);
+      this.props.saveProfileAndLoginAsync(userProfile)
+      .then(() => this.setState({ isLoading: false }));
     }
   }
 }
 
 const mapDispatchToProps = {
-  login
+  saveProfileAndLoginAsync
 };
 
 export default connect(

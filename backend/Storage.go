@@ -6,10 +6,11 @@ package main
 
 import (
   "context"
-  // "fmt"
+  "errors"
+  "io/ioutil"
+  "fmt"
   "log"
   "os"
-  "io/ioutil"
 
   firebase "firebase.google.com/go"
   // "firebase.google.com/go/auth"
@@ -54,4 +55,18 @@ func InitializeFirebase() {
 
   fbApp = app
   fbClient = firego.New("https://meetoverdb.firebaseio.com/", conf.Client(oauth2.NoContext))
+}
+
+func CreateCustomToken(ID string) (string, error) {
+  client, err := fbApp.Auth(context.Background())
+  if err != nil {
+    return "", errors.New(fmt.Sprintf("error getting Auth client: %v\n", err))
+  }
+
+  token, err := client.CustomToken(ID)
+  if err != nil {
+  	return "", errors.New(fmt.Sprintf("error minting custom token: %v\n", err))
+  }
+
+  return token, nil
 }

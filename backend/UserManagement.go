@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -124,12 +125,18 @@ func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
 	if err != nil {
 		return ATokenResponse{}, errors.New("Unable to call LI API")
 	}
-	defer resp.Body.Close()
+
 	// Fill the record with the data from the JSON response
 	var record ATokenResponse
-	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
-		return ATokenResponse{}, errors.New("Unable to decode LI JSON")
+	bodyBytes, _ := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
+	if err := json.Unmarshal(bodyBytes, &record); err != nil {
+		fmt.Println("Unexpected Token Exchange Response: ")
+		bodyString := string(bodyBytes)
+		fmt.Println(bodyString)
+		return ATokenResponse{}, errors.New("Unable to LI token JSON")
 	}
+
 	if len(record.AToken) > 0 {
 		return record, nil
 		// stash to firebase save( data ( = token), flag)
@@ -147,8 +154,8 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 		"industry,current-share,num-connections,num-connections-capped," +
 		"summary,specialties,positions,picture-url,email-address)"
 
-	at := url.QueryEscape(AccessToken)
-	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, items, at)
+	ATokenQE := url.QueryEscape(AccessToken)
+	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, items, ATokenQE)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return LiProfile{}, errors.New("Unable to form HTTP request")
@@ -160,19 +167,13 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 	if err != nil {
 		return LiProfile{}, errors.New("Unable to make REST call to get profile data")
 	}
-	// bodyBytes, _ := ioutil.ReadAll(resp.Body)
-	// bodyString := string(bodyBytes)
-	// fmt.Println(bodyString)
-	if err := json.NewDecoder(resp.Body).Decode(&record); err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(resp.Body)
 
-	// // temprary place holder
-	// if err := json.Unmarshal([]byte(sampleProfile), &record); err != nil {
-	// 	fmt.Println(err)
-	// }
-	fmt.Println(record)
+	bodyBytes, _ := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
+	if err := json.Unmarshal(bodyBytes, &record); err != nil {
+		bodyString := string(bodyBytes)
+		fmt.Println(bodyString)
+		return LiProfile{}, errors.New("Unexpected Response Getting LI profile")
+	}
 	return record, nil
 }

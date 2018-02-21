@@ -9,37 +9,29 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// ClientID - temp
-var ClientID string
-
 // Person is user on MeetOver
 type Person struct {
-	ID          string   `json:"id,omitempty"`
-	Firstname   string   `json:"firstname,omitempty"`
-	Lastname    string   `json:"lastname,omitempty"`
-	Address     *Address `json:"address,omitempty"`
-	AccessToken string   `json:"accesstoken"`
+	ID          string         `json:"id,omitempty"`
+	Firstname   string         `json:"firstname,omitempty"`
+	Lastname    string         `json:"lastname,omitempty"`
+	Address     *Address       `json:"address,omitempty"`
+	AccessToken ATokenResponse `json:"accesstoken"`
 }
 
-// Address is a our location metric
-type Address struct {
-	City  string `json:"city,omitempty"`
-	State string `json:"state,omitempty"`
-	Area  string `json:"area,omitempty"`
-}
+var people []Person
 
-// ServerResponse is what we give to our clients
+// ServerResponse - Error message JSON structure
 type ServerResponse struct {
 	Code    ResponseCode `json:"id"`
 	Message string       `json:"message"`
 	Success bool         `json:"success"`
 }
+
+// AuthResponse is the JSON returned to client during login to backend
 type AuthResponse struct {
 	LiProfile   LiProfile      `json:"profile"`
 	AccessToken ATokenResponse `json:"token"`
 }
-
-var people []Person
 
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
@@ -48,6 +40,7 @@ const (
 	FailedTokenExchange ResponseCode = 506
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508
+	FailedLocationQuery ResponseCode = 509
 )
 
 // GetUserProfile will give back a json object of user's LinkedIn Profile
@@ -72,9 +65,11 @@ func Test(w http.ResponseWriter, r *http.Request) {
 
 // GetAddress will give back a json object based on coordinates
 func GetAddress(w http.ResponseWriter, r *http.Request) {
-	// params := mux.Vars(r)
-	//  location = getFromDataSet( params["coords"].split(",") )
-	location := Address{City: "Chicago", State: "IL", Area: "ORD"}
+	params := mux.Vars(r)
+	location, err := QueryLocation(params["coords"])
+	if err != nil {
+		respondWithError(w, FailedLocationQuery, err.Error())
+	}
 	json.NewEncoder(w).Encode(location)
 }
 
@@ -97,15 +92,21 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tempUserCode := params["code"]
-	fmt.Println(tempUserCode)
+	fmt.Println("[+] Recieved code: " + tempUserCode)
 	aTokenResp, err := ExchangeToken(tempUserCode)
+	if err != nil {
+		respondWithError(w, FailedTokenExchange, err.Error())
+		fmt.Println("Sending failed token exchange error")
+		return
+	}
+	fmt.Println("[+] After ExchangeToken: " + aTokenResp.AToken)
 	lip, err := GetLiProfile(aTokenResp.AToken)
 	var resp AuthResponse
 	resp.AccessToken = aTokenResp
 	resp.LiProfile = lip
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
-		fmt.Println("Sending failed token exchange error")
+		fmt.Println("[-] Sending failed token exchange error")
 	} else {
 		json.NewEncoder(w).Encode(resp)
 	}

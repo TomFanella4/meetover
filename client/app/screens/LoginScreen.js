@@ -1,17 +1,15 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { AuthSession } from 'expo';
 import { Button, View, Spinner } from 'native-base';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { LI_APP_ID } from 'react-native-dotenv';
 
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { saveProfileAndLoginAsync } from '../actions';
+import { createProfile } from '../actions';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -70,17 +68,16 @@ class LoginScreen extends React.Component {
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
-      const userProfile = await response.json();
-      userProfile = { ...userProfile, isAuthenticated: true }
+      const { profile, token } = await response.json();
 
-      this.props.saveProfileAndLoginAsync(userProfile)
-      .then(() => this.setState({ isLoading: false }));
+      this.props.createProfile({ ...profile, token });
+      this.setState({ isLoading: false });
     }
   }
 }
 
 const mapDispatchToProps = {
-  saveProfileAndLoginAsync
+  createProfile
 };
 
 export default connect(

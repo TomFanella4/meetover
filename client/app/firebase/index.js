@@ -20,7 +20,7 @@ export const fetchIdToken = (token) =>
       return firebase.auth().currentUser.getIdToken(true);
     })
     .catch(err => {
-      console.log(`Could not initialize Firebase: ${err}`);
+      console.log(`Could not fetch Firebase ID Token: ${err}`);
 
       throw err;
     });

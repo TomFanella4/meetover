@@ -13,15 +13,11 @@ import (
   "os"
 
   firebase "firebase.google.com/go"
-  // "firebase.google.com/go/auth"
-
-  // "google.golang.org/api/iterator"
-  "google.golang.org/api/option"
+  "gopkg.in/zabawaba99/firego.v1"
 
   "golang.org/x/oauth2"
   "golang.org/x/oauth2/google"
-
-  "gopkg.in/zabawaba99/firego.v1"
+  "google.golang.org/api/option"
 )
 
 var fbApp     *firebase.App

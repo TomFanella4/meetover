@@ -16,7 +16,7 @@ func main() {
 
 	router := NewRouter()
 
-  InitializeFirebase()
+	InitializeFirebase()
 
 	port, deployMode := os.LookupEnv("PORT")
 	if deployMode {

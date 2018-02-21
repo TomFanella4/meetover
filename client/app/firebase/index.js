@@ -14,13 +14,18 @@ const config = {
 
 const app = firebase.initializeApp(config);
 
-export const fetchIdToken = (token) =>
-  firebase.auth().signInWithCustomToken(token)
-    .then(() => {
-      return firebase.auth().currentUser.getIdToken(true);
-    })
+export async function fetchIdToken(token){
+  await firebase.auth().signInWithCustomToken(token)
+    .catch(err => {
+      console.log(`Could not sign in to Firebase: ${err}`);
+
+      throw err;
+    });
+
+  return await firebase.auth().currentUser.getIdToken(true)
     .catch(err => {
       console.log(`Could not fetch Firebase ID Token: ${err}`);
 
       throw err;
     });
+};

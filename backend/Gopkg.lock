@@ -66,6 +66,12 @@
   version = "v1.6.1"
 
 [[projects]]
+  branch = "v1"
+  name = "github.com/zabawaba99/firego"
+  packages = ["sync"]
+  revision = "4d07741c1dde0b0d76218e8365baea10c33cf968"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = [
@@ -194,9 +200,15 @@
   revision = "8e4536a86ab602859c20df5ebfd0bd4228d08655"
   version = "v1.10.0"
 
+[[projects]]
+  branch = "v1"
+  name = "gopkg.in/zabawaba99/firego.v1"
+  packages = ["."]
+  revision = "4d07741c1dde0b0d76218e8365baea10c33cf968"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "db9aa18a0ff3db76f312850f776de9c19cead1a2774baadb4a450f8e16624450"
+  inputs-digest = "65220663e7b40b5f5b1f768bb6d7bab637a877cfb8b2a42a70a2c139796391e4"
   solver-name = "gps-cdcl"
   solver-version = 1

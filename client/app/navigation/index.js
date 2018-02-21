@@ -6,6 +6,7 @@ import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-n
 
 import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
+import CreateProfileScreen from '../screens/CreateProfileScreen';
 import { addListener } from '../store/middleware';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
@@ -16,6 +17,9 @@ export const AppNavigator = StackNavigator(
     },
     Login: {
       screen: LoginScreen,
+    },
+    CreateProfile: {
+      screen: CreateProfileScreen
     },
   },
   {

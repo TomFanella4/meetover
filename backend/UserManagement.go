@@ -112,11 +112,11 @@ func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
 	}
 	code := url.QueryEscape(TempClientCode)
 	ruri = url.QueryEscape(ruri)
-	content := fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s&"+
+	params := fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s&"+
 		"client_id=%s&client_secret=%s", code, ruri, cid, csecret)
 
 	endpoint := "https://www.linkedin.com/oauth/v2/accessToken"
-	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byte(content)))
+	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byte(params)))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Host", "www.linkedin.com")
 
@@ -173,7 +173,7 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 	if err := json.Unmarshal(bodyBytes, &record); err != nil {
 		bodyString := string(bodyBytes)
 		fmt.Println(bodyString)
-		return LiProfile{}, errors.New("Unexpected Response Getting LI profile")
+		return LiProfile{}, errors.New("Unexpected Response Getting LI profile: " + bodyString)
 	}
 	return record, nil
 }

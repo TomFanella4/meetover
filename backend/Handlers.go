@@ -29,8 +29,9 @@ type ServerResponse struct {
 
 // AuthResponse is the JSON returned to client during login to backend
 type AuthResponse struct {
-	LiProfile   LiProfile      `json:"profile"`
-	AccessToken ATokenResponse `json:"token"`
+	LiProfile            LiProfile       `json:"profile"`
+	AccessToken          ATokenResponse  `json:"token"`
+	FirebaseCustomToken  string          `json:"firebaseCustomToken"`
 }
 
 // ResponseCode Global codes for client - backend connections
@@ -93,6 +94,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tempUserCode := params["code"]
 	fmt.Println("[+] Recieved code: " + tempUserCode)
+
 	aTokenResp, err := ExchangeToken(tempUserCode)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
@@ -100,10 +102,24 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println("[+] After ExchangeToken: " + aTokenResp.AToken)
+
 	lip, err := GetLiProfile(aTokenResp.AToken)
+	if err != nil {
+		respondWithError(w, FailedTokenExchange, err.Error())
+		fmt.Println("Sending failed token exchange error")
+	}
+
+	customToken, err := CreateCustomToken(lip.ID)
+	if err != nil {
+		respondWithError(w, FailedTokenExchange, err.Error())
+		fmt.Println("Sending failed token exchange error")
+	}
+
 	var resp AuthResponse
 	resp.AccessToken = aTokenResp
 	resp.LiProfile = lip
+	resp.FirebaseCustomToken = customToken
+
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("[-] Sending failed token exchange error")

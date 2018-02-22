@@ -5,3 +5,5 @@ backend
 backend.exe
 debug
 vendor/
+.env
+firebase-config.json

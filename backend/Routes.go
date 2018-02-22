@@ -44,7 +44,7 @@ var routes = Routes{
 	},
 	Route{
 		"Debugging Endpoint",
-		"GET",
+		"POST",
 		"/test/{testType}",
 		Test,
 	},

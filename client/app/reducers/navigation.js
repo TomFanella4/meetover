@@ -3,6 +3,7 @@ import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigation';
 
 import {
+  CREATE_PROFILE,
   LOGIN,
   LOGOUT
 } from '../actions/actionTypes';
@@ -30,12 +31,21 @@ export default navigation = (state = initialState, action) => {
 
   switch (action.type) {
 
+    case CREATE_PROFILE:
+      return {
+        ...state,
+        stateForLoggedOut: AppNavigator.router.getStateForAction(
+          AppNavigator.router.getActionForPathAndParams('CreateProfile'),
+          stateForLoggedOut
+        )
+      };
+
     case LOGIN:
       return {
         ...state,
         stateForLoggedIn: AppNavigator.router.getStateForAction(
           actionForLoggedIn,
-          stateForLoggedOut
+          state.stateForLoggedOut
         )
       };
 

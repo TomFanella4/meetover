@@ -2,9 +2,10 @@ import Expo from 'expo';
 
 import {
   FETCH_MATCHES,
+  CREATE_PROFILE,
   LOGIN,
   LOGOUT,
-  UPDATE_USER_PROFILE,
+  MODIFY_USER_PROFILE,
 } from './actionTypes';
 
 import matchesMock from '../mocks/matches';
@@ -43,8 +44,13 @@ export const logout = () => ({
   type: LOGOUT
 });
 
+export const createProfile = userProfile => ({
+  type: CREATE_PROFILE,
+  userProfile
+});
+
 export const modifyUserProfile = userProfile => ({
-  type: UPDATE_USER_PROFILE,
+  type: MODIFY_USER_PROFILE,
   userProfile
 });
 
@@ -52,6 +58,10 @@ export const saveProfileAndLoginAsync = userProfile => (
   dispatch => (
     Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile))
     .then(() => dispatch(login(userProfile)))
-    .catch(err => console.error(err))
+    .catch(err => {
+      dispatch(login(userProfile));
+      // TODO Notify user of error
+      console.log(err);
+    })
   )
 );

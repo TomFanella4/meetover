@@ -1,17 +1,15 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { AuthSession } from 'expo';
 import { Button, View, Spinner } from 'native-base';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { LI_APP_ID } from 'react-native-dotenv';
 
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { saveProfileAndLoginAsync } from '../actions';
+import { createProfile, saveProfileAndLoginAsync } from '../actions';
 import { fetchIdToken } from '../firebase';
 
 class LoginScreen extends React.Component {
@@ -71,20 +69,18 @@ class LoginScreen extends React.Component {
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
-      const userProfile = await response.json();
-      const firebaseIdToken = await fetchIdToken(userProfile.firebaseCustomToken)
+      const { profile, token, firebaseCustomToken } = await response.json();
+      const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
 
-      userProfile = { ...userProfile, isAuthenticated: true, firebaseIdToken };
-
-      this.props.saveProfileAndLoginAsync(userProfile)
-      .then(() => this.setState({ isLoading: false }));
+      this.props.createProfile({ ...profile, token, firebaseCustomToken });
+      this.setState({ isLoading: false });
     }
   }
 }
 
 const mapDispatchToProps = {
-  saveProfileAndLoginAsync
+  createProfile
 };
 
 export default connect(

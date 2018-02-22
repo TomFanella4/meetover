@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import {
   Container,
   View,
@@ -65,7 +65,8 @@ class CreateProfileScreen extends React.Component {
                 <Switch style={styles.shareLocationSwitch}
                   value={userProfile.shareLocation}
                   onValueChange={value => this._handleUserProfileModification('shareLocation', value)}
-                  onTintColor='white' />
+                  onTintColor='white'
+                  thumbTintColor={Platform.OS === 'android' ? 'white' : null} />
               </View>
             </Form>
         </Content>

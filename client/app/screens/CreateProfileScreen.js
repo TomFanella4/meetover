@@ -113,19 +113,21 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.tintColor,
+    paddingTop: Platform.OS === 'ios' ? 15 : 0,
   },
   contentTop: {
-    backgroundColor: Colors.tintColor,
-    padding: 20,
-    paddingTop: 40,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   contentBottom: {
+    backgroundColor: '#fff',
     padding: 20,
   },
   shareLocationView: {
     flexDirection: 'row',
     paddingTop: 15,
+    paddingBottom: 15
   },
   shareLocationText: {
     color: 'white',
@@ -139,8 +141,9 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: 'white',
-    fontSize: 35,
+    fontSize: 29,
     alignSelf: 'center',
+    paddingTop: 15
   },
   titleSubtext: {
     color: 'white',

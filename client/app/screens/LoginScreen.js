@@ -69,8 +69,8 @@ class LoginScreen extends React.Component {
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
-      const { profile, token } = await response.json();
-      const firebaseIdToken = await fetchIdToken(userProfile.firebaseCustomToken)
+      const { profile, token, firebaseCustomToken } = await response.json();
+      const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
 
       this.props.createProfile({ ...profile, token, firebaseCustomToken });

@@ -11,7 +11,6 @@ import {
 } from 'native-base'
 import { connect } from 'react-redux';
 
-import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 import { fetchMatchesAsync } from '../actions';
 
@@ -22,10 +21,6 @@ class ListScreen extends React.Component {
 
   static navigationOptions = {
     title: 'List',
-    headerStyle: {
-      backgroundColor: Colors.tintColor,
-    },
-    headerTintColor: Colors.header,
   };
 
   componentDidMount() {

@@ -12,6 +12,7 @@ import { LI_APP_ID } from 'react-native-dotenv';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 import { saveProfileAndLoginAsync } from '../actions';
+import { fetchIdToken } from '../firebase';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -71,7 +72,10 @@ class LoginScreen extends React.Component {
 
       const response = await fetch(uri, init);
       const userProfile = await response.json();
-      userProfile = { ...userProfile, isAuthenticated: true }
+      const firebaseIdToken = await fetchIdToken(userProfile.firebaseCustomToken)
+        .catch(err => null);
+
+      userProfile = { ...userProfile, isAuthenticated: true, firebaseIdToken };
 
       this.props.saveProfileAndLoginAsync(userProfile)
       .then(() => this.setState({ isLoading: false }));

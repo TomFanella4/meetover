@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import { addListener } from '../store/middleware';
 import Colors from '../constants/Colors';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
@@ -25,6 +26,8 @@ export const AppNavigator = StackNavigator(
     },
     SettingsScreen: {
       screen: SettingsScreen,
+    Profile: {
+      screen: ProfileScreen,
     },
   },
   {

@@ -34,9 +34,9 @@ class ListScreen extends React.Component {
   }
 
   render() {
-    const { matches } = this.props;
+    const { matches, navigation } = this.props;
     const list = matches.map(match =>
-      <ListItem style={styles.container} key={match.id}>
+      <ListItem style={styles.container} key={match.id} onPress={() => navigation.push('Profile')}>
         <Left style={styles.thumbnail}>
           <Thumbnail source={{ uri: match.pictureUrl }} />
         </Left>

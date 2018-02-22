@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler } from "react-native";
+import { Platform, BackHandler } from "react-native";
 // import { Notifications } from 'expo';
 import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation';
 
@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
 import { addListener } from '../store/middleware';
+import Colors from '../constants/Colors';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
 export const AppNavigator = StackNavigator(
@@ -27,6 +28,11 @@ export const AppNavigator = StackNavigator(
       headerTitleStyle: {
         fontWeight: 'normal',
       },
+      headerStyle: {
+        backgroundColor: Colors.tintColor,
+        marginTop: Platform.OS === 'android' ? -24 : 0,
+      },
+      headerTintColor: Colors.header,
     }),
   }
 );

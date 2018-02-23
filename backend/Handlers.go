@@ -11,11 +11,12 @@ import (
 
 // Person is user on MeetOver
 type Person struct {
-	ID          string         `json:"id,omitempty"`
-	Firstname   string         `json:"firstname,omitempty"`
-	Lastname    string         `json:"lastname,omitempty"`
+	ID          string         `json:"uid,omitempty"`
+	Firstname   string         `json:"firstName,omitempty"`
+	Lastname    string         `json:"lastName,omitempty"`
 	Address     *Address       `json:"address,omitempty"`
-	AccessToken ATokenResponse `json:"accesstoken"`
+	AccessToken ATokenResponse `json:"accessToken"`
+	LiProfile   LiProfile      `json:"profile"`
 }
 
 var people []Person
@@ -108,6 +109,18 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")
 	}
+
+	users, _ := fbClient.Ref("/users")
+	person := Person{
+		ID:          lip.ID,
+		Firstname:   lip.FirstName,
+		Lastname:    lip.LastName,
+		AccessToken: aTokenResp,
+		LiProfile:   lip,
+	}
+	addUser := make(map[string]interface{})
+	addUser[lip.ID] = person
+	defer users.Update(addUser)
 
 	customToken, err := CreateCustomToken(lip.ID)
 	if err != nil {

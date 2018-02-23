@@ -11,6 +11,7 @@
   "dependencies": {
     "expo": "^25.0.0",
     "firebase": "^4.10.0",
+    "lodash": "^4.17.5",
     "native-base": "^2.3.8",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",

@@ -110,7 +110,11 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Sending failed token exchange error")
 	}
 
-	users, _ := fbClient.Ref("/users")
+	users, err := fbClient.Ref("/users")
+	if err != nil {
+		respondWithError(w, FailedDBCall, err.Error())
+		fmt.Println("Failed to save user profile")
+	}
 	person := Person{
 		ID:          lip.ID,
 		Firstname:   lip.FirstName,

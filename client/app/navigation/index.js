@@ -37,6 +37,7 @@ export const AppNavigator = StackNavigator(
     },
     SettingsScreen: {
       screen: SettingsScreen,
+    },
     Profile: {
       screen: ProfileScreen,
       navigationOptions: ({ navigation }) => ({

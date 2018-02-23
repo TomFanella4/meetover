@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshControl, ScrollView, StyleSheet } from 'react-native';
+import { RefreshControl, StyleSheet } from 'react-native';
 import {
   Body,
   Container,
@@ -44,8 +44,8 @@ class ListScreen extends React.Component {
 
   render() {
     const { matches } = this.props;
-    const list = matches.map(match =>
-      <ListItem style={styles.container} key={match.id} onPress={() => this._viewProfile(match.id, match.formattedName)}>
+    const list = matches.map((match, index) =>
+      <ListItem style={styles.container} key={index} onPress={() => this._viewProfile(match.id, match.formattedName)}>
         <Left style={styles.thumbnail}>
           <Thumbnail source={{ uri: match.pictureUrl }} />
         </Left>

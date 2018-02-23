@@ -8,7 +8,6 @@ import (
 	"context"
 	"errors"
 	"io/ioutil"
-	"fmt"
 	"log"
 	"os"
 
@@ -56,12 +55,12 @@ func InitializeFirebase() {
 func CreateCustomToken(ID string) (string, error) {
 	client, err := fbApp.Auth(context.Background())
 	if err != nil {
-		return "", errors.New(fmt.Sprintf("error getting Auth client: %v\n", err))
+		return "", errors.New("error getting Auth client\n")
 	}
 
 	token, err := client.CustomToken(ID)
 	if err != nil {
-		return "", errors.New(fmt.Sprintf("error minting custom token: %v\n", err))
+		return "", errors.New("error minting custom token\n")
 	}
 
 	return token, nil

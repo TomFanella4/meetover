@@ -8,9 +8,21 @@ import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import { addListener } from '../store/middleware';
 import Colors from '../constants/Colors';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+
+const defaultNavigationOptions = {
+  headerTitleStyle: {
+    fontWeight: 'normal',
+  },
+  headerStyle: {
+    backgroundColor: Colors.tintColor,
+    marginTop: Platform.OS === 'android' ? -24 : 0,
+  },
+  headerTintColor: Colors.header,
+};
 
 export const AppNavigator = StackNavigator(
   {
@@ -26,18 +38,16 @@ export const AppNavigator = StackNavigator(
     SettingsScreen: {
       screen: SettingsScreen,
     },
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: ({ navigation }) => ({
+        ...defaultNavigationOptions,
+        title: `${navigation.state.params.name}'s Profile`,
+      })
+    },
   },
   {
-    navigationOptions: () => ({
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-      headerStyle: {
-        backgroundColor: Colors.tintColor,
-        marginTop: Platform.OS === 'android' ? -24 : 0,
-      },
-      headerTintColor: Colors.header,
-    }),
+    navigationOptions: defaultNavigationOptions,
   }
 );
 

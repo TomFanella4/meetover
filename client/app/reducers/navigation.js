@@ -60,14 +60,14 @@ export default navigation = (state = initialState, action) => {
         )
       };
 
-    case "Navigation/BACK":
-      return {
-        ...state,
-        stateForLoggedOut: AppNavigator.router.getStateForAction(
-          NavigationActions.back(),
-          stateForLoggedOut
-        )
-      };
+    // case "Navigation/BACK":
+    //   return {
+    //     ...state,
+    //     stateForLoggedOut: AppNavigator.router.getStateForAction(
+    //       NavigationActions.back(),
+    //       stateForLoggedOut
+    //     )
+    //   };
 
     default:
       return {

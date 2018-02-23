@@ -1,4 +1,5 @@
 import Expo from 'expo';
+import { times } from 'lodash';
 
 import {
   FETCH_MATCHES,
@@ -22,7 +23,14 @@ export const fetchMatchesAsync = userId => {
     let matches;
 
     if (useMocks) {
-      matches = matchesMock;
+      const uri = `https://meetover.herokuapp.com/test/liprofile`;
+      const init = { method: 'POST' };
+
+      const response = await fetch(uri, init);
+      let profile = await response.json();
+      profile = JSON.parse(profile);
+
+      matches = times(10, () => Object.assign({}, profile));
     } else {
       const uri = `https://meetover.herokuapp.com/match/${userId}`;
       const init = { method: 'POST' };

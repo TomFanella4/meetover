@@ -13,6 +13,17 @@ import { addListener } from '../store/middleware';
 import Colors from '../constants/Colors';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
+const defaultNavigationOptions = {
+  headerTitleStyle: {
+    fontWeight: 'normal',
+  },
+  headerStyle: {
+    backgroundColor: Colors.tintColor,
+    marginTop: Platform.OS === 'android' ? -24 : 0,
+  },
+  headerTintColor: Colors.header,
+};
+
 export const AppNavigator = StackNavigator(
   {
     Main: {
@@ -28,19 +39,14 @@ export const AppNavigator = StackNavigator(
       screen: SettingsScreen,
     Profile: {
       screen: ProfileScreen,
+      navigationOptions: ({ navigation }) => ({
+        ...defaultNavigationOptions,
+        title: `${navigation.state.params.name}'s Profile`,
+      })
     },
   },
   {
-    navigationOptions: () => ({
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-      headerStyle: {
-        backgroundColor: Colors.tintColor,
-        marginTop: Platform.OS === 'android' ? -24 : 0,
-      },
-      headerTintColor: Colors.header,
-    }),
+    navigationOptions: defaultNavigationOptions,
   }
 );
 

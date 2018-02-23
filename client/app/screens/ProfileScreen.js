@@ -23,9 +23,9 @@ class ProfileScreen extends React.Component {
   };
 
   componentDidMount() {
-    const { navigation } = this.props;
+    const { fetchProfileAsync, navigation } = this.props;
 
-    this.props.fetchProfileAsync(navigation.state.params.userId)
+    fetchProfileAsync(navigation.state.params.userId)
       .then(() => this.setState({ loading: false }));
   }
 
@@ -35,7 +35,11 @@ class ProfileScreen extends React.Component {
     let content;
 
     if (this.state.loading) {
-      content = (<Spinner color={Colors.tintColor} />);
+      content = (
+        <Content>
+          <Spinner color={Colors.tintColor} />
+        </Content>
+      );
     } else {
       const positions = profile.positions.values.map((position, index) =>
         <CardItem style={styles.listItem} key={index}>
@@ -76,9 +80,7 @@ class ProfileScreen extends React.Component {
 
     return (
       <Container style={styles.container}>
-        <Content>
-          {content}
-        </Content>
+        {content}
       </Container>
     );
   }

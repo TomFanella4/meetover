@@ -3,17 +3,16 @@ import { times } from 'lodash';
 
 import {
   FETCH_MATCHES,
+  FETCH_PROFILE,
   CREATE_PROFILE,
   LOGIN,
   LOGOUT,
   MODIFY_USER_PROFILE,
 } from './actionTypes';
 
-import matchesMock from '../mocks/matches';
-
 const useMocks = true;
 
-export const fetchMatches = matches => ({
+const fetchMatches = matches => ({
   type: FETCH_MATCHES,
   matches
 });
@@ -23,7 +22,7 @@ export const fetchMatchesAsync = userId => {
     let matches;
 
     if (useMocks) {
-      const uri = `https://meetover.herokuapp.com/test/liprofile`;
+      const uri = 'https://meetover.herokuapp.com/test/liprofile';
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
@@ -40,6 +39,35 @@ export const fetchMatchesAsync = userId => {
     }
 
     dispatch(fetchMatches(matches));
+  };
+};
+
+const fetchProfile = profile => ({
+  type: FETCH_PROFILE,
+  profile
+})
+
+export const fetchProfileAsync = userId => {
+  return async dispatch => {
+    let profile;
+
+    if (useMocks) {
+      const uri = 'https://meetover.herokuapp.com/test/liprofile';
+      const init = { method: 'POST' };
+
+      const response = await fetch(uri, init);
+      profile = await response.json();
+      profile = JSON.parse(profile);
+    } else {
+      const uri = `https://meetover.herokuapp.com/people/${userId}`;
+      const init = { method: 'GET' };
+
+      const response = await fetch(uri, init);
+      profile = await response.json();
+      profile = JSON.parse(profile);
+    }
+
+    dispatch(fetchProfile(profile));
   };
 };
 

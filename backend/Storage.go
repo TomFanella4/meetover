@@ -19,8 +19,8 @@ import (
 	"google.golang.org/api/option"
 )
 
-var fbApp     *firebase.App
-var fbClient  *firego.Firebase
+var fbApp *firebase.App
+var fbClient *firego.Firebase
 
 func InitializeFirebase() {
 	// This is a Firebase workaround. The Firebase go library MUST read

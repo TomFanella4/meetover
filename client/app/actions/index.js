@@ -27,7 +27,7 @@ export const fetchMatchesAsync = userId => {
 
       const response = await fetch(uri, init);
       let profile = await response.json();
-      profile = JSON.parse(profile);
+      profile = JSON.parse(profile); // TODO make all the JSON.parse unnecessary
 
       matches = times(10, () => Object.assign({}, profile));
     } else {

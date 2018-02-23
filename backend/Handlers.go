@@ -29,9 +29,9 @@ type ServerResponse struct {
 
 // AuthResponse is the JSON returned to client during login to backend
 type AuthResponse struct {
-	LiProfile            LiProfile       `json:"profile"`
-	AccessToken          ATokenResponse  `json:"token"`
-	FirebaseCustomToken  string          `json:"firebaseCustomToken"`
+	LiProfile           LiProfile      `json:"profile"`
+	AccessToken         ATokenResponse `json:"token"`
+	FirebaseCustomToken string         `json:"firebaseCustomToken"`
 }
 
 // ResponseCode Global codes for client - backend connections
@@ -130,14 +130,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 
 // Match will set a flag to notify the system the suer is matched
 func Match(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	for _, item := range people {
-		if item.ID == params["id"] {
-			json.NewEncoder(w).Encode(item)
-			return
-		}
-	}
-	json.NewEncoder(w).Encode(&Person{})
+	json.NewEncoder(w).Encode(people)
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

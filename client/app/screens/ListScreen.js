@@ -24,7 +24,7 @@ class ListScreen extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchMatchesAsync('userId');
+    this._onRefresh('userId');
   }
 
   _onRefresh(userId) {
@@ -33,10 +33,19 @@ class ListScreen extends React.Component {
       .then(() => this.setState({ refreshing: false }));
   }
 
+  _viewProfile(userId, name) {
+    const { navigation } = this.props;
+
+    navigation.navigate('Profile', {
+      userId,
+      name,
+    });
+  }
+
   render() {
-    const { matches, navigation } = this.props;
+    const { matches } = this.props;
     const list = matches.map(match =>
-      <ListItem style={styles.container} key={match.id} onPress={() => navigation.push('Profile')}>
+      <ListItem style={styles.container} key={match.id} onPress={() => this._viewProfile(match.id, match.formattedName)}>
         <Left style={styles.thumbnail}>
           <Thumbnail source={{ uri: match.pictureUrl }} />
         </Left>

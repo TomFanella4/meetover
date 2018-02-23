@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { Button } from 'native-base';
 
 import Colors from '../constants/Colors';
 
@@ -47,7 +48,20 @@ export default TabNavigator(
         );
       },
       gesturesEnabled: false,
-      headerLeft: null
+      headerLeft: null,
+      headerRight: (
+        <Button
+          transparent
+          onPress={() => navigation.navigate('SettingsScreen')}
+          style={{ padding: 20 }}
+        >
+          <Ionicons
+            name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'}
+            size={30}
+            color='white'
+          />
+        </Button>
+      ),
     }),
     tabBarOptions: {
       activeTintColor: Colors.tabIconSelected,

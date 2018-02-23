@@ -7,6 +7,7 @@ import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-n
 import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import { addListener } from '../store/middleware';
 import Colors from '../constants/Colors';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
@@ -20,7 +21,10 @@ export const AppNavigator = StackNavigator(
       screen: LoginScreen,
     },
     CreateProfile: {
-      screen: CreateProfileScreen
+      screen: CreateProfileScreen,
+    },
+    SettingsScreen: {
+      screen: SettingsScreen,
     },
   },
   {

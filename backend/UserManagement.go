@@ -96,7 +96,7 @@ type LiProfile struct {
 }
 
 // ExchangeToken does the auhentication using client code and secret
-func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
+func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {
 
 	cid, found := os.LookupEnv("LI_CLIENT_ID")
 	if !found {
@@ -107,9 +107,13 @@ func ExchangeToken(TempClientCode string) (ATokenResponse, error) {
 		return ATokenResponse{}, errors.New("Unable to get client secret from env var")
 	}
 	ruri, found := os.LookupEnv("LI_REDIRECT_URI")
-	if !found {
-		return ATokenResponse{}, errors.New("Unable to get redirect uri from env var")
+	if found {
+		fmt.Println("[+] Using server env redirect uri")
+	} else {
+		fmt.Println("[+] Using client param redirect uri")
+		ruri = RedirectURI
 	}
+
 	code := url.QueryEscape(TempClientCode)
 	ruri = url.QueryEscape(ruri)
 	params := fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s&"+

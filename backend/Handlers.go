@@ -94,9 +94,11 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tempUserCode := params["code"]
+	redirectURI := r.URL.Query().Get("redirect_uri")
 	fmt.Println("[+] Recieved code: " + tempUserCode)
+	fmt.Println("[+] Recieved redirect_uri: " + redirectURI)
 
-	aTokenResp, err := ExchangeToken(tempUserCode)
+	aTokenResp, err := ExchangeToken(tempUserCode, redirectURI)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")

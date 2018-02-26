@@ -65,7 +65,8 @@ class LoginScreen extends React.Component {
     if (result.type === 'success') {
       this.setState({ isLoading: true });
 
-      const uri = `https://meetover.herokuapp.com/login/${result.params.code}`;
+      const uri = `https://meetover.herokuapp.com/login/${result.params.code}` +
+        `?redirect_uri=${encodeURIComponent(redirectUri)}`;
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);

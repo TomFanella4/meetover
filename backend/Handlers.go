@@ -110,12 +110,14 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")
+		return
 	}
 
 	users, err := fbClient.Ref("/users")
 	if err != nil {
 		respondWithError(w, FailedDBCall, err.Error())
 		fmt.Println("Failed to save user profile")
+		return
 	}
 	person := Person{
 		ID:          lip.ID,
@@ -132,6 +134,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")
+		return
 	}
 
 	var resp AuthResponse
@@ -139,12 +142,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	resp.LiProfile = lip
 	resp.FirebaseCustomToken = customToken
 
-	if err != nil {
-		respondWithError(w, FailedTokenExchange, err.Error())
-		fmt.Println("[-] Sending failed token exchange error")
-	} else {
-		json.NewEncoder(w).Encode(resp)
-	}
+	json.NewEncoder(w).Encode(resp)
 }
 
 // Match will set a flag to notify the system the suer is matched

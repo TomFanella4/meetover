@@ -41,7 +41,7 @@ class CreateProfileScreen extends React.Component {
           style={{fontFamily: 'pt-sans'}}
         >
           {option.label}
-      </Label>
+        </Label>
         <Input
           value={userProfile[option.item] || ''}
           onChangeText={text => this._handleUserProfileModification(option.item, text)}

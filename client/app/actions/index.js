@@ -101,3 +101,15 @@ export const saveProfileAndLoginAsync = userProfile => (
     })
   )
 );
+
+export const deleteProfileAndLogoutAsync = () => (
+  dispatch => (
+    Expo.SecureStore.deleteItemAsync('userProfile')
+    .then(() => dispatch(logout()))
+    .catch(err => {
+      dispatch(logout());
+      // TODO Notify user of error
+      console.log(err);
+    })
+  )
+);

@@ -10,7 +10,6 @@ import {
   Content,
   Button,
   Switch,
-  Text
 } from 'native-base';
 
 import Colors from '../constants/Colors';
@@ -38,9 +37,13 @@ class CreateProfileScreen extends React.Component {
 
     const userProfileFormItems = this.userProfileFormOptions.map(option => (
       <Item key={option.item} floatingLabel last>
-        <Label style={{color: 'white'}}>{option.label}</Label>
+        <Label
+          style={{color: 'white', fontFamily: 'pt-sans'}}
+        >
+          {option.label}
+        </Label>
         <Input
-          style={{color: 'white'}}
+          style={{color: 'white', fontFamily: 'pt-sans'}}
           value={userProfile[option.item] || ''}
           onChangeText={text => this._handleUserProfileModification(option.item, text)}
         />
@@ -59,9 +62,9 @@ class CreateProfileScreen extends React.Component {
             <Form>
               {userProfileFormItems}
               <View style={styles.shareLocationView}>
-                <Text style={styles.shareLocationText}>
+                <PTSansText style={styles.shareLocationText}>
                   {createProfileScreenStrings.permission}
-                </Text>
+                </PTSansText>
                 <Switch style={styles.shareLocationSwitch}
                   value={userProfile.shareLocation}
                   onValueChange={value => this._handleUserProfileModification('shareLocation', value)}

@@ -9,6 +9,7 @@ import {
   Input,
   Content,
   Switch,
+  Button
 } from 'native-base';
 
 import Colors from '../constants/Colors';
@@ -16,7 +17,7 @@ import { settingsScreenStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
 
 import { connect } from 'react-redux';
-import { modifyUserProfile } from '../actions';
+import { modifyUserProfile, deleteProfileAndLogoutAsync } from '../actions';
 
 class CreateProfileScreen extends React.Component {
   static navigationOptions = {
@@ -36,11 +37,15 @@ class CreateProfileScreen extends React.Component {
 
     const userProfileFormItems = this.userProfileFormOptions.map(option => (
       <Item key={option.item} floatingLabel last>
-        <Label style={{color: 'white'}}>{option.label}</Label>
+        <Label
+          style={{fontFamily: 'pt-sans'}}
+        >
+          {option.label}
+      </Label>
         <Input
-          style={{color: 'white'}}
           value={userProfile[option.item] || ''}
           onChangeText={text => this._handleUserProfileModification(option.item, text)}
+          style={{fontFamily: 'pt-sans'}}
         />
       </Item>
     ));
@@ -57,10 +62,18 @@ class CreateProfileScreen extends React.Component {
               <Switch style={styles.shareLocationSwitch}
                 value={userProfile.shareLocation}
                 onValueChange={value => this._handleUserProfileModification('shareLocation', value)}
-                onTintColor='white'
+                onTintColor={Colors.tintColor}
                 thumbTintColor={Platform.OS === 'android' ? 'white' : null}
               />
             </View>
+            <Button
+              onPress={() => this.props.deleteProfileAndLogoutAsync()}
+              style={styles.signOutButton}
+            >
+              <PTSansText>
+                Sign Out
+              </PTSansText>
+            </Button>
           </Form>
         </Content>
       </Container>
@@ -78,7 +91,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  modifyUserProfile
+  modifyUserProfile,
+  deleteProfileAndLogoutAsync
 };
 
 export default connect(
@@ -89,7 +103,7 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.tintColor,
+    backgroundColor: '#fff',
   },
   contentTop: {
     paddingLeft: 20,
@@ -101,7 +115,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15
   },
   shareLocationText: {
-    color: 'white',
     flex: 8,
     paddingRight: 5,
   },
@@ -109,5 +122,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 2,
     paddingLeft: 5,
+  },
+  signOutButton: {
+    alignSelf: 'center',
+    backgroundColor: Colors.tintColor,
   },
 });

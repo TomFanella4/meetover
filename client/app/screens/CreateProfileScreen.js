@@ -10,6 +10,7 @@ import {
   Content,
   Button,
   Switch,
+  Toast,
 } from 'native-base';
 
 import Colors from '../constants/Colors';
@@ -95,7 +96,30 @@ class CreateProfileScreen extends React.Component {
 
   _handleFinishButtonPress() {
     const { saveProfileAndLoginAsync, userProfile } = this.props;
+    let error = false;
+
+    this.userProfileFormOptions.forEach(formOption => {
+      if (userProfile[formOption.item] === undefined) {
+        error = true;
+      }
+    });
+
+    if (error) {
+      Toast.show({
+        text: 'Please Fill in All Fields',
+        buttonText: 'Okay',
+        type: 'danger',
+        duration: 3000,
+        textStyle: { fontFamily: 'pt-sans' },
+      });
+      return;
+    }
+
     saveProfileAndLoginAsync({ ...userProfile, isAuthenticated: true });
+    Toast.show({
+      text: `${userProfile.firstName} Signed In`,
+      textStyle: { fontFamily: 'pt-sans' }
+    });
   }
 }
 

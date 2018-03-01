@@ -88,11 +88,11 @@ class CreateProfileScreen extends React.Component {
 
   _handleSignOutButtonPress() {
     const { deleteProfileAndLogoutAsync, userProfile } = this.props;
+    deleteProfileAndLogoutAsync();
     Toast.show({
       text: `${userProfile.firstName} Signed Out`,
       textStyle: { fontFamily: 'pt-sans' },
     });
-    deleteProfileAndLogoutAsync();
   }
 }
 

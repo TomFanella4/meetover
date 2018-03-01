@@ -99,7 +99,8 @@ class CreateProfileScreen extends React.Component {
     let error = false;
 
     this.userProfileFormOptions.forEach(formOption => {
-      if (userProfile[formOption.item] === undefined) {
+      if (userProfile[formOption.item] === undefined ||
+          userProfile[formOption.item] === '') {
         error = true;
       }
     });

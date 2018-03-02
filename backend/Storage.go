@@ -10,6 +10,8 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"time"
+	"fmt"
 
 	firebase "firebase.google.com/go"
 	"gopkg.in/zabawaba99/firego.v1"
@@ -64,4 +66,29 @@ func CreateCustomToken(ID string) (string, error) {
 	}
 
 	return token, nil
+}
+
+
+func addGeolocation(uid string, coord Coord, timeStamp int64) {
+	addGeo := make(map[string]interface{})
+
+	loc := Geolocation{
+			ID: 	uid,
+			Coord:		coord,
+			TimeStamp:	timeStamp,
+
+	}
+
+	addGeo[loc.ID] = loc
+	geo, err := fbClient.Ref("/Geo")
+
+	if err != nil {
+		fmt.Println("Adding Geo to DB error")
+		return
+	}
+	defer geo.Update(addGeo)
+}
+
+func makeTimestamp() int64 {
+    return time.Now().UnixNano() / int64(time.Millisecond)
 }

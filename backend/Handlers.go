@@ -22,7 +22,7 @@ type Person struct {
 type Geolocation struct {
 	ID  		string			`json:"uid"`
 	Coord 		Coord 			`json:"coord,omitempty"`
-	TimeStamp 	string 			`json:"timestamp,omitempty"`
+	TimeStamp 	int64 			`json:"timestamp,omitempty"`
 }
 
 type Coord struct {
@@ -76,28 +76,32 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if tt == "addGeo" {
-	addGeo := make(map[string]interface{})
-	testCoords := Coord{
-		Lat: "10101",
+	testCoords1 := Coord{
+		Lat: "12101",
 		Long: "20302",
 	}
-
-	testGeo := Geolocation{
-			ID: 	"Loc-h2g43-p",
-			Coord:		testCoords,
-			TimeStamp:	"NOW",
-
+	testCoords2 := Coord{
+		Lat: "10-101",
+		Long: "20302",
 	}
-
-	addGeo[testGeo.ID] = testGeo
-	geo, err := fbClient.Ref("/Geo")
-
-	if err != nil {
-		respondWithError(w, FailedTokenExchange, err.Error())
-		fmt.Println("Adding Geo to DB error")
-		return
+	testCoords3 := Coord{
+		Lat: "10101",
+		Long: "2023302",
 	}
-	defer geo.Update(addGeo)
+	testCoords4 := Coord{
+		Lat: "10101001",
+		Long: "20302",
+	}
+	testCoords5 := Coord{
+		Lat: "1",
+		Long: "20302",
+	}
+	addGeolocation("loc-test1", testCoords1, makeTimestamp())
+	addGeolocation("loc-test2", testCoords2, makeTimestamp())
+	addGeolocation("loc-test3", testCoords3, makeTimestamp())
+	addGeolocation("loc-test4", testCoords4, makeTimestamp())
+	addGeolocation("loc-test5", testCoords5, makeTimestamp())
+
 	}
 }
 

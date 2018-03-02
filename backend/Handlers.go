@@ -19,6 +19,17 @@ type Person struct {
 	LiProfile   LiProfile      `json:"profile"`
 }
 
+type Geolocation struct {
+	ID  		string			`json:"uid"`
+	Coord 		Coord 			`json:"coord,omitempty"`
+	TimeStamp 	string 			`json:"timestamp,omitempty"`
+}
+
+type Coord struct {
+	Lat 	string 				`json:"lat,omitempty"`
+	Long 	string 				`json:"long,omitempty"`
+}
+
 var people []Person
 
 // ServerResponse - Error message JSON structure
@@ -62,6 +73,31 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "liprofile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
+	}
+
+	if tt == "addGeo" {
+	addGeo := make(map[string]interface{})
+	testCoords := Coord{
+		Lat: "10101",
+		Long: "20302",
+	}
+
+	testGeo := Geolocation{
+			ID: 	"Loc-h2g43-p",
+			Coord:		testCoords,
+			TimeStamp:	"NOW",
+
+	}
+
+	addGeo[testGeo.ID] = testGeo
+	geo, err := fbClient.Ref("/Geo")
+
+	if err != nil {
+		respondWithError(w, FailedTokenExchange, err.Error())
+		fmt.Println("Adding Geo to DB error")
+		return
+	}
+	defer geo.Update(addGeo)
 	}
 }
 

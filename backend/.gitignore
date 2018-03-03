@@ -1,0 +1,9 @@
+backend
+.main.go.swp
+.vscode/
+.vscode/
+backend.exe
+debug
+vendor/
+.env
+firebase-config.json

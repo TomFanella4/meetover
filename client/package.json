@@ -1,0 +1,28 @@
+{
+  "main": "_universe/entry.js",
+  "private": true,
+  "scripts": {
+    "start": "exp start",
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^25.0.0",
+    "firebase": "^4.10.0",
+    "lodash": "^4.17.5",
+    "native-base": "^2.3.8",
+    "react": "16.2.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react-navigation": "^1.0.3",
+    "react-navigation-redux-helpers": "^1.0.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "jest-expo": "^25.0.0",
+    "react-native-dotenv": "^0.1.1"
+  }
+}

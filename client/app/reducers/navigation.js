@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-import { Toast } from 'native-base';
+import { StyledToast } from '../helpers';
 
 import { AppNavigator } from '../navigation';
 
@@ -64,10 +64,9 @@ export default navigation = (state = initialState, action) => {
     case "Navigation/BACK":
       const routes = state.stateForLoggedIn.routes;
       if (routes[routes.length - 1].routeName === 'SettingsScreen') {
-        Toast.show({
+        StyledToast({
           text: 'Saved Settings',
           buttonText: 'Okay',
-          textStyle: { fontFamily: 'pt-sans' },
         });
       }
       // return {

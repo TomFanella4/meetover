@@ -10,12 +10,12 @@ import {
   Content,
   Button,
   Switch,
-  Toast,
 } from 'native-base';
 
 import Colors from '../constants/Colors';
 import { createProfileScreenStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
+import { StyledToast } from '../helpers';
 
 import { connect } from 'react-redux';
 import { saveProfileAndLoginAsync, modifyUserProfile } from '../actions';
@@ -106,21 +106,17 @@ class CreateProfileScreen extends React.Component {
     });
 
     if (error) {
-      Toast.show({
+      StyledToast({
         text: 'Please Fill in All Fields',
         buttonText: 'Okay',
         type: 'danger',
         duration: 3000,
-        textStyle: { fontFamily: 'pt-sans' },
       });
       return;
     }
 
     saveProfileAndLoginAsync({ ...userProfile, isAuthenticated: true });
-    Toast.show({
-      text: `${userProfile.firstName} Signed In`,
-      textStyle: { fontFamily: 'pt-sans' }
-    });
+    StyledToast({ text: `${userProfile.firstName} Signed In` });
   }
 }
 

@@ -69,6 +69,7 @@ export default navigation = (state = initialState, action) => {
           buttonText: 'Okay',
         });
       }
+      // TODO: Handle Android physical back button
       // return {
       //   ...state,
       //   stateForLoggedOut: AppNavigator.router.getStateForAction(

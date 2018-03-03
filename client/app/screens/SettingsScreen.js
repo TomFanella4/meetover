@@ -9,12 +9,13 @@ import {
   Input,
   Content,
   Switch,
-  Button
+  Button,
 } from 'native-base';
 
 import Colors from '../constants/Colors';
 import { settingsScreenStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
+import { StyledToast } from '../helpers';
 
 import { connect } from 'react-redux';
 import { modifyUserProfile, deleteProfileAndLogoutAsync } from '../actions';
@@ -67,7 +68,7 @@ class CreateProfileScreen extends React.Component {
               />
             </View>
             <Button
-              onPress={() => this.props.deleteProfileAndLogoutAsync()}
+              onPress={() => this._handleSignOutButtonPress()}
               style={styles.signOutButton}
             >
               <PTSansText>
@@ -83,6 +84,12 @@ class CreateProfileScreen extends React.Component {
   _handleUserProfileModification(key, value) {
     const { modifyUserProfile, userProfile } = this.props;
     modifyUserProfile({ ...userProfile, [key]: value });
+  }
+
+  _handleSignOutButtonPress() {
+    const { deleteProfileAndLogoutAsync, userProfile } = this.props;
+    deleteProfileAndLogoutAsync();
+    StyledToast({ text: `${userProfile.firstName} Signed Out` });
   }
 }
 

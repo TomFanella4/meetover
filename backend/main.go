@@ -22,7 +22,7 @@ func main() {
 	if deployMode {
 		fmt.Println(http.ListenAndServe(":"+port, router))
 	} else {
-		fmt.Println("running in dubug mode")
+		fmt.Println("running in debug mode")
 		fmt.Println(http.ListenAndServe(":8080", router))
 	}
 }

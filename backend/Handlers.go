@@ -19,6 +19,17 @@ type Person struct {
 	LiProfile   LiProfile      `json:"profile"`
 }
 
+type Geolocation struct {
+	ID  		string			`json:"uid"`
+	Coord 		Coord 			`json:"coord,omitempty"`
+	TimeStamp 	int64 			`json:"timestamp,omitempty"`
+}
+
+type Coord struct {
+	Lat 	string 				`json:"lat,omitempty"`
+	Long 	string 				`json:"long,omitempty"`
+}
+
 var people []Person
 
 // ServerResponse - Error message JSON structure
@@ -62,6 +73,35 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "liprofile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
+	}
+
+	if tt == "addGeo" {
+	testCoords1 := Coord{
+		Lat: "12101",
+		Long: "20302",
+	}
+	testCoords2 := Coord{
+		Lat: "10-101",
+		Long: "20302",
+	}
+	testCoords3 := Coord{
+		Lat: "10101",
+		Long: "2023302",
+	}
+	testCoords4 := Coord{
+		Lat: "10101001",
+		Long: "20302",
+	}
+	testCoords5 := Coord{
+		Lat: "1",
+		Long: "20302",
+	}
+	addGeolocation("loc-test1", testCoords1, makeTimestamp())
+	addGeolocation("loc-test2", testCoords2, makeTimestamp())
+	addGeolocation("loc-test3", testCoords3, makeTimestamp())
+	addGeolocation("loc-test4", testCoords4, makeTimestamp())
+	addGeolocation("loc-test5", testCoords5, makeTimestamp())
+
 	}
 }
 

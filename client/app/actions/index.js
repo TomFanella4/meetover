@@ -1,4 +1,5 @@
 import Expo, { AuthSession } from 'expo';
+import { StyledToast } from '../helpers';
 import { times } from 'lodash';
 
 import { LI_APP_ID } from 'react-native-dotenv';
@@ -130,9 +131,12 @@ export const saveProfileAndLoginAsync = userProfile => (
     Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile))
     .then(() => dispatch(login(userProfile)))
     .catch(err => {
+      StyledToast({
+        text: 'Failed to save profile',
+        buttonText: 'Okay',
+        type: 'danger',
+      });
       dispatch(login(userProfile));
-      // TODO Notify user of error
-      console.log(err);
     })
   )
 );
@@ -142,9 +146,12 @@ export const deleteProfileAndLogoutAsync = () => (
     Expo.SecureStore.deleteItemAsync('userProfile')
     .then(() => dispatch(logout()))
     .catch(err => {
+      StyledToast({
+        text: 'Failed to delete profile',
+        buttonText: 'Okay',
+        type: 'danger',
+      });
       dispatch(logout());
-      // TODO Notify user of error
-      console.log(err);
     })
   )
 );

@@ -119,6 +119,8 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Failed to save user profile")
 		return
 	}
+	// if no access token, create a new person
+	// if profile exists and token is expired, update access token and expiry
 	person := Person{
 		ID:          lip.ID,
 		Firstname:   lip.FirstName,
@@ -145,7 +147,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-// Match will set a flag to notify the system the suer is matched
+// Match will set a flag to notify the system the user is matched
 func Match(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(people)
 }

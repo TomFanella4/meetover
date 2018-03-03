@@ -1,3 +1,4 @@
+import { times, random } from 'lodash';
 
 const profile = {
   "currentShare": {
@@ -59,28 +60,10 @@ const profile = {
   "summary": "Senior (Graduation May 2018) at Purdue university pursuing a BSc in Computer Science looking to apply my knowledge in the field of software development, system security and blockchain solutions through full-time opportunities."
 };
 
-export default matchesMock = [
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile),
-  Object.assign({}, profile)
-];
+export default matchesMock = times(10, () => ({
+  ...profile,
+  "location": {
+    "latitude": 40.424649 + random(-0.01, 0.01, true),
+    "longitude": -86.911571 + random(-0.01, 0.01, true),
+  },
+}));

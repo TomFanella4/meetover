@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Platform, BackHandler } from "react-native";
 // import { Notifications } from 'expo';
 import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation';
+import { Root } from 'native-base';
 
 import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
@@ -80,7 +81,9 @@ class AppNavigation extends React.Component {
       : navigationState.stateForLoggedOut;
 
     return (
-      <AppNavigator navigation={addNavigationHelpers({ dispatch, state, addListener })} />
+      <Root>
+        <AppNavigator navigation={addNavigationHelpers({ dispatch, state, addListener })} />
+      </Root>
     );
   }
 

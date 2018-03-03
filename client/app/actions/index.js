@@ -1,5 +1,8 @@
-import Expo from 'expo';
+import Expo, { AuthSession } from 'expo';
+import { StyledToast } from '../helpers';
 import { times } from 'lodash';
+
+import { LI_APP_ID } from 'react-native-dotenv';
 
 import {
   FETCH_MATCHES,
@@ -9,6 +12,8 @@ import {
   LOGOUT,
   MODIFY_USER_PROFILE,
 } from './actionTypes';
+
+import { fetchIdToken } from '../firebase';
 
 const useMocks = true;
 
@@ -90,14 +95,48 @@ export const modifyUserProfile = userProfile => ({
   userProfile
 });
 
+export const authenticateAndCreateProfile = () => (
+  async dispatch => {
+    const redirectUri = AuthSession.getRedirectUrl();
+    const result = await AuthSession.startAsync({
+      authUrl:
+        `https://www.linkedin.com/oauth/v2/authorization?response_type=code` +
+        `&client_id=${LI_APP_ID}` +
+        `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+        `&state=meetover_testing`
+    });
+
+    if (result.type === 'success') {
+      const uri = `https://meetover.herokuapp.com/login/${result.params.code}` +
+        `?redirect_uri=${encodeURIComponent(redirectUri)}`;
+      const init = { method: 'POST' };
+
+      const response = await fetch(uri, init);
+      const { profile, token, firebaseCustomToken } = await response.json();
+      const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
+        .catch(err => null);
+
+      dispatch(createProfile({
+        ...profile,
+        token,
+        firebaseCustomToken,
+        firebaseIdToken,
+      }));
+    }
+  }
+);
+
 export const saveProfileAndLoginAsync = userProfile => (
   dispatch => (
     Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile))
     .then(() => dispatch(login(userProfile)))
     .catch(err => {
+      StyledToast({
+        text: 'Failed to save profile',
+        buttonText: 'Okay',
+        type: 'danger',
+      });
       dispatch(login(userProfile));
-      // TODO Notify user of error
-      console.log(err);
     })
   )
 );
@@ -107,9 +146,12 @@ export const deleteProfileAndLogoutAsync = () => (
     Expo.SecureStore.deleteItemAsync('userProfile')
     .then(() => dispatch(logout()))
     .catch(err => {
+      StyledToast({
+        text: 'Failed to delete profile',
+        buttonText: 'Okay',
+        type: 'danger',
+      });
       dispatch(logout());
-      // TODO Notify user of error
-      console.log(err);
     })
   )
 );

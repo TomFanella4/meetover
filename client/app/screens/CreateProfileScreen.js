@@ -15,6 +15,7 @@ import {
 import Colors from '../constants/Colors';
 import { createProfileScreenStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
+import { StyledToast } from '../helpers';
 
 import { connect } from 'react-redux';
 import { saveProfileAndLoginAsync, modifyUserProfile } from '../actions';
@@ -95,7 +96,27 @@ class CreateProfileScreen extends React.Component {
 
   _handleFinishButtonPress() {
     const { saveProfileAndLoginAsync, userProfile } = this.props;
+    let error = false;
+
+    this.userProfileFormOptions.forEach(formOption => {
+      if (userProfile[formOption.item] === undefined ||
+          userProfile[formOption.item] === '') {
+        error = true;
+      }
+    });
+
+    if (error) {
+      StyledToast({
+        text: 'Please Fill in All Fields',
+        buttonText: 'Okay',
+        type: 'danger',
+        duration: 3000,
+      });
+      return;
+    }
+
     saveProfileAndLoginAsync({ ...userProfile, isAuthenticated: true });
+    StyledToast({ text: `${userProfile.firstName} Signed In` });
   }
 }
 

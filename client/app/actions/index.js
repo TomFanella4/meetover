@@ -115,7 +115,12 @@ export const authenticateAndCreateProfile = () => (
       const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
 
-      dispatch(createProfile({ ...profile, token, firebaseCustomToken }));
+      dispatch(createProfile({
+        ...profile,
+        token,
+        firebaseCustomToken,
+        firebaseIdToken,
+      }));
     }
   }
 );

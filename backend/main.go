@@ -10,7 +10,6 @@ import (
 func main() {
 
 	router := NewRouter()
-
 	InitializeFirebase()
 
 	port, deployMode := os.LookupEnv("PORT")

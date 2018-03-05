@@ -1,5 +1,7 @@
 package main
 
+import "time"
+
 // Address is a our location metric
 type Address struct {
 	City  string `json:"city,omitempty"`
@@ -7,17 +9,12 @@ type Address struct {
 	Area  string `json:"area,omitempty"`
 }
 
-// Geolocation stores the user's location in lat, long and time from last update
+// Geolocation - latitide and longitude and last time of update
 type Geolocation struct {
-	ID        string `json:"uid"`
-	Coord     Coord  `json:"coord,omitempty"`
+	ID        string `json:"uid,omitempty"` // TODO: we probably don't need this feild once the GeoLocation is in the Person Struct
+	Lat       string `json:"lat,omitempty"`
+	Long      string `json:"long,omitempty"`
 	TimeStamp int64  `json:"timestamp,omitempty"`
-}
-
-// Coord - latitide and longitude
-type Coord struct {
-	Lat  string `json:"lat,omitempty"`
-	Long string `json:"long,omitempty"`
 }
 
 // QueryLocation will return the location for the given coordinates
@@ -32,29 +29,43 @@ func QueryLocation(coords string) (Address, error) {
 
 // AddTestCoordsToDB used in the test/ endpoint to see db stores the coordinates
 func AddTestCoordsToDB() {
-	testCoords1 := Coord{
-		Lat:  "12101",
-		Long: "20302",
+	testCoords1 := Geolocation{
+		ID:        "test1",
+		Lat:       "12101",
+		Long:      "20302",
+		TimeStamp: makeTimestamp(),
 	}
-	testCoords2 := Coord{
-		Lat:  "10101",
-		Long: "20302",
+	testCoords2 := Geolocation{
+		ID:        "test2",
+		Lat:       "10101",
+		Long:      "20302",
+		TimeStamp: makeTimestamp(),
 	}
-	testCoords3 := Coord{
-		Lat:  "10101",
-		Long: "2023302",
+	testCoords3 := Geolocation{
+		ID:        "test3",
+		Lat:       "10101",
+		Long:      "2023302",
+		TimeStamp: makeTimestamp(),
 	}
-	testCoords4 := Coord{
-		Lat:  "10101001",
-		Long: "20302",
+	testCoords4 := Geolocation{
+		ID:        "test4",
+		Lat:       "10101001",
+		Long:      "20302",
+		TimeStamp: makeTimestamp(),
 	}
-	testCoords5 := Coord{
-		Lat:  "1",
-		Long: "20302",
+	testCoords5 := Geolocation{
+		ID:        "test5",
+		Lat:       "1",
+		Long:      "20302",
+		TimeStamp: makeTimestamp(),
 	}
-	addGeolocation("loc-test1", testCoords1, makeTimestamp())
-	addGeolocation("loc-test2", testCoords2, makeTimestamp())
-	addGeolocation("loc-test3", testCoords3, makeTimestamp())
-	addGeolocation("loc-test4", testCoords4, makeTimestamp())
-	addGeolocation("loc-test5", testCoords5, makeTimestamp())
+	addGeolocation(testCoords1)
+	addGeolocation(testCoords2)
+	addGeolocation(testCoords3)
+	addGeolocation(testCoords4)
+	addGeolocation(testCoords5)
+}
+
+func makeTimestamp() int64 {
+	return time.Now().UnixNano() / int64(time.Millisecond)
 }

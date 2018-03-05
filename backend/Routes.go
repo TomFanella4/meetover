@@ -41,7 +41,7 @@ var routes = Routes{
 	Route{
 		"Matching",
 		"POST",
-		"/match/{ouser}",
+		"/match/{uid}",
 		Match,
 	},
 	Route{

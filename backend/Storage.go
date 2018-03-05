@@ -11,7 +11,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"time"
 
 	firebase "firebase.google.com/go"
 	"gopkg.in/zabawaba99/firego.v1"
@@ -23,6 +22,14 @@ import (
 
 var fbApp *firebase.App
 var fbClient *firego.Firebase
+
+// GetProspectiveUsers Get the list of people for matching in the area
+func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]Person, error) {
+	// TODO:
+	// returns a list of people within radius of coords
+	// that updated their location within lastUpdate hours
+	return people, nil
+}
 
 // InitializeFirebase reads API keys to use db
 func InitializeFirebase() {
@@ -70,14 +77,12 @@ func CreateCustomToken(ID string) (string, error) {
 	return token, nil
 }
 
-func addGeolocation(uid string, coord Coord, timeStamp int64) {
+func addGeolocation(coord Geolocation) {
 	addGeo := make(map[string]interface{})
 
-	loc := Geolocation{
-		ID:        uid,
-		Coord:     coord,
-		TimeStamp: timeStamp,
-	}
+	loc := coord
+	// TODO: look for the user and add/update the
+	// Geolocation json WITHIN the Person struct
 
 	addGeo[loc.ID] = loc
 	geo, err := fbClient.Ref("/Geo")
@@ -87,8 +92,4 @@ func addGeolocation(uid string, coord Coord, timeStamp int64) {
 		return
 	}
 	defer geo.Update(addGeo)
-}
-
-func makeTimestamp() int64 {
-	return time.Now().UnixNano() / int64(time.Millisecond)
 }

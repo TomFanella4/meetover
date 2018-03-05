@@ -7,11 +7,11 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"time"
-	"fmt"
 
 	firebase "firebase.google.com/go"
 	"gopkg.in/zabawaba99/firego.v1"
@@ -24,6 +24,7 @@ import (
 var fbApp *firebase.App
 var fbClient *firego.Firebase
 
+// InitializeFirebase reads API keys to use db
 func InitializeFirebase() {
 	// This is a Firebase workaround. The Firebase go library MUST read
 	// certificate credentials from a file. Also, Heroku doesn't have static
@@ -54,29 +55,28 @@ func InitializeFirebase() {
 	fbClient = firego.New("https://meetoverdb.firebaseio.com/", conf.Client(oauth2.NoContext))
 }
 
+// CreateCustomToken Creates firebase based IM access token for the user with LinkedIn user ID
 func CreateCustomToken(ID string) (string, error) {
 	client, err := fbApp.Auth(context.Background())
 	if err != nil {
-		return "", errors.New("error getting Auth client\n")
+		return "", errors.New("error getting Auth client")
 	}
 
 	token, err := client.CustomToken(ID)
 	if err != nil {
-		return "", errors.New("error minting custom token\n")
+		return "", errors.New("error minting custom token")
 	}
 
 	return token, nil
 }
 
-
 func addGeolocation(uid string, coord Coord, timeStamp int64) {
 	addGeo := make(map[string]interface{})
 
 	loc := Geolocation{
-			ID: 	uid,
-			Coord:		coord,
-			TimeStamp:	timeStamp,
-
+		ID:        uid,
+		Coord:     coord,
+		TimeStamp: timeStamp,
 	}
 
 	addGeo[loc.ID] = loc
@@ -90,5 +90,5 @@ func addGeolocation(uid string, coord Coord, timeStamp int64) {
 }
 
 func makeTimestamp() int64 {
-    return time.Now().UnixNano() / int64(time.Millisecond)
+	return time.Now().UnixNano() / int64(time.Millisecond)
 }

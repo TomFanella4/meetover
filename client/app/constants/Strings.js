@@ -8,3 +8,8 @@ export const createProfileScreenStrings = {
 export const settingsScreenStrings = {
   permission: 'Would you like to share your exact location with others when requesting to MeetOver?',
 };
+
+export const isSearchingBarStrings = {
+  startText: 'Tap the slider to start searching!',
+  searchingText: 'Searching for professionals nearby...',
+};

@@ -9,29 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// Person is user on MeetOver
-type Person struct {
-	ID          string         `json:"uid,omitempty"`
-	Firstname   string         `json:"firstName,omitempty"`
-	Lastname    string         `json:"lastName,omitempty"`
-	Address     *Address       `json:"address,omitempty"`
-	AccessToken ATokenResponse `json:"accessToken"`
-	LiProfile   LiProfile      `json:"profile"`
-}
-
-type Geolocation struct {
-	ID        string `json:"uid"`
-	Coord     Coord  `json:"coord,omitempty"`
-	TimeStamp int64  `json:"timestamp,omitempty"`
-}
-
-type Coord struct {
-	Lat  string `json:"lat,omitempty"`
-	Long string `json:"long,omitempty"`
-}
-
-var people []Person
-
 // ServerResponse - Error message JSON structure
 type ServerResponse struct {
 	Code    ResponseCode `json:"id"`
@@ -54,6 +31,7 @@ const (
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508
 	FailedLocationQuery ResponseCode = 509
+	FailedUserInit      ResponseCode = 510
 )
 
 // GetUserProfile will give back a json object of user's LinkedIn Profile
@@ -73,34 +51,8 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "liprofile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
-	}
-	if tt == "addGeo" {
-		testCoords1 := Coord{
-			Lat:  "12101",
-			Long: "20302",
-		}
-		testCoords2 := Coord{
-			Lat:  "10101",
-			Long: "20302",
-		}
-		testCoords3 := Coord{
-			Lat:  "10101",
-			Long: "2023302",
-		}
-		testCoords4 := Coord{
-			Lat:  "10101001",
-			Long: "20302",
-		}
-		testCoords5 := Coord{
-			Lat:  "1",
-			Long: "20302",
-		}
-		addGeolocation("loc-test1", testCoords1, makeTimestamp())
-		addGeolocation("loc-test2", testCoords2, makeTimestamp())
-		addGeolocation("loc-test3", testCoords3, makeTimestamp())
-		addGeolocation("loc-test4", testCoords4, makeTimestamp())
-		addGeolocation("loc-test5", testCoords5, makeTimestamp())
-
+	} else if tt == "addGeo" {
+		AddTestCoordsToDB()
 	}
 }
 
@@ -129,7 +81,7 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(people)
 }
 
-// VerifyUser will get a code object to obtain an access token
+// VerifyUser - token exchange and authentication at user login
 func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tempUserCode := params["code"]
@@ -151,33 +103,19 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Sending failed token exchange error")
 		return
 	}
-
-	users, err := fbClient.Ref("/users")
+	// Updates access token if user exists or adds a new Person
+	err = InitUser(lip, aTokenResp)
 	if err != nil {
-		respondWithError(w, FailedDBCall, err.Error())
-		fmt.Println("Failed to save user profile")
+		respondWithError(w, FailedUserInit, err.Error())
 		return
 	}
-	// if no access token, create a new person
-	// if profile exists and token is expired, update access token and expiry
-	person := Person{
-		ID:          lip.ID,
-		Firstname:   lip.FirstName,
-		Lastname:    lip.LastName,
-		AccessToken: aTokenResp,
-		LiProfile:   lip,
-	}
-	addUser := make(map[string]interface{})
-	addUser[lip.ID] = person
-	defer users.Update(addUser)
 
+	// gets firebase access token for user's IM chat
 	customToken, err := CreateCustomToken(lip.ID)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
-		fmt.Println("Sending failed token exchange error")
 		return
 	}
-
 	var resp AuthResponse
 	resp.AccessToken = aTokenResp
 	resp.LiProfile = lip
@@ -188,6 +126,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 
 // Match will set a flag to notify the system the user is matched
 func Match(w http.ResponseWriter, r *http.Request) {
+
 	json.NewEncoder(w).Encode(people)
 }
 

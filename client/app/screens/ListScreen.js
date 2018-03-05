@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
+import IsSearchingBar from '../components/IsSearchingBar';
 import { fetchMatchesAsync } from '../actions';
 
 class ListScreen extends React.Component {
@@ -65,6 +66,7 @@ class ListScreen extends React.Component {
 
     return (
       <Container style={styles.container}>
+        <IsSearchingBar />
         <Content refreshControl={refresh}>
           <List>{list}</List>
         </Content>

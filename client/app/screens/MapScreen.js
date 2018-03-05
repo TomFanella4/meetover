@@ -7,6 +7,7 @@ import { Spinner, View, Thumbnail, } from 'native-base';
 
 import matches from '../mocks/matches';
 import { PTSansText } from '../components/StyledText';
+import IsSearchingBar from '../components/IsSearchingBar';
 import Colors from '../constants/Colors';
 
 class MapScreen extends React.Component {
@@ -57,23 +58,26 @@ class MapScreen extends React.Component {
     ));
 
     return (
-      this.state.location ?
-        <MapView style={styles.mapView} initialRegion={this.state.location}>
-          <MapView.Marker
-            coordinate={this.state.location}
-            title='My Location'
-          >
-            <Image
-              source={require('../../assets/images/current_location.png')}
-              style={{ width: 25, height: 25 }}
-            />
-          </MapView.Marker>
-          {matchMarkers}
-        </MapView>
-      :
-        <View style={styles.container}>
-          <Spinner color={Colors.tintColor} />
-        </View>
+      <View style={styles.container}>
+        <IsSearchingBar />
+        {
+          this.state.location ?
+            <MapView style={styles.mapView} initialRegion={this.state.location}>
+              <MapView.Marker
+                coordinate={this.state.location}
+                title='My Location'
+              >
+                <Image
+                  source={require('../../assets/images/current_location.png')}
+                  style={{ width: 25, height: 25 }}
+                />
+              </MapView.Marker>
+              {matchMarkers}
+            </MapView>
+          :
+            <Spinner color={Colors.tintColor} />
+        }
+      </View>
     );
   }
 

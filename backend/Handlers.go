@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strings"
 
@@ -126,8 +127,29 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 
 // Match will set a flag to notify the system the user is matched
 func Match(w http.ResponseWriter, r *http.Request) {
-
-	json.NewEncoder(w).Encode(people)
+	// requesters uid
+	params := mux.Vars(r)
+	userID := params["uid"]
+	// get requester's coords
+	var userLocation Geolocation
+	bodyBytes, _ := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
+	if err := json.Unmarshal(bodyBytes, &userLocation); err != nil {
+		bodyString := string(bodyBytes)
+		fmt.Println(bodyString)
+		return // no match was returned
+	}
+	radius := 1     //1 km
+	lastUpdate := 2 // 2hrs
+	PMatchList, err := GetProspectiveUsers(userLocation, radius, lastUpdate)
+	if err != nil {
+		return // unable to get anyone from db
+	}
+	MatchList, err := GetMatches(userID, PMatchList)
+	if err != nil {
+		return // unable to get anyone to match
+	}
+	json.NewEncoder(w).Encode(MatchList)
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

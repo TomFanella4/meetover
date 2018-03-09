@@ -29,3 +29,10 @@ export async function fetchIdToken(token){
       throw err;
     });
 };
+
+export const modifyFirebaseUserProfile = async (key, value) => {
+  const userId = firebase.auth().currentUser.uid;
+  return await firebase.database().ref(`users/${userId}/profile`).update({
+    [key]: value
+  });
+};

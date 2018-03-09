@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 import { FIREBASE_API_KEY, FIREBASE_SENDER_ID } from 'react-native-dotenv';
 
@@ -37,8 +38,11 @@ export async function fetchIdToken(token){
 };
 
 export const modifyFirebaseUserProfile = async (key, value) => {
-  const userId = firebase.auth().currentUser.uid;
-  return await firebase.database().ref(`users/${userId}/profile`).update({
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    throw 'User is not signed in';
+  }
+  return await firebase.database().ref(`users/${user.uid}/profile`).update({
     [key]: value
   });
 };

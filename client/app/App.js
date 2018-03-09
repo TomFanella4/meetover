@@ -7,10 +7,9 @@ import AppNavigation from './navigation';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-import { middleware } from './store/middleware';
 import reducers from './reducers';
-
 import { signInToFirebase } from './firebase';
 
 export default class App extends React.Component {
@@ -35,7 +34,10 @@ export default class App extends React.Component {
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
             {/* {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />} */}
-            <AppNavigation />
+            <AppNavigation
+              id={this.state.userProfile.id}
+              isAuthenticated={this.state.userProfile.isAuthenticated}
+            />
           </View>
         </Provider>
       );
@@ -61,7 +63,7 @@ export default class App extends React.Component {
         if (userProfileString) {
           const userProfile = JSON.parse(userProfileString);
           this.setState({ userProfile });
-          signInToFirebase(userProfile.firebaseCustomToken);
+          signInToFirebase(userProfile.firebaseCustomToken || '');
         }
       })
     ]);
@@ -79,7 +81,7 @@ export default class App extends React.Component {
       store: createStore(
         reducers,
         { userProfile: this.state.userProfile },
-        applyMiddleware(...middleware)
+        applyMiddleware(thunk)
       )
     });
   };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
+import Expo from 'expo';
 import { connect } from 'react-redux';
 import {
   Container,
@@ -55,8 +56,15 @@ class CreateProfileScreen extends React.Component {
     );
   }
 
+  componentDidMount() {
+    Expo.SecureStore.setItemAsync(
+      'userProfile',
+      JSON.stringify(this.props.userProfile)
+    );
+  }
+
   _handleFinishButtonPress() {
-    const { saveProfileAndLoginAsync, userProfile } = this.props;
+    const { saveProfileAndLoginAsync, userProfile, navigation } = this.props;
     let error = false;
 
     this.formOptions.forEach(formOption => {
@@ -77,6 +85,7 @@ class CreateProfileScreen extends React.Component {
     }
 
     saveProfileAndLoginAsync({ ...userProfile, isAuthenticated: true });
+    navigation.navigate('App');
     StyledToast({ text: `${userProfile.firstName} Signed In` });
   }
 }

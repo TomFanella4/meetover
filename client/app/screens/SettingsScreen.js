@@ -70,8 +70,9 @@ class CreateProfileScreen extends React.Component {
   }
 
   _handleSignOutButtonPress() {
-    const { deleteProfileAndLogoutAsync, userProfile } = this.props;
+    const { deleteProfileAndLogoutAsync, userProfile, navigation } = this.props;
     deleteProfileAndLogoutAsync();
+    navigation.navigate('Login');
     StyledToast({ text: `${userProfile.firstName} Signed Out` });
   }
 }
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
   signOutButton: {
     alignSelf: 'center',
     marginTop: 10,
+    marginBottom: 10,
     backgroundColor: Colors.tintColor,
   },
 });

@@ -12,9 +12,9 @@ import {
 import Colors from '../constants/Colors';
 import { settingsStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
-import { modifyUserProfile } from '../actions';
+import { modifyProfile } from '../actions/userActions';
 
-const Settings = ({ userProfile, formOptions, modifyUserProfile, onProfileModified }) => {
+const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified }) => {
 
   // TODO: Add check for empty user profile fields
   const formItems = formOptions.map(option => (
@@ -33,7 +33,7 @@ const Settings = ({ userProfile, formOptions, modifyUserProfile, onProfileModifi
           fontFamily: 'pt-sans'
         }}
         value={userProfile[option.item] || ''}
-        onChangeText={text => modifyUserProfile(option.item, text)}
+        onChangeText={text => modifyProfile(option.item, text)}
         onBlur={() => (
           onProfileModified &&
           onProfileModified(
@@ -59,7 +59,7 @@ const Settings = ({ userProfile, formOptions, modifyUserProfile, onProfileModifi
         style={styles.shareLocationSwitch}
         value={userProfile.shareLocation}
         onValueChange={value => {
-          modifyUserProfile('shareLocation', value);
+          modifyProfile('shareLocation', value);
           onProfileModified && onProfileModified('shareLocation', value);
         }}
         onTintColor={
@@ -85,7 +85,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  modifyUserProfile
+  modifyProfile
 };
 
 export default connect(

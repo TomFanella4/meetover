@@ -12,7 +12,7 @@ import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 import Settings from '../components/Settings';
 import { StyledToast } from '../helpers';
-import { deleteProfileAndLogoutAsync } from '../actions';
+import { deleteProfileAndLogoutAsync } from '../actions/userActions';
 import { modifyFirebaseUserProfile } from '../firebase';
 
 class CreateProfileScreen extends React.Component {

@@ -14,7 +14,7 @@ import { createProfileScreenStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
 import Settings from '../components/Settings';
 import { StyledToast } from '../helpers';
-import { saveProfileAndLoginAsync } from '../actions';
+import { saveProfileAndLoginAsync } from '../actions/userActions';
 
 class CreateProfileScreen extends React.Component {
   static navigationOptions = {

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { authenticateAndCreateProfile } from '../actions';
+import { authenticateAndCreateProfile } from '../actions/userActions';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {

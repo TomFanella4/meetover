@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
-import { fetchProfileAsync } from '../actions';
+import { fetchProfileAsync } from '../actions/matchesActions';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 

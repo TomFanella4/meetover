@@ -3,12 +3,12 @@ import { Platform, StyleSheet } from 'react-native';
 import { View, Switch } from 'native-base';
 import { connect } from 'react-redux';
 
-import { modifyUserProfile } from '../actions/index';
+import { modifyProfile } from '../actions/userActions';
 import { PTSansText } from './StyledText';
 import Colors from '../constants/Colors';
 import { isSearchingBarStrings } from '../constants/Strings';
 
-const IsSearchingBar = ({ userProfile, modifyUserProfile }) => (
+const IsSearchingBar = ({ userProfile, modifyProfile }) => (
   <View style={styles.container}>
     <PTSansText style={styles.isSearchingText}>
       {
@@ -21,7 +21,7 @@ const IsSearchingBar = ({ userProfile, modifyUserProfile }) => (
     <Switch
       style={styles.isSearchingSwitch}
       value={userProfile.isSearching}
-      onValueChange={value => modifyUserProfile('isSearching', value)}
+      onValueChange={value => modifyProfile('isSearching', value)}
       onTintColor={Colors.tintColor}
       thumbTintColor={Platform.OS === 'android' ? 'white' : null}
     />
@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  modifyUserProfile
+  modifyProfile
 };
 
 export default connect(

@@ -14,6 +14,12 @@ const config = {
 
 const app = firebase.initializeApp(config);
 
+export const signInToFirebase = async token => {
+  // TODO Generate new custom token on the server when one expires
+  return await firebase.auth().signInWithCustomToken(token)
+    .catch(err => console.log(`Could not sign in to Firebase: ${err}`));
+};
+
 export async function fetchIdToken(token){
   await firebase.auth().signInWithCustomToken(token)
     .catch(err => {

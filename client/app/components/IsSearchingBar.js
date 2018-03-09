@@ -21,7 +21,7 @@ const IsSearchingBar = ({ userProfile, modifyUserProfile }) => (
     <Switch
       style={styles.isSearchingSwitch}
       value={userProfile.isSearching}
-      onValueChange={value => modifyUserProfile({ isSearching: value })}
+      onValueChange={value => modifyUserProfile('isSearching', value)}
       onTintColor={Colors.tintColor}
       thumbTintColor={Platform.OS === 'android' ? 'white' : null}
     />

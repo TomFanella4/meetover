@@ -50,7 +50,7 @@ export const fetchMatchesAsync = userId => {
 const fetchProfile = profile => ({
   type: FETCH_PROFILE,
   profile
-})
+});
 
 export const fetchProfileAsync = userId => {
   return async dispatch => {
@@ -90,9 +90,10 @@ export const createProfile = userProfile => ({
   userProfile
 });
 
-export const modifyUserProfile = userProfile => ({
+export const modifyUserProfile = (key, value) => ({
   type: MODIFY_USER_PROFILE,
-  userProfile
+  key,
+  value
 });
 
 export const authenticateAndCreateProfile = () => (

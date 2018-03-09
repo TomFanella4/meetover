@@ -15,8 +15,10 @@ export default userProfile = (state = initalUserProfile, action) => {
 
     case CREATE_PROFILE:
     case LOGIN:
-    case MODIFY_USER_PROFILE:
       return { ...state, ...action.userProfile };
+
+    case MODIFY_USER_PROFILE:
+      return { ...state, [action.key]: action.value };
 
     case LOGOUT:
       return initalUserProfile;

@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
 import IsSearchingBar from '../components/IsSearchingBar';
-import { fetchMatchesAsync } from '../actions';
+import { fetchMatchesAsync } from '../actions/matchesActions';
 
 class ListScreen extends React.Component {
   state = {

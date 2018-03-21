@@ -2,6 +2,7 @@ package main
 
 import "net/http"
 
+// Route - REST endpoint route used by REST router
 type Route struct {
 	Name        string
 	Method      string
@@ -9,6 +10,7 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
+// Routes for REST router
 type Routes []Route
 
 var routes = Routes{
@@ -39,7 +41,7 @@ var routes = Routes{
 	Route{
 		"Matching",
 		"POST",
-		"/match/{ouser}",
+		"/match/{uid}",
 		Match,
 	},
 	Route{

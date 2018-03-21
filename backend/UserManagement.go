@@ -66,10 +66,9 @@ type LiProfile struct {
 		} `json:"country"`
 		Name string `json:"name"`
 	} `json:"location"`
-	NumConnections       int    `json:"numConnections"`
-	NumConnectionsCapped bool   `json:"numConnectionsCapped"`
-	PictureURL           string `json:"pictureUrl"`
-	Positions            struct {
+	NumConnections int    `json:"numConnections"`
+	PictureURL     string `json:"pictureUrl"`
+	Positions      struct {
 		Total  int `json:"_total"`
 		Values []struct {
 			Company struct {
@@ -94,6 +93,20 @@ type LiProfile struct {
 	} `json:"positions"`
 	Summary string `json:"summary"`
 }
+
+// User is user on MeetOver
+type User struct {
+	ID           string         `json:"uid,omitempty"`
+	Location     *Geolocation   `json:"location,omitempty"`
+	AccessToken  ATokenResponse `json:"accessToken"`
+	LiProfile    LiProfile      `json:"li_profile"`
+	IsSearching  bool           `json:"profile"`
+	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
+}
+
+// people is the set of active users. Involved in matching or searching.
+// Cache changes to this local var and update DB periodically as needed to save time
+var people []User
 
 // ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {
@@ -180,4 +193,25 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 		return LiProfile{}, errors.New("Unexpected Response Getting LI profile: " + bodyString)
 	}
 	return record, nil
+}
+
+// InitUser Updates access token if user exists or adds a new User as user in firebase
+func InitUser(lip LiProfile, aTokenResp ATokenResponse) error {
+	users, err := fbClient.Ref("/users")
+	if err != nil {
+		fmt.Println("Failed to save user profile to Firebase in InitUser()")
+		return errors.New("Failed to save user profile: \n" + err.Error())
+	}
+	// TODO:  Check if User exists
+	// if no access token, create a new User
+	// if profile exists and token is expired, update access token and expiry
+	User := User{
+		ID:          lip.ID,
+		AccessToken: aTokenResp,
+		LiProfile:   lip,
+	}
+	addUser := make(map[string]interface{})
+	addUser[lip.ID] = User
+	defer users.Update(addUser)
+	return nil
 }

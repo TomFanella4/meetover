@@ -24,7 +24,7 @@ var fbApp *firebase.App
 var fbClient *firego.Firebase
 
 // GetProspectiveUsers Get the list of people for matching in the area
-func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]Person, error) {
+func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User, error) {
 	// TODO:
 	// returns a list of people within radius of coords
 	// that updated their location within lastUpdate hours
@@ -82,7 +82,7 @@ func addGeolocation(coord Geolocation) {
 
 	loc := coord
 	// TODO: look for the user and add/update the
-	// Geolocation json WITHIN the Person struct
+	// Geolocation json WITHIN the User struct
 
 	addGeo[loc.ID] = loc
 	geo, err := fbClient.Ref("/Geo")

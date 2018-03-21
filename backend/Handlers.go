@@ -104,7 +104,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Sending failed token exchange error")
 		return
 	}
-	// Updates access token if user exists or adds a new Person
+	// Updates access token if user exists or adds a new User
 	err = InitUser(lip, aTokenResp)
 	if err != nil {
 		respondWithError(w, FailedUserInit, err.Error())

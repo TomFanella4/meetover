@@ -52,8 +52,6 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "liprofile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
-	} else if tt == "addGeo" {
-		AddTestCoordsToDB()
 	}
 }
 

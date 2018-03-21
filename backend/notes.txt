@@ -2,16 +2,23 @@
 git commit // any pending changes
 git pull origin development
 // fix any merge conflicts and add the conflicted files to new commit
-git push //current feature branch
-// make pull request in github.com
+git push current_feature_branch
+// make pull request in github.com (base: development)
 
+// delete old branch
+git branch -d the_local_branch
+git push origin --delete the_remote_branch
 
+// update branches from remote
+git fetch -p
+
+// pushing only one folder in repo
 https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
-
-
 git subtree push --prefix backend heroku master
 
 
+
+// sample LinkedIn Profile
 {
   "currentShare": {
     "attribution": {"share": {

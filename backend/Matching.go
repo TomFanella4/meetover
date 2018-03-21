@@ -6,6 +6,6 @@ package main
 //		- will be closest in similarity metric that is picked
 
 // GetMatches returns k user profiles that the UserID will want to meet
-func GetMatches(UserID string) {
-
+func GetMatches(UserID string, neighbors []User) ([]User, error) {
+	return people, nil
 }

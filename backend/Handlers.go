@@ -3,23 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strings"
 
 	"github.com/gorilla/mux"
 )
-
-// Person is user on MeetOver
-type Person struct {
-	ID          string         `json:"uid,omitempty"`
-	Firstname   string         `json:"firstName,omitempty"`
-	Lastname    string         `json:"lastName,omitempty"`
-	Address     *Address       `json:"address,omitempty"`
-	AccessToken ATokenResponse `json:"accessToken"`
-	LiProfile   LiProfile      `json:"profile"`
-}
-
-var people []Person
 
 // ServerResponse - Error message JSON structure
 type ServerResponse struct {
@@ -43,6 +32,7 @@ const (
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508
 	FailedLocationQuery ResponseCode = 509
+	FailedUserInit      ResponseCode = 510
 )
 
 // GetUserProfile will give back a json object of user's LinkedIn Profile
@@ -90,7 +80,7 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(people)
 }
 
-// VerifyUser will get a code object to obtain an access token
+// VerifyUser - token exchange and authentication at user login
 func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tempUserCode := params["code"]
@@ -112,31 +102,19 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Sending failed token exchange error")
 		return
 	}
-
-	users, err := fbClient.Ref("/users")
+	// Updates access token if user exists or adds a new User
+	err = InitUser(lip, aTokenResp)
 	if err != nil {
-		respondWithError(w, FailedDBCall, err.Error())
-		fmt.Println("Failed to save user profile")
+		respondWithError(w, FailedUserInit, err.Error())
 		return
 	}
-	person := Person{
-		ID:          lip.ID,
-		Firstname:   lip.FirstName,
-		Lastname:    lip.LastName,
-		AccessToken: aTokenResp,
-		LiProfile:   lip,
-	}
-	addUser := make(map[string]interface{})
-	addUser[lip.ID] = person
-	defer users.Update(addUser)
 
+	// gets firebase access token for user's IM chat
 	customToken, err := CreateCustomToken(lip.ID)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
-		fmt.Println("Sending failed token exchange error")
 		return
 	}
-
 	var resp AuthResponse
 	resp.AccessToken = aTokenResp
 	resp.LiProfile = lip
@@ -145,9 +123,31 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-// Match will set a flag to notify the system the suer is matched
+// Match will set a flag to notify the system the user is matched
 func Match(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(people)
+	// requesters uid
+	params := mux.Vars(r)
+	userID := params["uid"]
+	// get requester's coords
+	var userLocation Geolocation
+	bodyBytes, _ := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
+	if err := json.Unmarshal(bodyBytes, &userLocation); err != nil {
+		bodyString := string(bodyBytes)
+		fmt.Println(bodyString)
+		return // no match was returned
+	}
+	radius := 1     //1 km
+	lastUpdate := 2 // 2hrs
+	PMatchList, err := GetProspectiveUsers(userLocation, radius, lastUpdate)
+	if err != nil {
+		return // unable to get anyone from db
+	}
+	MatchList, err := GetMatches(userID, PMatchList)
+	if err != nil {
+		return // unable to get anyone to match
+	}
+	json.NewEncoder(w).Encode(MatchList)
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

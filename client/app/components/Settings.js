@@ -16,22 +16,19 @@ import { modifyProfile } from '../actions/userActions';
 
 const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified }) => {
 
+  const formItemStyle = {
+    color: !userProfile.isAuthenticated ? 'white' : null,
+    fontFamily: 'pt-sans',
+  };
+
   // TODO: Add check for empty user profile fields
   const formItems = formOptions.map(option => (
     <Item key={option.item} floatingLabel>
-      <Label
-        style={{
-          color: !userProfile.isAuthenticated ? 'white' : null,
-          fontFamily: 'pt-sans'
-        }}
-      >
+      <Label style={formItemStyle}>
         {option.label}
       </Label>
       <Input
-        style={{
-          color: !userProfile.isAuthenticated ? 'white' : null,
-          fontFamily: 'pt-sans'
-        }}
+        style={formItemStyle}
         value={userProfile[option.item] || ''}
         onChangeText={text => modifyProfile(option.item, text)}
         onBlur={() => (

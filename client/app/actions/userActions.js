@@ -1,80 +1,14 @@
 import Expo, { AuthSession } from 'expo';
-import { StyledToast } from '../helpers';
-import { times } from 'lodash';
-
 import { LI_APP_ID } from 'react-native-dotenv';
 
+import { StyledToast } from '../helpers';
+import { fetchIdToken } from '../firebase';
 import {
-  FETCH_MATCHES,
-  FETCH_PROFILE,
   CREATE_PROFILE,
   LOGIN,
   LOGOUT,
   MODIFY_USER_PROFILE,
 } from './actionTypes';
-
-import { fetchIdToken } from '../firebase';
-
-const useMocks = true;
-
-const fetchMatches = matches => ({
-  type: FETCH_MATCHES,
-  matches
-});
-
-export const fetchMatchesAsync = userId => {
-  return async dispatch => {
-    let matches;
-
-    if (useMocks) {
-      const uri = 'https://meetover.herokuapp.com/test/liprofile';
-      const init = { method: 'POST' };
-
-      const response = await fetch(uri, init);
-      let profile = await response.json();
-      profile = JSON.parse(profile); // TODO make all the JSON.parse unnecessary
-
-      matches = times(10, () => Object.assign({}, profile));
-    } else {
-      const uri = `https://meetover.herokuapp.com/match/${userId}`;
-      const init = { method: 'POST' };
-
-      const response = await fetch(uri, init);
-      matches = await response.json();
-    }
-
-    dispatch(fetchMatches(matches));
-  };
-};
-
-const fetchProfile = profile => ({
-  type: FETCH_PROFILE,
-  profile
-})
-
-export const fetchProfileAsync = userId => {
-  return async dispatch => {
-    let profile;
-
-    if (useMocks) {
-      const uri = 'https://meetover.herokuapp.com/test/liprofile';
-      const init = { method: 'POST' };
-
-      const response = await fetch(uri, init);
-      profile = await response.json();
-      profile = JSON.parse(profile);
-    } else {
-      const uri = `https://meetover.herokuapp.com/people/${userId}`;
-      const init = { method: 'GET' };
-
-      const response = await fetch(uri, init);
-      profile = await response.json();
-      profile = JSON.parse(profile);
-    }
-
-    dispatch(fetchProfile(profile));
-  };
-};
 
 export const login = userProfile => ({
   type: LOGIN,
@@ -90,9 +24,10 @@ export const createProfile = userProfile => ({
   userProfile
 });
 
-export const modifyUserProfile = userProfile => ({
+export const modifyProfile = (key, value) => ({
   type: MODIFY_USER_PROFILE,
-  userProfile
+  key,
+  value
 });
 
 export const authenticateAndCreateProfile = () => (

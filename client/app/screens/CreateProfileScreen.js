@@ -1,31 +1,27 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
+import Expo from 'expo';
+import { connect } from 'react-redux';
 import {
   Container,
   View,
-  Form,
-  Item,
-  Label,
-  Input,
   Content,
   Button,
-  Switch,
 } from 'native-base';
 
 import Colors from '../constants/Colors';
 import { createProfileScreenStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
+import Settings from '../components/Settings';
 import { StyledToast } from '../helpers';
-
-import { connect } from 'react-redux';
-import { saveProfileAndLoginAsync, modifyUserProfile } from '../actions';
+import { saveProfileAndLoginAsync } from '../actions/userActions';
 
 class CreateProfileScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
-  userProfileFormOptions = [
+  formOptions = [
     { label: 'Name', item: 'formattedName' },
     { label: 'Headline', item: 'headline' },
     { label: 'Position', item: 'position' },
@@ -34,49 +30,20 @@ class CreateProfileScreen extends React.Component {
   ];
 
   render() {
-    const { userProfile } = this.props;
-
-    const userProfileFormItems = this.userProfileFormOptions.map(option => (
-      <Item key={option.item} floatingLabel last>
-        <Label
-          style={{color: 'white', fontFamily: 'pt-sans'}}
-        >
-          {option.label}
-        </Label>
-        <Input
-          style={{color: 'white', fontFamily: 'pt-sans'}}
-          value={userProfile[option.item] || ''}
-          onChangeText={text => this._handleUserProfileModification(option.item, text)}
-        />
-      </Item>
-    ));
-
     return (
       <Container style={styles.container}>
-        <Content style={styles.contentTop}>
+        <Content>
             <PTSansText style={styles.titleText}>
               {createProfileScreenStrings.title}
             </PTSansText>
             <PTSansText style={styles.titleSubtext}>
               {createProfileScreenStrings.subtitle}
             </PTSansText>
-            <Form>
-              {userProfileFormItems}
-              <View style={styles.shareLocationView}>
-                <PTSansText style={styles.shareLocationText}>
-                  {createProfileScreenStrings.permission}
-                </PTSansText>
-                <Switch style={styles.shareLocationSwitch}
-                  value={userProfile.shareLocation}
-                  onValueChange={value => this._handleUserProfileModification('shareLocation', value)}
-                  onTintColor='white'
-                  thumbTintColor={Platform.OS === 'android' ? 'white' : null} />
-              </View>
-            </Form>
+            <Settings formOptions={this.formOptions} />
         </Content>
-        <View style={styles.contentBottom}>
+        <View style={styles.finishView}>
           <Button
-            style={styles.button}
+            style={styles.finishButton}
             onPress={() => this._handleFinishButtonPress()}
           >
             <PTSansText>Finish</PTSansText>
@@ -89,16 +56,18 @@ class CreateProfileScreen extends React.Component {
     );
   }
 
-  _handleUserProfileModification(key, value) {
-    const { modifyUserProfile, userProfile } = this.props;
-    modifyUserProfile({ ...userProfile, [key]: value });
+  componentDidMount() {
+    Expo.SecureStore.setItemAsync(
+      'userProfile',
+      JSON.stringify(this.props.userProfile)
+    );
   }
 
   _handleFinishButtonPress() {
-    const { saveProfileAndLoginAsync, userProfile } = this.props;
+    const { saveProfileAndLoginAsync, userProfile, navigation } = this.props;
     let error = false;
 
-    this.userProfileFormOptions.forEach(formOption => {
+    this.formOptions.forEach(formOption => {
       if (userProfile[formOption.item] === undefined ||
           userProfile[formOption.item] === '') {
         error = true;
@@ -116,6 +85,7 @@ class CreateProfileScreen extends React.Component {
     }
 
     saveProfileAndLoginAsync({ ...userProfile, isAuthenticated: true });
+    navigation.navigate('App');
     StyledToast({ text: `${userProfile.firstName} Signed In` });
   }
 }
@@ -125,8 +95,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  saveProfileAndLoginAsync,
-  modifyUserProfile
+  saveProfileAndLoginAsync
 };
 
 export default connect(
@@ -140,28 +109,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.tintColor,
     paddingTop: Platform.OS === 'ios' ? 15 : 0,
   },
-  contentTop: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  contentBottom: {
+  finishView: {
     backgroundColor: '#fff',
     padding: 20,
-  },
-  shareLocationView: {
-    flexDirection: 'row',
-    paddingTop: 15,
-    paddingBottom: 15
-  },
-  shareLocationText: {
-    color: 'white',
-    flex: 8,
-    paddingRight: 5,
-  },
-  shareLocationSwitch: {
-    alignSelf: 'center',
-    flex: 2,
-    paddingLeft: 5,
   },
   titleText: {
     color: 'white',
@@ -179,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     alignSelf: 'center',
   },
-  button: {
+  finishButton: {
     backgroundColor: Colors.tintColor,
     alignSelf: 'center',
   },

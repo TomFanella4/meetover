@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { authenticateAndCreateProfile } from '../actions';
+import { authenticateAndCreateProfile } from '../actions/userActions';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -49,9 +49,11 @@ class LoginScreen extends React.Component {
   }
 
   _handleSignInPressAsync = async () => {
+    const { authenticateAndCreateProfile, navigation } = this.props;
     this.setState({ isLoading: true });
-    await this.props.authenticateAndCreateProfile();
+    await authenticateAndCreateProfile();
     this.setState({ isLoading: false });
+    navigation.navigate('CreateProfile');
   }
 }
 

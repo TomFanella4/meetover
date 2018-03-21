@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 import { FIREBASE_API_KEY, FIREBASE_SENDER_ID } from 'react-native-dotenv';
 
@@ -13,6 +14,12 @@ const config = {
 };
 
 const app = firebase.initializeApp(config);
+
+export const signInToFirebase = async token => {
+  // TODO Generate new custom token on the server when one expires
+  return await firebase.auth().signInWithCustomToken(token)
+    .catch(err => console.log(`Could not sign in to Firebase: ${err}`));
+};
 
 export async function fetchIdToken(token){
   await firebase.auth().signInWithCustomToken(token)
@@ -28,4 +35,14 @@ export async function fetchIdToken(token){
 
       throw err;
     });
+};
+
+export const modifyFirebaseUserProfile = async (key, value) => {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    throw 'User is not signed in';
+  }
+  return await firebase.database().ref(`users/${user.uid}/profile`).update({
+    [key]: value
+  });
 };

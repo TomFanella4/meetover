@@ -13,11 +13,15 @@ import {
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
-import { fetchProfileAsync } from '../actions';
+import { fetchProfileAsync } from '../actions/matchesActions';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 
 class ProfileScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `${navigation.state.params.name}'s Profile`,
+  });
+
   state = {
     loading: true
   };

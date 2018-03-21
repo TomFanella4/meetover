@@ -7,15 +7,16 @@ import AppNavigation from './navigation';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-import { middleware } from './store/middleware';
 import reducers from './reducers';
+import { signInToFirebase } from './firebase';
 
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
     store: {},
-    preloadedState: {}
+    userProfile: {}
   };
 
   render() {
@@ -33,7 +34,10 @@ export default class App extends React.Component {
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
             {/* {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />} */}
-            <AppNavigation />
+            <AppNavigation
+              id={this.state.userProfile.id}
+              isAuthenticated={this.state.userProfile.isAuthenticated}
+            />
           </View>
         </Provider>
       );
@@ -55,11 +59,13 @@ export default class App extends React.Component {
         'Roboto_medium': require("native-base/Fonts/Roboto_medium.ttf")
       }),
       Expo.SecureStore.getItemAsync('userProfile')
-      .then(userProfile => userProfile && this.setState({
-        preloadedState: {
-          userProfile: JSON.parse(userProfile)
+      .then(userProfileString => {
+        if (userProfileString) {
+          const userProfile = JSON.parse(userProfileString);
+          this.setState({ userProfile });
+          signInToFirebase(userProfile.firebaseCustomToken || '');
         }
-      }))
+      })
     ]);
   };
 
@@ -74,8 +80,8 @@ export default class App extends React.Component {
       isLoadingComplete: true,
       store: createStore(
         reducers,
-        this.state.preloadedState,
-        applyMiddleware(...middleware)
+        { userProfile: this.state.userProfile },
+        applyMiddleware(thunk)
       )
     });
   };

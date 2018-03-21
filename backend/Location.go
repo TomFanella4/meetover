@@ -27,45 +27,6 @@ func QueryLocation(coords string) (Address, error) {
 	return location, nil
 }
 
-// AddTestCoordsToDB used in the test/ endpoint to see db stores the coordinates
-func AddTestCoordsToDB() {
-	testCoords1 := Geolocation{
-		ID:        "test1",
-		Lat:       "12101",
-		Long:      "20302",
-		TimeStamp: makeTimestamp(),
-	}
-	testCoords2 := Geolocation{
-		ID:        "test2",
-		Lat:       "10101",
-		Long:      "20302",
-		TimeStamp: makeTimestamp(),
-	}
-	testCoords3 := Geolocation{
-		ID:        "test3",
-		Lat:       "10101",
-		Long:      "2023302",
-		TimeStamp: makeTimestamp(),
-	}
-	testCoords4 := Geolocation{
-		ID:        "test4",
-		Lat:       "10101001",
-		Long:      "20302",
-		TimeStamp: makeTimestamp(),
-	}
-	testCoords5 := Geolocation{
-		ID:        "test5",
-		Lat:       "1",
-		Long:      "20302",
-		TimeStamp: makeTimestamp(),
-	}
-	addGeolocation(testCoords1)
-	addGeolocation(testCoords2)
-	addGeolocation(testCoords3)
-	addGeolocation(testCoords4)
-	addGeolocation(testCoords5)
-}
-
 func makeTimestamp() int64 {
 	return time.Now().UnixNano() / int64(time.Millisecond)
 }

@@ -24,6 +24,11 @@ type AuthResponse struct {
 	FirebaseCustomToken string         `json:"firebaseCustomToken"`
 }
 
+// RefreshResponse - returned to the client during firebase custom token refresh
+type RefreshResponse struct {
+	FirebaseCustomToken string `json:"firebaseCustomToken"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
@@ -148,6 +153,30 @@ func Match(w http.ResponseWriter, r *http.Request) {
 		return // unable to get anyone to match
 	}
 	json.NewEncoder(w).Encode(MatchList)
+}
+
+func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	accessToken := params["accessToken"]
+
+	lip, err := GetLiProfile(accessToken)
+	if err != nil {
+		respondWithError(w, FailedProfileFetch, err.Error())
+		fmt.Println("Failed to fetch LinkedIn profile, user not authenticated")
+		return
+	}
+
+	customToken, err := CreateCustomToken(lip.ID)
+	if err != nil {
+		respondWithError(w, FailedTokenExchange, err.Error())
+		fmt.Println("Failed to create Firebase custom token")
+		return
+	}
+
+	var resp RefreshResponse
+	resp.FirebaseCustomToken = customToken
+
+	json.NewEncoder(w).Encode(resp)
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

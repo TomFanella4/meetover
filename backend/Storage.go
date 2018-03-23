@@ -7,6 +7,7 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -36,12 +37,23 @@ func InitializeFirebase() {
 	// certificate credentials from a file. Also, Heroku doesn't have static
 	// storage. So, we must create the credential file dynamically from an
 	// environment variable containing the json
-	config := []byte(os.Getenv("FIREBASE_CONFIG"))
-	err := ioutil.WriteFile("./firebase-config.json", config, 0644)
-	if err != nil {
-		log.Fatalf("Could not write config file")
-	}
 
+	config, deployMode := os.LookupEnv("FIREBASE_CONFIG")
+	if deployMode {
+		fmt.Println("Firebase config file fetched from ENV var")
+		err := ioutil.WriteFile("./firebase-config.json", []byte(config), 0644)
+		if err != nil {
+			log.Fatalf("Could not write config file")
+		}
+	} else {
+		fmt.Println("Firebase config file fetched from local dir")
+		buf, err := ioutil.ReadFile("./firebase-config.json")
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		config = string(buf)
+	}
 	opt := option.WithCredentialsFile("./firebase-config.json")
 	app, err := firebase.NewApp(context.Background(), nil, opt)
 	if err != nil {
@@ -49,7 +61,7 @@ func InitializeFirebase() {
 	}
 
 	conf, err := google.JWTConfigFromJSON(
-		config,
+		[]byte(config),
 		"https://www.googleapis.com/auth/firebase.database",
 		"https://www.googleapis.com/auth/userinfo.email",
 	)

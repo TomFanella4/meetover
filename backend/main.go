@@ -19,4 +19,6 @@ func main() {
 		fmt.Println("running in debug mode")
 		fmt.Println(http.ListenAndServe(":8080", router))
 	}
+	// test
+	LoadTestUsers()
 }

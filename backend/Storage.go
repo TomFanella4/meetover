@@ -7,7 +7,6 @@ package main
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -23,12 +22,12 @@ import (
 var fbApp *firebase.App
 var fbClient *firego.Firebase
 
-// GetProspectiveUsers Get the list of people for matching in the area
+// GetProspectiveUsers Get the list of cachedUsers for matching in the area
 func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User, error) {
 	// TODO:
-	// returns a list of people within radius of coords
+	// returns a list of cachedUsers within radius of coords
 	// that updated their location within lastUpdate hours
-	return people, nil
+	return cachedUsers, nil
 }
 
 // InitializeFirebase reads API keys to use db
@@ -75,21 +74,4 @@ func CreateCustomToken(ID string) (string, error) {
 	}
 
 	return token, nil
-}
-
-func addGeolocation(coord Geolocation) {
-	addGeo := make(map[string]interface{})
-
-	loc := coord
-	// TODO: look for the user and add/update the
-	// Geolocation json WITHIN the User struct
-
-	addGeo[loc.ID] = loc
-	geo, err := fbClient.Ref("/Geo")
-
-	if err != nil {
-		fmt.Println("Adding Geo to DB error")
-		return
-	}
-	defer geo.Update(addGeo)
 }

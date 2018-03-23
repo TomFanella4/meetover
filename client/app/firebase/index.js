@@ -13,23 +13,34 @@ const config = {
   messagingSenderId: FIREBASE_SENDER_ID
 };
 
-const app = firebase.initializeApp(config);
+firebase.initializeApp(config);
 
-export const signInToFirebase = async token => {
-  // TODO Generate new custom token on the server when one expires
-  return await firebase.auth().signInWithCustomToken(token)
-    .catch(err => console.log(`Could not sign in to Firebase: ${err}`));
+export const signInToFirebase = async (token, accessToken) => {
+  try {
+    return await firebase.auth().signInWithCustomToken(token);
+  } catch (error) {
+    const uri = `https://meetover.herokuapp.com/login/refresh/${accessToken}`
+    const init = { method: 'POST' };
+
+    const response = await fetch(uri, init);
+    const { firebaseCustomToken } = await response.json();
+
+    try {
+      return await firebase.auth().signInWithCustomToken(firebaseCustomToken);
+    } catch (err) {
+      console.log(`Could not sign in to Firebase: ${err}`);
+    }
+  }
 };
 
-export async function fetchIdToken(token){
-  await firebase.auth().signInWithCustomToken(token)
-    .catch(err => {
-      console.log(`Could not sign in to Firebase: ${err}`);
+export async function fetchIdToken(token, accessToken){
+  let user = firebase.auth().currentUser;
+  if (!user) {
+    await signInToFirebase(token, accessToken);
+    user = firebase.auth().currentUser;
+  }
 
-      throw err;
-    });
-
-  return await firebase.auth().currentUser.getIdToken(true)
+  return await user.getIdToken(true)
     .catch(err => {
       console.log(`Could not fetch Firebase ID Token: ${err}`);
 

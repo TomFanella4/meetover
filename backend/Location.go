@@ -11,7 +11,6 @@ type Address struct {
 
 // Geolocation - latitide and longitude and last time of update
 type Geolocation struct {
-	ID        string `json:"uid,omitempty"` // TODO: we probably don't need this feild once the GeoLocation is in the Person Struct
 	Lat       string `json:"lat,omitempty"`
 	Long      string `json:"long,omitempty"`
 	TimeStamp int64  `json:"timestamp,omitempty"`

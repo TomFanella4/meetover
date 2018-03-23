@@ -77,7 +77,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 // GetPeople returns all users
 func GetPeople(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(people)
+	json.NewEncoder(w).Encode(cachedUsers)
 }
 
 // VerifyUser - token exchange and authentication at user login

@@ -100,13 +100,13 @@ type User struct {
 	Location     *Geolocation   `json:"location,omitempty"`
 	AccessToken  ATokenResponse `json:"accessToken"`
 	LiProfile    LiProfile      `json:"li_profile"`
-	IsSearching  bool           `json:"profile"`
+	IsSearching  bool           `json:"is_searching"`
 	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
 }
 
-// people is the set of active users. Involved in matching or searching.
+// cachedUsers is the set of active users. Involved in matching or searching.
 // Cache changes to this local var and update DB periodically as needed to save time
-var people []User
+var cachedUsers []User
 
 // ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {
@@ -214,4 +214,19 @@ func InitUser(lip LiProfile, aTokenResp ATokenResponse) error {
 	addUser[lip.ID] = User
 	defer users.Update(addUser)
 	return nil
+}
+
+// LoadTestUsers gets test users generated from a random data generator
+func LoadTestUsers() {
+	raw, err := ioutil.ReadFile("./test_users.json")
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	var testUsers []User
+	if err = json.Unmarshal(raw, &testUsers); err != nil {
+		fmt.Println("[-] Unable to load test users")
+		return
+	}
+	cachedUsers = append(cachedUsers, testUsers...)
 }

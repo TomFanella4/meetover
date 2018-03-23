@@ -63,7 +63,8 @@ export default class App extends React.Component {
         if (userProfileString) {
           const userProfile = JSON.parse(userProfileString);
           this.setState({ userProfile });
-          signInToFirebase(userProfile.firebaseCustomToken || '');
+          signInToFirebase(userProfile.firebaseCustomToken || '',
+            userProfile.token.access_token || '');
         }
       })
     ]);

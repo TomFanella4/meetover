@@ -35,7 +35,7 @@ var routes = Routes{
 	Route{
 		"Refresh",
 		"POST",
-		"/login/refresh/{accessToken}",
+		"/refreshtoken",
 		RefreshCustomToken,
 	},
 	Route{

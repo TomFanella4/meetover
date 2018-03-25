@@ -48,7 +48,7 @@ export const authenticateAndCreateProfile = () => (
 
       const response = await fetch(uri, init);
       const { profile, token, firebaseCustomToken } = await response.json();
-      const firebaseIdToken = await fetchIdToken(firebaseCustomToken, token.access_token)
+      const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
 
       dispatch(createProfile({

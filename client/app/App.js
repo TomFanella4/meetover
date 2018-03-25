@@ -23,7 +23,7 @@ export default class App extends React.Component {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
-          startAsync={this._loadResourcesAsync}
+          startAsync={this._loadAll}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
         />
@@ -44,6 +44,11 @@ export default class App extends React.Component {
     }
   }
 
+  _loadAll = async () => {
+    const userProfile = (await this._loadResourcesAsync())[1];
+    userProfile && await this._validateCustomToken(userProfile);
+  };
+
   _loadResourcesAsync = async () => {
     return Promise.all([
       // Asset.loadAsync([
@@ -61,13 +66,25 @@ export default class App extends React.Component {
       Expo.SecureStore.getItemAsync('userProfile')
       .then(userProfileString => {
         if (userProfileString) {
-          const userProfile = JSON.parse(userProfileString);
-          this.setState({ userProfile });
-          signInToFirebase(userProfile.firebaseCustomToken || '',
-            userProfile.token.access_token || '');
+          return JSON.parse(userProfileString);
         }
       })
     ]);
+  };
+
+  _validateCustomToken = async userProfile => {
+    const { firebaseCustomToken, token, id } = userProfile;
+
+    const verifiedToken = await signInToFirebase(firebaseCustomToken, token.access_token, id)
+    .catch(() => {
+      Expo.SecureStore.deleteItemAsync('userProfile');
+      throw 'Unable to verify Firebase custom token.';
+    });
+
+    userProfile.firebaseCustomToken = verifiedToken;
+
+    this.setState({ userProfile });
+    Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile));
   };
 
   _handleLoadingError = error => {

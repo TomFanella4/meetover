@@ -24,10 +24,16 @@ type AuthResponse struct {
 	FirebaseCustomToken string         `json:"firebaseCustomToken"`
 }
 
+// RefreshResponse - returned to the client during firebase custom token refresh
+type RefreshResponse struct {
+	FirebaseCustomToken string `json:"firebaseCustomToken"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
 const (
+	Unauthorized        ResponseCode = 401
 	FailedTokenExchange ResponseCode = 506
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508
@@ -148,6 +154,55 @@ func Match(w http.ResponseWriter, r *http.Request) {
 		return // unable to get anyone to match
 	}
 	json.NewEncoder(w).Encode(MatchList)
+}
+
+func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {
+	token := r.Header.Get("Token")
+	id := r.Header.Get("Identity")
+
+	if token == "" || id == "" {
+		respondWithError(w, Unauthorized, "You are not authorized to make this request")
+		return false
+	}
+
+	user, err := fbClient.Ref("/users/" + id + "/accessToken")
+	if err != nil {
+		fmt.Println("Error fetching user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	var aToken map[string]interface{}
+	if err := user.Value(&aToken); err != nil {
+		fmt.Println("Error fetching value of user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	if aToken["access_token"] == token {
+		return true
+	}
+
+	respondWithError(w, Unauthorized, "You are not authorized to make this request")
+	return false
+}
+
+func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
+	if CheckAuthorized(w, r) {
+		id := r.Header.Get("Identity")
+
+		customToken, err := CreateCustomToken(id)
+		if err != nil {
+			respondWithError(w, FailedTokenExchange, err.Error())
+			fmt.Println("Failed to create Firebase custom token")
+			return
+		}
+
+		var resp RefreshResponse
+		resp.FirebaseCustomToken = customToken
+
+		json.NewEncoder(w).Encode(resp)
+	}
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

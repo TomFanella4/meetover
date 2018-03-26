@@ -13,22 +13,43 @@ const config = {
   messagingSenderId: FIREBASE_SENDER_ID
 };
 
-const app = firebase.initializeApp(config);
+firebase.initializeApp(config);
 
-export const signInToFirebase = async token => {
-  // TODO Generate new custom token on the server when one expires
-  return await firebase.auth().signInWithCustomToken(token)
-    .catch(err => console.log(`Could not sign in to Firebase: ${err}`));
+export const signInToFirebase = async (token, accessToken, id) => {
+  try {
+    await firebase.auth().signInWithCustomToken(token);
+    return token;
+  } catch (error) {
+    const uri = `https://meetover.herokuapp.com/login/refresh/${accessToken}`
+    const init = {
+      method: 'POST',
+      headers: new Headers({
+        'Token': accessToken,
+        'Identity': id
+      })
+    };
+
+    const response = await fetch(uri, init);
+
+    if (response.status === 401) {
+      const err = 'Could not sign in to Firebase: invalid credentials';
+      console.log(err);
+      throw err;
+    }
+
+    const { firebaseCustomToken } = await response.json();
+
+    try {
+      await firebase.auth().signInWithCustomToken(firebaseCustomToken);
+      return firebaseCustomToken;
+    } catch (err) {
+      console.log(`Could not sign in to Firebase: ${err}`);
+      throw err;
+    }
+  }
 };
 
-export async function fetchIdToken(token){
-  await firebase.auth().signInWithCustomToken(token)
-    .catch(err => {
-      console.log(`Could not sign in to Firebase: ${err}`);
-
-      throw err;
-    });
-
+export async function fetchIdToken(token) {
   return await firebase.auth().currentUser.getIdToken(true)
     .catch(err => {
       console.log(`Could not fetch Firebase ID Token: ${err}`);
@@ -39,10 +60,12 @@ export async function fetchIdToken(token){
 
 export const modifyFirebaseUserProfile = async (key, value) => {
   const user = firebase.auth().currentUser;
-  if (!user) {
-    throw 'User is not signed in';
-  }
-  return await firebase.database().ref(`users/${user.uid}/profile`).update({
-    [key]: value
-  });
+
+  return await firebase.database().ref(`users/${user.uid}/profile`)
+    .update({ [key]: value })
+    .catch(err => {
+      console.log(`Could not modify user profile: ${err}`);
+
+      throw err;
+    });
 };

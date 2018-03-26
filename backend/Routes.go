@@ -33,6 +33,12 @@ var routes = Routes{
 		VerifyUser,
 	},
 	Route{
+		"Refresh",
+		"POST",
+		"/refreshtoken",
+		RefreshCustomToken,
+	},
+	Route{
 		"LinkedIn Profile",
 		"GET",
 		"/userinfo/{accessToken}",

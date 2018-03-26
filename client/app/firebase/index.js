@@ -69,3 +69,41 @@ export const modifyFirebaseUserProfile = async (key, value) => {
       throw err;
     });
 };
+
+export const registerFetchFirebaseThreadList = updateFn => {
+  const user = firebase.auth().currentUser;
+  const threadListRef = firebase.database().ref(`users/${user.uid}/threadList`);
+  threadListRef.on('value', snapshot => updateFn(snapshot.val()));
+};
+
+export const registerFetchFirebaseNewMessage = (_id, updateFn) => {
+  const messageRef = firebase.database().ref(`messages/${_id}`).limitToLast(1);
+  messageRef.on('child_added', message => updateFn(message.val()));
+};
+
+export const fetchFirebaseEarlierMessages = (_id, updateFn, limit, endId) => {
+  let messagesRef;
+  endId ?
+    messagesRef = firebase.database().ref(`messages/${_id}`)
+    .endAt(null, endId).limitToLast(limit + 1)
+  :
+    messagesRef = firebase.database().ref(`messages/${_id}`).limitToLast(limit);
+
+  messagesRef.once('value', snapshot => {
+    const messages = Object.values(snapshot.val()).reverse();
+    endId && messages.shift();
+    updateFn(messages);
+    messagesRef.off();
+  });
+};
+
+export const sendFirebaseMessage = (_id, messages) => {
+  const messagesRef = firebase.database().ref(`messages/${_id}`);
+
+  messages.forEach(message => {
+    const messageRef = messagesRef.push();
+    message.createdAt = message.createdAt.toISOString();
+    message._id = messageRef.key;
+    messageRef.set(message);
+  });
+};

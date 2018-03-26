@@ -58,6 +58,8 @@ export const authenticateAndCreateProfile = () => (
         firebaseIdToken,
       }));
     }
+    
+    return result.type;
   }
 );
 

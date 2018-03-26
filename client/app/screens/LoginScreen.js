@@ -51,9 +51,9 @@ class LoginScreen extends React.Component {
   _handleSignInPressAsync = async () => {
     const { authenticateAndCreateProfile, navigation } = this.props;
     this.setState({ isLoading: true });
-    await authenticateAndCreateProfile();
+    const resultType = await authenticateAndCreateProfile();
     this.setState({ isLoading: false });
-    navigation.navigate('CreateProfile');
+    resultType === 'success' && navigation.navigate('CreateProfile');
   }
 }
 

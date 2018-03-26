@@ -33,7 +33,7 @@ type RefreshResponse struct {
 type ResponseCode int
 
 const (
-	Unauthorized				ResponseCode = 401
+	Unauthorized        ResponseCode = 401
 	FailedTokenExchange ResponseCode = 506
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508

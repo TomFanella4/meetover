@@ -1,6 +1,7 @@
 import Expo, { AuthSession } from 'expo';
 import { LI_APP_ID } from 'react-native-dotenv';
 
+import { serverURI } from '../constants/Common';
 import { StyledToast } from '../helpers';
 import { fetchIdToken } from '../firebase';
 import {
@@ -32,6 +33,7 @@ export const modifyProfile = (key, value) => ({
 
 export const authenticateAndCreateProfile = () => (
   async dispatch => {
+    let isAuthenticated = false;
     const redirectUri = AuthSession.getRedirectUrl();
     const result = await AuthSession.startAsync({
       authUrl:
@@ -42,24 +44,27 @@ export const authenticateAndCreateProfile = () => (
     });
 
     if (result.type === 'success') {
-      const uri = `https://meetover.herokuapp.com/login/${result.params.code}` +
+      const uri = `${serverURI}/login/${result.params.code}` +
         `?redirect_uri=${encodeURIComponent(redirectUri)}`;
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
-      const { profile, token, firebaseCustomToken } = await response.json();
+      const { profile, token, firebaseCustomToken, userExists } = await response.json();
       const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
+
+      isAuthenticated = userExists;
 
       dispatch(createProfile({
         ...profile,
         token,
         firebaseCustomToken,
         firebaseIdToken,
+        isAuthenticated
       }));
     }
-    
-    return result.type;
+
+    return { type: result.type, isAuthenticated };
   }
 );
 

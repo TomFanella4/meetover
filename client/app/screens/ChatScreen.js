@@ -9,14 +9,13 @@ import {
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
 import { PTSansText } from '../components/StyledText';
+import { chatMessagesToLoad } from '../constants/Common';
 import Colors from '../constants/Colors';
 import { sendFirebaseMessage } from '../firebase';
 import {
   registerFetchNewMessageAsync,
   fetchEarlierMessagesAsync
 } from '../actions/chatActions';
-
-const messagesToLoad = 50;
 
 class ChatScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -37,7 +36,7 @@ class ChatScreen extends React.Component {
     } = this.props;
     const _id = navigation.state.params._id;
 
-    fetchEarlierMessagesAsync(_id, messagesToLoad, messages[messages.length - 1]._id);
+    fetchEarlierMessagesAsync(_id, chatMessagesToLoad, messages[messages.length - 1]._id);
   }
 
   renderBubble (props) {
@@ -85,7 +84,7 @@ class ChatScreen extends React.Component {
     } = this.props;
 
     if (!messages) {
-      fetchEarlierMessagesAsync(navigation.state.params._id, messagesToLoad);
+      fetchEarlierMessagesAsync(navigation.state.params._id, chatMessagesToLoad);
       registerFetchNewMessageAsync(navigation.state.params._id);
     }
   }

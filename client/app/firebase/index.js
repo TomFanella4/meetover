@@ -4,6 +4,8 @@ import 'firebase/database';
 
 import { FIREBASE_API_KEY, FIREBASE_SENDER_ID } from 'react-native-dotenv';
 
+import { serverURI } from '../constants/Common';
+
 const config = {
   apiKey: FIREBASE_API_KEY,
   authDomain: "meetoverdb.firebaseapp.com",
@@ -20,7 +22,7 @@ export const signInToFirebase = async (token, accessToken, id) => {
     await firebase.auth().signInWithCustomToken(token);
     return token;
   } catch (error) {
-    const uri = 'https://meetover.herokuapp.com/refreshtoken/';
+    const uri = `${serverURI}/refreshtoken`;
     const init = {
       method: 'POST',
       headers: new Headers({
@@ -31,9 +33,10 @@ export const signInToFirebase = async (token, accessToken, id) => {
 
     const response = await fetch(uri, init);
 
-    if (response.status === 401) {
+    if (response.status !== 200) {
       const err = 'Could not sign in to Firebase: invalid credentials';
       console.log(err);
+      console.log(response);
       throw err;
     }
 

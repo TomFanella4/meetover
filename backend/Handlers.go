@@ -22,6 +22,7 @@ type AuthResponse struct {
 	Profile             Profile        `json:"profile"`
 	AccessToken         ATokenResponse `json:"token"`
 	FirebaseCustomToken string         `json:"firebaseCustomToken"`
+	UserExists          bool           `json:"userExists"`
 }
 
 // RefreshResponse - returned to the client during firebase custom token refresh
@@ -110,7 +111,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Updates access token if user exists or adds a new User
-	err = InitUser(p, aTokenResp)
+	userExists, err := InitUser(p, aTokenResp)
 	if err != nil {
 		respondWithError(w, FailedUserInit, err.Error())
 		return
@@ -126,6 +127,7 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	resp.AccessToken = aTokenResp
 	resp.Profile = p
 	resp.FirebaseCustomToken = customToken
+	resp.UserExists = userExists
 
 	json.NewEncoder(w).Encode(resp)
 }

@@ -1,13 +1,8 @@
-import Expo from 'expo';
 import { times } from 'lodash';
 
 import {
   FETCH_MATCHES,
   FETCH_PROFILE,
-  CREATE_PROFILE,
-  LOGIN,
-  LOGOUT,
-  MODIFY_USER_PROFILE,
 } from './actionTypes';
 
 const useMocks = true;
@@ -15,6 +10,11 @@ const useMocks = true;
 const fetchMatches = matches => ({
   type: FETCH_MATCHES,
   matches
+});
+
+const fetchProfile = profile => ({
+  type: FETCH_PROFILE,
+  profile
 });
 
 export const fetchMatchesAsync = userId => {
@@ -42,11 +42,6 @@ export const fetchMatchesAsync = userId => {
   };
 };
 
-const fetchProfile = profile => ({
-  type: FETCH_PROFILE,
-  profile
-})
-
 export const fetchProfileAsync = userId => {
   return async dispatch => {
     let profile;
@@ -70,46 +65,3 @@ export const fetchProfileAsync = userId => {
     dispatch(fetchProfile(profile));
   };
 };
-
-export const login = userProfile => ({
-  type: LOGIN,
-  userProfile
-});
-
-export const logout = () => ({
-  type: LOGOUT
-});
-
-export const createProfile = userProfile => ({
-  type: CREATE_PROFILE,
-  userProfile
-});
-
-export const modifyUserProfile = userProfile => ({
-  type: MODIFY_USER_PROFILE,
-  userProfile
-});
-
-export const saveProfileAndLoginAsync = userProfile => (
-  dispatch => (
-    Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile))
-    .then(() => dispatch(login(userProfile)))
-    .catch(err => {
-      dispatch(login(userProfile));
-      // TODO Notify user of error
-      console.log(err);
-    })
-  )
-);
-
-export const deleteProfileAndLogoutAsync = () => (
-  dispatch => (
-    Expo.SecureStore.deleteItemAsync('userProfile')
-    .then(() => dispatch(logout()))
-    .catch(err => {
-      dispatch(logout());
-      // TODO Notify user of error
-      console.log(err);
-    })
-  )
-);

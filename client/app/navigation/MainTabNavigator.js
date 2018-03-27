@@ -12,15 +12,9 @@ import ChatsScreen from '../screens/ChatsScreen';
 
 export default TabNavigator(
   {
-    List: {
-      screen: ListScreen,
-    },
-    Map: {
-      screen: MapScreen,
-    },
-    Chats: {
-      screen: ChatsScreen,
-    },
+    List: ListScreen,
+    Map: MapScreen,
+    Chats: ChatsScreen,
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -48,12 +42,11 @@ export default TabNavigator(
         );
       },
       gesturesEnabled: false,
-      headerLeft: null,
       headerRight: (
         <Button
           transparent
           onPress={() => navigation.navigate('SettingsScreen')}
-          style={{ padding: 20 }}
+          style={{ padding: 20, alignSelf: 'center' }}
         >
           <Ionicons
             name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'}

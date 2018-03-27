@@ -7,16 +7,20 @@ import {
   Left,
   List,
   ListItem,
-  Thumbnail
+  Thumbnail,
+  Spinner
 } from 'native-base'
 import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
-import { fetchMatchesAsync } from '../actions';
+import Colors from '../constants/Colors';
+import IsSearchingBar from '../components/IsSearchingBar';
+import { fetchMatchesAsync } from '../actions/matchesActions';
 
 class ListScreen extends React.Component {
   state = {
-      refreshing: false
+    loading: true,
+    refreshing: false
   };
 
   static navigationOptions = {
@@ -30,7 +34,7 @@ class ListScreen extends React.Component {
   _onRefresh(userId) {
     this.setState({ refreshing: true });
     this.props.fetchMatchesAsync(userId)
-      .then(() => this.setState({ refreshing: false }));
+      .then(() => this.setState({ loading: false, refreshing: false }));
   }
 
   _viewProfile(userId, name) {
@@ -65,9 +69,15 @@ class ListScreen extends React.Component {
 
     return (
       <Container style={styles.container}>
-        <Content refreshControl={refresh}>
-          <List>{list}</List>
-        </Content>
+        <IsSearchingBar />
+        {
+          !this.state.loading ?
+            <Content refreshControl={refresh}>
+              <List>{list}</List>
+            </Content>
+          :
+            <Spinner color={Colors.tintColor} />
+        }
       </Container>
     );
   }

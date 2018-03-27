@@ -205,12 +205,13 @@ func GetProfile(AccessToken string) (Profile, error) {
 }
 
 // InitUser Updates access token if user exists or adds a new User as user in firebase
-func InitUser(p Profile, aTokenResp ATokenResponse) error {
+func InitUser(p Profile, aTokenResp ATokenResponse) (bool, error) {
 	// Check if token exists
+	userExists := false
 	tokenRef, err := fbClient.Ref("/users/" + p.ID + "/accessToken")
 	if err != nil {
 		fmt.Println("Failed to save user profile to Firebase in InitUser()")
-		return errors.New("Failed to save user profile: \n" + err.Error())
+		return userExists, errors.New("Failed to save user profile: \n" + err.Error())
 	}
 	token := ATokenResponse{}
 	if err := tokenRef.Value(&token); err != nil {
@@ -220,11 +221,12 @@ func InitUser(p Profile, aTokenResp ATokenResponse) error {
 	// Update token or create new user
 	if token.AToken != "" {
 		defer tokenRef.Set(aTokenResp)
+		userExists = true
 	} else {
 		userRef, err := fbClient.Ref("/users/" + p.ID)
 		if err != nil {
 			fmt.Println("Failed to save user profile to Firebase in InitUser()")
-			return errors.New("Failed to save user profile: \n" + err.Error())
+			return false, errors.New("Failed to save user profile: \n" + err.Error())
 		}
 
 		user := User{
@@ -234,5 +236,5 @@ func InitUser(p Profile, aTokenResp ATokenResponse) error {
 		}
 		defer userRef.Set(user)
 	}
-	return nil
+	return userExists, nil
 }

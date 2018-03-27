@@ -89,7 +89,7 @@ class ProfileScreen extends React.Component {
       }
     }
 
-    navigation.navigate('ChatScreen', { _id: userId, name });
+    navigation.navigate('ChatScreen', { _id: threadId, name });
   };
 
   render() {

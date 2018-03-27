@@ -17,6 +17,9 @@ import { connect } from 'react-redux';
 import { fetchProfileAsync } from '../actions/matchesActions';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
+import { chatThreadExists } from '../firebase';
+import { separator, serverURI } from '../constants/Common';
+import { StyledToast } from '../helpers';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -43,6 +46,51 @@ class ProfileScreen extends React.Component {
       </Container>
     );
   }
+
+  async _initiateMeetover() {
+    const { navigation, signedInProfile } = this.props;
+    const { name, userId } = navigation.state.params;
+    const signedInId = signedInProfile.id;
+    const accessToken = signedInProfile.token.access_token;
+    let threadId;
+
+    if (signedInId < userId) {
+      threadId = signedInId + separator + userId;
+    } else {
+      threadId = userId + separator + signedInId;
+    }
+
+    const exists = await chatThreadExists(threadId);
+
+    if (!exists) {
+      const uri = `${serverURI}/meetover/${userId}`;
+      const init = {
+        method: 'POST',
+        headers: new Headers({
+          'Token': accessToken,
+          'Identity': signedInId
+        })
+      };
+
+      const response = await fetch(uri, init);
+
+      if (response.status !== 200) {
+        console.log('Could not initiate meetover');
+        console.log(response);
+
+        StyledToast({
+          text: 'Could not initate MeetOver',
+          buttonText: 'Okay',
+          type: 'danger',
+          duration: 3000,
+        });
+
+        return;
+      }
+    }
+
+    navigation.navigate('ChatScreen', { _id: userId, name });
+  };
 
   render() {
     const { profile } = this.props;
@@ -85,7 +133,12 @@ class ProfileScreen extends React.Component {
               {positions}
             </Card>
           </Content>
-          <Button iconLeft full style={styles.chatButton}>
+          <Button
+            iconLeft
+            full
+            style={styles.chatButton}
+            onPress={() => this._initiateMeetover()}
+          >
             <Icon name='chatboxes' />
             <PTSansText style={styles.request}>Request MeetOver</PTSansText>
           </Button>
@@ -96,6 +149,7 @@ class ProfileScreen extends React.Component {
 };
 
 const mapStateToProps = state => ({
+  signedInProfile: state.userProfile,
   profile: state.matchList.profile
 });
 

@@ -55,13 +55,16 @@ export const authenticateAndCreateProfile = () => (
 
       isAuthenticated = userExists;
 
-      dispatch(createProfile({
+      const userProfile = {
         ...profile,
         token,
         firebaseCustomToken,
         firebaseIdToken,
         isAuthenticated
-      }));
+      };
+
+      dispatch(createProfile(userProfile));
+      Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile));
     }
 
     return { type: result.type, isAuthenticated };

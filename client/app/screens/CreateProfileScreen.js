@@ -1,6 +1,5 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import Expo from 'expo';
 import { connect } from 'react-redux';
 import {
   Container,
@@ -53,13 +52,6 @@ class CreateProfileScreen extends React.Component {
           </PTSansText>
         </View>
       </Container>
-    );
-  }
-
-  componentDidMount() {
-    Expo.SecureStore.setItemAsync(
-      'userProfile',
-      JSON.stringify(this.props.userProfile)
     );
   }
 

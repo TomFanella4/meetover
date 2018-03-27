@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -22,8 +23,8 @@ type ATokenResponse struct {
 	Expiry uint   `json:"expires_in"`
 }
 
-// LiProfile is the JSON object we get from the linkedin profile
-type LiProfile struct {
+// Profile is the JSON object we user to store our user data
+type Profile struct {
 	CurrentShare struct {
 		Attribution struct {
 			Share struct {
@@ -91,17 +92,18 @@ type LiProfile struct {
 			Title   string `json:"title"`
 		} `json:"values"`
 	} `json:"positions"`
-	Summary string `json:"summary"`
+	Summary       string `json:"summary"`
+	ShareLocation bool   `json:"shareLocation"`
+	Greeting      string `json:"greeting"`
 }
 
 // User is user on MeetOver
 type User struct {
-	ID           string         `json:"uid,omitempty"`
-	Location     *Geolocation   `json:"location,omitempty"`
-	AccessToken  ATokenResponse `json:"accessToken"`
-	LiProfile    LiProfile      `json:"li_profile"`
-	IsSearching  bool           `json:"profile"`
-	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
+	ID          string         `json:"uid,omitempty"`
+	Location    *Geolocation   `json:"location,omitempty"`
+	AccessToken ATokenResponse `json:"accessToken"`
+	Profile     Profile        `json:"profile"`
+	IsSearching bool           `json:"isSearching"`
 }
 
 // people is the set of active users. Involved in matching or searching.
@@ -134,6 +136,9 @@ func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, e
 
 	endpoint := "https://www.linkedin.com/oauth/v2/accessToken"
 	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byte(params)))
+	if err != nil {
+		return ATokenResponse{}, errors.New("Unable to create LI API call")
+	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Host", "www.linkedin.com")
 
@@ -161,10 +166,10 @@ func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, e
 	return ATokenResponse{}, errors.New("No access token returned from linkedIn API")
 }
 
-// GetLiProfile uses access token and REST call to get the user's linkedIn profile
-func GetLiProfile(AccessToken string) (LiProfile, error) {
+// GetProfile uses access token and REST call to get the user's linkedIn profile
+func GetProfile(AccessToken string) (Profile, error) {
 	// Fill the record with the data from the JSON
-	var record LiProfile
+	var record Profile
 	// QueryEscape escapes the parama
 	items := "(id,first-name,last-name,maiden-name,formatted-name,phonetic-first-name," +
 		"phonetic-last-name,formatted-phonetic-name,headline,location," +
@@ -175,14 +180,14 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 	url := fmt.Sprintf("%s/v1/people/~:%s?oauth2_access_token=%s&format=json", LIAPI, items, ATokenQE)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		return LiProfile{}, errors.New("Unable to form HTTP request")
+		return Profile{}, errors.New("Unable to form HTTP request")
 	}
 	// For control over HTTP client headers,redirect policy, and other settings,
 	client := &http.Client{}
 	// returns an HTTP response
 	resp, err := client.Do(req)
 	if err != nil {
-		return LiProfile{}, errors.New("Unable to make REST call to get profile data")
+		return Profile{}, errors.New("Unable to make REST call to get profile data")
 	}
 
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
@@ -190,28 +195,44 @@ func GetLiProfile(AccessToken string) (LiProfile, error) {
 	if err := json.Unmarshal(bodyBytes, &record); err != nil {
 		bodyString := string(bodyBytes)
 		fmt.Println(bodyString)
-		return LiProfile{}, errors.New("Unexpected Response Getting LI profile: " + bodyString)
+		return Profile{}, errors.New("Unexpected Response Getting LI profile: " + bodyString)
 	}
+
+	// Set initial profile values
+	record.ShareLocation = true
+
 	return record, nil
 }
 
 // InitUser Updates access token if user exists or adds a new User as user in firebase
-func InitUser(lip LiProfile, aTokenResp ATokenResponse) error {
-	users, err := fbClient.Ref("/users")
+func InitUser(p Profile, aTokenResp ATokenResponse) error {
+	// Check if token exists
+	tokenRef, err := fbClient.Ref("/users/" + p.ID + "/accessToken")
 	if err != nil {
 		fmt.Println("Failed to save user profile to Firebase in InitUser()")
 		return errors.New("Failed to save user profile: \n" + err.Error())
 	}
-	// TODO:  Check if User exists
-	// if no access token, create a new User
-	// if profile exists and token is expired, update access token and expiry
-	User := User{
-		ID:          lip.ID,
-		AccessToken: aTokenResp,
-		LiProfile:   lip,
+	token := ATokenResponse{}
+	if err := tokenRef.Value(&token); err != nil {
+		log.Fatalf("Could not get user in Firebase: %v\n", err)
 	}
-	addUser := make(map[string]interface{})
-	addUser[lip.ID] = User
-	defer users.Update(addUser)
+
+	// Update token or create new user
+	if token.AToken != "" {
+		defer tokenRef.Set(aTokenResp)
+	} else {
+		userRef, err := fbClient.Ref("/users/" + p.ID)
+		if err != nil {
+			fmt.Println("Failed to save user profile to Firebase in InitUser()")
+			return errors.New("Failed to save user profile: \n" + err.Error())
+		}
+
+		user := User{
+			ID:          p.ID,
+			AccessToken: aTokenResp,
+			Profile:     p,
+		}
+		defer userRef.Set(user)
+	}
 	return nil
 }

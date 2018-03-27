@@ -1,6 +1,7 @@
 import Expo, { AuthSession } from 'expo';
 import { LI_APP_ID } from 'react-native-dotenv';
 
+import { serverURI } from '../constants/Common';
 import { StyledToast } from '../helpers';
 import { fetchIdToken } from '../firebase';
 import {
@@ -42,7 +43,7 @@ export const authenticateAndCreateProfile = () => (
     });
 
     if (result.type === 'success') {
-      const uri = `https://meetover.herokuapp.com/login/${result.params.code}` +
+      const uri = `${serverURI}/login/${result.params.code}` +
         `?redirect_uri=${encodeURIComponent(redirectUri)}`;
       const init = { method: 'POST' };
 

@@ -93,7 +93,6 @@ export const fetchFirebaseEarlierMessages = (_id, updateFn, limit, endId) => {
     const messages = Object.values(snapshot.val()).reverse();
     endId && messages.shift();
     updateFn(messages);
-    messagesRef.off();
   });
 };
 

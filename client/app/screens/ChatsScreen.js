@@ -17,9 +17,7 @@ class ChatsScreen extends React.Component {
   };
 
   _viewChatThread(_id, name) {
-    this.props.navigation.navigate('ChatScreen', {
-      _id, name
-    });
+    this.props.navigation.navigate('ChatScreen', { _id, name });
   }
 
   render() {

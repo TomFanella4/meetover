@@ -2,16 +2,17 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
   Body,
+  Button,
   Card,
   CardItem,
   Container,
   Content,
+  Icon,
   Left,
   Spinner,
   Thumbnail,
 } from 'native-base';
 import { connect } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
 
 import { fetchProfileAsync } from '../actions/matchesActions';
 import Colors from '../constants/Colors';
@@ -33,17 +34,21 @@ class ProfileScreen extends React.Component {
       .then(() => this.setState({ loading: false }));
   }
 
-  render() {
-    const { navigation, profile } = this.props;
-
-    let content;
-
-    if (this.state.loading) {
-      content = (
+  _renderLoading() {
+    return (
+      <Container style={styles.container}>
         <Content>
           <Spinner color={Colors.tintColor} />
         </Content>
-      );
+      </Container>
+    );
+  }
+
+  render() {
+    const { profile } = this.props;
+
+    if (this.state.loading) {
+      return this._renderLoading();
     } else {
       const positions = profile.positions.values.map((position, index) =>
         <CardItem style={styles.listItem} key={index}>
@@ -54,39 +59,39 @@ class ProfileScreen extends React.Component {
         </CardItem>
       );
 
-      content = (
-        <Content style={styles.container}>
-          <Left style={styles.thumbnail}>
-            <Thumbnail source={{ uri: profile.pictureUrl }} />
-          </Left>
-          <Body>
-            <PTSansText style={styles.name}>{profile.formattedName}</PTSansText>
-            <PTSansText>{profile.headline}</PTSansText>
-            <PTSansText>
-              <Ionicons name='md-pin' style={styles.location} /> {profile.location.name}
-            </PTSansText>
-          </Body>
-          <Card>
-            <CardItem header>
-              <PTSansText style={styles.subtitle}>Summary</PTSansText>
-            </CardItem>
-            <CardItem><PTSansText>{profile.summary}</PTSansText></CardItem>
-          </Card>
-          <Card>
-            <CardItem header>
-              <PTSansText style={styles.subtitle}>Positions</PTSansText>
-            </CardItem>
-            {positions}
-          </Card>
-        </Content>
+      return (
+        <Container style={styles.container}>
+          <Content style={styles.container}>
+            <Left style={styles.thumbnail}>
+              <Thumbnail source={{ uri: profile.pictureUrl }} />
+            </Left>
+            <Body>
+              <PTSansText style={styles.name}>{profile.formattedName}</PTSansText>
+              <PTSansText>{profile.headline}</PTSansText>
+              <PTSansText>
+                <Icon name='pin' style={styles.location} /> {profile.location.name}
+              </PTSansText>
+            </Body>
+            <Card>
+              <CardItem header>
+                <PTSansText style={styles.subtitle}>Summary</PTSansText>
+              </CardItem>
+              <CardItem><PTSansText>{profile.summary}</PTSansText></CardItem>
+            </Card>
+            <Card>
+              <CardItem header>
+                <PTSansText style={styles.subtitle}>Positions</PTSansText>
+              </CardItem>
+              {positions}
+            </Card>
+          </Content>
+          <Button iconLeft full style={styles.chatButton}>
+            <Icon name='chatboxes' />
+            <PTSansText style={styles.request}>Request MeetOver</PTSansText>
+          </Button>
+        </Container>
       );
     }
-
-    return (
-      <Container style={styles.container}>
-        {content}
-      </Container>
-    );
   }
 };
 
@@ -112,6 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   location: {
+    fontSize: 18,
     paddingRight: 2,
   },
   thumbnail: {
@@ -120,6 +126,12 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 26
+  },
+  chatButton: {
+    backgroundColor: Colors.tintColor
+  },
+  request: {
+    fontSize: 18
   },
   jobTitle: {
     alignSelf: 'flex-start',

@@ -1,4 +1,5 @@
 import { times } from 'lodash';
+import { serverURI } from '../constants/Common';
 
 import {
   FETCH_MATCHES,
@@ -22,7 +23,7 @@ export const fetchMatchesAsync = userId => {
     let matches;
 
     if (useMocks) {
-      const uri = 'https://meetover.herokuapp.com/test/liprofile';
+      const uri = `${serverURI}/test/profile`;
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
@@ -31,7 +32,7 @@ export const fetchMatchesAsync = userId => {
 
       matches = times(10, () => Object.assign({}, profile));
     } else {
-      const uri = `https://meetover.herokuapp.com/match/${userId}`;
+      const uri = `${serverURI}/match/${userId}`;
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
@@ -47,14 +48,14 @@ export const fetchProfileAsync = userId => {
     let profile;
 
     if (useMocks) {
-      const uri = 'https://meetover.herokuapp.com/test/liprofile';
+      const uri = `${serverURI}/test/profile`;
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
       profile = await response.json();
       profile = JSON.parse(profile);
     } else {
-      const uri = `https://meetover.herokuapp.com/people/${userId}`;
+      const uri = `${serverURI}/people/${userId}`;
       const init = { method: 'GET' };
 
       const response = await fetch(uri, init);

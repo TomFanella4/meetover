@@ -33,9 +33,10 @@ export const signInToFirebase = async (token, accessToken, id) => {
 
     const response = await fetch(uri, init);
 
-    if (response.status === 401) {
+    if (response.status !== 200) {
       const err = 'Could not sign in to Firebase: invalid credentials';
       console.log(err);
+      console.log(response);
       throw err;
     }
 

@@ -210,6 +210,20 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
+	if CheckAuthorized(w, r) {
+		initiatorId := r.Header.Get("Identity")
+		params := mux.Vars(r)
+		requestedId := params["otherId"]
+
+		if err := AddThread(initiatorId, requestedId); err != nil {
+			respondWithError(w, FailedDBCall, "Could not create chat thread")
+			fmt.Println("Failed to create the thread " + initiatorId + ", " + requestedId)
+			return
+		}
+	}
+}
+
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {
 	content := ServerResponse{Success: false, Message: message}
 	w.Header().Set("Content-Type", "application/json")

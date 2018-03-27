@@ -21,10 +21,10 @@ var routes = Routes{
 		Index,
 	},
 	Route{
-		"GetPeople",
+		"GetUsers",
 		"GET",
-		"/people/{id}",
-		GetPeople,
+		"/users",
+		GetUsers,
 	},
 	Route{
 		"Login",

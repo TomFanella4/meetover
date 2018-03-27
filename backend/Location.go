@@ -11,9 +11,9 @@ type Address struct {
 
 // Geolocation - latitide and longitude and last time of update
 type Geolocation struct {
-	Lat       string `json:"lat,omitempty"`
-	Long      string `json:"long,omitempty"`
-	TimeStamp int64  `json:"timestamp,omitempty"`
+	Lat       float64 `json:"lat,omitempty"`
+	Long      float64 `json:"long,omitempty"`
+	TimeStamp int64   `json:"timestamp,omitempty"`
 }
 
 // QueryLocation will return the location for the given coordinates

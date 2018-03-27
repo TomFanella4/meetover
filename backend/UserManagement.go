@@ -102,6 +102,7 @@ type User struct {
 	LiProfile    LiProfile      `json:"li_profile"`
 	IsSearching  bool           `json:"is_searching"`
 	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
+	IsMatchedNow bool           `json:"is_matched"`
 }
 
 // cachedUsers is the set of active users. Involved in matching or searching.
@@ -226,6 +227,7 @@ func LoadTestUsers() {
 	var testUsers []User
 	if err = json.Unmarshal(raw, &testUsers); err != nil {
 		fmt.Println("[-] Unable to load test users")
+		fmt.Println(err.Error())
 		return
 	}
 	cachedUsers = append(cachedUsers, testUsers...)

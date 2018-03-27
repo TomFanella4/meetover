@@ -17,7 +17,6 @@ https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-re
 git subtree push --prefix backend heroku master
 
 
-
 // JSON test data generator
 [
   '{{repeat(100)}}',
@@ -64,7 +63,7 @@ git subtree push --prefix backend heroku master
         comment: '{{lorem(1, "sentences")}}',
         author: {
           firstName: '{{firstName()}}',
-          id: '{{integer(150, 1999)}}'
+          id: '{{guid()}}'
         }
       },
       location: {
@@ -76,7 +75,6 @@ git subtree push --prefix backend heroku master
     }
   }
 ]
-
 
 
 

@@ -15,7 +15,7 @@ export default chat = (state = initialState, action) => {
   switch(action.type) {
 
     case FETCH_THREAD_LIST:
-      return { ...state, threadList: action.threadList || [] };
+      return { ...state, threadList: action.threadList };
 
     case FETCH_NEW_MESSAGE:
       messages = state.messageThreads[action._id];

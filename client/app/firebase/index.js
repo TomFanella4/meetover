@@ -76,7 +76,11 @@ export const modifyFirebaseUserProfile = async (key, value) => {
 export const registerFetchFirebaseThreadList = updateFn => {
   const user = firebase.auth().currentUser;
   const threadListRef = firebase.database().ref(`users/${user.uid}/threadList`);
-  threadListRef.on('value', snapshot => updateFn(snapshot.val()));
+  threadListRef.on('value', snapshot => {
+    const threadList = snapshot.val();
+    threadlist = threadList ? Object.values(threadList) : [];
+    updateFn(threadList);
+  });
 };
 
 export const registerFetchFirebaseNewMessage = (_id, updateFn) => {

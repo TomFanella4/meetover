@@ -33,6 +33,7 @@ export const modifyProfile = (key, value) => ({
 
 export const authenticateAndCreateProfile = () => (
   async dispatch => {
+    let isAuthenticated = false;
     const redirectUri = AuthSession.getRedirectUrl();
     const result = await AuthSession.startAsync({
       authUrl:
@@ -48,19 +49,22 @@ export const authenticateAndCreateProfile = () => (
       const init = { method: 'POST' };
 
       const response = await fetch(uri, init);
-      const { profile, token, firebaseCustomToken } = await response.json();
+      const { profile, token, firebaseCustomToken, userExists } = await response.json();
       const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
+
+      isAuthenticated = userExists;
 
       dispatch(createProfile({
         ...profile,
         token,
         firebaseCustomToken,
         firebaseIdToken,
+        isAuthenticated
       }));
     }
-    
-    return result.type;
+
+    return { type: result.type, isAuthenticated };
   }
 );
 

@@ -60,8 +60,3 @@ var sampleProfile = `
   },
   "summary": "Senior (Graduation May 2018) at MIT pursuing a BSc in Computer Science looking to apply my knowledge in the field of software development, system security and blockchain solutions through full-time opportunities."
 }`
-
-var testUser1 = User{AccessToken: ATokenResponse{AToken: "test0000", Expiry: 99999},
-	ID:          "xasdads",
-	IsSearching: true,
-	Location:    &Geolocation{Lat: "48.04", Long: "0.343", TimeStamp: 99999}}

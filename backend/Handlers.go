@@ -75,8 +75,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// GetPeople returns all users
-func GetPeople(w http.ResponseWriter, r *http.Request) {
+// GetUsers returns all users
+func GetUsers(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(cachedUsers)
 }
 

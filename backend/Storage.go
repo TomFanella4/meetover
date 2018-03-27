@@ -10,7 +10,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"os"
+	"time"
 
 	firebase "firebase.google.com/go"
 	"gopkg.in/zabawaba99/firego.v1"
@@ -28,7 +30,16 @@ func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User
 	// TODO:
 	// returns a list of cachedUsers within radius of coords
 	// that updated their location within lastUpdate hours
-	return cachedUsers, nil
+	n := len(cachedUsers)
+	start := random(0, n/2)
+	end := random((n/2)+1, n)
+	return cachedUsers[start:end], nil
+}
+
+// random - helper for tests
+func random(min, max int) int {
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max-min) + min
 }
 
 // InitializeFirebase reads API keys to use db

@@ -12,6 +12,9 @@ func main() {
 	router := NewRouter()
 	InitializeFirebase()
 
+	// test
+	LoadTestUsers()
+
 	port, deployMode := os.LookupEnv("PORT")
 	if deployMode {
 		fmt.Println(http.ListenAndServe(":"+port, router))
@@ -19,6 +22,5 @@ func main() {
 		fmt.Println("running in debug mode")
 		fmt.Println(http.ListenAndServe(":8080", router))
 	}
-	// test
-	LoadTestUsers()
+
 }

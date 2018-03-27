@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"time"
 
 	firebase "firebase.google.com/go"
 	"gopkg.in/zabawaba99/firego.v1"
@@ -22,6 +23,8 @@ import (
 
 var fbApp *firebase.App
 var fbClient *firego.Firebase
+
+const separator = "|"
 
 // GetProspectiveUsers Get the list of people for matching in the area
 func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User, error) {
@@ -75,6 +78,71 @@ func CreateCustomToken(ID string) (string, error) {
 	}
 
 	return token, nil
+}
+
+func CreateThreadForUser(ID1 string, threadId string, ID2 string) error {
+	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadId)
+	if err != nil {
+		return err
+	}
+
+	otherUserName, err := fbClient.Ref("/users/" + ID2 + "/profile/firstName")
+	if err != nil {
+		return err
+	}
+
+	var name string
+	if err := otherUserName.Value(&name); err != nil {
+		return err
+	}
+
+	threadInfo := map[string]interface{}{
+		"_id":  threadId,
+		"name": name,
+	}
+	if err := threadList.Update(threadInfo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func AddThread(P1 string, P2 string) error {
+	ID1, ID2 := "", ""
+
+	if P1 == P2 {
+		return errors.New("Cannot start a thread with only one user")
+	} else if P1 < P2 {
+		ID1, ID2 = P1, P2
+	} else {
+		ID1, ID2 = P2, P1
+	}
+
+	threadId := ID1 + separator + ID2
+
+	if err := CreateThreadForUser(ID1, threadId, ID2); err != nil {
+		return err
+	}
+	if err := CreateThreadForUser(ID2, threadId, ID1); err != nil {
+		return err
+	}
+
+	thread, err := fbClient.Ref("/messages/" + threadId + "/0")
+	if err != nil {
+		return err
+	}
+
+	initialMessage := map[string]interface{}{
+		"_id":       0,
+		"text":      "Welcome to the chat!",
+		"createdAt": time.Now().UTC().Format(time.RFC3339),
+		"system":    true,
+	}
+	if err := thread.Update(initialMessage); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func addGeolocation(coord Geolocation) {

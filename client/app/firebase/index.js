@@ -20,7 +20,7 @@ export const signInToFirebase = async (token, accessToken, id) => {
     await firebase.auth().signInWithCustomToken(token);
     return token;
   } catch (error) {
-    const uri = `https://meetover.herokuapp.com/refreshtoken/`;
+    const uri = 'https://meetover.herokuapp.com/refreshtoken/';
     const init = {
       method: 'POST',
       headers: new Headers({

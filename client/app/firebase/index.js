@@ -77,8 +77,8 @@ export const registerFetchFirebaseThreadList = updateFn => {
   const user = firebase.auth().currentUser;
   const threadListRef = firebase.database().ref(`users/${user.uid}/threadList`);
   threadListRef.on('value', snapshot => {
-    const threadList = snapshot.val();
-    threadlist = threadList ? Object.values(threadList) : [];
+    let threadList = snapshot.val();
+    threadList = threadList ? Object.values(threadList) : [];
     updateFn(threadList);
   });
 };
@@ -118,10 +118,7 @@ export const chatThreadExists = async (threadId) => {
   const threadRef = firebase.database().ref(`messages/${threadId}`);
   let exists;
 
-  await threadRef.transaction(currentData => {
-    exists = (currentData !== null);
-    return;
-  });
+  await threadRef.once('value', snapshot => {exists = (snapshot.val() !== null)});
 
   return exists;
 }

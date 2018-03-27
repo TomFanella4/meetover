@@ -9,6 +9,7 @@ import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import ChatScreen from '../screens/ChatScreen';
 import Colors from '../constants/Colors';
 // import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
@@ -17,6 +18,7 @@ const AppNavigator = StackNavigator(
     Main: MainTabNavigator,
     SettingsScreen: SettingsScreen,
     Profile: ProfileScreen,
+    ChatScreen: ChatScreen,
   },
   {
     navigationOptions: {

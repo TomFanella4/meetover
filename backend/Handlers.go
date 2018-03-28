@@ -83,9 +83,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// GetPeople returns all users
-func GetPeople(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(people)
+// GetUsers returns all users
+func GetUsers(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(cachedUsers)
 }
 
 // VerifyUser - token exchange and authentication at user login
@@ -156,39 +156,8 @@ func Match(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return // unable to get anyone to match
 	}
-	json.NewEncoder(w).Encode(MatchList)
-}
-
-// CheckAuthorized checks if a user is authorized to make a request
-func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {
-	token := r.Header.Get("Token")
-	id := r.Header.Get("Identity")
-
-	if token == "" || id == "" {
-		respondWithError(w, Unauthorized, "You are not authorized to make this request")
-		return false
-	}
-
-	user, err := fbClient.Ref("/users/" + id + "/accessToken")
-	if err != nil {
-		fmt.Println("Error fetching user " + id + " from Firebase for authentication")
-		respondWithError(w, FailedDBCall, err.Error())
-		return false
-	}
-
-	var aToken map[string]interface{}
-	if err := user.Value(&aToken); err != nil {
-		fmt.Println("Error fetching value of user " + id + " from Firebase for authentication")
-		respondWithError(w, FailedDBCall, err.Error())
-		return false
-	}
-
-	if aToken["access_token"] == token {
-		return true
-	}
-
-	respondWithError(w, Unauthorized, "You are not authorized to make this request")
-	return false
+	resp, _ := FetchUsers(MatchList)
+	json.NewEncoder(w).Encode(resp)
 }
 
 // RefreshCustomToken will refresh an authorized users Firebase custom token

@@ -4,6 +4,8 @@ import 'firebase/database';
 
 import { FIREBASE_API_KEY, FIREBASE_SENDER_ID } from 'react-native-dotenv';
 
+import { serverURI } from '../constants/Common';
+
 const config = {
   apiKey: FIREBASE_API_KEY,
   authDomain: "meetoverdb.firebaseapp.com",
@@ -20,7 +22,7 @@ export const signInToFirebase = async (token, accessToken, id) => {
     await firebase.auth().signInWithCustomToken(token);
     return token;
   } catch (error) {
-    const uri = `https://meetover.herokuapp.com/login/refresh/${accessToken}`
+    const uri = `${serverURI}/refreshtoken`;
     const init = {
       method: 'POST',
       headers: new Headers({
@@ -31,9 +33,10 @@ export const signInToFirebase = async (token, accessToken, id) => {
 
     const response = await fetch(uri, init);
 
-    if (response.status === 401) {
+    if (response.status !== 200) {
       const err = 'Could not sign in to Firebase: invalid credentials';
       console.log(err);
+      console.log(response);
       throw err;
     }
 
@@ -68,4 +71,41 @@ export const modifyFirebaseUserProfile = async (key, value) => {
 
       throw err;
     });
+};
+
+export const registerFetchFirebaseThreadList = updateFn => {
+  const user = firebase.auth().currentUser;
+  const threadListRef = firebase.database().ref(`users/${user.uid}/threadList`);
+  threadListRef.on('value', snapshot => updateFn(snapshot.val()));
+};
+
+export const registerFetchFirebaseNewMessage = (_id, updateFn) => {
+  const messageRef = firebase.database().ref(`messages/${_id}`).limitToLast(1);
+  messageRef.on('child_added', message => updateFn(message.val()));
+};
+
+export const fetchFirebaseEarlierMessages = (_id, updateFn, limit, endId) => {
+  let messagesRef;
+  endId ?
+    messagesRef = firebase.database().ref(`messages/${_id}`)
+    .endAt(null, endId).limitToLast(limit + 1)
+  :
+    messagesRef = firebase.database().ref(`messages/${_id}`).limitToLast(limit);
+
+  messagesRef.once('value', snapshot => {
+    const messages = Object.values(snapshot.val()).reverse();
+    endId && messages.shift();
+    updateFn(messages);
+  });
+};
+
+export const sendFirebaseMessage = (_id, messages) => {
+  const messagesRef = firebase.database().ref(`messages/${_id}`);
+
+  messages.forEach(message => {
+    const messageRef = messagesRef.push();
+    message.createdAt = message.createdAt.toISOString();
+    message._id = messageRef.key;
+    messageRef.set(message);
+  });
 };

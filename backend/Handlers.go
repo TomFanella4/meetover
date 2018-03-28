@@ -19,9 +19,10 @@ type ServerResponse struct {
 
 // AuthResponse is the JSON returned to client during login to backend
 type AuthResponse struct {
-	LiProfile           LiProfile      `json:"profile"`
+	Profile             Profile        `json:"profile"`
 	AccessToken         ATokenResponse `json:"token"`
 	FirebaseCustomToken string         `json:"firebaseCustomToken"`
+	UserExists          bool           `json:"userExists"`
 }
 
 // RefreshResponse - returned to the client during firebase custom token refresh
@@ -32,6 +33,7 @@ type RefreshResponse struct {
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
+// ResponseCodes
 const (
 	Unauthorized        ResponseCode = 401
 	FailedTokenExchange ResponseCode = 506
@@ -45,7 +47,7 @@ const (
 func GetUserProfile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	accessToken := params["accessToken"]
-	profile, err := GetLiProfile(accessToken)
+	profile, err := GetProfile(accessToken)
 	if err != nil {
 		respondWithError(w, FailedProfileFetch, err.Error())
 	}
@@ -56,7 +58,7 @@ func GetUserProfile(w http.ResponseWriter, r *http.Request) {
 func Test(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tt := params["testType"]
-	if tt == "liprofile" {
+	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
 	}
 }
@@ -102,29 +104,30 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("[+] After ExchangeToken: " + aTokenResp.AToken)
 
-	lip, err := GetLiProfile(aTokenResp.AToken)
+	p, err := GetProfile(aTokenResp.AToken)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		fmt.Println("Sending failed token exchange error")
 		return
 	}
 	// Updates access token if user exists or adds a new User
-	err = InitUser(lip, aTokenResp)
+	userExists, err := InitUser(p, aTokenResp)
 	if err != nil {
 		respondWithError(w, FailedUserInit, err.Error())
 		return
 	}
 
 	// gets firebase access token for user's IM chat
-	customToken, err := CreateCustomToken(lip.ID)
+	customToken, err := CreateCustomToken(p.ID)
 	if err != nil {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		return
 	}
 	var resp AuthResponse
 	resp.AccessToken = aTokenResp
-	resp.LiProfile = lip
+	resp.Profile = p
 	resp.FirebaseCustomToken = customToken
+	resp.UserExists = userExists
 
 	json.NewEncoder(w).Encode(resp)
 }
@@ -156,7 +159,39 @@ func Match(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(MatchList)
 }
 
-// RefreshCustomToken reissues a firebase chat token when expired.
+// CheckAuthorized checks if a user is authorized to make a request
+func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {
+	token := r.Header.Get("Token")
+	id := r.Header.Get("Identity")
+
+	if token == "" || id == "" {
+		respondWithError(w, Unauthorized, "You are not authorized to make this request")
+		return false
+	}
+
+	user, err := fbClient.Ref("/users/" + id + "/accessToken")
+	if err != nil {
+		fmt.Println("Error fetching user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	var aToken map[string]interface{}
+	if err := user.Value(&aToken); err != nil {
+		fmt.Println("Error fetching value of user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	if aToken["access_token"] == token {
+		return true
+	}
+
+	respondWithError(w, Unauthorized, "You are not authorized to make this request")
+	return false
+}
+
+// RefreshCustomToken will refresh an authorized users Firebase custom token
 func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
 		id := r.Header.Get("Identity")

@@ -12,3 +12,7 @@ export const isSearchingBarStrings = {
   startText: 'Tap the slider to start searching!',
   searchingText: 'Searching for professionals nearby...',
 };
+
+export const chatScreenStrings = {
+  noChatsText: 'You don\'t have any chats yet! :('
+};

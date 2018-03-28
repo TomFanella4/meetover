@@ -156,7 +156,8 @@ func Match(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return // unable to get anyone to match
 	}
-	json.NewEncoder(w).Encode(MatchList)
+	resp, _ := FetchUsers(MatchList)
+	json.NewEncoder(w).Encode(resp)
 }
 
 // CheckAuthorized checks if a user is authorized to make a request

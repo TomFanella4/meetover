@@ -1,9 +1,5 @@
 package main
 
-// TODO:
-// JSON schema for user profile
-// IM schema and maintenance
-
 import (
 	"context"
 	"errors"
@@ -16,6 +12,7 @@ import (
 	"time"
 
 	firebase "firebase.google.com/go"
+	"github.com/zabawaba99/firego"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -85,8 +82,8 @@ func InitializeFirebase() {
 }
 
 // GetUser returns the user with uid in firebase
-func GetUser(uid string) {
-	return User{}
+func GetUser(uid string) (User, error) {
+	return User{}, nil
 }
 
 // CreateCustomToken Creates firebase based IM access token for the user with LinkedIn user ID

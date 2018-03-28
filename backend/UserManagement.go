@@ -243,7 +243,7 @@ func InitUser(p Profile, aTokenResp ATokenResponse) (bool, error) {
 
 // LoadTestUsers gets test users generated from a random data generator
 func LoadTestUsers() {
-	raw, err := ioutil.ReadFile("./test_users.json")
+	raw, err := ioutil.ReadFile("./ml/ml_test.json")
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)

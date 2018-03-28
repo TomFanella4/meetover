@@ -15,6 +15,8 @@ func main() {
 	// test
 	LoadTestUsers()
 
+	// ML
+	InitMLModel()
 	port, deployMode := os.LookupEnv("PORT")
 	if deployMode {
 		fmt.Println(http.ListenAndServe(":"+port, router))

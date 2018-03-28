@@ -1,20 +1,18 @@
 package main
 
-// TODO:
-// JSON schema for user profile
-// IM schema and maintenance
-
 import (
 	"context"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
+	"net/http"
 	"os"
 	"time"
 
 	firebase "firebase.google.com/go"
-	"gopkg.in/zabawaba99/firego.v1"
+	"github.com/zabawaba99/firego"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -29,9 +27,18 @@ const separator = "|"
 // GetProspectiveUsers Get the list of people for matching in the area
 func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User, error) {
 	// TODO:
-	// returns a list of people within radius of coords
+	// returns a list of cachedUsers within radius of coords
 	// that updated their location within lastUpdate hours
-	return people, nil
+	n := len(cachedUsers)
+	start := random(0, n/2)
+	end := random((n/2)+1, n)
+	return cachedUsers[start:end], nil
+}
+
+// random - helper for tests
+func random(min, max int) int {
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max-min) + min
 }
 
 // InitializeFirebase reads API keys to use db
@@ -40,12 +47,23 @@ func InitializeFirebase() {
 	// certificate credentials from a file. Also, Heroku doesn't have static
 	// storage. So, we must create the credential file dynamically from an
 	// environment variable containing the json
-	config := []byte(os.Getenv("FIREBASE_CONFIG"))
-	err := ioutil.WriteFile("./firebase-config.json", config, 0644)
-	if err != nil {
-		log.Fatalf("Could not write config file")
-	}
 
+	config, deployMode := os.LookupEnv("FIREBASE_CONFIG")
+	if deployMode {
+		fmt.Println("Firebase config file fetched from ENV var")
+		err := ioutil.WriteFile("./firebase-config.json", []byte(config), 0644)
+		if err != nil {
+			log.Fatalf("Could not write config file")
+		}
+	} else {
+		fmt.Println("Firebase config file fetched from local dir")
+		buf, err := ioutil.ReadFile("./firebase-config.json")
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		config = string(buf)
+	}
 	opt := option.WithCredentialsFile("./firebase-config.json")
 	app, err := firebase.NewApp(context.Background(), nil, opt)
 	if err != nil {
@@ -53,7 +71,7 @@ func InitializeFirebase() {
 	}
 
 	conf, err := google.JWTConfigFromJSON(
-		config,
+		[]byte(config),
 		"https://www.googleapis.com/auth/firebase.database",
 		"https://www.googleapis.com/auth/userinfo.email",
 	)
@@ -63,6 +81,21 @@ func InitializeFirebase() {
 
 	fbApp = app
 	fbClient = firego.New("https://meetoverdb.firebaseio.com/", conf.Client(oauth2.NoContext))
+}
+
+// GetUser returns the user with uid in firebase
+func GetUser(uid string) (User, error) {
+	return User{}, nil
+}
+
+// FetchUsers gets te Users from a list of uid's
+func FetchUsers(uids []string) ([]User, error) {
+	res := []User{}
+	for _, uid := range uids {
+		u, _ := GetUser(uid)
+		res = append(res, u)
+	}
+	return res, nil
 }
 
 // CreateCustomToken Creates firebase based IM access token for the user with LinkedIn user ID
@@ -152,12 +185,29 @@ func addGeolocation(coord Geolocation) {
 	// TODO: look for the user and add/update the
 	// Geolocation json WITHIN the User struct
 
-	addGeo[loc.ID] = loc
-	geo, err := fbClient.Ref("/Geo")
-
-	if err != nil {
-		fmt.Println("Adding Geo to DB error")
-		return
+	if token == "" || id == "" {
+		respondWithError(w, Unauthorized, "You are not authorized to make this request")
+		return false
 	}
-	defer geo.Update(addGeo)
+
+	user, err := fbClient.Ref("/users/" + id + "/accessToken")
+	if err != nil {
+		fmt.Println("Error fetching user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	var aToken map[string]interface{}
+	if err := user.Value(&aToken); err != nil {
+		fmt.Println("Error fetching value of user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	if aToken["access_token"] == token {
+		return true
+	}
+
+	respondWithError(w, Unauthorized, "You are not authorized to make this request")
+	return false
 }

@@ -17,6 +17,76 @@ https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-re
 git subtree push --prefix backend heroku master
 
 
+// JSON test data generator
+[
+  '{{repeat(100)}}',
+  {
+    uid: '{{objectId()}}',
+    location : {
+      lat: '{{floating(-90.000001, 90)}}',
+      long: '{{floating(-180.000001, 180)}}',
+      timestamp: '{{integer(1521669397, 99999999999)}}'
+    },
+    accessToken: {
+      token: '{{guid()}}',
+      expiry: '{{integer(1521669397, 99999999999)}}'
+    },
+    is_searching: '{{bool()}}',
+    hello_message: '{{lorem(1, "sentences")}}',
+    li_profile: {
+      firstName: '{{firstName()}}',
+      id: '{{objectId()}}',
+      industry: '{{company()}}',
+      lastName: '{{surname()}}',
+      headline: '{{lorem(1, "sentences")}}',
+      pictureUrl: 'http://placehold.it/32x32',
+      summary: '{{lorem(1, "paragraphs")}}',
+      positions: {        
+        values: [
+          '{{repeat(5)}}',
+          {
+            company: {
+              name: '{{company()}}',
+              type: '{{company().toUpperCase()}}',
+              industry:'{{random("software", "computer hardware", "aviation", "paint and hardware")}}',
+              isCurrent: '{{bool()}}',
+              summary: '{{lorem(1, "paragraphs")}}',
+              title: '{{random("engineer", "program manager", "pilot", "store manager")}}',
+              location: {
+                name: '{{street()}}, {{city()}}, {{state()}}, {{country()}}'
+              }
+            }
+          }           
+        ]
+      },
+      currentShare: {
+        comment: '{{lorem(1, "sentences")}}',
+        author: {
+          firstName: '{{firstName()}}',
+          id: '{{guid()}}'
+        }
+      },
+      location: {
+        country: {
+          code: '{{country().toUpperCase()}}'
+        },
+        name: '{{country()}}'
+      }
+    }
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
 
 // sample LinkedIn Profile
 {

@@ -108,8 +108,8 @@ func parToVector(userStr string, model map[string][]float64) []float64 {
 // userToString converts the user object to a paragraph for vector translation
 func userToString(u User) string {
 	var res string
-	res = u.HelloMessage + " " + u.LiProfile.Headline + " " + u.LiProfile.Summary + " " + u.LiProfile.Industry
-	for _, pos := range u.LiProfile.Positions.Values {
+	res = u.HelloMessage + " " + u.Profile.Headline + " " + u.Profile.Summary + " " + u.Profile.Industry
+	for _, pos := range u.Profile.Positions.Values {
 		res += pos.Company.Industry + " "
 		res += pos.Company.Name + " "
 		res += pos.Summary + " "

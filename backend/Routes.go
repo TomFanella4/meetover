@@ -39,6 +39,12 @@ var routes = Routes{
 		RefreshCustomToken,
 	},
 	Route{
+		"Initiate Meetover",
+		"POST",
+		"/meetover/{otherId}",
+		InitiateMeetover,
+	},
+	Route{
 		"LinkedIn Profile",
 		"GET",
 		"/userinfo/{accessToken}",

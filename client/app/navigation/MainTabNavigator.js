@@ -3,14 +3,16 @@ import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { Button } from 'native-base';
+import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
+import { registerFetchThreadListAsync } from '../actions/chatActions';
 
 import ListScreen from '../screens/ListScreen';
 import MapScreen from '../screens/MapScreen';
 import ChatsScreen from '../screens/ChatsScreen';
 
-export default TabNavigator(
+const MainTabNavigator = TabNavigator(
   {
     List: ListScreen,
     Map: MapScreen,
@@ -65,3 +67,29 @@ export default TabNavigator(
     swipeEnabled: false,
   }
 );
+
+class MainTabNavigation extends React.Component {
+  static router = MainTabNavigator.router;
+
+  render() {
+    return (
+      <MainTabNavigator
+        navigation={this.props.navigation}
+        screenProps={this.props.screenProps}
+      />
+    );
+  }
+
+  componentDidMount() {
+    this.props.registerFetchThreadListAsync();
+  }
+}
+
+const mapDispatchToProps = {
+  registerFetchThreadListAsync
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MainTabNavigation);

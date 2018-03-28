@@ -113,12 +113,3 @@ export const sendFirebaseMessage = (_id, messages) => {
     messageRef.set(message);
   });
 };
-
-export const chatThreadExists = async (threadId) => {
-  const threadRef = firebase.database().ref(`messages/${threadId}`);
-  let exists;
-
-  await threadRef.once('value', snapshot => {exists = (snapshot.val() !== null)});
-
-  return exists;
-}

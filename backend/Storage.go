@@ -185,6 +185,21 @@ func addGeolocation(coord Geolocation) {
 	// TODO: look for the user and add/update the
 	// Geolocation json WITHIN the User struct
 
+	// addGeo[loc.ID] = loc
+	geo, err := fbClient.Ref("/Geo")
+
+	if err != nil {
+		fmt.Println("Adding Geo to DB error")
+		return
+	}
+	defer geo.Update(addGeo)
+}
+
+// CheckAuthorized checks if a user is authorized to make a request
+func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {
+	token := r.Header.Get("Token")
+	id := r.Header.Get("Identity")
+
 	if token == "" || id == "" {
 		respondWithError(w, Unauthorized, "You are not authorized to make this request")
 		return false

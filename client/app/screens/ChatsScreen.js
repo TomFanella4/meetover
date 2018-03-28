@@ -7,9 +7,6 @@ import { PTSansText } from '../components/StyledText';
 import Colors from '../constants/Colors';
 import { chatScreenStrings } from '../constants/Strings';
 import IsSearchingBar from '../components/IsSearchingBar';
-import {
-  registerFetchThreadListAsync,
-} from '../actions/chatActions';
 
 class ChatsScreen extends React.Component {
   static navigationOptions = {
@@ -56,23 +53,14 @@ class ChatsScreen extends React.Component {
       </Container>
     );
   }
-
-  componentDidMount() {
-    this.props.registerFetchThreadListAsync();
-  }
 };
 
 const mapStateToProps = state => ({
   threadList: state.chat.threadList
 });
 
-const mapDispatchToProps = {
-  registerFetchThreadListAsync
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ChatsScreen);
 
 const styles = StyleSheet.create({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
 import { Root } from "native-base";
 import Expo, { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +11,8 @@ import thunk from 'redux-thunk';
 
 import reducers from './reducers';
 import { signInToFirebase } from './firebase';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
 
 export default class App extends React.Component {
   state = {

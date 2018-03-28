@@ -104,8 +104,7 @@ type User struct {
 	AccessToken  ATokenResponse `json:"accessToken"`
 	Profile      Profile        `json:"profile"`
 	IsSearching  bool           `json:"isSearching"`
-	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
-	IsMatchedNow bool           `json:"is_matched"`    // set directly from the mobile app
+	IsMatchedNow bool           `json:"isMatched"` // set directly from the mobile app
 }
 
 // cachedUsers is the set of active users. Involved in matching or searching.

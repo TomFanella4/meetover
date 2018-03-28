@@ -102,7 +102,7 @@ type User struct {
 	LiProfile    LiProfile      `json:"li_profile"`
 	IsSearching  bool           `json:"is_searching"`
 	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
-	IsMatchedNow bool           `json:"is_matched"`
+	IsMatchedNow bool           `json:"is_matched"`    // set directly from the mobile app
 }
 
 // cachedUsers is the set of active users. Involved in matching or searching.

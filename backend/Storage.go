@@ -11,11 +11,11 @@ import (
 	"io/ioutil"
 	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"time"
 
 	firebase "firebase.google.com/go"
-	"gopkg.in/zabawaba99/firego.v1"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -84,6 +84,11 @@ func InitializeFirebase() {
 	fbClient = firego.New("https://meetoverdb.firebaseio.com/", conf.Client(oauth2.NoContext))
 }
 
+// GetUser returns the user with uid in firebase
+func GetUser(uid string) {
+	return User{}
+}
+
 // CreateCustomToken Creates firebase based IM access token for the user with LinkedIn user ID
 func CreateCustomToken(ID string) (string, error) {
 	client, err := fbApp.Auth(context.Background())
@@ -97,4 +102,36 @@ func CreateCustomToken(ID string) (string, error) {
 	}
 
 	return token, nil
+}
+
+// CheckAuthorized hepler for RefreshCustomToken
+func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {
+	token := r.Header.Get("Token")
+	id := r.Header.Get("Identity")
+
+	if token == "" || id == "" {
+		respondWithError(w, Unauthorized, "You are not authorized to make this request")
+		return false
+	}
+
+	user, err := fbClient.Ref("/users/" + id + "/accessToken")
+	if err != nil {
+		fmt.Println("Error fetching user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	var aToken map[string]interface{}
+	if err := user.Value(&aToken); err != nil {
+		fmt.Println("Error fetching value of user " + id + " from Firebase for authentication")
+		respondWithError(w, FailedDBCall, err.Error())
+		return false
+	}
+
+	if aToken["access_token"] == token {
+		return true
+	}
+
+	respondWithError(w, Unauthorized, "You are not authorized to make this request")
+	return false
 }

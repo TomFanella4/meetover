@@ -85,6 +85,16 @@ func GetUser(uid string) (User, error) {
 	return User{}, nil
 }
 
+// FetchUsers gets te Users from a list of uid's
+func FetchUsers(uids []string) ([]User, error) {
+	res := []User{}
+	for _, uid := range uids {
+		u, _ := GetUser(uid)
+		res = append(res, u)
+	}
+	return res, nil
+}
+
 // CreateCustomToken Creates firebase based IM access token for the user with LinkedIn user ID
 func CreateCustomToken(ID string) (string, error) {
 	client, err := fbApp.Auth(context.Background())

@@ -22,7 +22,9 @@ import (
 var fbApp *firebase.App
 var fbClient *firego.Firebase
 
-// GetProspectiveUsers Get the list of cachedUsers for matching in the area
+const separator = "|"
+
+// GetProspectiveUsers Get the list of people for matching in the area
 func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User, error) {
 	// TODO:
 	// returns a list of cachedUsers within radius of coords
@@ -111,10 +113,77 @@ func CreateCustomToken(ID string) (string, error) {
 	return token, nil
 }
 
-// CheckAuthorized checks if a user is authorized to make a request
-func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {
-	token := r.Header.Get("Token")
-	id := r.Header.Get("Identity")
+func CreateThreadForUser(ID1 string, threadId string, ID2 string) error {
+	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadId)
+	if err != nil {
+		return err
+	}
+
+	otherUserName, err := fbClient.Ref("/users/" + ID2 + "/profile/firstName")
+	if err != nil {
+		return err
+	}
+
+	var name string
+	if err := otherUserName.Value(&name); err != nil {
+		return err
+	}
+
+	threadInfo := map[string]interface{}{
+		"_id":  threadId,
+		"name": name,
+	}
+	if err := threadList.Update(threadInfo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func AddThread(P1 string, P2 string) error {
+	ID1, ID2 := "", ""
+
+	if P1 == P2 {
+		return errors.New("Cannot start a thread with only one user")
+	} else if P1 < P2 {
+		ID1, ID2 = P1, P2
+	} else {
+		ID1, ID2 = P2, P1
+	}
+
+	threadId := ID1 + separator + ID2
+
+	if err := CreateThreadForUser(ID1, threadId, ID2); err != nil {
+		return err
+	}
+	if err := CreateThreadForUser(ID2, threadId, ID1); err != nil {
+		return err
+	}
+
+	thread, err := fbClient.Ref("/messages/" + threadId + "/0")
+	if err != nil {
+		return err
+	}
+
+	initialMessage := map[string]interface{}{
+		"_id":       0,
+		"text":      "Welcome to the chat!",
+		"createdAt": time.Now().UTC().Format(time.RFC3339),
+		"system":    true,
+	}
+	if err := thread.Update(initialMessage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func addGeolocation(coord Geolocation) {
+	addGeo := make(map[string]interface{})
+
+	loc := coord
+	// TODO: look for the user and add/update the
+	// Geolocation json WITHIN the User struct
 
 	if token == "" || id == "" {
 		respondWithError(w, Unauthorized, "You are not authorized to make this request")

@@ -13,11 +13,11 @@ import {
   Thumbnail,
 } from 'native-base';
 import { connect } from 'react-redux';
+import { find } from 'lodash';
 
 import { fetchProfileAsync } from '../actions/matchesActions';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { chatThreadExists } from '../firebase';
 import { separator, serverURI } from '../constants/Common';
 import { StyledToast } from '../helpers';
 
@@ -27,14 +27,30 @@ class ProfileScreen extends React.Component {
   });
 
   state = {
-    loading: true
+    loading: true,
+    buttonDisabled: true,
   };
 
   componentDidMount() {
-    const { fetchProfileAsync, navigation } = this.props;
+    const { fetchProfileAsync, navigation, threadList } = this.props;
+
+    if (threadList !== null) {
+      // Thread list has been fetched from Firebase
+      this.setState({ buttonDisabled: false });
+    }
 
     fetchProfileAsync(navigation.state.params.userId)
       .then(() => this.setState({ loading: false }));
+  }
+
+  componentDidUpdate(prevProps) {
+    const { threadList } = this.props;
+    const prevThreadList = prevProps.threadList
+
+    if (prevThreadList === null && threadList !== null) {
+      // Thread list has been fetched from Firebase
+      this.setState({ buttonDisabled: false });
+    }
   }
 
   _renderLoading() {
@@ -48,7 +64,7 @@ class ProfileScreen extends React.Component {
   }
 
   async _initiateMeetover() {
-    const { navigation, signedInProfile } = this.props;
+    const { navigation, signedInProfile, threadList } = this.props;
     const { name, userId } = navigation.state.params;
     const signedInId = signedInProfile.id;
     const accessToken = signedInProfile.token.access_token;
@@ -60,7 +76,7 @@ class ProfileScreen extends React.Component {
       threadId = userId + separator + signedInId;
     }
 
-    const exists = await chatThreadExists(threadId);
+    const exists = (find(threadList, { '_id': threadId }) !== undefined);
 
     if (!exists) {
       const uri = `${serverURI}/meetover/${userId}`;
@@ -94,8 +110,9 @@ class ProfileScreen extends React.Component {
 
   render() {
     const { profile } = this.props;
+    const { buttonDisabled, loading } = this.state;
 
-    if (this.state.loading) {
+    if (loading) {
       return this._renderLoading();
     } else {
       const positions = profile.positions.values.map((position, index) =>
@@ -136,7 +153,8 @@ class ProfileScreen extends React.Component {
           <Button
             iconLeft
             full
-            style={styles.chatButton}
+            style={!buttonDisabled ? styles.chatButton : null}
+            disabled={buttonDisabled}
             onPress={() => this._initiateMeetover()}
           >
             <Icon name='chatboxes' />
@@ -150,6 +168,7 @@ class ProfileScreen extends React.Component {
 
 const mapStateToProps = state => ({
   signedInProfile: state.userProfile,
+  threadList: state.chat.threadList,
   profile: state.matchList.profile
 });
 

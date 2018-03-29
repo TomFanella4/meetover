@@ -19,7 +19,9 @@ type MatchResponse struct {
 	Matches []MatchValue `json:"matches"`
 }
 
-// MatchValue
+// 5abc5152c2d9048b32bfc917
+
+// MatchValue represents each porspecive user in their distance from the caller
 type MatchValue struct {
 	U User    `json:"user"`
 	D float64 `json:"distance"`

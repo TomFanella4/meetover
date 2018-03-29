@@ -152,10 +152,10 @@ func Match(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return // unable to get anyone from db
 	}
-	fmt.Print("Trying to get matches")
+	// fmt.Print("Trying to get matches")
 	MatchList, err := GetMatches(userID, PMatchList)
-	fmt.Print("Got matches")
-	fmt.Print(MatchList)
+	// fmt.Print("Got matches")
+	// fmt.Print(MatchList)
 	if err != nil {
 		return // unable to get anyone to match
 	}

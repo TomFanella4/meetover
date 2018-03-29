@@ -156,7 +156,6 @@ func Match(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return // unable to get anyone to match
 	}
-	resp, _ := FetchUsers(MatchList)
 	json.NewEncoder(w).Encode(resp)
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
+import { Constants, Permissions, Notifications } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { Button } from 'native-base';
@@ -7,6 +8,7 @@ import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import { registerFetchThreadListAsync } from '../actions/chatActions';
+import { modifyFirebaseUserState } from '../firebase';
 
 import ListScreen from '../screens/ListScreen';
 import MapScreen from '../screens/MapScreen';
@@ -71,6 +73,10 @@ const MainTabNavigator = TabNavigator(
 class MainTabNavigation extends React.Component {
   static router = MainTabNavigator.router;
 
+  componentWillUnmount() {
+    this._notificationSubscription && this._notificationSubscription.remove();
+  }
+
   render() {
     return (
       <MainTabNavigator
@@ -81,8 +87,35 @@ class MainTabNavigation extends React.Component {
   }
 
   componentDidMount() {
+    this._registerForPushNotifications();
     this.props.registerFetchThreadListAsync();
   }
+
+  async _registerForPushNotifications() {
+    if (!Constants.isDevice) {
+      return;
+    }
+
+    // Get user permissions
+    let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+
+    // Stop here if the user did not grant permissions
+    if (status !== 'granted') {
+      return;
+    }
+
+    // Get the token that uniquely identifies this device
+    // TODO check if error when logged out
+    let token = await Notifications.getExpoPushTokenAsync();
+    modifyFirebaseUserState('expoPushToken', token);
+
+    // Watch for incoming notifications
+    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+  }
+
+  _handleNotification = ({ origin, data }) => {
+    console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
+  };
 }
 
 const mapDispatchToProps = {

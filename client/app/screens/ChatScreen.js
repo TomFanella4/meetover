@@ -24,8 +24,9 @@ class ChatScreen extends React.Component {
 
   onSend(messages = []) {
     const _id = this.props.navigation.state.params._id;
+    const access_token = this.props.userProfile.token.access_token;
 
-    sendFirebaseMessage(_id, messages);
+    sendFirebaseMessage(_id, messages, access_token);
   }
 
   onLoadEarlier() {

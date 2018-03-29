@@ -3,6 +3,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { View, Switch } from 'native-base';
 import { connect } from 'react-redux';
 
+import { modifyFirebaseUserState } from '../firebase';
 import { modifyProfile } from '../actions/userActions';
 import { PTSansText } from './StyledText';
 import Colors from '../constants/Colors';
@@ -21,7 +22,10 @@ const IsSearchingBar = ({ userProfile, modifyProfile }) => (
     <Switch
       style={styles.isSearchingSwitch}
       value={userProfile.isSearching}
-      onValueChange={value => modifyProfile('isSearching', value)}
+      onValueChange={value => {
+        modifyProfile('isSearching', value);
+        modifyFirebaseUserState('isSearching', value);
+      }}
       onTintColor={Colors.tintColor}
       thumbTintColor={Platform.OS === 'android' ? 'white' : null}
     />

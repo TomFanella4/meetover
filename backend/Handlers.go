@@ -190,6 +190,45 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Failed to create the thread " + initiatorId + ", " + requestedId)
 			return
 		}
+
+		// Send a push notification to the requested user
+		formattedName, err := fbClient.Ref("/users/" + initiatorId + "/profile/formattedName")
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		var name string
+		if err = formattedName.Value(&name); err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+
+		title := "New MeetOver Request"
+		body := name + " would like to MeetOver"
+		pushNotification := PushNotification{
+			ID:    requestedId,
+			Title: title,
+			Body:  body,
+		}
+		err = SendPushNotification(&pushNotification)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+	}
+}
+
+// SendPush sends sends a push notification for a verified user
+func SendPush(w http.ResponseWriter, r *http.Request) {
+	if CheckAuthorized(w, r) {
+		var pushNotification PushNotification
+		bodyBytes, _ := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		if err := json.Unmarshal(bodyBytes, &pushNotification); err != nil {
+			fmt.Println("Unable to send push notification")
+			return
+		}
+		SendPushNotification(&pushNotification)
 	}
 }
 

@@ -113,13 +113,30 @@ func CreateCustomToken(ID string) (string, error) {
 	return token, nil
 }
 
+func GetExpoPushToken(ID string) (string, error) {
+	expoPushToken, err := fbClient.Ref("/users/" + ID + "/expoPushToken")
+	if err != nil {
+		return "", err
+	}
+
+	var token string
+	if err := expoPushToken.Value(&token); err != nil {
+		return "", err
+	}
+	if token == "" {
+		return "", errors.New("expoPushToken not found")
+	}
+
+	return token, nil
+}
+
 func CreateThreadForUser(ID1 string, threadId string, ID2 string) error {
 	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadId)
 	if err != nil {
 		return err
 	}
 
-	otherUserName, err := fbClient.Ref("/users/" + ID2 + "/profile/firstName")
+	otherUserName, err := fbClient.Ref("/users/" + ID2 + "/profile/formattedName")
 	if err != nil {
 		return err
 	}

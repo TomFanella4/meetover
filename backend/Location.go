@@ -13,7 +13,7 @@ type Address struct {
 type Geolocation struct {
 	Lat       float64 `json:"lat,omitempty"`
 	Long      float64 `json:"long,omitempty"`
-	TimeStamp int64   `json:"timestamp,omitempty"`
+	TimeStamp float64 `json:"timestamp,omitempty"`
 }
 
 // QueryLocation will return the location for the given coordinates

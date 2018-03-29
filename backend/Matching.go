@@ -11,14 +11,14 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/word-embedding/builder"
+	"github.com/ynqa/word-embedding/builder"
 )
 
 // WordModel is the vector representation of the words in the corpus file
 var WordModel map[string][]float64
 
 // ParVecParam - number of words considered for similarity
-var ParVecParam = 200
+var ParVecParam = 50
 
 // GetMatches returns an ordered list of user uid's from closest to furthest to the caller
 func GetMatches(UserID string, neighbors []User) ([]string, error) {

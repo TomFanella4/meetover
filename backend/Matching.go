@@ -10,8 +10,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-
-	"github.com/ynqa/word-embedding/builder"
+	// "github.com/ynqa/word-embedding/builder"
 )
 
 // MatchResponse returned to the UI when /match is hit
@@ -32,11 +31,13 @@ var WordModel map[string][]float64
 var ParVecParam = 50
 
 // GetMatches returns an ordered list of user uid's from closest to furthest to the caller
-func GetMatches(UserID string, neighbors []User) ([]string, error) {
+func GetMatches(UserID string, neighbors []User) (MatchResponse, error) {
 	callingUser, err := GetUser(UserID)
 	if err != nil {
-		return []string{}, errors.New("Unable to fetch calling user")
+		return MatchResponse{}, errors.New("Unable to fetch calling user")
 	}
+	fmt.Println("Got user")
+	fmt.Println(callingUser)
 	order := GetOrder(callingUser, neighbors, WordModel)
 	return order, nil
 }
@@ -51,7 +52,9 @@ func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchR
 	for _, pu := range prospUsers {
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
+		fmt.Println("Running Nested Distance")
 		distance := nestedDistance(callerVec, prospVec)
+		fmt.Println("Finished Nested Distance")
 		mr.Matches = append(mr.Matches, MatchValue{pu, distance})
 	}
 	return mr
@@ -134,40 +137,41 @@ func userToString(u User) string {
 // InitMLModel check if model has been created or creates it
 func InitMLModel() {
 	modelFile := "./ml/meetOver.model"
-	corpusFile := "./ml/corpus.dat"
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
-		createModel(modelFile, corpusFile)
+		// corpusFile := "./ml/corpus.dat"
+		// createModel(modelFile, corpusFile)
+		fmt.Println("Model does not exist")
 	}
 	WordModel = readModel(modelFile)
 }
 
 // createModel uses the word2vec algo to create word embeddings
-func createModel(destinationFileName string, corpusFile string) {
-	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
-		fmt.Println("[-] Corpus file not found. No model created")
-	}
-	b := builder.NewWord2VecBuilder()
-	b.SetDimension(5).
-		SetWindow(20).
-		SetModel("cbow").
-		SetOptimizer("ns").
-		SetNegativeSampleSize(5).
-		SetVerbose()
-	m, err := b.Build()
-	if err != nil {
-		fmt.Println("[-] Unable to build word2vec neural net")
-	}
-	inputFile1, _ := os.Open(corpusFile)
-	f1, err := m.Preprocess(inputFile1)
-	if err != nil {
-		fmt.Println("Failed to Preprocess.")
-	}
-	// Start to Train.
-	m.Train(f1)
-	f1.Close()
-	// Save word vectors to a text file.
-	m.Save(destinationFileName)
-}
+// func createModel(destinationFileName string, corpusFile string) {
+// 	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
+// 		fmt.Println("[-] Corpus file not found. No model created")
+// 	}
+// 	b := builder.NewWord2VecBuilder()
+// 	b.SetDimension(5).
+// 		SetWindow(20).
+// 		SetModel("cbow").
+// 		SetOptimizer("ns").
+// 		SetNegativeSampleSize(5).
+// 		SetVerbose()
+// 	m, err := b.Build()
+// 	if err != nil {
+// 		fmt.Println("[-] Unable to build word2vec neural net")
+// 	}
+// 	inputFile1, _ := os.Open(corpusFile)
+// 	f1, err := m.Preprocess(inputFile1)
+// 	if err != nil {
+// 		fmt.Println("Failed to Preprocess.")
+// 	}
+// 	// Start to Train.
+// 	m.Train(f1)
+// 	f1.Close()
+// 	// Save word vectors to a text file.
+// 	m.Save(destinationFileName)
+// }
 
 // readModel converts the generated model to an in-memory object
 func readModel(modelFile string) map[string][]float64 {

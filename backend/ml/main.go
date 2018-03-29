@@ -15,35 +15,35 @@ import (
 	// . "github.com/bugra/kmeans"
 	"github.com/ynqa/word-embedding/builder"
 	// "gonum.org/v1/gonum/mat"
+	// "meetover/backend/main"
 )
 
-// type Model struct {
-// 	AToken string `json:"access_token"`
-// 	Expiry uint   `json:"expires_in"`
-// }
-
 func main() {
-	modelFile := "meetOver.model"
-	// createModel(modelFile)
-	model := readModel(modelFile)
+	rawFile := "rawTestUsers.json"
+	sinkFile := "MLTestUsers.json"
+	generateTestUsers(rawFile, sinkFile)
 
-	cachedUsers := getUsers()
-	n := len(cachedUsers)
-	start := random(0, n/2)
-	end := random((n/2)+1, n)
-	prospUsers := cachedUsers[start:end]
-	randomCaller := cachedUsers[random(0, n-1)]
-	order := distanceSort(randomCaller, prospUsers, model)
-	closest := order[0]
-	furthest := order[len(order)-1]
-	fmt.Println()
-	fmt.Println("caller: " + userToString(randomCaller))
-	fmt.Println()
-	fmt.Println()
-	fmt.Println("closest: " + userToString(getUser(closest, cachedUsers)))
-	fmt.Println()
-	fmt.Println()
-	fmt.Println("furthest: " + userToString(getUser(furthest, cachedUsers)))
+	// modelFile := "meetOver.model"
+	// createModel(modelFile)
+	// model := readModel(modelFile)
+
+	// cachedUsers := getUsers(sinkFile)
+	// n := len(cachedUsers)
+	// start := random(0, n/2)
+	// end := random((n/2)+1, n)
+	// prospUsers := cachedUsers[start:end]
+	// randomCaller := cachedUsers[random(0, n-1)]
+	// order := distanceSort(randomCaller, prospUsers, model)
+	// closest := order[0]
+	// furthest := order[len(order)-1]
+	// fmt.Println()
+	// fmt.Println("caller: " + userToString(randomCaller))
+	// fmt.Println()
+	// fmt.Println()
+	// fmt.Println("closest: " + userToString(getUser(closest, cachedUsers)))
+	// fmt.Println()
+	// fmt.Println()
+	// fmt.Println("furthest: " + userToString(getUser(furthest, cachedUsers)))
 
 }
 
@@ -138,8 +138,8 @@ func random(min, max int) int {
 
 func userToString(u User) string {
 	var res string
-	res = u.HelloMessage + " " + u.LiProfile.Headline + " " + u.LiProfile.Summary + " " + u.LiProfile.Industry
-	for _, pos := range u.LiProfile.Positions.Values {
+	res = u.Profile.Greeting + " " + u.Profile.Headline + " " + u.Profile.Summary + " " + u.Profile.Industry
+	for _, pos := range u.Profile.Positions.Values {
 		res += pos.Company.Industry + " "
 		res += pos.Company.Name + " "
 		res += pos.Summary + " "

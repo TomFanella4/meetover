@@ -14,6 +14,17 @@ import (
 	"github.com/ynqa/word-embedding/builder"
 )
 
+// MatchResponse returned to the UI when /match is hit
+type MatchResponse struct {
+	Matches []MatchValue `json:"matches"`
+}
+
+// MatchValue
+type MatchValue struct {
+	U User    `json:"user"`
+	D float64 `json:"distance"`
+}
+
 // WordModel is the vector representation of the words in the corpus file
 var WordModel map[string][]float64
 
@@ -31,17 +42,19 @@ func GetMatches(UserID string, neighbors []User) ([]string, error) {
 }
 
 // GetOrder - preprocess for sortMap
-func GetOrder(caller User, prospUsers []User, model map[string][]float64) []string {
-	distances := make(map[string]float64)
+func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchResponse {
 	callerStr := userToString(caller)
 	callerVec := parToVector(callerStr, model)
 	prospUsers = removeCaller(caller, prospUsers)
+	var mr MatchResponse
+	mr.Matches = []MatchValue{}
 	for _, pu := range prospUsers {
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
-		distances[pu.ID] = nestedDistance(callerVec, prospVec)
+		distance := nestedDistance(callerVec, prospVec)
+		mr.Matches = append(mr.Matches, MatchValue{pu, distance})
 	}
-	return sortMap(distances)
+	return mr
 }
 
 // sortMap - returns uid's with shortest distance first

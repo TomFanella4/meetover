@@ -45,6 +45,12 @@ var routes = Routes{
 		InitiateMeetover,
 	},
 	Route{
+		"Send Push Notification",
+		"POST",
+		"/sendPush",
+		SendPush,
+	},
+	Route{
 		"LinkedIn Profile",
 		"GET",
 		"/userinfo/{accessToken}",

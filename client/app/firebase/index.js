@@ -61,6 +61,18 @@ export async function fetchIdToken(token) {
     });
 };
 
+export const modifyFirebaseUserState = async (key, value) => {
+  const user = firebase.auth().currentUser;
+
+  return await firebase.database().ref(`users/${user.uid}`)
+    .update({ [key]: value })
+    .catch(err => {
+      console.log(`Could not modify user state: ${err}`);
+
+      throw err;
+    });
+}
+
 export const modifyFirebaseUserProfile = async (key, value) => {
   const user = firebase.auth().currentUser;
 
@@ -103,7 +115,7 @@ export const fetchFirebaseEarlierMessages = (_id, updateFn, limit, endId) => {
   });
 };
 
-export const sendFirebaseMessage = (_id, messages) => {
+export const sendFirebaseMessage = (_id, messages, accessToken) => {
   const messagesRef = firebase.database().ref(`messages/${_id}`);
 
   messages.forEach(message => {
@@ -111,5 +123,25 @@ export const sendFirebaseMessage = (_id, messages) => {
     message.createdAt = message.createdAt.toISOString();
     message._id = messageRef.key;
     messageRef.set(message);
+
+    const ids = _id.split('|');
+    const id = ids[0] === message.user._id ? ids[1] : ids[0];
+
+    const init = {
+      method: 'POST',
+      body: JSON.stringify({
+        id: id,
+        title: message.user.name,
+        body: message.text
+      }),
+      headers: new Headers({
+        'content-type': 'application/json',
+        'Token': accessToken,
+        'Identity': message.user._id
+      })
+    };
+
+    fetch(`${serverURI}/sendPush`, init)
+    .catch(err => console.log(err));
   });
 };

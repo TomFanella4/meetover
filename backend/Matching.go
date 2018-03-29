@@ -7,9 +7,9 @@ import (
 	"log"
 	"math"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
+	"time"
 	// "github.com/ynqa/word-embedding/builder"
 )
 
@@ -18,11 +18,11 @@ type MatchResponse struct {
 	Matches []MatchValue `json:"matches"`
 }
 
-// 5abc5152c2d9048b32bfc917
+// Test uid:  5abc5152c2d9048b32bfc917
 
 // MatchValue represents each porspecive user in their distance from the caller
 type MatchValue struct {
-	U User    `json:"user"`
+	U Profile `json:"user"`
 	D float64 `json:"distance"`
 }
 
@@ -39,8 +39,9 @@ func GetMatches(UserID string, neighbors []User) (MatchResponse, error) {
 		return MatchResponse{}, errors.New("Unable to fetch calling user")
 	}
 	fmt.Println("Got user")
-	fmt.Println(callingUser)
+	// fmt.Println(callingUser)
 	order := GetOrder(callingUser, neighbors, WordModel)
+	// fmt.Println(order)
 	return order, nil
 }
 
@@ -51,33 +52,34 @@ func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchR
 	prospUsers = removeCaller(caller, prospUsers)
 	var mr MatchResponse
 	mr.Matches = []MatchValue{}
+	start := time.Now()
 	for _, pu := range prospUsers {
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
-		fmt.Println("Running Nested Distance")
 		distance := nestedDistance(callerVec, prospVec)
-		fmt.Println("Finished Nested Distance")
-		mr.Matches = append(mr.Matches, MatchValue{pu, distance})
+		mr.Matches = append(mr.Matches, MatchValue{pu.Profile, distance})
 	}
+	elapsed := time.Since(start)
+	fmt.Println("Destance Calculation took: " + elapsed.String())
 	return mr
 }
 
-// sortMap - returns uid's with shortest distance first
-func sortMap(m map[string]float64) []string {
-	reverseMap := map[float64]string{}
-	distances := []float64{}
-	for uid, d := range m {
-		reverseMap[d] = uid
-		distances = append(distances, d)
-	}
-	sort.Float64s(distances)
-	res := []string{}
-	for _, d := range distances {
-		res = append(res, reverseMap[d])
-	}
-	fmt.Println(res)
-	return res
-}
+// // sortMap - returns uid's with shortest distance first
+// func sortMap(m map[string]float64) []string {
+// 	reverseMap := map[float64]string{}
+// 	distances := []float64{}
+// 	for uid, d := range m {
+// 		reverseMap[d] = uid
+// 		distances = append(distances, d)
+// 	}
+// 	sort.Float64s(distances)
+// 	res := []string{}
+// 	for _, d := range distances {
+// 		res = append(res, reverseMap[d])
+// 	}
+// 	fmt.Println(res)
+// 	return res
+// }
 
 // nestedDistance - distance metric between par vectors
 func nestedDistance(src []float64, dst []float64) float64 {
@@ -103,6 +105,11 @@ func removeCaller(caller User, prospUsers []User) []User {
 	}
 	return append(prospUsers[:s], prospUsers[s+1:]...)
 
+}
+
+// stripStopWords -
+func stripStopWords(str string) string {
+	return ""
 }
 
 // parToVector converts a string representation of user to numeric vector using

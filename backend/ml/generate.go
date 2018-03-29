@@ -21,8 +21,8 @@ func updateJSONFile(newJSON interface{}, fileName string) {
 	return
 }
 
-func getUsers() []User {
-	raw, err := ioutil.ReadFile("D:/UNIVERSITY/CS 407/src/scratch/ml_test.json")
+func getUsers(rawFile string) []User {
+	raw, err := ioutil.ReadFile(rawFile)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
@@ -33,7 +33,7 @@ func getUsers() []User {
 	return users
 }
 
-func generateUsers() {
+func generateTestUsers(rawFile string, sinkFile string) {
 	csvFile, err := os.Open("./jobs.csv")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -47,28 +47,35 @@ func generateUsers() {
 	fmt.Println("Headers: ")
 	fmt.Println(headers) // 1 - desc, 3 - title, 4 - skills
 	r := rand.Intn
-	users := getUsers()
+	users := getUsers(rawFile)
 	for i, u := range users {
 		line, error := reader.Read()
 		if error == io.EOF {
 			fmt.Println("OEF in dataset")
 		}
 		description := line[1]
-		title := line[3]
-		skills := line[4]
+		title := line[2]
+		skills := line[3]
 		n := len(description)
-		profile := u.LiProfile
+		profile := u.Profile
 		start := r(n-1) / 2
-		u.HelloMessage = description[start:]
+		profile.Greeting = description[start:]
 		profile.Headline = title
-		profile.Industry = skills[:r(len(skills))]
+		profile.Industry = skills
 		start = r(n-1) / 2
 		profile.Summary = description[start:]
 		users[i] = u
-		users[i].LiProfile = profile
+		users[i].Profile = profile
 	}
 	fmt.Println(users[9])
-	updateJSONFile(users, "ml_test.json")
+	updateJSONFile(users, sinkFile)
+}
+
+// Geolocation - latitide and longitude and last time of update
+type Geolocation struct {
+	Lat       float64 `json:"lat,omitempty"`
+	Long      float64 `json:"long,omitempty"`
+	TimeStamp int64   `json:"timestamp,omitempty"`
 }
 
 // ATokenResponse from Code exchange with LI
@@ -77,8 +84,8 @@ type ATokenResponse struct {
 	Expiry uint   `json:"expires_in"`
 }
 
-// LiProfile is the JSON object we get from the linkedin profile
-type LiProfile struct {
+// Profile is the JSON object we user to store our user data
+type Profile struct {
 	CurrentShare struct {
 		Attribution struct {
 			Share struct {
@@ -146,14 +153,9 @@ type LiProfile struct {
 			Title   string `json:"title"`
 		} `json:"values"`
 	} `json:"positions"`
-	Summary string `json:"summary"`
-}
-
-// Geolocation - latitide and longitude and last time of update
-type Geolocation struct {
-	Lat       float64 `json:"lat,omitempty"`
-	Long      float64 `json:"long,omitempty"`
-	TimeStamp int64   `json:"timestamp,omitempty"`
+	Summary       string `json:"summary"`
+	ShareLocation bool   `json:"shareLocation"`
+	Greeting      string `json:"greeting"`
 }
 
 // User is user on MeetOver
@@ -161,8 +163,7 @@ type User struct {
 	ID           string         `json:"uid,omitempty"`
 	Location     *Geolocation   `json:"location,omitempty"`
 	AccessToken  ATokenResponse `json:"accessToken"`
-	LiProfile    LiProfile      `json:"li_profile"`
-	IsSearching  bool           `json:"is_searching"`
-	HelloMessage string         `json:"hello_message"` // TODO: ask user to fill this feild in account creation
-	IsMatchedNow bool           `json:"is_matched"`    // set directly from the mobile app
+	Profile      Profile        `json:"profile"`
+	IsSearching  bool           `json:"isSearching"`
+	IsMatchedNow bool           `json:"isMatched"` // set directly from the mobile app
 }

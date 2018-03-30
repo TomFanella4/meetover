@@ -35,7 +35,7 @@ const profile = {
   },
   "numConnections": 411,
   "numConnectionsCapped": false,
-  "pictureUrl": "https://media.licdn.com/mpr/mprx/0_1lpYsrJfPnDiMc-pBPEPZ-hfnNriM6Cg9vEYxXza1zwCM91rsle0tT4fvFjCMnPlnbXKlGc70KuGVGW7JGJCtXs_sKu_VGBjsGJgML7mllMfrquT9P71JlTxVLnPPGh21TgtORGj196",
+  "pictureUrl": "https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg",
   "positions": {
     "_total": 1,
     "values": [{

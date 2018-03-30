@@ -19,28 +19,30 @@ git subtree push --prefix backend heroku master
 
 // JSON test data generator
 [
-  '{{repeat(100)}}',
+  '{{repeat(200)}}',
   {
     uid: '{{objectId()}}',
     location : {
-      lat: '{{floating(-90.000001, 90)}}',
-      long: '{{floating(-180.000001, 180)}}',
+      lat: '{{floating(40.4187, 40.4287)}}', 
+      long: '{{floating(-87.0212, -86.8212)}}',
       timestamp: '{{integer(1521669397, 99999999999)}}'
     },
     accessToken: {
       token: '{{guid()}}',
       expiry: '{{integer(1521669397, 99999999999)}}'
     },
-    is_searching: '{{bool()}}',
-    hello_message: '{{lorem(1, "sentences")}}',
-    li_profile: {
+    isSearching: '{{bool()}}',
+    isMatched: false,
+    profile: {
       firstName: '{{firstName()}}',
-      id: '{{objectId()}}',
+      id: this.uid,
       industry: '{{company()}}',
       lastName: '{{surname()}}',
       headline: '{{lorem(1, "sentences")}}',
+      greeting: '{{lorem(1, "sentences")}}',
       pictureUrl: 'http://placehold.it/32x32',
       summary: '{{lorem(1, "paragraphs")}}',
+      shareLocation : true,
       positions: {        
         values: [
           '{{repeat(5)}}',
@@ -75,7 +77,6 @@ git subtree push --prefix backend heroku master
     }
   }
 ]
-
 
 // Test User
 

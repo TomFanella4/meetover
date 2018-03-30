@@ -13,7 +13,7 @@ const fetchMatches = matches => ({
   matches
 });
 
-export const fetchMatchesAsync = userId => {
+export const fetchMatchesAsync = (userId, accessToken) => {
   return async dispatch => {
     let matches;
 
@@ -37,6 +37,10 @@ export const fetchMatchesAsync = userId => {
             lat: location.coords.latitude,
             long: location.coords.longitude,
             timestamp: location.timestamp
+          }),
+          headers: new Headers({
+            'Token': accessToken,
+            'Identity': userId
           })
         };
 

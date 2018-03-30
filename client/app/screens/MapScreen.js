@@ -83,7 +83,7 @@ class MapScreen extends React.Component {
   async updateLocation() {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status === 'granted') {
-      const location = await Expo.Location.getCurrentPositionAsync()
+      const location = await Expo.Location.getCurrentPositionAsync({})
       .catch(err => console.error(err));
 
       this.setState({

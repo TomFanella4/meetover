@@ -23,7 +23,7 @@ class ChatsScreen extends React.Component {
     const threadItems = threadList ?
       threadList.map(thread => (
         <ListItem
-          key={thread.name}
+          key={thread._id}
           onPress={() => this._viewChatThread(thread._id, thread.name)}
         >
           <PTSansText>{thread.name}</PTSansText>

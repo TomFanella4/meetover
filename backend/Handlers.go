@@ -30,6 +30,11 @@ type RefreshResponse struct {
 	FirebaseCustomToken string `json:"firebaseCustomToken"`
 }
 
+// MatchResponse returned to the UI when /match is hit
+type MatchResponse struct {
+	Matches []MatchValue `json:"matches"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
@@ -60,6 +65,24 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
+	} else if tt == "seedUser" {
+		users, err := fbClient.Ref("/users")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		umap := make(map[string]User, len(cachedUsers))
+
+		for _, u := range cachedUsers {
+			u.Profile.FormattedName = u.Profile.FirstName + " " + u.Profile.LastName
+			u.Profile.ID = u.ID
+			umap[u.ID] = u
+		}
+
+		if err := users.Update(umap); err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 

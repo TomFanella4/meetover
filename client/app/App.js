@@ -47,7 +47,7 @@ export default class App extends React.Component {
   }
 
   _loadAll = async () => {
-    const userProfile = (await this._loadResourcesAsync())[1];
+    const userProfile = (await this._loadResourcesAsync())[2];
     userProfile && await this._validateCustomToken(userProfile);
   };
 

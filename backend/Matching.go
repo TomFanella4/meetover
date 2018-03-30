@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/ynqa/word-embedding/builder"
 	"io/ioutil"
 	"log"
 	"math"
@@ -11,6 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/ynqa/word-embedding/builder"
 )
 
 // MatchResponse returned to the UI when /match is hit
@@ -29,8 +30,14 @@ type MatchValue struct {
 // WordModel is the vector representation of the words in the corpus file
 var WordModel map[string][]float64
 
-// ParVecParam - number of words considered for similarity
-var ParVecParam = 50
+// WordModelContextWindow -
+var WordModelContextWindow = 20
+
+// WordModelWordDimension -
+var WordModelWordDimension = 8
+
+// WordModelRandomParam - number of words considered for similarity
+var WordModelRandomParam = 50
 
 // GetMatches returns an ordered list of user uid's from closest to furthest to the caller
 func GetMatches(UserID string, neighbors []User) (MatchResponse, error) {
@@ -117,11 +124,12 @@ func stripStopWords(str string) string {
 func parToVector(userStr string, model map[string][]float64) []float64 {
 	res := []float64{}
 	par := strings.Split(userStr, " ")
-	n := ParVecParam
+	n := WordModelRandomParam
 	i := 0
 	for i < n {
 		l := len(par)
 		randomWord := par[random(0, l)]
+		randomWord = strings.TrimSpace(strings.ToLower(randomWord))
 		if val, found := model[randomWord]; found {
 			res = append(val, res...)
 			i++
@@ -144,27 +152,28 @@ func userToString(u User) string {
 }
 
 // InitMLModel check if model has been created or creates it
-func InitMLModel() {
+func InitMLModel(windowSize int, wordDimensions int) {
 	modelFile := "./ml/meetOver.model"
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
-		// corpusFile := "./ml/corpus.dat"
-		// createModel(modelFile, corpusFile)
-		fmt.Println("Model does not exist")
+		fmt.Println("Model does not exist. Creating Model")
+		corpusFile := "./ml/corpus.dat"
+		createModel(modelFile, corpusFile, windowSize, wordDimensions)
 	}
 	WordModel = readModel(modelFile)
 }
 
 // createModel uses the word2vec algo to create word embeddings
-func createModel(destinationFileName string, corpusFile string) {
+func createModel(destinationFileName string, corpusFile string, windowSize int, wordDimensions int) {
 	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
 		fmt.Println("[-] Corpus file not found. No model created")
+		return
 	}
 	b := builder.NewWord2VecBuilder()
-	b.SetDimension(5).
-		SetWindow(20).
-		SetModel("cbow").
+	b.SetDimension(wordDimensions).
+		SetWindow(windowSize).
+		SetModel("skip-gram").
 		SetOptimizer("ns").
-		SetNegativeSampleSize(5).
+		SetNegativeSampleSize(15).
 		SetVerbose()
 	m, err := b.Build()
 	if err != nil {

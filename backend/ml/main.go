@@ -10,18 +10,34 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"time"
 
+	"gonum.org/v1/gonum/mat"
 	// . "github.com/bugra/kmeans"
 	"github.com/ynqa/word-embedding/builder"
 	// "gonum.org/v1/gonum/mat"
 	// "meetover/backend/main"
 )
 
+func matPrint(X mat.Matrix) {
+	fa := mat.Formatted(X, mat.Prefix(""), mat.Squeeze())
+	fmt.Printf("%v\n", fa)
+}
+
 func main() {
-	rawFile := "rawTestUsers.json"
-	sinkFile := "MLTestUsers.json"
-	generateTestUsers(rawFile, sinkFile)
+
+	u := mat.NewVecDense(3, []float64{1, 2, 3})
+	v := mat.NewVecDense(3, []float64{1, 9, 3})
+	// s := []mat.Matrix{u, v}
+	d := mat.Dot(u, v)
+	u.SubVec(u, v)
+	fmt.Println("u dot v: ", d)
+	matPrint(u)
+	a := u.At(2, 0)
+	fmt.Println(a)
+	// rand.Seed(time.Now().Unix())
+	// rawFile := "rawTestUsers.json"
+	// sinkFile := "MLTestUsers.json"
+	// generateTestUsers(rawFile, sinkFile)
 
 	// modelFile := "meetOver.model"
 	// createModel(modelFile)
@@ -132,7 +148,6 @@ func parToVector(userStr string, model map[string][]float64) []float64 {
 
 // random - helper for tests
 func random(min, max int) int {
-	rand.Seed(time.Now().Unix())
 	return rand.Intn(max-min) + min
 }
 

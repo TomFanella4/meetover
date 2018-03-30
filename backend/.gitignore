@@ -7,3 +7,5 @@ debug
 vendor/
 .env
 firebase-config.json
+ml/jobs.csv
+ml/transcripts.csv

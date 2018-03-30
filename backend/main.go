@@ -12,14 +12,17 @@ import (
 func main() {
 
 	router := NewRouter()
-	InitializeFirebase()
-	rand.Seed(time.Now().Unix())
 
-	// test
+	// database & chat
+	InitializeFirebase()
+
+	// demo data
 	LoadTestUsers()
 
 	// ML
-	InitMLModel()
+	InitMLModel(WordModelContextWindow, WordModelWordDimension)
+	rand.Seed(time.Now().Unix())
+
 	port, deployMode := os.LookupEnv("PORT")
 	if deployMode {
 		fmt.Println(http.ListenAndServe(":"+port, router))

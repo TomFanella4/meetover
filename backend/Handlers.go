@@ -181,6 +181,7 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// InitiateMeetover called to begin the meetover appointment betwen two users
 func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
 		initiatorId := r.Header.Get("Identity")

@@ -30,6 +30,11 @@ type RefreshResponse struct {
 	FirebaseCustomToken string `json:"firebaseCustomToken"`
 }
 
+// MatchResponse returned to the UI when /match is hit
+type MatchResponse struct {
+	Matches []MatchValue `json:"matches"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 

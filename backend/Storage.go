@@ -29,15 +29,11 @@ func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User
 	// TODO:
 	// returns a list of cachedUsers within radius of coords
 	// that updated their location within lastUpdate hours
-	n := len(cachedUsers)
-	start := random(0, n/2)
-	end := random((n/2)+1, n)
-	return cachedUsers[start:end], nil
+	return cachedUsers, nil
 }
 
 // random - helper for tests
 func random(min, max int) int {
-	rand.Seed(time.Now().Unix())
 	return rand.Intn(max-min) + min
 }
 
@@ -85,14 +81,26 @@ func InitializeFirebase() {
 
 // GetUser returns the user with uid in firebase
 func GetUser(uid string) (User, error) {
-	return User{}, nil
+	userRef, err := fbClient.Ref("/users/" + uid)
+	if err != nil {
+		return User{}, err
+	}
+
+	var user User
+	if err := userRef.Value(&user); err != nil {
+		return User{}, err
+	}
+	return user, nil
 }
 
 // FetchUsers gets te Users from a list of uid's
 func FetchUsers(uids []string) ([]User, error) {
 	res := []User{}
 	for _, uid := range uids {
-		u, _ := GetUser(uid)
+		u, err := GetUser(uid)
+		if err != nil {
+			return []User{}, err
+		}
 		res = append(res, u)
 	}
 	return res, nil
@@ -195,22 +203,22 @@ func AddThread(P1 string, P2 string) error {
 	return nil
 }
 
-func addGeolocation(coord Geolocation) {
-	addGeo := make(map[string]interface{})
-
-	loc := coord
-	// TODO: look for the user and add/update the
-	// Geolocation json WITHIN the User struct
-
-	// addGeo[loc.ID] = loc
-	geo, err := fbClient.Ref("/Geo")
-
-	if err != nil {
-		fmt.Println("Adding Geo to DB error")
-		return
-	}
-	defer geo.Update(addGeo)
-}
+// func addGeolocation(coord Geolocation) {
+// 	addGeo := make(map[string]interface{})
+//
+// 	loc := coord
+// 	// TODO: look for the user and add/update the
+// 	// Geolocation json WITHIN the User struct
+//
+// 	// addGeo[loc.ID] = loc
+// 	geo, err := fbClient.Ref("/Geo")
+//
+// 	if err != nil {
+// 		fmt.Println("Adding Geo to DB error")
+// 		return
+// 	}
+// 	defer geo.Update(addGeo)
+// }
 
 // CheckAuthorized checks if a user is authorized to make a request
 func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {

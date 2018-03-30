@@ -30,6 +30,11 @@ type RefreshResponse struct {
 	FirebaseCustomToken string `json:"firebaseCustomToken"`
 }
 
+// MatchResponse returned to the UI when /match is hit
+type MatchResponse struct {
+	Matches []MatchValue `json:"matches"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
@@ -60,6 +65,24 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
+	} else if tt == "seedUser" {
+		users, err := fbClient.Ref("/users")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		umap := make(map[string]User, len(cachedUsers))
+
+		for _, u := range cachedUsers {
+			u.Profile.FormattedName = u.Profile.FirstName + " " + u.Profile.LastName
+			u.Profile.ID = u.ID
+			umap[u.ID] = u
+		}
+
+		if err := users.Update(umap); err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 
@@ -152,12 +175,14 @@ func Match(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return // unable to get anyone from db
 	}
+	// fmt.Print("Trying to get matches")
 	MatchList, err := GetMatches(userID, PMatchList)
+	// fmt.Print("Got matches")
+	// fmt.Print(MatchList)
 	if err != nil {
 		return // unable to get anyone to match
 	}
-	resp, _ := FetchUsers(MatchList)
-	json.NewEncoder(w).Encode(resp)
+	json.NewEncoder(w).Encode(MatchList)
 }
 
 // RefreshCustomToken will refresh an authorized users Firebase custom token
@@ -179,6 +204,7 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// InitiateMeetover called to begin the meetover appointment betwen two users
 func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
 		initiatorId := r.Header.Get("Identity")

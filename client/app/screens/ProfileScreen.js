@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
+  View,
   Body,
   Button,
   Card,
@@ -9,13 +10,12 @@ import {
   Content,
   Icon,
   Left,
-  Spinner,
   Thumbnail,
+  Spinner
 } from 'native-base';
 import { connect } from 'react-redux';
 import { find } from 'lodash';
 
-import { fetchProfileAsync } from '../actions/matchesActions';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 import { separator, serverURI } from '../constants/Common';
@@ -23,29 +23,26 @@ import { StyledToast } from '../helpers';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.name}'s Profile`,
+    title: `${navigation.state.params.profile.formattedName}'s Profile`,
   });
 
   state = {
-    loading: true,
     buttonDisabled: true,
+    meetOverLoading: false
   };
 
   componentDidMount() {
-    const { fetchProfileAsync, navigation, threadList } = this.props;
+    const { threadList } = this.props;
 
     if (threadList !== null) {
       // Thread list has been fetched from Firebase
       this.setState({ buttonDisabled: false });
     }
-
-    fetchProfileAsync(navigation.state.params.userId)
-      .then(() => this.setState({ loading: false }));
   }
 
   componentDidUpdate(prevProps) {
     const { threadList } = this.props;
-    const prevThreadList = prevProps.threadList
+    const prevThreadList = prevProps.threadList;
 
     if (prevThreadList === null && threadList !== null) {
       // Thread list has been fetched from Firebase
@@ -54,32 +51,36 @@ class ProfileScreen extends React.Component {
   }
 
   _renderLoading() {
+    // TODO: Add react navigation listener
     return (
       <Container style={styles.container}>
-        <Content>
+        <View style={styles.loadingView}>
+          <PTSansText>Sending MeetOver Request...</PTSansText>
           <Spinner color={Colors.tintColor} />
-        </Content>
+        </View>
       </Container>
     );
   }
 
   async _initiateMeetover() {
     const { navigation, signedInProfile, threadList } = this.props;
-    const { name, userId } = navigation.state.params;
+    const { formattedName, id } = navigation.state.params.profile;
     const signedInId = signedInProfile.id;
     const accessToken = signedInProfile.token.access_token;
     let threadId;
 
-    if (signedInId < userId) {
-      threadId = signedInId + separator + userId;
+    this.setState({ buttonDisabled: true, meetOverLoading: true });
+
+    if (signedInId < id) {
+      threadId = signedInId + separator + id;
     } else {
-      threadId = userId + separator + signedInId;
+      threadId = id + separator + signedInId;
     }
 
     const exists = (find(threadList, { '_id': threadId }) !== undefined);
 
     if (!exists) {
-      const uri = `${serverURI}/meetover/${userId}`;
+      const uri = `${serverURI}/meetover/${id}`;
       const init = {
         method: 'POST',
         headers: new Headers({
@@ -88,7 +89,8 @@ class ProfileScreen extends React.Component {
         })
       };
 
-      const response = await fetch(uri, init);
+      const response = await fetch(uri, init)
+        .catch(err => console.log(err));
 
       if (response.status !== 200) {
         console.log('Could not initiate meetover');
@@ -105,25 +107,26 @@ class ProfileScreen extends React.Component {
       }
     }
 
-    navigation.navigate('ChatScreen', { _id: threadId, name });
+    this.setState({ buttonDisabled: false, meetOverLoading: false });
+    navigation.navigate('ChatScreen', { _id: threadId, name: formattedName });
   };
 
   render() {
-    const { profile } = this.props;
-    const { buttonDisabled, loading } = this.state;
+    const { profile } = this.props.navigation.state.params;
+    const { buttonDisabled, meetOverLoading } = this.state;
 
-    if (loading) {
+    const positions = profile.positions.values.map((position, index) =>
+      <CardItem style={styles.listItem} key={index}>
+        <PTSansText style={styles.jobTitle}>
+          {position.title} at {position.company.name}
+        </PTSansText>
+        <PTSansText>{position.summary}</PTSansText>
+      </CardItem>
+    );
+
+    if(meetOverLoading) {
       return this._renderLoading();
     } else {
-      const positions = profile.positions.values.map((position, index) =>
-        <CardItem style={styles.listItem} key={index}>
-          <PTSansText style={styles.jobTitle}>
-            {position.title} at {position.company.name}
-          </PTSansText>
-          <PTSansText>{position.summary}</PTSansText>
-        </CardItem>
-      );
-
       return (
         <Container style={styles.container}>
           <Content style={styles.container}>
@@ -168,23 +171,22 @@ class ProfileScreen extends React.Component {
 
 const mapStateToProps = state => ({
   signedInProfile: state.userProfile,
-  threadList: state.chat.threadList,
-  profile: state.matchList.profile
+  threadList: state.chat.threadList
 });
 
-const mapDispatchToProps = {
-  fetchProfileAsync
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ProfileScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   listItem: {
     flexDirection: 'column',

@@ -28,12 +28,13 @@ class ListScreen extends React.Component {
   };
 
   componentDidMount() {
-    this._onRefresh(this.props.userId);
+    const { userId, accessToken } = this.props;
+    this._onRefresh(userId, accessToken);
   }
 
-  _onRefresh(userId) {
+  _onRefresh(userId, accessToken) {
     this.setState({ refreshing: true });
-    this.props.fetchMatchesAsync(userId)
+    this.props.fetchMatchesAsync(userId, accessToken)
       .then(() => this.setState({ loading: false, refreshing: false }));
   }
 
@@ -42,7 +43,7 @@ class ListScreen extends React.Component {
   }
 
   render() {
-    const { matches } = this.props;
+    const { matches, userId, accessToken } = this.props;
     const list = matches.map(match => (
       <ListItem style={styles.container} key={match.id} onPress={() => this._viewProfile(match)}>
         <Left style={styles.thumbnail}>
@@ -57,7 +58,7 @@ class ListScreen extends React.Component {
 
     const refresh = (
       <RefreshControl
-        onRefresh={() => this._onRefresh('userId')}
+        onRefresh={() => this._onRefresh(userId, accessToken)}
         refreshing={this.state.refreshing}
       />
     );
@@ -80,6 +81,7 @@ class ListScreen extends React.Component {
 
 const mapStateToProps = state => ({
   userId: state.userProfile.id,
+  accessToken: state.userProfile.token.access_token,
   matches: state.matchList.matches
 });
 

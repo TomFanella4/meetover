@@ -12,24 +12,26 @@
     "internal/atomiccache",
     "internal/fields",
     "internal/optional",
+    "internal/trace",
     "internal/version",
     "storage"
   ]
-  revision = "767c40d6a2e058483c25fa193e963a22da17236d"
-  version = "v0.18.0"
+  revision = "4b98a6370e36d7a85192e7bad08a4ebd82eac2a8"
+  version = "v0.20.0"
 
 [[projects]]
   name = "firebase.google.com/go"
   packages = [
     ".",
     "auth",
+    "db",
     "iid",
     "internal",
     "messaging",
     "storage"
   ]
-  revision = "f1f98c42944f2d44c936a4fecdaefa7b0c1c8876"
-  version = "v2.5.0"
+  revision = "c5db67b02a346bd4b8829369e1a5acd147bfb7a6"
+  version = "v2.6.1"
 
 [[projects]]
   name = "github.com/awalterschulze/gographviz"
@@ -124,12 +126,6 @@
   revision = "f40e974e75af4e271d97ce0fc917af5898ae7bda"
 
 [[projects]]
-  name = "github.com/inconshreveable/mousetrap"
-  packages = ["."]
-  revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
-  version = "v1.0"
-
-[[projects]]
   branch = "master"
   name = "github.com/leesper/go_rng"
   packages = ["."]
@@ -152,12 +148,6 @@
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   revision = "00c29f56e2386353d58c599509e8dc3801b0d716"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/olekukonko/tablewriter"
-  packages = ["."]
-  revision = "b8a9be070da40449e501c3c4730a889e42d87a9e"
 
 [[projects]]
   name = "github.com/pelletier/go-toml"
@@ -187,12 +177,6 @@
   version = "v1.2.0"
 
 [[projects]]
-  name = "github.com/spf13/cobra"
-  packages = ["."]
-  revision = "7b2c5ac9fc04fc5efafb60700713d4fa609b777b"
-  version = "v0.0.1"
-
-[[projects]]
   branch = "master"
   name = "github.com/spf13/jwalterweatherman"
   packages = ["."]
@@ -220,17 +204,41 @@
   branch = "master"
   name = "github.com/ynqa/word-embedding"
   packages = [
-    ".",
     "builder",
-    "cmd",
     "config",
-    "distance",
     "model",
     "model/glove",
-    "model/word2vec",
-    "validate"
+    "model/word2vec"
   ]
   revision = "75a4f38c2fcb0c2210142b10f9ffd6533e9f8566"
+
+[[projects]]
+  branch = "v1"
+  name = "github.com/zabawaba99/firego"
+  packages = [
+    ".",
+    "sync"
+  ]
+  revision = "4d07741c1dde0b0d76218e8365baea10c33cf968"
+
+[[projects]]
+  name = "go.opencensus.io"
+  packages = [
+    "exporter/stackdriver/propagation",
+    "internal",
+    "internal/tagencoding",
+    "plugin/ocgrpc",
+    "plugin/ochttp",
+    "plugin/ochttp/propagation/b3",
+    "stats",
+    "stats/internal",
+    "stats/view",
+    "tag",
+    "trace",
+    "trace/propagation"
+  ]
+  revision = "6e3f034057826b530038d93267906ec3c012183f"
+  version = "v0.6.0"
 
 [[projects]]
   branch = "master"
@@ -245,7 +253,7 @@
     "lex/httplex",
     "trace"
   ]
-  revision = "cbe0f9307d0156177f9dd5dc85da1a31abc5f2fb"
+  revision = "6078986fec03a1dcc236c34816c71b0e05018fda"
 
 [[projects]]
   branch = "master"
@@ -257,16 +265,15 @@
     "jws",
     "jwt"
   ]
-  revision = "543e37812f10c46c622c9575afd7ad22f22a12ba"
+  revision = "fdc9e635145ae97e6c2cb777c48305600cf515cb"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "13d03a9a82fba647c21a0ef8fba44a795d0f0835"
+  revision = "378d26f46672a356c46195c28f61bdb4c0a781dd"
 
 [[projects]]
-  branch = "master"
   name = "golang.org/x/text"
   packages = [
     "collate",
@@ -284,10 +291,10 @@
     "unicode/norm",
     "unicode/rangetable"
   ]
-  revision = "4e4a3210bb54bb31f6ab2cdca2edcc0b50c420c1"
+  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
+  version = "v0.3.0"
 
 [[projects]]
-  branch = "master"
   name = "gonum.org/v1/gonum"
   packages = [
     "blas",
@@ -309,7 +316,7 @@
     "lapack/lapack64",
     "mat"
   ]
-  revision = "6b03bc22e15aece534f0b4fb96cf6c8f1d885cd0"
+  revision = "f818f8f7a9e59de54e475b747a3dc9c86ed141f1"
 
 [[projects]]
   branch = "master"
@@ -328,7 +335,7 @@
     "transport/grpc",
     "transport/http"
   ]
-  revision = "c76a25da6c114df45a86acb8873ae83eda1430b9"
+  revision = "a213db537ac9b393526194a5c85ad6e546f7923f"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -356,10 +363,11 @@
     "googleapis/api/annotations",
     "googleapis/firestore/v1beta1",
     "googleapis/iam/v1",
+    "googleapis/rpc/code",
     "googleapis/rpc/status",
     "googleapis/type/latlng"
   ]
-  revision = "2b5a72b8730b0b16380010cfe5286c42108d88e7"
+  revision = "ab0870e398d5dd054b868c0db1481ab029b9a9f2"
 
 [[projects]]
   name = "google.golang.org/grpc"
@@ -389,8 +397,8 @@
     "tap",
     "transport"
   ]
-  revision = "8e4536a86ab602859c20df5ebfd0bd4228d08655"
-  version = "v1.10.0"
+  revision = "afc05b9e1d36f289ea16ba294894486a3e458246"
+  version = "v1.11.0"
 
 [[projects]]
   name = "gopkg.in/cheggaaa/pb.v1"
@@ -401,8 +409,8 @@
 [[projects]]
   name = "gopkg.in/yaml.v2"
   packages = ["."]
-  revision = "86f5ed62f8a0ee96bd888d2efdfd6d4fb100a4eb"
-  version = "v2.2.0"
+  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
+  version = "v2.2.1"
 
 [[projects]]
   name = "gorgonia.org/cu"
@@ -411,10 +419,10 @@
   version = "v0.8.0"
 
 [[projects]]
-  branch = "master"
   name = "gorgonia.org/gorgonia"
   packages = ["."]
-  revision = "d7b00e031937abd2b6072dbd2256c776186bc620"
+  revision = "92b0be6ab616e396b280bafbdb3b793219880812"
+  version = "v0.8.2"
 
 [[projects]]
   name = "gorgonia.org/tensor"
@@ -441,6 +449,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "d709aa9df8f159df1693bd05c640b509586d86920f35d6c0f2f17cc5a5aabfec"
+  inputs-digest = "466aa347787c412ed3fa9a6afd0e658b07d8e0376dc142864089916c5ea9a76b"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -7,69 +7,98 @@ import (
 	"log"
 	"math"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
+	"time"
 
-	"github.com/word-embedding/builder"
+	"github.com/ynqa/word-embedding/builder"
+	"gonum.org/v1/gonum/mat"
 )
+
+// Test uid:  5abc5152c2d9048b32bfc917
+
+// MatchValue represents each porspecive user in their distance from the caller
+type MatchValue struct {
+	U Profile `json:"profile"`
+	D float64 `json:"distance"`
+}
 
 // WordModel is the vector representation of the words in the corpus file
 var WordModel map[string][]float64
 
-// ParVecParam - number of words considered for similarity
-var ParVecParam = 200
+// WordModelContextWindow -
+var WordModelContextWindow = 20
+
+// WordModelDimension -
+var WordModelDimension = 8
+
+// WordModelRandomParam - number of words considered for similarity
+var WordModelRandomParam = 50
 
 // GetMatches returns an ordered list of user uid's from closest to furthest to the caller
-func GetMatches(UserID string, neighbors []User) ([]string, error) {
+func GetMatches(UserID string, neighbors []User) (MatchResponse, error) {
 	callingUser, err := GetUser(UserID)
 	if err != nil {
-		return []string{}, errors.New("Unable to fetch calling user")
+		return MatchResponse{}, errors.New("Unable to fetch calling user")
 	}
 	order := GetOrder(callingUser, neighbors, WordModel)
 	return order, nil
 }
 
 // GetOrder - preprocess for sortMap
-func GetOrder(caller User, prospUsers []User, model map[string][]float64) []string {
-	distances := make(map[string]float64)
+func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchResponse {
 	callerStr := userToString(caller)
 	callerVec := parToVector(callerStr, model)
 	prospUsers = removeCaller(caller, prospUsers)
+	var mr MatchResponse
+	mr.Matches = []MatchValue{}
+	start := time.Now()
 	for _, pu := range prospUsers {
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
-		distances[pu.ID] = nestedDistance(callerVec, prospVec)
+		distance := nestedDistance(callerVec, prospVec)
+		mr.Matches = append(mr.Matches, MatchValue{pu.Profile, distance})
 	}
-	return sortMap(distances)
+	elapsed := time.Since(start)
+	fmt.Println("Destance Calculation took: " + elapsed.String())
+	return mr
 }
 
-// sortMap - returns uid's with shortest distance first
-func sortMap(m map[string]float64) []string {
-	reverseMap := map[float64]string{}
-	distances := []float64{}
-	for uid, d := range m {
-		reverseMap[d] = uid
-		distances = append(distances, d)
-	}
-	sort.Float64s(distances)
-	res := []string{}
-	for _, d := range distances {
-		res = append(res, reverseMap[d])
-	}
-	fmt.Println(res)
-	return res
-}
+// // sortMap - returns uid's with shortest distance first
+// func sortMap(m map[string]float64) []string {
+// 	reverseMap := map[float64]string{}
+// 	distances := []float64{}
+// 	for uid, d := range m {
+// 		reverseMap[d] = uid
+// 		distances = append(distances, d)
+// 	}
+// 	sort.Float64s(distances)
+// 	res := []string{}
+// 	for _, d := range distances {
+// 		res = append(res, reverseMap[d])
+// 	}
+// 	fmt.Println(res)
+// 	return res
+// }
 
 // nestedDistance - distance metric between par vectors
-func nestedDistance(src []float64, dst []float64) float64 {
+func nestedDistance(src []*mat.VecDense, dst []*mat.VecDense) float64 {
 	d := 0.0
 	for _, si := range src {
 		for _, di := range dst {
-			d += math.Abs(si - di)
+			temp := mat.NewVecDense(WordModelDimension, nil)
+			temp.SubVec(si, di)
+			d += flattenVector(WordModelDimension, temp)
 		}
 	}
 	return d
+}
+func flattenVector(rows int, vec mat.Matrix) float64 {
+	res := 0.0
+	for i := 0; i < rows; i++ {
+		res += math.Abs(vec.At(i, 0))
+	}
+	return res
 }
 
 // removeCaller takes the calling user out of prospective match list
@@ -87,19 +116,31 @@ func removeCaller(caller User, prospUsers []User) []User {
 
 }
 
+// stripStopWords -
+func stripStopWords(str string) string {
+	return ""
+}
+
 // parToVector converts a string representation of user to numeric vector using
 // the given word embeddings model
-func parToVector(userStr string, model map[string][]float64) []float64 {
-	res := []float64{}
+func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
+	res := []*mat.VecDense{}
 	par := strings.Split(userStr, " ")
-	n := ParVecParam
+	n := WordModelRandomParam
 	i := 0
 	for i < n {
 		l := len(par)
 		randomWord := par[random(0, l)]
+		randomWord = strings.TrimSpace(strings.ToLower(randomWord))
 		if val, found := model[randomWord]; found {
-			res = append(val, res...)
-			i++
+			if len(val) == WordModelDimension {
+				vec := mat.NewVecDense(WordModelDimension, val)
+				res = append(res, vec)
+				i++
+			} // else {
+			// 	fmt.Printf("[Meetover model warning!!] length of "+
+			// 		"vector in model: %d for word : %s\n", len(val), randomWord)
+			// }
 		}
 	}
 	return res
@@ -119,26 +160,28 @@ func userToString(u User) string {
 }
 
 // InitMLModel check if model has been created or creates it
-func InitMLModel() {
+func InitMLModel(windowSize int, wordDimensions int) {
 	modelFile := "./ml/meetOver.model"
-	corpusFile := "./ml/corpus.dat"
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
-		createModel(modelFile, corpusFile)
+		fmt.Println("Model does not exist. Creating Model")
+		corpusFile := "./ml/corpus.dat"
+		createModel(modelFile, corpusFile, windowSize, wordDimensions)
 	}
 	WordModel = readModel(modelFile)
 }
 
 // createModel uses the word2vec algo to create word embeddings
-func createModel(destinationFileName string, corpusFile string) {
+func createModel(destinationFileName string, corpusFile string, windowSize int, wordDimensions int) {
 	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
 		fmt.Println("[-] Corpus file not found. No model created")
+		return
 	}
 	b := builder.NewWord2VecBuilder()
-	b.SetDimension(5).
-		SetWindow(20).
-		SetModel("cbow").
+	b.SetDimension(wordDimensions).
+		SetWindow(windowSize).
+		SetModel("skip-gram").
 		SetOptimizer("ns").
-		SetNegativeSampleSize(5).
+		SetNegativeSampleSize(15).
 		SetVerbose()
 	m, err := b.Build()
 	if err != nil {

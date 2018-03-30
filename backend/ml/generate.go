@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"os"
+	"strings"
 )
 
 func updateJSONFile(newJSON interface{}, fileName string) {
@@ -48,6 +49,7 @@ func generateTestUsers(rawFile string, sinkFile string) {
 	fmt.Println(headers) // 1 - desc, 3 - title, 4 - skills
 	r := rand.Intn
 	users := getUsers(rawFile)
+	textLength := 250
 	for i, u := range users {
 		line, error := reader.Read()
 		if error == io.EOF {
@@ -59,15 +61,26 @@ func generateTestUsers(rawFile string, sinkFile string) {
 		n := len(description)
 		profile := u.Profile
 		start := r(n-1) / 2
-		profile.Greeting = description[start:]
+		greeting := description[start:]
+		if len(greeting) > textLength {
+			profile.Greeting = greeting[:textLength]
+		} else {
+			profile.Greeting = greeting
+		}
 		profile.Headline = title
-		profile.Industry = skills
-		start = r(n-1) / 2
-		profile.Summary = description[start:]
+		profile.Industry = strings.Replace(skills, ",", " , ", -1)
+		profile.FormattedName = profile.FirstName + " " + profile.LastName
+		start = r(n - 1)
+		summary := description[start:]
+		if len(summary) > textLength {
+			profile.Summary = summary[:textLength]
+		} else {
+			profile.Summary = summary
+		}
 		users[i] = u
 		users[i].Profile = profile
 	}
-	fmt.Println(users[9])
+	fmt.Println(users[25])
 	updateJSONFile(users, sinkFile)
 }
 

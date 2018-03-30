@@ -70,7 +70,7 @@ func generateTestUsers(rawFile string, sinkFile string) {
 		profile.Headline = title
 		profile.Industry = strings.Replace(skills, ",", " , ", -1)
 		profile.FormattedName = profile.FirstName + " " + profile.LastName
-		start = r(n-1) / 2
+		start = r(n - 1)
 		summary := description[start:]
 		if len(summary) > textLength {
 			profile.Summary = summary[:textLength]

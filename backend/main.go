@@ -20,7 +20,7 @@ func main() {
 	LoadTestUsers()
 
 	// ML
-	InitMLModel(WordModelContextWindow, WordModelWordDimension)
+	InitMLModel(WordModelContextWindow, WordModelDimension)
 	rand.Seed(time.Now().Unix())
 
 	port, deployMode := os.LookupEnv("PORT")

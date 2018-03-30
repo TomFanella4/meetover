@@ -28,7 +28,7 @@ class ListScreen extends React.Component {
   };
 
   componentDidMount() {
-    this._onRefresh('userId');
+    this._onRefresh(this.props.userId);
   }
 
   _onRefresh(userId) {
@@ -37,19 +37,14 @@ class ListScreen extends React.Component {
       .then(() => this.setState({ loading: false, refreshing: false }));
   }
 
-  _viewProfile(userId, name) {
-    const { navigation } = this.props;
-
-    navigation.navigate('Profile', {
-      userId,
-      name,
-    });
+  _viewProfile(match) {
+    this.props.navigation.navigate('Profile', { profile: match });
   }
 
   render() {
     const { matches } = this.props;
-    const list = matches.map((match, index) =>
-      <ListItem style={styles.container} key={index} onPress={() => this._viewProfile(match.id, match.formattedName)}>
+    const list = matches.map(match => (
+      <ListItem style={styles.container} key={match.id} onPress={() => this._viewProfile(match)}>
         <Left style={styles.thumbnail}>
           <Thumbnail source={{ uri: match.pictureUrl }} />
         </Left>
@@ -58,7 +53,7 @@ class ListScreen extends React.Component {
           <PTSansText style={styles.headline}>{match.headline}</PTSansText>
         </Body>
       </ListItem>
-    );
+    ));
 
     const refresh = (
       <RefreshControl
@@ -84,6 +79,7 @@ class ListScreen extends React.Component {
 };
 
 const mapStateToProps = state => ({
+  userId: state.userProfile.id,
   matches: state.matchList.matches
 });
 

@@ -295,7 +295,6 @@
   version = "v0.3.0"
 
 [[projects]]
-  branch = "master"
   name = "gonum.org/v1/gonum"
   packages = [
     "blas",
@@ -317,7 +316,7 @@
     "lapack/lapack64",
     "mat"
   ]
-  revision = "6b03bc22e15aece534f0b4fb96cf6c8f1d885cd0"
+  revision = "f818f8f7a9e59de54e475b747a3dc9c86ed141f1"
 
 [[projects]]
   branch = "master"
@@ -450,6 +449,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6afad56f9cedf94155acee31aac5f669738f35fbc3bf917c6f06a1665998a6e4"
+  inputs-digest = "466aa347787c412ed3fa9a6afd0e658b07d8e0376dc142864089916c5ea9a76b"
   solver-name = "gps-cdcl"
   solver-version = 1

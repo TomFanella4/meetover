@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	// "github.com/ynqa/word-embedding/builder"
+	"github.com/ynqa/word-embedding/builder"
 )
 
 // MatchResponse returned to the UI when /match is hit
@@ -155,32 +155,32 @@ func InitMLModel() {
 }
 
 // createModel uses the word2vec algo to create word embeddings
-// func createModel(destinationFileName string, corpusFile string) {
-// 	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
-// 		fmt.Println("[-] Corpus file not found. No model created")
-// 	}
-// 	b := builder.NewWord2VecBuilder()
-// 	b.SetDimension(5).
-// 		SetWindow(20).
-// 		SetModel("cbow").
-// 		SetOptimizer("ns").
-// 		SetNegativeSampleSize(5).
-// 		SetVerbose()
-// 	m, err := b.Build()
-// 	if err != nil {
-// 		fmt.Println("[-] Unable to build word2vec neural net")
-// 	}
-// 	inputFile1, _ := os.Open(corpusFile)
-// 	f1, err := m.Preprocess(inputFile1)
-// 	if err != nil {
-// 		fmt.Println("Failed to Preprocess.")
-// 	}
-// 	// Start to Train.
-// 	m.Train(f1)
-// 	f1.Close()
-// 	// Save word vectors to a text file.
-// 	m.Save(destinationFileName)
-// }
+func createModel(destinationFileName string, corpusFile string) {
+	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
+		fmt.Println("[-] Corpus file not found. No model created")
+	}
+	b := builder.NewWord2VecBuilder()
+	b.SetDimension(5).
+		SetWindow(20).
+		SetModel("cbow").
+		SetOptimizer("ns").
+		SetNegativeSampleSize(5).
+		SetVerbose()
+	m, err := b.Build()
+	if err != nil {
+		fmt.Println("[-] Unable to build word2vec neural net")
+	}
+	inputFile1, _ := os.Open(corpusFile)
+	f1, err := m.Preprocess(inputFile1)
+	if err != nil {
+		fmt.Println("Failed to Preprocess.")
+	}
+	// Start to Train.
+	m.Train(f1)
+	f1.Close()
+	// Save word vectors to a text file.
+	m.Save(destinationFileName)
+}
 
 // readModel converts the generated model to an in-memory object
 func readModel(modelFile string) map[string][]float64 {

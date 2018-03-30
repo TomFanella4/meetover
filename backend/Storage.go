@@ -34,7 +34,6 @@ func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User
 
 // random - helper for tests
 func random(min, max int) int {
-	rand.Seed(time.Now().Unix())
 	return rand.Intn(max-min) + min
 }
 

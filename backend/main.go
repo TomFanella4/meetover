@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"net/http"
 	"os"
+	"time"
 )
 
 // our main function
@@ -11,6 +13,7 @@ func main() {
 
 	router := NewRouter()
 	InitializeFirebase()
+	rand.Seed(time.Now().Unix())
 
 	// test
 	LoadTestUsers()

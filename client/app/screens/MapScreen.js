@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Spinner, View, Thumbnail, } from 'native-base';
 
-import matches from '../mocks/matches';
+// import matches from '../mocks/matches';
 import { PTSansText } from '../components/StyledText';
 import IsSearchingBar from '../components/IsSearchingBar';
 import Colors from '../constants/Colors';
@@ -24,10 +24,10 @@ class MapScreen extends React.Component {
   }
 
   render() {
-    // const { matches } = this.props;
+    const { matches } = this.props;
 
-    const matchMarkers = matches.map((match, i) => (
-      <MapView.Marker coordinate={match.location} key={i}>
+    const matchMarkers = matches.map(match => (
+      <MapView.Marker coordinate={match.location} key={match.id}>
         <MapView.Callout
           style={styles.mapViewCallout}
           onPress={() => this._viewProfile(match)}

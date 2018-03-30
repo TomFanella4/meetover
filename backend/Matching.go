@@ -14,16 +14,11 @@ import (
 	"github.com/ynqa/word-embedding/builder"
 )
 
-// MatchResponse returned to the UI when /match is hit
-type MatchResponse struct {
-	Matches []MatchValue `json:"matches"`
-}
-
 // Test uid:  5abc5152c2d9048b32bfc917
 
 // MatchValue represents each porspecive user in their distance from the caller
 type MatchValue struct {
-	U Profile `json:"user"`
+	U Profile `json:"profile"`
 	D float64 `json:"distance"`
 }
 

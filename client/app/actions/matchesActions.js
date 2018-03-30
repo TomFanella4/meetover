@@ -51,7 +51,13 @@ export const fetchMatchesAsync = userId => {
           if (a.distance < b.distance) return -1;
           return 0;
         });
-        matches = matches.map(match => match.profile);
+        matches = matches.map(match => ({
+          ...match.profile,
+          location: {
+            latitude: match.location.lat,
+            longitude: match.location.long
+          }
+        }));
       }
     }
 

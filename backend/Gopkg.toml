@@ -36,6 +36,6 @@
   go-tests = true
   unused-packages = true
 
-[[constraint]]
-  branch = "master"
-  name = "github.com/ynqa/word-embedding"
+[[override]]
+  name = "gonum.org/v1/gonum"
+  revision = "f818f8f7a9e59de54e475b747a3dc9c86ed141f1"

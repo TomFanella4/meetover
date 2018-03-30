@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/ynqa/word-embedding/builder"
 	"io/ioutil"
 	"log"
 	"math"
@@ -10,7 +11,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"github.com/ynqa/word-embedding/builder"
 )
 
 // MatchResponse returned to the UI when /match is hit

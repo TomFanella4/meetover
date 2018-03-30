@@ -19,8 +19,9 @@ import (
 
 // MatchValue represents each porspecive user in their distance from the caller
 type MatchValue struct {
-	U Profile `json:"profile"`
-	D float64 `json:"distance"`
+	Usr  Profile      `json:"profile"`
+	Dist float64      `json:"distance"`
+	Loc  *Geolocation `json:"location"`
 }
 
 // WordModel is the vector representation of the words in the corpus file
@@ -57,7 +58,7 @@ func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchR
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
 		distance := nestedDistance(callerVec, prospVec)
-		mr.Matches = append(mr.Matches, MatchValue{pu.Profile, distance})
+		mr.Matches = append(mr.Matches, MatchValue{pu.Profile, distance, pu.Location})
 	}
 	elapsed := time.Since(start)
 	fmt.Println("Destance Calculation took: " + elapsed.String())

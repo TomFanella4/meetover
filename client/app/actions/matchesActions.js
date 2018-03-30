@@ -1,21 +1,16 @@
+import Expo, { Permissions } from 'expo';
 import { times } from 'lodash';
 import { serverURI } from '../constants/Common';
 
 import {
-  FETCH_MATCHES,
-  FETCH_PROFILE,
+  FETCH_MATCHES
 } from './actionTypes';
 
-const useMocks = true;
+const useMocks = false;
 
 const fetchMatches = matches => ({
   type: FETCH_MATCHES,
   matches
-});
-
-const fetchProfile = profile => ({
-  type: FETCH_PROFILE,
-  profile
 });
 
 export const fetchMatchesAsync = userId => {
@@ -32,37 +27,34 @@ export const fetchMatchesAsync = userId => {
 
       matches = times(10, () => Object.assign({}, profile));
     } else {
-      const uri = `${serverURI}/match/${userId}`;
-      const init = { method: 'POST' };
+      const { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status === 'granted') {
+        const location = await Expo.Location.getCurrentPositionAsync({});
+        const uri = `${serverURI}/match/${userId}`;
+        const init = {
+          method: 'POST',
+          body: JSON.stringify({
+            lat: location.coords.latitude,
+            long: location.coords.longitude,
+            timestamp: location.timestamp
+          })
+        };
 
-      const response = await fetch(uri, init);
-      matches = await response.json();
+        const response = await fetch(uri, init)
+          .catch(err => console.log(err));
+        const result = await response.json()
+          .catch(err => console.log(err));
+        matches = result.matches;
+
+        matches.sort((a, b) => {
+          if (a.distance > b.distance) return 1;
+          if (a.distance < b.distance) return -1;
+          return 0;
+        });
+        matches = matches.map(match => match.profile);
+      }
     }
 
     dispatch(fetchMatches(matches));
-  };
-};
-
-export const fetchProfileAsync = userId => {
-  return async dispatch => {
-    let profile;
-
-    if (useMocks) {
-      const uri = `${serverURI}/test/profile`;
-      const init = { method: 'POST' };
-
-      const response = await fetch(uri, init);
-      profile = await response.json();
-      profile = JSON.parse(profile);
-    } else {
-      const uri = `${serverURI}/people/${userId}`;
-      const init = { method: 'GET' };
-
-      const response = await fetch(uri, init);
-      profile = await response.json();
-      profile = JSON.parse(profile);
-    }
-
-    dispatch(fetchProfile(profile));
   };
 };

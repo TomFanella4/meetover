@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"time"
 )
@@ -28,11 +29,15 @@ func QueryLocation(coords string) (Address, error) {
 	location := Address{City: "Chicago", State: "IL", Area: "ORD"}
 	return location, nil
 }
-func InRadius(center Geolocation, point Geolocation, radius int) {
+
+// InRadius - checks if distance between two points is within radius
+func InRadius(center Geolocation, point Geolocation, radius float64) bool {
 	radius = radius * 1000 // convert to meters
-	if Distance(center.Lat, center.Long, point.Lat, point.Long) < radius {
+	dist := Distance(center.Lat, center.Long, point.Lat, point.Long)
+	if dist < radius {
 		return true
 	}
+	fmt.Printf("dist: %f, radius: %f\n", dist, radius)
 	return false
 }
 
@@ -43,19 +48,13 @@ func hsin(theta float64) float64 {
 
 // Distance returns the meters between coord1 and coord2
 func Distance(lat1, lon1, lat2, lon2 float64) float64 {
-	// convert to radians
-	// must cast radius as float to multiply later
 	var la1, lo1, la2, lo2, r float64
 	la1 = lat1 * math.Pi / 180
 	lo1 = lon1 * math.Pi / 180
 	la2 = lat2 * math.Pi / 180
 	lo2 = lon2 * math.Pi / 180
-
 	r = 6378100 // Earth radius in METERS
-
-	// calculate
 	h := hsin(la2-la1) + math.Cos(la1)*math.Cos(la2)*hsin(lo2-lo1)
-
 	return 2 * r * math.Asin(math.Sqrt(h))
 }
 

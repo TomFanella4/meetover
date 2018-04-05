@@ -21,12 +21,6 @@ var routes = Routes{
 		Index,
 	},
 	Route{
-		"GetUsers",
-		"GET",
-		"/users",
-		GetUsers,
-	},
-	Route{
 		"Login",
 		"POST",
 		"/login/{code}",

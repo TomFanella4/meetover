@@ -65,25 +65,6 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
-	} else if tt == "seedUser" {
-		users, err := fbClient.Ref("/users")
-		if err != nil {
-			fmt.Println(err)
-			respondWithError(w, FailedDBCall, err.Error())
-			return
-		}
-
-		umap := make(map[string]User, len(cachedUsers))
-
-		for _, u := range cachedUsers {
-			u.Profile.FormattedName = u.Profile.FirstName + " " + u.Profile.LastName
-			u.Profile.ID = u.ID
-			umap[u.ID] = u
-		}
-
-		if err := users.Update(umap); err != nil {
-			fmt.Println(err)
-		}
 	}
 	json.NewEncoder(w).Encode("Test")
 }
@@ -106,11 +87,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		panic(err)
 	}
-}
-
-// GetUsers returns all users
-func GetUsers(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(cachedUsers)
 }
 
 // VerifyUser - token exchange and authentication at user login
@@ -164,25 +140,21 @@ func Match(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		userID := params["uid"]
 		// get requester's coords
-		var userLocation Geolocation
-		bodyBytes, _ := ioutil.ReadAll(r.Body)
-		defer r.Body.Close()
-		if err := json.Unmarshal(bodyBytes, &userLocation); err != nil {
-			bodyString := string(bodyBytes)
-			fmt.Println(bodyString)
-			return // no match was returned
+		user, err := GetUser(userID)
+		if err != nil {
+			fmt.Println(err)
+			return // Unable to get location
 		}
 		radius := 1     //1 km
 		lastUpdate := 2 // 2hrs
-		PMatchList, err := GetProspectiveUsers(userLocation, radius, lastUpdate)
+		PMatchList, err := GetProspectiveUsers(user.Location, radius, lastUpdate)
 		if err != nil {
+			fmt.Println(err)
 			return // unable to get anyone from db
 		}
-		// fmt.Print("Trying to get matches")
 		MatchList, err := GetMatches(userID, PMatchList)
-		// fmt.Print("Got matches")
-		// fmt.Print(MatchList)
 		if err != nil {
+			fmt.Println(err)
 			return // unable to get anyone to match
 		}
 		json.NewEncoder(w).Encode(MatchList)
@@ -215,18 +187,18 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 // InitiateMeetover called to begin the meetover appointment betwen two users
 func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
-		initiatorId := r.Header.Get("Identity")
+		initiatorID := r.Header.Get("Identity")
 		params := mux.Vars(r)
-		requestedId := params["otherId"]
+		requestedID := params["otherId"]
 
-		if err := AddThread(initiatorId, requestedId); err != nil {
+		if err := AddThread(initiatorID, requestedID); err != nil {
 			respondWithError(w, FailedDBCall, "Could not create chat thread")
-			fmt.Println("Failed to create the thread " + initiatorId + ", " + requestedId)
+			fmt.Println("Failed to create the thread " + initiatorID + ", " + requestedID)
 			return
 		}
 
 		// Send a push notification to the requested user
-		formattedName, err := fbClient.Ref("/users/" + initiatorId + "/profile/formattedName")
+		formattedName, err := fbClient.Ref("/users/" + initiatorID + "/profile/formattedName")
 		if err != nil {
 			json.NewEncoder(w).Encode("Could not send push notification")
 			fmt.Println(err.Error())
@@ -242,7 +214,7 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 		title := "New MeetOver Request"
 		body := name + " would like to MeetOver"
 		pushNotification := PushNotification{
-			ID:    requestedId,
+			ID:    requestedID,
 			Title: title,
 			Body:  body,
 		}

@@ -77,7 +77,9 @@ class RequestScreen extends React.Component {
 
     const thread = find(threadList, { '_id': threadId });
 
-    if (thread === undefined || (thread.status === 'declined' && thread.origin === 'receiver')) {
+    if (thread !== undefined) {
+     navigation.navigate('ChatScreen', { '_id': threadId, profile });
+   } else if (thread === undefined || (thread.status === 'declined' && thread.origin === 'receiver')) {
       this.setState({ buttonDisabled: true, meetOverLoading: true });
       const uri = `${serverURI}/meetover/${id}`;
       const init = {

@@ -1,4 +1,4 @@
-package main
+package matching
 
 import (
 	"errors"
@@ -6,21 +6,26 @@ import (
 	"io/ioutil"
 	"log"
 	"math"
+	"math/rand"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/ynqa/word-embedding/builder"
+	"meetover/backend/firebase"
+	"meetover/backend/location"
+	"meetover/backend/user"
+
+	"github.com/mpace965/word-embedding/builder"
 	"gonum.org/v1/gonum/mat"
 )
 
 // MatchValue represents each perspective user in their distance from the caller
 type MatchValue struct {
-	Usr  Profile     `json:"profile"`
-	Dist float64     `json:"distance"`
-	Loc  Geolocation `json:"location"`
+	Usr  user.Profile         `json:"profile"`
+	Dist float64              `json:"distance"`
+	Loc  location.Geolocation `json:"location"`
 }
 
 type byDistance []MatchValue
@@ -49,34 +54,36 @@ var WordModelDimension = 8
 // WordModelRandomParam - number of words considered for similarity
 var WordModelRandomParam = 50
 
+// Relative path to ml directory. Relative from location of backend binary
+var mlDirectory = "./data/"
+
 // GetMatches returns an ordered list of user uid's from closest to furthest to the caller
-func GetMatches(UserID string, neighbors []User) (MatchResponse, error) {
-	callingUser, err := GetUser(UserID)
+func GetMatches(UserID string, neighbors []user.User) ([]MatchValue, error) {
+	callingUser, err := firebase.GetUser(UserID)
 	if err != nil {
-		return MatchResponse{}, errors.New("Unable to fetch calling user")
+		return nil, errors.New("Unable to fetch calling user")
 	}
 	order := GetOrder(callingUser, neighbors, WordModel)
 	return order, nil
 }
 
 // GetOrder - preprocess for sortMap
-func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchResponse {
+func GetOrder(caller user.User, prospUsers []user.User, model map[string][]float64) []MatchValue {
 	callerStr := userToString(caller)
 	callerVec := parToVector(callerStr, model)
 	prospUsers = removeCaller(caller, prospUsers)
-	var mr MatchResponse
-	mr.Matches = []MatchValue{}
+	matches := []MatchValue{}
 	start := time.Now()
 	for _, pu := range prospUsers {
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
 		distance := nestedDistance(callerVec, prospVec)
-		mr.Matches = append(mr.Matches, MatchValue{pu.Profile, distance, pu.Location})
+		matches = append(matches, MatchValue{pu.Profile, distance, pu.Location})
 	}
-	sort.Sort(byDistance(mr.Matches))
+	sort.Sort(byDistance(matches))
 	elapsed := time.Since(start)
 	fmt.Println("Destance Calculation took: " + elapsed.String())
-	return mr
+	return matches
 }
 
 // nestedDistance - distance metric between par vectors
@@ -100,7 +107,7 @@ func flattenVector(rows int, vec mat.Matrix) float64 {
 }
 
 // removeCaller takes the calling user out of prospective match list
-func removeCaller(caller User, prospUsers []User) []User {
+func removeCaller(caller user.User, prospUsers []user.User) []user.User {
 	s := -1
 	for i, u := range prospUsers {
 		if u.ID == caller.ID {
@@ -142,7 +149,7 @@ func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 }
 
 // userToString converts the user object to a paragraph for vector translation
-func userToString(u User) string {
+func userToString(u user.User) string {
 	var res string
 	res = u.Profile.Greeting + " " + u.Profile.Headline + " " + u.Profile.Summary + " " + u.Profile.Industry
 	for _, pos := range u.Profile.Positions.Values {
@@ -156,10 +163,10 @@ func userToString(u User) string {
 
 // InitMLModel check if model has been created or creates it
 func InitMLModel(windowSize int, wordDimensions int) {
-	modelFile := "./data/meetOver.model"
+	modelFile := mlDirectory + "meetOver.model"
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
 		fmt.Println("Model does not exist. Creating Model")
-		corpusFile := "./data/corpus.dat"
+		corpusFile := mlDirectory + "corpus.dat"
 		createModel(modelFile, corpusFile, windowSize, wordDimensions)
 	}
 	WordModel = readModel(modelFile)
@@ -222,4 +229,9 @@ func readModel(modelFile string) map[string][]float64 {
 		model[word] = floatVector
 	}
 	return model
+}
+
+// random - helper for tests
+func random(min, max int) int {
+	return rand.Intn(max-min) + min
 }

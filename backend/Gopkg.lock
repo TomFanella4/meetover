@@ -150,6 +150,12 @@
   revision = "00c29f56e2386353d58c599509e8dc3801b0d716"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/mpace965/word-embedding"
+  packages = ["builder"]
+  revision = "8e4b0cf83e310ced1adb53b64450c4d3bca7b057"
+
+[[projects]]
   name = "github.com/pelletier/go-toml"
   packages = ["."]
   revision = "acdc4509485b587f5e675510c4f2c63e90ff68a8"
@@ -204,7 +210,6 @@
   branch = "master"
   name = "github.com/ynqa/word-embedding"
   packages = [
-    "builder",
     "config",
     "model",
     "model/glove",
@@ -449,6 +454,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "466aa347787c412ed3fa9a6afd0e658b07d8e0376dc142864089916c5ea9a76b"
+  inputs-digest = "6811904bb418626044680bb91f02b611636434cb5ea6ab9e0dc3936d6c227d8a"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -100,7 +100,7 @@ type Profile struct {
 // User is user on MeetOver
 type User struct {
 	ID           string         `json:"uid,omitempty"`
-	Location     *Geolocation   `json:"location,omitempty"`
+	Location     Geolocation    `json:"location,omitempty"`
 	AccessToken  ATokenResponse `json:"accessToken"`
 	Profile      Profile        `json:"profile"`
 	IsSearching  bool           `json:"isSearching"`

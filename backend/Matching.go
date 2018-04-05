@@ -18,9 +18,9 @@ import (
 
 // MatchValue represents each perspective user in their distance from the caller
 type MatchValue struct {
-	Usr  Profile      `json:"profile"`
-	Dist float64      `json:"distance"`
-	Loc  *Geolocation `json:"location"`
+	Usr  Profile     `json:"profile"`
+	Dist float64     `json:"distance"`
+	Loc  Geolocation `json:"location"`
 }
 
 type byDistance []MatchValue

@@ -35,6 +35,12 @@ type MatchResponse struct {
 	Matches []MatchValue `json:"matches"`
 }
 
+// UserProfileResponse returned when requesting a user profile
+type UserProfileResponse struct {
+	Profile  Profile     `json:"profile"`
+	Location Geolocation `json:"location"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
@@ -48,14 +54,18 @@ const (
 	FailedUserInit      ResponseCode = 510
 )
 
-// GetUserProfile will give back a json object of user's LinkedIn Profile
+// GetUserProfile will give back a json object of user's Profile
 func GetUserProfile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	accessToken := params["accessToken"]
-	profile, err := GetProfile(accessToken)
+	id := params["id"]
+	user, err := GetUser(id)
 	if err != nil {
 		respondWithError(w, FailedProfileFetch, err.Error())
+		return
 	}
+	var profile UserProfileResponse
+	profile.Profile = user.Profile
+	profile.Location = user.Location
 	json.NewEncoder(w).Encode(profile)
 }
 
@@ -147,7 +157,7 @@ func Match(w http.ResponseWriter, r *http.Request) {
 		}
 		radius := 1     //1 km
 		lastUpdate := 2 // 2hrs
-		PMatchList, err := GetProspectiveUsers(user.Location, radius, lastUpdate)
+		PMatchList, err := GetProspectiveUsers(&user.Location, radius, lastUpdate)
 		if err != nil {
 			fmt.Println(err)
 			return // unable to get anyone from db

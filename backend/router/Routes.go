@@ -1,6 +1,10 @@
-package main
+package router
 
-import "net/http"
+import (
+	"net/http"
+
+	"meetover/backend/router/handlers"
+)
 
 // Route - REST endpoint route used by REST router
 type Route struct {
@@ -18,54 +22,54 @@ var routes = Routes{
 		"Index",
 		"GET",
 		"/",
-		Index,
+		handlers.Index,
 	},
 	Route{
 		"Login",
 		"POST",
 		"/login/{code}",
-		VerifyUser,
+		handlers.VerifyUser,
 	},
 	Route{
 		"Refresh",
 		"POST",
 		"/refreshtoken",
-		RefreshCustomToken,
+		handlers.RefreshCustomToken,
 	},
 	Route{
 		"Initiate Meetover",
 		"POST",
 		"/meetover/{otherID}",
-		InitiateMeetover,
+		handlers.InitiateMeetover,
 	},
 	Route{
 		"Processes the user's decision to MeetOver",
 		"POST",
 		"/meetover/decision/{otherID}",
-		ProcessDecision,
+		handlers.ProcessDecision,
 	},
 	Route{
 		"Get other user's profile(s)",
 		"POST",
 		"/userprofiles",
-		GetUserProfiles,
+		handlers.GetUserProfiles,
 	},
 	Route{
 		"Send Push Notification",
 		"POST",
 		"/sendpush",
-		SendPush,
+		handlers.SendPush,
 	},
 	Route{
 		"Matching",
 		"POST",
 		"/match/{uid}",
-		Match,
+		handlers.Match,
 	},
 	Route{
 		"Debugging Endpoint",
 		"POST",
 		"/test/{testType}",
-		Test,
+		handlers.Test,
 	},
 }

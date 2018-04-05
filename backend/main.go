@@ -6,21 +6,23 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"meetover/backend/firebase"
+	"meetover/backend/matching"
+	"meetover/backend/router"
 )
 
 // our main function
 func main() {
 
-	router := NewRouter()
+	router := router.NewRouter()
 
-	// database & chat
-	InitializeFirebase()
-
-	// Init files
-	InitializeFiles()
+	// Initialiaze database, chat, and static storage
+	firebase.InitializeFirebase()
+	firebase.InitializeFiles()
 
 	// ML
-	InitMLModel(WordModelContextWindow, WordModelDimension)
+	matching.InitMLModel(matching.WordModelContextWindow, matching.WordModelDimension)
 	rand.Seed(time.Now().Unix())
 
 	port, deployMode := os.LookupEnv("PORT")

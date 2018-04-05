@@ -39,19 +39,28 @@ class ListScreen extends React.Component {
   }
 
   _viewProfile(match) {
-    this.props.navigation.navigate('Profile', { profile: match });
+    this.props.navigation.navigate('RequestScreen', { profile: match });
   }
 
   render() {
     const { matches, userId, accessToken } = this.props;
     const list = matches.map(match => (
-      <ListItem style={styles.container} key={match.id} onPress={() => this._viewProfile(match)}>
-        <Left style={styles.thumbnail}>
-          <Thumbnail source={{ uri: match.pictureUrl }} />
+      <ListItem
+        key={match.profile.id}
+        onPress={() => this._viewProfile(match.profile)}
+        avatar
+      >
+        <Left>
+          {
+            match.profile.pictureUrl !== '' ?
+              <Thumbnail source={{ uri: match.profile.pictureUrl }} />
+            :
+              <Thumbnail source={require('../../assets/images/icon.png')} />
+          }
         </Left>
         <Body>
-          <PTSansText style={styles.name}>{match.formattedName}</PTSansText>
-          <PTSansText style={styles.headline}>{match.headline}</PTSansText>
+          <PTSansText style={styles.name}>{match.profile.formattedName}</PTSansText>
+          <PTSansText style={styles.headline}>{match.profile.headline}</PTSansText>
         </Body>
       </ListItem>
     ));
@@ -98,9 +107,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  thumbnail: {
-    flex: 0
   },
   name: {
     fontSize: 20

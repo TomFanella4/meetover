@@ -141,7 +141,7 @@ export const sendFirebaseMessage = (_id, messages, accessToken) => {
       })
     };
 
-    fetch(`${serverURI}/sendPush`, init)
+    fetch(`${serverURI}/sendpush`, init)
     .catch(err => console.log(err));
   });
 };

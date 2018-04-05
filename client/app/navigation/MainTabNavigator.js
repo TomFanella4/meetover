@@ -87,8 +87,30 @@ class MainTabNavigation extends React.Component {
   }
 
   componentDidMount() {
+    this._registerForLocationUpdating();
     this._registerForPushNotifications();
     this.props.registerFetchThreadListAsync();
+  }
+
+  async _registerForLocationUpdating() {
+
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+    if (status === 'granted') {
+      const location = await Expo.Location.watchPositionAsync({
+        distanceInterval: 5
+      }, location => (
+        modifyFirebaseUserState('location', {
+          accuracy: location.coords.accuracy,
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          timestamp: location.timestamp
+        })
+      ))
+      .catch(err => console.error(err));
+    } else {
+      throw new Error('Location permission not granted');
+    }
   }
 
   async _registerForPushNotifications() {

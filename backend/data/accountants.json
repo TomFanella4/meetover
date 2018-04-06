@@ -1,0 +1,2441 @@
+{
+   "code" : "13-2011.01",
+   "display" : "long",
+   "occupation" : {
+      "code" : "13-2011.01",
+      "title" : "Accountants",
+      "tags" : {
+         "bright_outlook" : true,
+         "green" : false
+      },
+      "description" : "Analyze financial information and prepare financial reports to determine or maintain record of assets, liabilities, profit and loss, tax liability, or other financial activities within an organization.",
+      "sample_of_reported_job_titles" : {
+         "title" : [
+            "Accountant",
+            "Accounting Manager",
+            "Accounting Officer",
+            "Accounting Supervisor",
+            "Business Analyst",
+            "Certified Public Accountant (CPA)",
+            "Cost Accountant",
+            "Financial Reporting Accountant",
+            "General Accountant",
+            "Staff Accountant"
+         ]
+      },
+      "updated" : {
+         "partial" : false,
+         "year" : 2017,
+         "resource_updated" : [
+            {
+               "title" : "Abilities",
+               "source" : "Analyst",
+               "year" : 2009
+            },
+            {
+               "title" : "Alternate Titles",
+               "source" : "Multiple sources",
+               "year" : 2015
+            },
+            {
+               "title" : "Detailed Work Activities",
+               "source" : "Analyst",
+               "year" : 2014
+            },
+            {
+               "title" : "Education",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Interests",
+               "source" : "Analyst",
+               "year" : 2008
+            },
+            {
+               "title" : "Job Zone",
+               "source" : "Analyst",
+               "year" : 2009
+            },
+            {
+               "title" : "Knowledge",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Sample of Reported Titles",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Skills",
+               "source" : "Analyst",
+               "year" : 2010
+            },
+            {
+               "title" : "Tasks",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Tools & Technology",
+               "source" : "Employer Job Postings",
+               "year" : 2017
+            },
+            {
+               "title" : "Work Activities",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Work Context",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Work Needs",
+               "source" : "Legacy Analyst"
+            },
+            {
+               "title" : "Work Styles",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Work Values",
+               "source" : "Analyst",
+               "year" : 2008
+            }
+         ]
+      },
+      "bright_outlook" : {
+         "description" : "This occupation is expected to grow rapidly and is projected to have large numbers of job openings.",
+         "category" : [
+            "Grow Rapidly",
+            "Openings"
+         ]
+      },
+      "summary_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/tasks",
+               "title" : "Tasks"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/technology_skills",
+               "title" : "Technology Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/tools_used",
+               "title" : "Tools Used"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/tools_technology",
+               "title" : "Tools &amp; Technology"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/knowledge",
+               "title" : "Knowledge"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/skills",
+               "title" : "Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/abilities",
+               "title" : "Abilities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/work_activities",
+               "title" : "Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/detailed_work_activities",
+               "title" : "Detailed Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/work_context",
+               "title" : "Work Context"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/job_zone",
+               "title" : "Job Zone"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/education",
+               "title" : "Education"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/interests",
+               "title" : "Interests"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/work_styles",
+               "title" : "Work Styles"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/work_values",
+               "title" : "Work Values"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/related_occupations",
+               "title" : "Related Occupations"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/summary/additional_information",
+               "title" : "Sources of Additional Information"
+            }
+         ]
+      },
+      "details_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/tasks",
+               "title" : "Tasks"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/technology_skills",
+               "title" : "Technology Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/tools_used",
+               "title" : "Tools Used"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/tools_technology",
+               "title" : "Tools &amp; Technology"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/knowledge",
+               "title" : "Knowledge"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/skills",
+               "title" : "Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/abilities",
+               "title" : "Abilities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/work_activities",
+               "title" : "Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/detailed_work_activities",
+               "title" : "Detailed Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/work_context",
+               "title" : "Work Context"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/job_zone",
+               "title" : "Job Zone"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/education",
+               "title" : "Education"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/interests",
+               "title" : "Interests"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/work_styles",
+               "title" : "Work Styles"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/work_values",
+               "title" : "Work Values"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/related_occupations",
+               "title" : "Related Occupations"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/details/additional_information",
+               "title" : "Sources of Additional Information"
+            }
+         ]
+      },
+      "custom_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/custom/work_activities_outline",
+               "title" : "Work Activities Outline"
+            }
+         ]
+      }
+   },
+   "tasks" : {
+      "task" : [
+         {
+            "id" : 112,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/112",
+            "name" : "Prepare, examine, or analyze accounting records, financial statements, or other financial reports to assess accuracy, completeness, and conformance to reporting and procedural standards."
+         },
+         {
+            "id" : 115,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/115",
+            "name" : "Report to management regarding the finances of establishment."
+         },
+         {
+            "id" : 116,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/116",
+            "name" : "Establish tables of accounts and assign entries to proper accounts."
+         },
+         {
+            "id" : 118,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/118",
+            "name" : "Develop, implement, modify, and document recordkeeping and accounting systems, making use of current computer technology."
+         },
+         {
+            "id" : 113,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/113",
+            "name" : "Compute taxes owed and prepare tax returns, ensuring compliance with payment, reporting, or other tax requirements."
+         },
+         {
+            "id" : 128,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/128",
+            "name" : "Maintain or examine the records of government agencies."
+         },
+         {
+            "id" : 124,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/124",
+            "name" : "Advise clients in areas such as compensation, employee health care benefits, the design of accounting or data processing systems, or long-range tax or estate plans."
+         },
+         {
+            "id" : 117,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/117",
+            "name" : "Develop, maintain, and analyze budgets, preparing periodic reports that compare budgeted costs to actual costs."
+         },
+         {
+            "id" : 123,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/123",
+            "name" : "Provide internal and external auditing services for businesses or individuals."
+         },
+         {
+            "id" : 114,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/114",
+            "name" : "Analyze business operations, trends, costs, revenues, financial commitments, and obligations to project future revenues and expenses or to provide advice."
+         },
+         {
+            "id" : 122,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/122",
+            "name" : "Advise management about issues such as resource utilization, tax strategies, and the assumptions underlying budget forecasts."
+         },
+         {
+            "id" : 126,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/126",
+            "name" : "Represent clients before taxing authorities and provide support during litigation involving financial issues."
+         },
+         {
+            "id" : 119,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/119",
+            "name" : "Prepare forms and manuals for accounting and bookkeeping personnel and direct their work activities."
+         },
+         {
+            "id" : 127,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/127",
+            "name" : "Appraise, evaluate, and inventory real property and equipment, recording information such as the description, value, and location of property."
+         },
+         {
+            "id" : 120,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tasks/120",
+            "name" : "Survey operations to ascertain accounting needs and to recommend, develop, or maintain solutions to business and financial problems."
+         }
+      ]
+   },
+   "technology_skills" : {
+      "category" : [
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231601",
+            "title" : {
+               "id" : 43231601,
+               "name" : "Accounting software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 36,
+                  "name" : "Intuit QuickBooks"
+               },
+               {
+                  "hot_technology" : 145,
+                  "name" : "Sage 50 Accounting"
+               },
+               {
+                  "name" : "Sage CPAClient Checkbook"
+               },
+               {
+                  "name" : "Summit Software Summit Biofuels Accounting"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231603",
+            "title" : {
+               "id" : 43231603,
+               "name" : "Tax preparation software"
+            },
+            "example" : [
+               {
+                  "name" : "ATX Total Tax Office"
+               },
+               {
+                  "name" : "CCH ProSystem fx TAX"
+               },
+               {
+                  "name" : "Intuit Lacerte"
+               },
+               {
+                  "name" : "Orrtax Software IntelliTax Classic"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231602",
+            "title" : {
+               "id" : 43231602,
+               "hot_technology" : 176,
+               "name" : "Enterprise resource planning ERP software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 163,
+                  "name" : "NetSuite ERP"
+               },
+               {
+                  "hot_technology" : 172,
+                  "name" : "Oracle Fusion Applications"
+               },
+               {
+                  "hot_technology" : 147,
+                  "name" : "Oracle PeopleSoft Financials"
+               },
+               {
+                  "hot_technology" : 43,
+                  "name" : "SAP Business Objects"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231604",
+            "title" : {
+               "id" : 43231604,
+               "name" : "Financial analysis software"
+            },
+            "example" : [
+               {
+                  "name" : "Brentmark Estate Planning Quickview"
+               },
+               {
+                  "name" : "Cartesis Magnitude iAnalysis"
+               },
+               {
+                  "hot_technology" : 127,
+                  "name" : "Delphi Technology"
+               },
+               {
+                  "hot_technology" : 109,
+                  "name" : "Oracle E-Business Suite Financials"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232306",
+            "title" : {
+               "id" : 43232306,
+               "name" : "Data base user interface and query software"
+            },
+            "example" : [
+               {
+                  "name" : "Best Software CPAPayroll"
+               },
+               {
+                  "hot_technology" : 30,
+                  "name" : "Microsoft Access"
+               },
+               {
+                  "hot_technology" : 3,
+                  "name" : "Structured query language SQL"
+               },
+               {
+                  "name" : "Yardi Systems Yardi Enterprise"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232606",
+            "title" : {
+               "id" : 43232606,
+               "name" : "Compliance software"
+            },
+            "example" : [
+               {
+                  "name" : "ACCUCert"
+               },
+               {
+                  "name" : "FLS eDP PAYROLLtax"
+               },
+               {
+                  "name" : "Intrax ProcedureNet"
+               },
+               {
+                  "name" : "Paisley Cardmap"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232610",
+            "title" : {
+               "id" : 43232610,
+               "name" : "Medical software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 94,
+                  "name" : "Epic Systems"
+               },
+               {
+                  "hot_technology" : 42,
+                  "name" : "Medical condition coding software"
+               },
+               {
+                  "hot_technology" : 63,
+                  "name" : "Medical procedure coding software"
+               },
+               {
+                  "hot_technology" : 83,
+                  "name" : "MEDITECH software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232202",
+            "title" : {
+               "id" : 43232202,
+               "name" : "Document management software"
+            },
+            "example" : [
+               {
+                  "name" : "Document management system software"
+               },
+               {
+                  "name" : "Iron Mountain Accutrac Records Management Software"
+               },
+               {
+                  "name" : "OmniRIM Records Management Suite"
+               },
+               {
+                  "name" : "Sage CPADocument Manager"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231505",
+            "title" : {
+               "id" : 43231505,
+               "name" : "Human resources software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 153,
+                  "name" : "ADP Workforce Now"
+               },
+               {
+                  "name" : "CPSI EHR System"
+               },
+               {
+                  "hot_technology" : 132,
+                  "name" : "Human resource management software HRMS"
+               },
+               {
+                  "name" : "Sage Abra HRMS"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232314",
+            "title" : {
+               "id" : 43232314,
+               "name" : "Business intelligence and data analysis software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 46,
+                  "name" : "IBM Cognos Impromptu"
+               },
+               {
+                  "hot_technology" : 86,
+                  "name" : "Oracle Business Intelligence Enterprise Edition"
+               },
+               {
+                  "hot_technology" : 123,
+                  "name" : "Qlik Tech QlikView"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43233501",
+            "title" : {
+               "id" : 43233501,
+               "name" : "Electronic mail software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 45,
+                  "name" : "IBM Notes"
+               },
+               {
+                  "hot_technology" : 23,
+                  "name" : "Microsoft Outlook"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232402",
+            "title" : {
+               "id" : 43232402,
+               "name" : "Development environment software"
+            },
+            "example" : [
+               {
+                  "name" : "eXtensible Business Reporting Language XBRL"
+               },
+               {
+                  "hot_technology" : 34,
+                  "name" : "Microsoft Visual Basic"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232305",
+            "title" : {
+               "id" : 43232305,
+               "name" : "Data base reporting software"
+            },
+            "example" : [
+               {
+                  "name" : "ADP Super Report Writer"
+               },
+               {
+                  "hot_technology" : 57,
+                  "name" : "SAP Crystal Reports"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232110",
+            "title" : {
+               "id" : 43232110,
+               "name" : "Spreadsheet software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 1,
+                  "name" : "Microsoft Excel"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43233701",
+            "title" : {
+               "id" : 43233701,
+               "name" : "Enterprise system management software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 111,
+                  "name" : "IBM Power Systems software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232303",
+            "title" : {
+               "id" : 43232303,
+               "name" : "Customer relationship management CRM software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 116,
+                  "name" : "Blackbaud The Raiser's Edge"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232403",
+            "title" : {
+               "id" : 43232403,
+               "name" : "Enterprise application integration software"
+            },
+            "example" : [
+               {
+                  "name" : "SAP BusinessObjects Data Integrator"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232313",
+            "title" : {
+               "id" : 43232313,
+               "name" : "Transaction server software"
+            },
+            "example" : [
+               {
+                  "name" : "Tumbleweed SecureTransport"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231513",
+            "title" : {
+               "id" : 43231513,
+               "name" : "Office suite software"
+            },
+            "example" : [
+               {
+                  "name" : "Microsoft Office"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43233004",
+            "title" : {
+               "id" : 43233004,
+               "name" : "Operating system software"
+            },
+            "example" : [
+               {
+                  "name" : "Microsoft Windows"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232104",
+            "title" : {
+               "id" : 43232104,
+               "name" : "Word processing software"
+            },
+            "example" : [
+               {
+                  "name" : "Microsoft Word"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232405",
+            "title" : {
+               "id" : 43232405,
+               "name" : "Object or component oriented development software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 166,
+                  "name" : "Swift"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231605",
+            "title" : {
+               "id" : 43231605,
+               "name" : "Time accounting software"
+            },
+            "example" : [
+               {
+                  "name" : "Payroll software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232106",
+            "title" : {
+               "id" : 43232106,
+               "name" : "Presentation software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 2,
+                  "name" : "Microsoft PowerPoint"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231507",
+            "title" : {
+               "id" : 43231507,
+               "name" : "Project management software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 14,
+                  "name" : "Microsoft SharePoint"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231508",
+            "title" : {
+               "id" : 43231508,
+               "name" : "Inventory management software"
+            },
+            "example" : [
+               {
+                  "name" : "Asset management software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232309",
+            "title" : {
+               "id" : 43232309,
+               "name" : "Information retrieval or search software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 126,
+                  "name" : "LexisNexis"
+               }
+            ]
+         }
+      ]
+   },
+   "tools_used" : {
+      "category" : [
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/44101501",
+            "title" : {
+               "id" : 44101501,
+               "name" : "Photocopiers"
+            },
+            "example" : [
+               {
+                  "name" : "Photocopying equipment"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/44101508",
+            "title" : {
+               "id" : 44101508,
+               "name" : "Laser fax machine"
+            },
+            "example" : [
+               {
+                  "name" : "Laser facsimile machines"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/44101809",
+            "title" : {
+               "id" : 44101809,
+               "name" : "Desktop calculator"
+            },
+            "example" : [
+               {
+                  "name" : "10-key calculators"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211711",
+            "title" : {
+               "id" : 43211711,
+               "name" : "Scanners"
+            },
+            "example" : []
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211503",
+            "title" : {
+               "id" : 43211503,
+               "name" : "Notebook computers"
+            },
+            "example" : []
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211507",
+            "title" : {
+               "id" : 43211507,
+               "name" : "Desktop computers"
+            },
+            "example" : []
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211508",
+            "title" : {
+               "id" : 43211508,
+               "name" : "Personal computers"
+            },
+            "example" : []
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211509",
+            "title" : {
+               "id" : 43211509,
+               "name" : "Tablet computers"
+            },
+            "example" : []
+         }
+      ]
+   },
+   "tools_technology" : {
+      "tools" : {
+         "category" : [
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/44101501",
+               "title" : {
+                  "id" : 44101501,
+                  "name" : "Photocopiers"
+               },
+               "example" : [
+                  {
+                     "name" : "Photocopying equipment"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/44101508",
+               "title" : {
+                  "id" : 44101508,
+                  "name" : "Laser fax machine"
+               },
+               "example" : [
+                  {
+                     "name" : "Laser facsimile machines"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/44101809",
+               "title" : {
+                  "id" : 44101809,
+                  "name" : "Desktop calculator"
+               },
+               "example" : [
+                  {
+                     "name" : "10-key calculators"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211711",
+               "title" : {
+                  "id" : 43211711,
+                  "name" : "Scanners"
+               },
+               "example" : []
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211503",
+               "title" : {
+                  "id" : 43211503,
+                  "name" : "Notebook computers"
+               },
+               "example" : []
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211507",
+               "title" : {
+                  "id" : 43211507,
+                  "name" : "Desktop computers"
+               },
+               "example" : []
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211508",
+               "title" : {
+                  "id" : 43211508,
+                  "name" : "Personal computers"
+               },
+               "example" : []
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43211509",
+               "title" : {
+                  "id" : 43211509,
+                  "name" : "Tablet computers"
+               },
+               "example" : []
+            }
+         ]
+      },
+      "technology" : {
+         "category" : [
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231601",
+               "title" : {
+                  "id" : 43231601,
+                  "name" : "Accounting software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 36,
+                     "name" : "Intuit QuickBooks"
+                  },
+                  {
+                     "hot_technology" : 145,
+                     "name" : "Sage 50 Accounting"
+                  },
+                  {
+                     "name" : "Sage CPAClient Checkbook"
+                  },
+                  {
+                     "name" : "Summit Software Summit Biofuels Accounting"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231603",
+               "title" : {
+                  "id" : 43231603,
+                  "name" : "Tax preparation software"
+               },
+               "example" : [
+                  {
+                     "name" : "ATX Total Tax Office"
+                  },
+                  {
+                     "name" : "CCH ProSystem fx TAX"
+                  },
+                  {
+                     "name" : "Intuit Lacerte"
+                  },
+                  {
+                     "name" : "Orrtax Software IntelliTax Classic"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231602",
+               "title" : {
+                  "id" : 43231602,
+                  "hot_technology" : 176,
+                  "name" : "Enterprise resource planning ERP software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 163,
+                     "name" : "NetSuite ERP"
+                  },
+                  {
+                     "hot_technology" : 172,
+                     "name" : "Oracle Fusion Applications"
+                  },
+                  {
+                     "hot_technology" : 147,
+                     "name" : "Oracle PeopleSoft Financials"
+                  },
+                  {
+                     "hot_technology" : 43,
+                     "name" : "SAP Business Objects"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231604",
+               "title" : {
+                  "id" : 43231604,
+                  "name" : "Financial analysis software"
+               },
+               "example" : [
+                  {
+                     "name" : "Brentmark Estate Planning Quickview"
+                  },
+                  {
+                     "name" : "Cartesis Magnitude iAnalysis"
+                  },
+                  {
+                     "hot_technology" : 127,
+                     "name" : "Delphi Technology"
+                  },
+                  {
+                     "hot_technology" : 109,
+                     "name" : "Oracle E-Business Suite Financials"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232306",
+               "title" : {
+                  "id" : 43232306,
+                  "name" : "Data base user interface and query software"
+               },
+               "example" : [
+                  {
+                     "name" : "Best Software CPAPayroll"
+                  },
+                  {
+                     "hot_technology" : 30,
+                     "name" : "Microsoft Access"
+                  },
+                  {
+                     "hot_technology" : 3,
+                     "name" : "Structured query language SQL"
+                  },
+                  {
+                     "name" : "Yardi Systems Yardi Enterprise"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232606",
+               "title" : {
+                  "id" : 43232606,
+                  "name" : "Compliance software"
+               },
+               "example" : [
+                  {
+                     "name" : "ACCUCert"
+                  },
+                  {
+                     "name" : "FLS eDP PAYROLLtax"
+                  },
+                  {
+                     "name" : "Intrax ProcedureNet"
+                  },
+                  {
+                     "name" : "Paisley Cardmap"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232610",
+               "title" : {
+                  "id" : 43232610,
+                  "name" : "Medical software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 94,
+                     "name" : "Epic Systems"
+                  },
+                  {
+                     "hot_technology" : 42,
+                     "name" : "Medical condition coding software"
+                  },
+                  {
+                     "hot_technology" : 63,
+                     "name" : "Medical procedure coding software"
+                  },
+                  {
+                     "hot_technology" : 83,
+                     "name" : "MEDITECH software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232202",
+               "title" : {
+                  "id" : 43232202,
+                  "name" : "Document management software"
+               },
+               "example" : [
+                  {
+                     "name" : "Document management system software"
+                  },
+                  {
+                     "name" : "Iron Mountain Accutrac Records Management Software"
+                  },
+                  {
+                     "name" : "OmniRIM Records Management Suite"
+                  },
+                  {
+                     "name" : "Sage CPADocument Manager"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231505",
+               "title" : {
+                  "id" : 43231505,
+                  "name" : "Human resources software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 153,
+                     "name" : "ADP Workforce Now"
+                  },
+                  {
+                     "name" : "CPSI EHR System"
+                  },
+                  {
+                     "hot_technology" : 132,
+                     "name" : "Human resource management software HRMS"
+                  },
+                  {
+                     "name" : "Sage Abra HRMS"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232314",
+               "title" : {
+                  "id" : 43232314,
+                  "name" : "Business intelligence and data analysis software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 46,
+                     "name" : "IBM Cognos Impromptu"
+                  },
+                  {
+                     "hot_technology" : 86,
+                     "name" : "Oracle Business Intelligence Enterprise Edition"
+                  },
+                  {
+                     "hot_technology" : 123,
+                     "name" : "Qlik Tech QlikView"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43233501",
+               "title" : {
+                  "id" : 43233501,
+                  "name" : "Electronic mail software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 45,
+                     "name" : "IBM Notes"
+                  },
+                  {
+                     "hot_technology" : 23,
+                     "name" : "Microsoft Outlook"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232402",
+               "title" : {
+                  "id" : 43232402,
+                  "name" : "Development environment software"
+               },
+               "example" : [
+                  {
+                     "name" : "eXtensible Business Reporting Language XBRL"
+                  },
+                  {
+                     "hot_technology" : 34,
+                     "name" : "Microsoft Visual Basic"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232305",
+               "title" : {
+                  "id" : 43232305,
+                  "name" : "Data base reporting software"
+               },
+               "example" : [
+                  {
+                     "name" : "ADP Super Report Writer"
+                  },
+                  {
+                     "hot_technology" : 57,
+                     "name" : "SAP Crystal Reports"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232110",
+               "title" : {
+                  "id" : 43232110,
+                  "name" : "Spreadsheet software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 1,
+                     "name" : "Microsoft Excel"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43233701",
+               "title" : {
+                  "id" : 43233701,
+                  "name" : "Enterprise system management software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 111,
+                     "name" : "IBM Power Systems software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232303",
+               "title" : {
+                  "id" : 43232303,
+                  "name" : "Customer relationship management CRM software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 116,
+                     "name" : "Blackbaud The Raiser's Edge"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232403",
+               "title" : {
+                  "id" : 43232403,
+                  "name" : "Enterprise application integration software"
+               },
+               "example" : [
+                  {
+                     "name" : "SAP BusinessObjects Data Integrator"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232313",
+               "title" : {
+                  "id" : 43232313,
+                  "name" : "Transaction server software"
+               },
+               "example" : [
+                  {
+                     "name" : "Tumbleweed SecureTransport"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231513",
+               "title" : {
+                  "id" : 43231513,
+                  "name" : "Office suite software"
+               },
+               "example" : [
+                  {
+                     "name" : "Microsoft Office"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43233004",
+               "title" : {
+                  "id" : 43233004,
+                  "name" : "Operating system software"
+               },
+               "example" : [
+                  {
+                     "name" : "Microsoft Windows"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232104",
+               "title" : {
+                  "id" : 43232104,
+                  "name" : "Word processing software"
+               },
+               "example" : [
+                  {
+                     "name" : "Microsoft Word"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232405",
+               "title" : {
+                  "id" : 43232405,
+                  "name" : "Object or component oriented development software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 166,
+                     "name" : "Swift"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231605",
+               "title" : {
+                  "id" : 43231605,
+                  "name" : "Time accounting software"
+               },
+               "example" : [
+                  {
+                     "name" : "Payroll software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232106",
+               "title" : {
+                  "id" : 43232106,
+                  "name" : "Presentation software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 2,
+                     "name" : "Microsoft PowerPoint"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231507",
+               "title" : {
+                  "id" : 43231507,
+                  "name" : "Project management software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 14,
+                     "name" : "Microsoft SharePoint"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43231508",
+               "title" : {
+                  "id" : 43231508,
+                  "name" : "Inventory management software"
+               },
+               "example" : [
+                  {
+                     "name" : "Asset management software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/tools_technology/43232309",
+               "title" : {
+                  "id" : 43232309,
+                  "name" : "Information retrieval or search software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 126,
+                     "name" : "LexisNexis"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "knowledge" : {
+      "element" : [
+         {
+            "id" : "2.C.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.1.c",
+            "name" : "Economics and Accounting",
+            "description" : "Knowledge of economic and accounting principles and practices, the financial markets, banking and the analysis and reporting of financial data."
+         },
+         {
+            "id" : "2.C.4.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.4.a",
+            "name" : "Mathematics",
+            "description" : "Knowledge of arithmetic, algebra, geometry, calculus, statistics, and their applications."
+         },
+         {
+            "id" : "2.C.7.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.7.a",
+            "name" : "English Language",
+            "description" : "Knowledge of the structure and content of the English language including the meaning and spelling of words, rules of composition, and grammar."
+         },
+         {
+            "id" : "2.C.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.1.b",
+            "name" : "Clerical",
+            "description" : "Knowledge of administrative and clerical procedures and systems such as word processing, managing files and records, stenography and transcription, designing forms, and other office procedures and terminology."
+         },
+         {
+            "id" : "2.C.3.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.3.a",
+            "name" : "Computers and Electronics",
+            "description" : "Knowledge of circuit boards, processors, chips, electronic equipment, and computer hardware and software, including applications and programming."
+         },
+         {
+            "id" : "2.C.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.1.a",
+            "name" : "Administration and Management",
+            "description" : "Knowledge of business and management principles involved in strategic planning, resource allocation, human resources modeling, leadership technique, production methods, and coordination of people and resources."
+         },
+         {
+            "id" : "2.C.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.1.e",
+            "name" : "Customer and Personal Service",
+            "description" : "Knowledge of principles and processes for providing customer and personal services. This includes customer needs assessment, meeting quality standards for services, and evaluation of customer satisfaction."
+         },
+         {
+            "id" : "2.C.8.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/knowledge/2.C.8.b",
+            "name" : "Law and Government",
+            "description" : "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules, and the democratic political process."
+         }
+      ]
+   },
+   "skills" : {
+      "element" : [
+         {
+            "id" : "2.A.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.1.b",
+            "name" : "Active Listening",
+            "description" : "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
+         },
+         {
+            "id" : "2.A.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.1.e",
+            "name" : "Mathematics",
+            "description" : "Using mathematics to solve problems."
+         },
+         {
+            "id" : "2.A.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.1.a",
+            "name" : "Reading Comprehension",
+            "description" : "Understanding written sentences and paragraphs in work related documents."
+         },
+         {
+            "id" : "2.A.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.1.c",
+            "name" : "Writing",
+            "description" : "Communicating effectively in writing as appropriate for the needs of the audience."
+         },
+         {
+            "id" : "2.A.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.2.a",
+            "name" : "Critical Thinking",
+            "description" : "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
+         },
+         {
+            "id" : "2.A.1.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.1.d",
+            "name" : "Speaking",
+            "description" : "Talking to others to convey information effectively."
+         },
+         {
+            "id" : "2.B.4.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.B.4.e",
+            "name" : "Judgment and Decision Making",
+            "description" : "Considering the relative costs and benefits of potential actions to choose the most appropriate one."
+         },
+         {
+            "id" : "2.B.2.i",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.B.2.i",
+            "name" : "Complex Problem Solving",
+            "description" : "Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
+         },
+         {
+            "id" : "2.B.5.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.B.5.a",
+            "name" : "Time Management",
+            "description" : "Managing one's own time and the time of others."
+         },
+         {
+            "id" : "2.A.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.2.b",
+            "name" : "Active Learning",
+            "description" : "Understanding the implications of new information for both current and future problem-solving and decision-making."
+         },
+         {
+            "id" : "2.B.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.B.1.b",
+            "name" : "Coordination",
+            "description" : "Adjusting actions in relation to others' actions."
+         },
+         {
+            "id" : "2.A.2.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.A.2.d",
+            "name" : "Monitoring",
+            "description" : "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
+         },
+         {
+            "id" : "2.B.4.g",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/skills/2.B.4.g",
+            "name" : "Systems Analysis",
+            "description" : "Determining how a system should work and how changes in conditions, operations, and the environment will affect outcomes."
+         }
+      ]
+   },
+   "abilities" : {
+      "element" : [
+         {
+            "id" : "1.A.1.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.c.1",
+            "name" : "Mathematical Reasoning",
+            "description" : "The ability to choose the right mathematical methods or formulas to solve a problem."
+         },
+         {
+            "id" : "1.A.1.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.a.1",
+            "name" : "Oral Comprehension",
+            "description" : "The ability to listen to and understand information and ideas presented through spoken words and sentences."
+         },
+         {
+            "id" : "1.A.1.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.a.2",
+            "name" : "Written Comprehension",
+            "description" : "The ability to read and understand information and ideas presented in writing."
+         },
+         {
+            "id" : "1.A.1.c.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.c.2",
+            "name" : "Number Facility",
+            "description" : "The ability to add, subtract, multiply, or divide quickly and correctly."
+         },
+         {
+            "id" : "1.A.1.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.b.4",
+            "name" : "Deductive Reasoning",
+            "description" : "The ability to apply general rules to specific problems to produce answers that make sense."
+         },
+         {
+            "id" : "1.A.4.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.4.a.1",
+            "name" : "Near Vision",
+            "description" : "The ability to see details at close range (within a few feet of the observer)."
+         },
+         {
+            "id" : "1.A.1.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.a.3",
+            "name" : "Oral Expression",
+            "description" : "The ability to communicate information and ideas in speaking so others will understand."
+         },
+         {
+            "id" : "1.A.1.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.b.5",
+            "name" : "Inductive Reasoning",
+            "description" : "The ability to combine pieces of information to form general rules or conclusions (includes finding a relationship among seemingly unrelated events)."
+         },
+         {
+            "id" : "1.A.1.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.b.3",
+            "name" : "Problem Sensitivity",
+            "description" : "The ability to tell when something is wrong or is likely to go wrong. It does not involve solving the problem, only recognizing there is a problem."
+         },
+         {
+            "id" : "1.A.1.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.a.4",
+            "name" : "Written Expression",
+            "description" : "The ability to communicate information and ideas in writing so others will understand."
+         },
+         {
+            "id" : "1.A.1.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.b.6",
+            "name" : "Information Ordering",
+            "description" : "The ability to arrange things or actions in a certain order or pattern according to a specific rule or set of rules (e.g., patterns of numbers, letters, words, pictures, mathematical operations)."
+         },
+         {
+            "id" : "1.A.1.b.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.b.7",
+            "name" : "Category Flexibility",
+            "description" : "The ability to generate or use different sets of rules for combining or grouping things in different ways."
+         },
+         {
+            "id" : "1.A.1.g.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.g.1",
+            "name" : "Selective Attention",
+            "description" : "The ability to concentrate on a task over a period of time without being distracted."
+         },
+         {
+            "id" : "1.A.4.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.4.b.4",
+            "name" : "Speech Recognition",
+            "description" : "The ability to identify and understand the speech of another person."
+         },
+         {
+            "id" : "1.A.1.e.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.e.3",
+            "name" : "Perceptual Speed",
+            "description" : "The ability to quickly and accurately compare similarities and differences among sets of letters, numbers, objects, pictures, or patterns. The things to be compared may be presented at the same time or one after the other. This ability also includes comparing a presented object with a remembered object."
+         },
+         {
+            "id" : "1.A.4.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.4.b.5",
+            "name" : "Speech Clarity",
+            "description" : "The ability to speak clearly so others can understand you."
+         },
+         {
+            "id" : "1.A.2.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.2.a.3",
+            "name" : "Finger Dexterity",
+            "description" : "The ability to make precisely coordinated movements of the fingers of one or both hands to grasp, manipulate, or assemble very small objects."
+         },
+         {
+            "id" : "1.A.1.e.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/abilities/1.A.1.e.2",
+            "name" : "Flexibility of Closure",
+            "description" : "The ability to identify or detect a known pattern (a figure, object, word, or sound) that is hidden in other distracting material."
+         }
+      ]
+   },
+   "work_activities" : {
+      "element" : [
+         {
+            "id" : "4.A.3.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.3.b.1",
+            "name" : "Interacting With Computers",
+            "description" : "Using computers and computer systems (including hardware and software) to program, write software, set up functions, enter data, or process information."
+         },
+         {
+            "id" : "4.A.2.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.a.2",
+            "name" : "Processing Information",
+            "description" : "Compiling, coding, categorizing, calculating, tabulating, auditing, or verifying information or data."
+         },
+         {
+            "id" : "4.A.1.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.1.a.1",
+            "name" : "Getting Information",
+            "description" : "Observing, receiving, and otherwise obtaining information from all relevant sources."
+         },
+         {
+            "id" : "4.A.2.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.a.3",
+            "name" : "Evaluating Information to Determine Compliance with Standards",
+            "description" : "Using relevant information and individual judgment to determine whether events or processes comply with laws, regulations, or standards."
+         },
+         {
+            "id" : "4.A.2.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.b.6",
+            "name" : "Organizing, Planning, and Prioritizing Work",
+            "description" : "Developing specific goals and plans to prioritize, organize, and accomplish your work."
+         },
+         {
+            "id" : "4.A.2.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.a.4",
+            "name" : "Analyzing Data or Information",
+            "description" : "Identifying the underlying principles, reasons, or facts of information by breaking down information or data into separate parts."
+         },
+         {
+            "id" : "4.A.4.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.4.a.2",
+            "name" : "Communicating with Supervisors, Peers, or Subordinates",
+            "description" : "Providing information to supervisors, co-workers, and subordinates by telephone, in written form, e-mail, or in person."
+         },
+         {
+            "id" : "4.A.2.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.b.3",
+            "name" : "Updating and Using Relevant Knowledge",
+            "description" : "Keeping up-to-date technically and applying new knowledge to your job."
+         },
+         {
+            "id" : "4.A.2.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.b.1",
+            "name" : "Making Decisions and Solving Problems",
+            "description" : "Analyzing information and evaluating results to choose the best solution and solve problems."
+         },
+         {
+            "id" : "4.A.4.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.4.a.4",
+            "name" : "Establishing and Maintaining Interpersonal Relationships",
+            "description" : "Developing constructive and cooperative working relationships with others, and maintaining them over time."
+         },
+         {
+            "id" : "4.A.1.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.1.b.1",
+            "name" : "Identifying Objects, Actions, and Events",
+            "description" : "Identifying information by categorizing, estimating, recognizing differences or similarities, and detecting changes in circumstances or events."
+         },
+         {
+            "id" : "4.A.3.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.3.b.6",
+            "name" : "Documenting/Recording Information",
+            "description" : "Entering, transcribing, recording, storing, or maintaining information in written or electronic/magnetic form."
+         },
+         {
+            "id" : "4.A.4.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.4.a.3",
+            "name" : "Communicating with Persons Outside Organization",
+            "description" : "Communicating with people outside the organization, representing the organization to customers, the public, government, and other external sources. This information can be exchanged in person, in writing, or by telephone or e-mail."
+         },
+         {
+            "id" : "4.A.4.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.4.a.1",
+            "name" : "Interpreting the Meaning of Information for Others",
+            "description" : "Translating or explaining what information means and how it can be used."
+         },
+         {
+            "id" : "4.A.4.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.4.c.1",
+            "name" : "Performing Administrative Activities",
+            "description" : "Performing day-to-day administrative tasks such as maintaining information files and processing paperwork."
+         },
+         {
+            "id" : "4.A.4.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.4.b.1",
+            "name" : "Coordinating the Work and Activities of Others",
+            "description" : "Getting members of a group to work together to accomplish tasks."
+         },
+         {
+            "id" : "4.A.2.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.b.5",
+            "name" : "Scheduling Work and Activities",
+            "description" : "Scheduling events, programs, and activities, as well as the work of others."
+         },
+         {
+            "id" : "4.A.2.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_activities/4.A.2.b.2",
+            "name" : "Thinking Creatively",
+            "description" : "Developing, designing, or creating new applications, ideas, relationships, systems, or products, including artistic contributions."
+         }
+      ]
+   },
+   "detailed_work_activities" : {
+      "activity" : [
+         {
+            "id" : "4.A.2.a.3.I03.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.a.3.I03.D03",
+            "name" : "Examine financial records or processes."
+         },
+         {
+            "id" : "4.A.2.a.4.I11.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.a.4.I11.D04",
+            "name" : "Analyze business or financial data."
+         },
+         {
+            "id" : "4.A.2.a.3.I03.D02",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.a.3.I03.D02",
+            "name" : "Examine financial records."
+         },
+         {
+            "id" : "4.A.1.b.3.I03.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.1.b.3.I03.D03",
+            "name" : "Calculate tax information."
+         },
+         {
+            "id" : "4.A.3.b.6.I01.D02",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.3.b.6.I01.D02",
+            "name" : "Prepare financial documents, reports, or budgets."
+         },
+         {
+            "id" : "4.A.4.a.2.I03.D10",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.4.a.2.I03.D10",
+            "name" : "Report information to managers or other personnel."
+         },
+         {
+            "id" : "4.A.3.b.6.I08.D14",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.3.b.6.I08.D14",
+            "name" : "Maintain data in information systems or databases."
+         },
+         {
+            "id" : "4.A.2.b.4.I03.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.b.4.I03.D04",
+            "name" : "Develop business or financial information systems."
+         },
+         {
+            "id" : "4.A.3.b.6.I01.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.3.b.6.I01.D01",
+            "name" : "Prepare financial documents."
+         },
+         {
+            "id" : "4.A.4.b.6.I05.D08",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.4.b.6.I05.D08",
+            "name" : "Advise others on human resources topics."
+         },
+         {
+            "id" : "4.A.2.a.4.I11.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.a.4.I11.D01",
+            "name" : "Analyze budgetary or accounting data."
+         },
+         {
+            "id" : "4.A.4.b.6.I11.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.4.b.6.I11.D03",
+            "name" : "Advise others on financial matters."
+         },
+         {
+            "id" : "4.A.4.b.4.I01.D13",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.4.b.4.I01.D13",
+            "name" : "Supervise employees."
+         },
+         {
+            "id" : "4.A.2.a.1.I09.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.a.1.I09.D03",
+            "name" : "Appraise property values."
+         },
+         {
+            "id" : "4.A.2.a.1.I09.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.2.a.1.I09.D01",
+            "name" : "Evaluate condition of properties."
+         },
+         {
+            "id" : "4.A.4.c.3.I07.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.4.c.3.I07.D04",
+            "name" : "Monitor inventories of products or materials."
+         },
+         {
+            "id" : "4.A.1.b.1.I02.D06",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/detailed_work_activities/4.A.1.b.1.I02.D06",
+            "name" : "Identify opportunities to improve operational efficiency."
+         }
+      ]
+   },
+   "work_context" : {
+      "element" : [
+         {
+            "id" : "4.C.3.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.b.4",
+            "name" : "Importance of Being Exact or Accurate",
+            "description" : "How important is being very exact or highly accurate in performing this job?",
+            "response" : [
+               {
+                  "percentage" : 81,
+                  "name" : "Extremely important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.a.2.f",
+            "name" : "Telephone",
+            "description" : "How often do you have telephone conversations in this job?",
+            "response" : [
+               {
+                  "percentage" : 81,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.h",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.a.2.h",
+            "name" : "Electronic Mail",
+            "description" : "How often do you use electronic mail in this job?",
+            "response" : [
+               {
+                  "percentage" : 78,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.b.7",
+            "name" : "Importance of Repeating Same Tasks",
+            "description" : "How important is repeating the same physical activities (e.g., key entry) or mental activities (e.g., checking entries in a ledger) over and over, without stopping, to performing this job?",
+            "response" : [
+               {
+                  "percentage" : 79,
+                  "name" : "Extremely important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.a.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.2.a.1.a",
+            "name" : "Indoors, Environmentally Controlled",
+            "description" : "How often does this job require working indoors in environmentally controlled conditions?",
+            "response" : [
+               {
+                  "percentage" : 91,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.b.8",
+            "name" : "Structured versus Unstructured Work",
+            "description" : "To what extent is this job structured for the worker, rather than allowing the worker to determine tasks, priorities, and goals?",
+            "response" : [
+               {
+                  "percentage" : 71,
+                  "name" : "A lot of freedom"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.d.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.2.d.1.a",
+            "name" : "Spend Time Sitting",
+            "description" : "How much does this job require sitting?",
+            "response" : [
+               {
+                  "percentage" : 73,
+                  "name" : "Continually or almost continually"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.l",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.a.2.l",
+            "name" : "Face-to-Face Discussions",
+            "description" : "How often do you have to have face-to-face discussions with individuals or teams in this job?",
+            "response" : [
+               {
+                  "percentage" : 49,
+                  "name" : "Once a week or more but not every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.a.4",
+            "name" : "Freedom to Make Decisions",
+            "description" : "How much decision making freedom, without supervision, does the job offer?",
+            "response" : [
+               {
+                  "percentage" : 42,
+                  "name" : "Some freedom"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.b.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.b.1.e",
+            "name" : "Work With Work Group or Team",
+            "description" : "How important is it to work with others in a group or team in this job?",
+            "response" : [
+               {
+                  "percentage" : 45,
+                  "name" : "Extremely important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.a.4",
+            "name" : "Contact With Others",
+            "description" : "How much does this job require the worker to be in contact with others (face-to-face, by telephone, or otherwise) in order to perform it?",
+            "response" : [
+               {
+                  "percentage" : 42,
+                  "name" : "Contact with others most of the time"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.a.2.b",
+            "name" : "Frequency of Decision Making",
+            "description" : "How frequently is the worker required to make decisions that affect other people, the financial resources, and/or the image and reputation of the organization?",
+            "response" : [
+               {
+                  "percentage" : 36,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.a.2.a",
+            "name" : "Impact of Decisions on Co-workers or Company Results",
+            "description" : "What results do your decisions usually have on other people or the image or reputation or financial resources of your employer?",
+            "response" : [
+               {
+                  "percentage" : 36,
+                  "name" : "Important results"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.j",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.a.2.j",
+            "name" : "Letters and Memos",
+            "description" : "How often does the job require written letters and memos?",
+            "response" : [
+               {
+                  "percentage" : 43,
+                  "name" : "Once a week or more but not every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.d.1",
+            "name" : "Time Pressure",
+            "description" : "How often does this job require the worker to meet strict deadlines?",
+            "response" : [
+               {
+                  "percentage" : 49,
+                  "name" : "Once a month or more but not every week"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.d.8",
+            "name" : "Duration of Typical Work Week",
+            "description" : "Number of hours typically worked in one week.",
+            "response" : [
+               {
+                  "percentage" : 48,
+                  "name" : "40 hours"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.d.1.i",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.2.d.1.i",
+            "name" : "Spend Time Making Repetitive Motions",
+            "description" : "How much does this job require making repetitive motions?",
+            "response" : [
+               {
+                  "percentage" : 28,
+                  "name" : "More than half the time"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.b.2",
+            "name" : "Degree of Automation",
+            "description" : "How automated is the job?",
+            "response" : [
+               {
+                  "percentage" : 41,
+                  "name" : "Highly automated"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.b.1.g",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.b.1.g",
+            "name" : "Coordinate or Lead Others",
+            "description" : "How important is it to coordinate or lead others in accomplishing work activities in this job?",
+            "response" : [
+               {
+                  "percentage" : 36,
+                  "name" : "Important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.3.c.1",
+            "name" : "Level of Competition",
+            "description" : "To what extent does this job require the worker to compete or to be aware of competitive pressures?",
+            "response" : [
+               {
+                  "percentage" : 32,
+                  "name" : "Moderately competitive"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.c.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_context/4.C.1.c.2",
+            "name" : "Responsibility for Outcomes and Results",
+            "description" : "How responsible is the worker for work outcomes and results of other workers?",
+            "response" : [
+               {
+                  "percentage" : 31,
+                  "name" : "High responsibility"
+               }
+            ]
+         }
+      ]
+   },
+   "job_zone" : {
+      "value" : 4,
+      "title" : "Job Zone Four: Considerable Preparation Needed",
+      "education" : "Most of these occupations require a four-year bachelor's degree, but some do not.",
+      "related_experience" : "A considerable amount of work-related skill, knowledge, or experience is needed for these occupations. For example, an accountant must complete four years of college and work for several years in accounting to be considered qualified.",
+      "job_training" : "Employees in these occupations usually need several years of work-related experience, on-the-job training, and/or vocational training.",
+      "job_zone_examples" : "Many of these occupations involve coordinating, supervising, managing, or training others. Examples include accountants, sales managers, database administrators, graphic designers, chemists, art directors, and cost estimators.",
+      "svp_range" : "(7.0 to < 8.0)"
+   },
+   "education" : {
+      "level_required" : {
+         "category" : [
+            {
+               "name" : "Bachelor's degree",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 79
+               }
+            },
+            {
+               "name" : "Associate's degree",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 5
+               }
+            },
+            {
+               "name" : "Master's degree",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 5
+               }
+            }
+         ]
+      }
+   },
+   "interests" : {
+      "high_point_code" : "CE",
+      "element" : [
+         {
+            "id" : "1.B.1.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/interests/1.B.1.f",
+            "name" : "Conventional",
+            "description" : "Conventional occupations frequently involve following set procedures and routines. These occupations can include working with data and details more than with ideas. Usually there is a clear line of authority to follow."
+         },
+         {
+            "id" : "1.B.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/interests/1.B.1.e",
+            "name" : "Enterprising",
+            "description" : "Enterprising occupations frequently involve starting up and carrying out projects. These occupations can involve leading people and making many decisions. Sometimes they require risk taking and often deal with business."
+         }
+      ]
+   },
+   "work_styles" : {
+      "element" : [
+         {
+            "id" : "1.C.5.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.5.b",
+            "name" : "Attention to Detail",
+            "description" : "Job requires being careful about detail and thorough in completing work tasks."
+         },
+         {
+            "id" : "1.C.5.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.5.c",
+            "name" : "Integrity",
+            "description" : "Job requires being honest and ethical."
+         },
+         {
+            "id" : "1.C.5.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.5.a",
+            "name" : "Dependability",
+            "description" : "Job requires being reliable, responsible, and dependable, and fulfilling obligations."
+         },
+         {
+            "id" : "1.C.7.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.7.b",
+            "name" : "Analytical Thinking",
+            "description" : "Job requires analyzing information and using logic to address work-related issues and problems."
+         },
+         {
+            "id" : "1.C.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.1.a",
+            "name" : "Achievement/Effort",
+            "description" : "Job requires establishing and maintaining personally challenging achievement goals and exerting effort toward mastering tasks."
+         },
+         {
+            "id" : "1.C.3.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.3.a",
+            "name" : "Cooperation",
+            "description" : "Job requires being pleasant with others on the job and displaying a good-natured, cooperative attitude."
+         },
+         {
+            "id" : "1.C.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.1.c",
+            "name" : "Initiative",
+            "description" : "Job requires a willingness to take on responsibilities and challenges."
+         },
+         {
+            "id" : "1.C.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.6",
+            "name" : "Independence",
+            "description" : "Job requires developing one's own ways of doing things, guiding oneself with little or no supervision, and depending on oneself to get things done."
+         },
+         {
+            "id" : "1.C.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.1.b",
+            "name" : "Persistence",
+            "description" : "Job requires persistence in the face of obstacles."
+         },
+         {
+            "id" : "1.C.4.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.4.b",
+            "name" : "Stress Tolerance",
+            "description" : "Job requires accepting criticism and dealing calmly and effectively with high stress situations."
+         },
+         {
+            "id" : "1.C.4.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.4.a",
+            "name" : "Self Control",
+            "description" : "Job requires maintaining composure, keeping emotions in check, controlling anger, and avoiding aggressive behavior, even in very difficult situations."
+         },
+         {
+            "id" : "1.C.4.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.4.c",
+            "name" : "Adaptability/Flexibility",
+            "description" : "Job requires being open to change (positive or negative) and to considerable variety in the workplace."
+         },
+         {
+            "id" : "1.C.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.2.b",
+            "name" : "Leadership",
+            "description" : "Job requires a willingness to lead, take charge, and offer opinions and direction."
+         },
+         {
+            "id" : "1.C.3.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.3.b",
+            "name" : "Concern for Others",
+            "description" : "Job requires being sensitive to others' needs and feelings and being understanding and helpful on the job."
+         },
+         {
+            "id" : "1.C.7.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.7.a",
+            "name" : "Innovation",
+            "description" : "Job requires creativity and alternative thinking to develop new ideas for and answers to work-related problems."
+         },
+         {
+            "id" : "1.C.3.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_styles/1.C.3.c",
+            "name" : "Social Orientation",
+            "description" : "Job requires preferring to work with others rather than alone, and being personally connected with others on the job."
+         }
+      ]
+   },
+   "work_values" : {
+      "element" : [
+         {
+            "id" : "1.B.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_values/1.B.2.a",
+            "name" : "Achievement",
+            "description" : "Occupations that satisfy this work value are results oriented and allow employees to use their strongest abilities, giving them a feeling of accomplishment. Corresponding needs are Ability Utilization and Achievement."
+         },
+         {
+            "id" : "1.B.2.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_values/1.B.2.f",
+            "name" : "Independence",
+            "description" : "Occupations that satisfy this work value allow employees to work on their own and make decisions. Corresponding needs are Creativity, Responsibility and Autonomy."
+         },
+         {
+            "id" : "1.B.2.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-2011.01/related/work_values/1.B.2.e",
+            "name" : "Support",
+            "description" : "Occupations that satisfy this work value offer supportive management that stands behind employees. Corresponding needs are Company Policies, Supervision: Human Relations and Supervision: Technical."
+         }
+      ]
+   },
+   "related_occupations" : {
+      "occupation" : [
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/11-3111.00/",
+            "code" : "11-3111.00",
+            "title" : "Compensation and Benefits Managers",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-1141.00/",
+            "code" : "13-1141.00",
+            "title" : "Compensation, Benefits, and Job Analysis Specialists",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2011.02/",
+            "code" : "13-2011.02",
+            "title" : "Auditors",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2031.00/",
+            "code" : "13-2031.00",
+            "title" : "Budget Analysts",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2041.00/",
+            "code" : "13-2041.00",
+            "title" : "Credit Analysts",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2051.00/",
+            "code" : "13-2051.00",
+            "title" : "Financial Analysts",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : true
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2052.00/",
+            "code" : "13-2052.00",
+            "title" : "Personal Financial Advisors",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : true
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2053.00/",
+            "code" : "13-2053.00",
+            "title" : "Insurance Underwriters",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2099.02/",
+            "code" : "13-2099.02",
+            "title" : "Risk Management Specialists",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : true
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/43-3031.00/",
+            "code" : "43-3031.00",
+            "title" : "Bookkeeping, Accounting, and Auditing Clerks",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         }
+      ]
+   },
+   "additional_information" : {
+      "source" : [
+         {
+            "url" : "http://aaahq.org/",
+            "name" : "American Accounting Association"
+         },
+         {
+            "url" : "https://www.aicpa.org/",
+            "name" : "American Institute of CPAs"
+         },
+         {
+            "url" : "https://www.gfoa.org/",
+            "name" : "Government Finance Officers Association"
+         },
+         {
+            "url" : "https://www.ipt.org/",
+            "name" : "Institute for Professionals in Taxation"
+         },
+         {
+            "url" : "https://www.imanet.org/",
+            "name" : "Institute of Management Accountants"
+         },
+         {
+            "url" : "http://www.nsacct.org/",
+            "name" : "National Society of Accountants"
+         },
+         {
+            "url" : "https://www.bls.gov/OOH/business-and-financial/accountants-and-auditors.htm",
+            "name" : "Occupational Outlook Handbook: Accountants and auditors"
+         }
+      ]
+   }
+}

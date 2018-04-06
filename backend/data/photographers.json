@@ -1,0 +1,2899 @@
+{
+   "code" : "27-4021.00",
+   "display" : "long",
+   "occupation" : {
+      "code" : "27-4021.00",
+      "title" : "Photographers",
+      "tags" : {
+         "bright_outlook" : false,
+         "green" : false
+      },
+      "description" : "Photograph people, landscapes, merchandise, or other subjects, using digital or film cameras and equipment. May develop negatives or use computer software to produce finished images and prints. Includes scientific photographers, aerial photographers, and photojournalists.",
+      "sample_of_reported_job_titles" : {
+         "title" : [
+            "Advertising Photographer",
+            "Commercial Photographer",
+            "Newspaper Photographer",
+            "Owner/Photographer",
+            "Photo Editor",
+            "Photographer",
+            "Photojournalist",
+            "Portrait Photographer",
+            "Sports Photographer",
+            "Studio Owner"
+         ]
+      },
+      "updated" : {
+         "partial" : false,
+         "year" : 2017,
+         "resource_updated" : [
+            {
+               "title" : "Abilities",
+               "source" : "Analyst",
+               "year" : 2014
+            },
+            {
+               "title" : "Alternate Titles",
+               "source" : "Multiple sources",
+               "year" : 2016
+            },
+            {
+               "title" : "Detailed Work Activities",
+               "source" : "Analyst",
+               "year" : 2014
+            },
+            {
+               "title" : "Education",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Interests",
+               "source" : "Analyst",
+               "year" : 2008
+            },
+            {
+               "title" : "Job Zone",
+               "source" : "Analyst",
+               "year" : 2014
+            },
+            {
+               "title" : "Knowledge",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Sample of Reported Titles",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Skills",
+               "source" : "Analyst",
+               "year" : 2014
+            },
+            {
+               "title" : "Tasks",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Tools & Technology",
+               "source" : "Employer Job Postings",
+               "year" : 2017
+            },
+            {
+               "title" : "Work Activities",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Work Context",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Work Needs",
+               "source" : "Analyst",
+               "year" : 2006
+            },
+            {
+               "title" : "Work Styles",
+               "source" : "Occupational Expert",
+               "year" : 2014
+            },
+            {
+               "title" : "Work Values",
+               "source" : "Analyst",
+               "year" : 2008
+            }
+         ]
+      },
+      "summary_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/tasks",
+               "title" : "Tasks"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/technology_skills",
+               "title" : "Technology Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/tools_used",
+               "title" : "Tools Used"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/tools_technology",
+               "title" : "Tools &amp; Technology"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/knowledge",
+               "title" : "Knowledge"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/skills",
+               "title" : "Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/abilities",
+               "title" : "Abilities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/work_activities",
+               "title" : "Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/detailed_work_activities",
+               "title" : "Detailed Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/work_context",
+               "title" : "Work Context"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/job_zone",
+               "title" : "Job Zone"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/education",
+               "title" : "Education"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/interests",
+               "title" : "Interests"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/work_styles",
+               "title" : "Work Styles"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/work_values",
+               "title" : "Work Values"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/related_occupations",
+               "title" : "Related Occupations"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/summary/additional_information",
+               "title" : "Sources of Additional Information"
+            }
+         ]
+      },
+      "details_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/tasks",
+               "title" : "Tasks"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/technology_skills",
+               "title" : "Technology Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/tools_used",
+               "title" : "Tools Used"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/tools_technology",
+               "title" : "Tools &amp; Technology"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/knowledge",
+               "title" : "Knowledge"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/skills",
+               "title" : "Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/abilities",
+               "title" : "Abilities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/work_activities",
+               "title" : "Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/detailed_work_activities",
+               "title" : "Detailed Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/work_context",
+               "title" : "Work Context"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/job_zone",
+               "title" : "Job Zone"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/education",
+               "title" : "Education"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/interests",
+               "title" : "Interests"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/work_styles",
+               "title" : "Work Styles"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/work_values",
+               "title" : "Work Values"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/related_occupations",
+               "title" : "Related Occupations"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/details/additional_information",
+               "title" : "Sources of Additional Information"
+            }
+         ]
+      },
+      "custom_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/custom/work_activities_outline",
+               "title" : "Work Activities Outline"
+            }
+         ]
+      }
+   },
+   "tasks" : {
+      "task" : [
+         {
+            "id" : 9345,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9345",
+            "name" : "Use traditional or digital cameras, along with a variety of equipment such as tripods, filters, and flash attachments."
+         },
+         {
+            "id" : 9347,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9347",
+            "name" : "Determine desired images and picture composition, selecting and adjusting subjects, equipment, and lighting to achieve desired effects."
+         },
+         {
+            "id" : 9344,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9344",
+            "name" : "Adjust apertures, shutter speeds, and camera focus based on a combination of factors such as lighting, field depth, subject motion, film type, and film speed."
+         },
+         {
+            "id" : 9346,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9346",
+            "name" : "Create artificial light, using flashes and reflectors."
+         },
+         {
+            "id" : 9352,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9352",
+            "name" : "Manipulate and enhance scanned or digital images to create desired effects, using computers and specialized software."
+         },
+         {
+            "id" : 20558,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/20558",
+            "name" : "Transfer photographs to computers for editing, archiving, and electronic transmission."
+         },
+         {
+            "id" : 9355,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9355",
+            "name" : "Determine project goals, locations, and equipment needs by studying assignments and consulting with clients or advertising staff."
+         },
+         {
+            "id" : 9350,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9350",
+            "name" : "Review sets of photographs to select the best work."
+         },
+         {
+            "id" : 9354,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9354",
+            "name" : "Perform general office duties such as scheduling appointments, keeping books, and ordering supplies."
+         },
+         {
+            "id" : 9351,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9351",
+            "name" : "Estimate or measure light levels, distances, and numbers of exposures needed, using measuring devices and formulas."
+         },
+         {
+            "id" : 9349,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9349",
+            "name" : "Test equipment prior to use to ensure that it is in good working order."
+         },
+         {
+            "id" : 9358,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9358",
+            "name" : "Set up, mount, or install photographic equipment and cameras."
+         },
+         {
+            "id" : 9356,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9356",
+            "name" : "Select and assemble equipment and required background properties, according to subjects, materials, and conditions."
+         },
+         {
+            "id" : 9343,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9343",
+            "name" : "Take pictures of individuals, families, and small groups, either in studio or on location."
+         },
+         {
+            "id" : 9361,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9361",
+            "name" : "Direct activities of workers who are setting up photographic equipment."
+         },
+         {
+            "id" : 9353,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9353",
+            "name" : "Perform maintenance tasks necessary to keep equipment working properly."
+         },
+         {
+            "id" : 9360,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9360",
+            "name" : "Produce computer-readable, digital images from film, using flatbed scanners and photofinishing laboratories."
+         },
+         {
+            "id" : 20559,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/20559",
+            "name" : "Develop and print exposed film, using chemicals, touchup tools, and developing and printing equipment."
+         },
+         {
+            "id" : 9357,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9357",
+            "name" : "Enhance, retouch, and resize photographs and negatives, using airbrushing and other techniques."
+         },
+         {
+            "id" : 9366,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9366",
+            "name" : "Develop visual aids and charts for use in lectures or to present evidence in court."
+         },
+         {
+            "id" : 9365,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9365",
+            "name" : "Load and unload film."
+         },
+         {
+            "id" : 9362,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9362",
+            "name" : "Employ a variety of specialized photographic materials and techniques, including infrared and ultraviolet films, macro photography, photogrammetry and sensitometry."
+         },
+         {
+            "id" : 9363,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/9363",
+            "name" : "Engage in research to develop new photographic procedures and materials."
+         },
+         {
+            "id" : 20560,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tasks/20560",
+            "name" : "Write photograph captions."
+         }
+      ]
+   },
+   "technology_skills" : {
+      "category" : [
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232306",
+            "title" : {
+               "id" : 43232306,
+               "name" : "Data base user interface and query software"
+            },
+            "example" : [
+               {
+                  "name" : "Cradoc fotoBiz"
+               },
+               {
+                  "hot_technology" : 30,
+                  "name" : "Microsoft Access"
+               },
+               {
+                  "name" : "SuccessWare"
+               },
+               {
+                  "name" : "Tave Studio Manager"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43231601",
+            "title" : {
+               "id" : 43231601,
+               "name" : "Accounting software"
+            },
+            "example" : [
+               {
+                  "name" : "Blinkbid"
+               },
+               {
+                  "hot_technology" : 36,
+                  "name" : "Intuit QuickBooks"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232102",
+            "title" : {
+               "id" : 43232102,
+               "name" : "Graphics or photo imaging software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 20,
+                  "name" : "Adobe Systems Adobe Photoshop"
+               },
+               {
+                  "name" : "Adobe Systems Adobe Photoshop Lightroom"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232103",
+            "title" : {
+               "id" : 43232103,
+               "name" : "Video creation and editing software"
+            },
+            "example" : [
+               {
+                  "name" : "Adobe Systems Adobe After Effects"
+               },
+               {
+                  "hot_technology" : 117,
+                  "name" : "Adobe Systems Adobe AfterEffects"
+               },
+               {
+                  "hot_technology" : 118,
+                  "name" : "Apple Final Cut Pro"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232107",
+            "title" : {
+               "id" : 43232107,
+               "name" : "Web page creation and editing software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 159,
+                  "name" : "Facebook"
+               },
+               {
+                  "name" : "WordPress"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232110",
+            "title" : {
+               "id" : 43232110,
+               "name" : "Spreadsheet software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 1,
+                  "name" : "Microsoft Excel"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43233501",
+            "title" : {
+               "id" : 43233501,
+               "name" : "Electronic mail software"
+            },
+            "example" : [
+               {
+                  "name" : "Email software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232202",
+            "title" : {
+               "id" : 43232202,
+               "name" : "Document management software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 29,
+                  "name" : "Adobe Systems Adobe Acrobat"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232402",
+            "title" : {
+               "id" : 43232402,
+               "name" : "Development environment software"
+            },
+            "example" : [
+               {
+                  "name" : "Adobe Systems Adobe Creative Suite"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232112",
+            "title" : {
+               "id" : 43232112,
+               "name" : "Desktop publishing software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 39,
+                  "name" : "Adobe Systems Adobe InDesign"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232104",
+            "title" : {
+               "id" : 43232104,
+               "name" : "Word processing software"
+            },
+            "example" : [
+               {
+                  "name" : "Microsoft Word"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43233504",
+            "title" : {
+               "id" : 43233504,
+               "name" : "Instant messaging software"
+            },
+            "example" : [
+               {
+                  "name" : "Twitter"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232705",
+            "title" : {
+               "id" : 43232705,
+               "name" : "Internet browser software"
+            },
+            "example" : [
+               {
+                  "name" : "Web browser software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232108",
+            "title" : {
+               "id" : 43232108,
+               "name" : "Calendar and scheduling software"
+            },
+            "example" : [
+               {
+                  "name" : "Genbook"
+               }
+            ]
+         }
+      ]
+   },
+   "tools_used" : {
+      "category" : [
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121628",
+            "title" : {
+               "id" : 45121628,
+               "name" : "Camera lens filter"
+            },
+            "example" : [
+               {
+                  "name" : "Graduated neutral density GND filters"
+               },
+               {
+                  "name" : "Haze filters"
+               },
+               {
+                  "name" : "White balancing lens filters"
+               },
+               {
+                  "name" : "Wide angle lenses"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121601",
+            "title" : {
+               "id" : 45121601,
+               "name" : "Camera flashes or lighting"
+            },
+            "example" : [
+               {
+                  "name" : "Camera flash attachments"
+               },
+               {
+                  "name" : "Focus assists"
+               },
+               {
+                  "name" : "Softboxes"
+               },
+               {
+                  "name" : "Studio strobe flashes"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121603",
+            "title" : {
+               "id" : 45121603,
+               "name" : "Camera lens"
+            },
+            "example" : [
+               {
+                  "name" : "Macro lenses"
+               },
+               {
+                  "name" : "Telephoto lenses"
+               },
+               {
+                  "name" : "Zoom lenses"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121624",
+            "title" : {
+               "id" : 45121624,
+               "name" : "Photography light reflector"
+            },
+            "example" : [
+               {
+                  "name" : "Board reflectors"
+               },
+               {
+                  "name" : "Lamp reflectors"
+               },
+               {
+                  "name" : "Snoots"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211711",
+            "title" : {
+               "id" : 43211711,
+               "name" : "Scanners"
+            },
+            "example" : [
+               {
+                  "name" : "Film scanners"
+               },
+               {
+                  "name" : "Flatbed scanners"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212105",
+            "title" : {
+               "id" : 43212105,
+               "name" : "Laser printers"
+            },
+            "example" : [
+               {
+                  "name" : "Computer laser printers"
+               },
+               {
+                  "name" : "Large format printers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121716",
+            "title" : {
+               "id" : 45121716,
+               "name" : "Contact printer"
+            },
+            "example" : [
+               {
+                  "name" : "Contact print frames"
+               },
+               {
+                  "name" : "Negative proofers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/41115308",
+            "title" : {
+               "id" : 41115308,
+               "name" : "Lightmeters"
+            },
+            "example" : [
+               {
+                  "name" : "Incident light meters"
+               },
+               {
+                  "name" : "Reflected light meters"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45141610",
+            "title" : {
+               "id" : 45141610,
+               "name" : "Photographic timer"
+            },
+            "example" : [
+               {
+                  "name" : "Darkroom timers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/39112201",
+            "title" : {
+               "id" : 39112201,
+               "name" : "Atmospheric effect apparatus"
+            },
+            "example" : [
+               {
+                  "name" : "Fog machines"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/39112401",
+            "title" : {
+               "id" : 39112401,
+               "name" : "Dimmers and accessories"
+            },
+            "example" : [
+               {
+                  "name" : "Dimmers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121501",
+            "title" : {
+               "id" : 45121501,
+               "name" : "Still cameras"
+            },
+            "example" : [
+               {
+                  "name" : "Film cameras"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121701",
+            "title" : {
+               "id" : 45121701,
+               "name" : "Film driers"
+            },
+            "example" : [
+               {
+                  "name" : "Film drying cabinets"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121631",
+            "title" : {
+               "id" : 45121631,
+               "name" : "Electronic viewfinder"
+            },
+            "example" : [
+               {
+                  "name" : "Optical viewfinders"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/39112202",
+            "title" : {
+               "id" : 39112202,
+               "name" : "Bubble machine"
+            },
+            "example" : [
+               {
+                  "name" : "Bubble machines"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121602",
+            "title" : {
+               "id" : 45121602,
+               "name" : "Camera tripods"
+            },
+            "example" : [
+               {
+                  "name" : "Camera positioning tripods"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121702",
+            "title" : {
+               "id" : 45121702,
+               "name" : "Film washers"
+            },
+            "example" : [
+               {
+                  "name" : "Force film washers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121622",
+            "title" : {
+               "id" : 45121622,
+               "name" : "Camera lens cleaners"
+            },
+            "example" : [
+               {
+                  "name" : "Camera cleaning brushes"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212103",
+            "title" : {
+               "id" : 43212103,
+               "name" : "Dye sublimination printers"
+            },
+            "example" : [
+               {
+                  "name" : "Dye sublimation printers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211503",
+            "title" : {
+               "id" : 43211503,
+               "name" : "Notebook computers"
+            },
+            "example" : [
+               {
+                  "name" : "Laptop computers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212113",
+            "title" : {
+               "id" : 43212113,
+               "name" : "Compact disc CD or labeling printers"
+            },
+            "example" : [
+               {
+                  "name" : "Optical media printers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/41112213",
+            "title" : {
+               "id" : 41112213,
+               "name" : "Handheld thermometer"
+            },
+            "example" : [
+               {
+                  "name" : "Darkroom thermometers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121613",
+            "title" : {
+               "id" : 45121613,
+               "name" : "Camera enclosures or covers"
+            },
+            "example" : [
+               {
+                  "name" : "Sound blimps"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121623",
+            "title" : {
+               "id" : 45121623,
+               "name" : "Camera controllers"
+            },
+            "example" : [
+               {
+                  "name" : "Wireless flash triggers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212104",
+            "title" : {
+               "id" : 43212104,
+               "name" : "Inkjet printers"
+            },
+            "example" : [
+               {
+                  "name" : "Computer inkjet printers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121504",
+            "title" : {
+               "id" : 45121504,
+               "name" : "Digital cameras"
+            },
+            "example" : [
+               {
+                  "name" : "Digital still cameras"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212114",
+            "title" : {
+               "id" : 43212114,
+               "name" : "Digital image printers"
+            },
+            "example" : [
+               {
+                  "name" : "Digital photo printers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/41111714",
+            "title" : {
+               "id" : 41111714,
+               "name" : "Loupes"
+            },
+            "example" : [
+               {
+                  "name" : "Magnifier loupes"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43202005",
+            "title" : {
+               "id" : 43202005,
+               "name" : "Flash memory storage card"
+            },
+            "example" : [
+               {
+                  "name" : "Flash memory data storage devices"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/44102405",
+            "title" : {
+               "id" : 44102405,
+               "name" : "Label making machines"
+            },
+            "example" : [
+               {
+                  "name" : "Label printers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121705",
+            "title" : {
+               "id" : 45121705,
+               "name" : "Photographic enlargers"
+            },
+            "example" : [
+               {
+                  "name" : "Image enlargers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211726",
+            "title" : {
+               "id" : 43211726,
+               "name" : "Digital pen"
+            },
+            "example" : [
+               {
+                  "name" : "Digital pens"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121707",
+            "title" : {
+               "id" : 45121707,
+               "name" : "Photo print dryer"
+            },
+            "example" : [
+               {
+                  "name" : "Electric print dryers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121708",
+            "title" : {
+               "id" : 45121708,
+               "name" : "Photo print washer"
+            },
+            "example" : [
+               {
+                  "name" : "Rapid photo print washers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/52161518",
+            "title" : {
+               "id" : 52161518,
+               "name" : "Global positioning system GPS receiver"
+            },
+            "example" : [
+               {
+                  "name" : "Global positioning system GPS devices"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43201409",
+            "title" : {
+               "id" : 43201409,
+               "name" : "Wireless network interface cards"
+            },
+            "example" : [
+               {
+                  "name" : "Mobile adapters"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45111609",
+            "title" : {
+               "id" : 45111609,
+               "name" : "Multimedia projectors"
+            },
+            "example" : [
+               {
+                  "name" : "Special effects projectors"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211712",
+            "title" : {
+               "id" : 43211712,
+               "name" : "Graphics tablets"
+            },
+            "example" : []
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211508",
+            "title" : {
+               "id" : 43211508,
+               "name" : "Personal computers"
+            },
+            "example" : []
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211509",
+            "title" : {
+               "id" : 43211509,
+               "name" : "Tablet computers"
+            },
+            "example" : []
+         }
+      ]
+   },
+   "tools_technology" : {
+      "tools" : {
+         "category" : [
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121628",
+               "title" : {
+                  "id" : 45121628,
+                  "name" : "Camera lens filter"
+               },
+               "example" : [
+                  {
+                     "name" : "Graduated neutral density GND filters"
+                  },
+                  {
+                     "name" : "Haze filters"
+                  },
+                  {
+                     "name" : "White balancing lens filters"
+                  },
+                  {
+                     "name" : "Wide angle lenses"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121601",
+               "title" : {
+                  "id" : 45121601,
+                  "name" : "Camera flashes or lighting"
+               },
+               "example" : [
+                  {
+                     "name" : "Camera flash attachments"
+                  },
+                  {
+                     "name" : "Focus assists"
+                  },
+                  {
+                     "name" : "Softboxes"
+                  },
+                  {
+                     "name" : "Studio strobe flashes"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121603",
+               "title" : {
+                  "id" : 45121603,
+                  "name" : "Camera lens"
+               },
+               "example" : [
+                  {
+                     "name" : "Macro lenses"
+                  },
+                  {
+                     "name" : "Telephoto lenses"
+                  },
+                  {
+                     "name" : "Zoom lenses"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121624",
+               "title" : {
+                  "id" : 45121624,
+                  "name" : "Photography light reflector"
+               },
+               "example" : [
+                  {
+                     "name" : "Board reflectors"
+                  },
+                  {
+                     "name" : "Lamp reflectors"
+                  },
+                  {
+                     "name" : "Snoots"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211711",
+               "title" : {
+                  "id" : 43211711,
+                  "name" : "Scanners"
+               },
+               "example" : [
+                  {
+                     "name" : "Film scanners"
+                  },
+                  {
+                     "name" : "Flatbed scanners"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212105",
+               "title" : {
+                  "id" : 43212105,
+                  "name" : "Laser printers"
+               },
+               "example" : [
+                  {
+                     "name" : "Computer laser printers"
+                  },
+                  {
+                     "name" : "Large format printers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121716",
+               "title" : {
+                  "id" : 45121716,
+                  "name" : "Contact printer"
+               },
+               "example" : [
+                  {
+                     "name" : "Contact print frames"
+                  },
+                  {
+                     "name" : "Negative proofers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/41115308",
+               "title" : {
+                  "id" : 41115308,
+                  "name" : "Lightmeters"
+               },
+               "example" : [
+                  {
+                     "name" : "Incident light meters"
+                  },
+                  {
+                     "name" : "Reflected light meters"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45141610",
+               "title" : {
+                  "id" : 45141610,
+                  "name" : "Photographic timer"
+               },
+               "example" : [
+                  {
+                     "name" : "Darkroom timers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/39112201",
+               "title" : {
+                  "id" : 39112201,
+                  "name" : "Atmospheric effect apparatus"
+               },
+               "example" : [
+                  {
+                     "name" : "Fog machines"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/39112401",
+               "title" : {
+                  "id" : 39112401,
+                  "name" : "Dimmers and accessories"
+               },
+               "example" : [
+                  {
+                     "name" : "Dimmers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121501",
+               "title" : {
+                  "id" : 45121501,
+                  "name" : "Still cameras"
+               },
+               "example" : [
+                  {
+                     "name" : "Film cameras"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121701",
+               "title" : {
+                  "id" : 45121701,
+                  "name" : "Film driers"
+               },
+               "example" : [
+                  {
+                     "name" : "Film drying cabinets"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121631",
+               "title" : {
+                  "id" : 45121631,
+                  "name" : "Electronic viewfinder"
+               },
+               "example" : [
+                  {
+                     "name" : "Optical viewfinders"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/39112202",
+               "title" : {
+                  "id" : 39112202,
+                  "name" : "Bubble machine"
+               },
+               "example" : [
+                  {
+                     "name" : "Bubble machines"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121602",
+               "title" : {
+                  "id" : 45121602,
+                  "name" : "Camera tripods"
+               },
+               "example" : [
+                  {
+                     "name" : "Camera positioning tripods"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121702",
+               "title" : {
+                  "id" : 45121702,
+                  "name" : "Film washers"
+               },
+               "example" : [
+                  {
+                     "name" : "Force film washers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121622",
+               "title" : {
+                  "id" : 45121622,
+                  "name" : "Camera lens cleaners"
+               },
+               "example" : [
+                  {
+                     "name" : "Camera cleaning brushes"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212103",
+               "title" : {
+                  "id" : 43212103,
+                  "name" : "Dye sublimination printers"
+               },
+               "example" : [
+                  {
+                     "name" : "Dye sublimation printers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211503",
+               "title" : {
+                  "id" : 43211503,
+                  "name" : "Notebook computers"
+               },
+               "example" : [
+                  {
+                     "name" : "Laptop computers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212113",
+               "title" : {
+                  "id" : 43212113,
+                  "name" : "Compact disc CD or labeling printers"
+               },
+               "example" : [
+                  {
+                     "name" : "Optical media printers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/41112213",
+               "title" : {
+                  "id" : 41112213,
+                  "name" : "Handheld thermometer"
+               },
+               "example" : [
+                  {
+                     "name" : "Darkroom thermometers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121613",
+               "title" : {
+                  "id" : 45121613,
+                  "name" : "Camera enclosures or covers"
+               },
+               "example" : [
+                  {
+                     "name" : "Sound blimps"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121623",
+               "title" : {
+                  "id" : 45121623,
+                  "name" : "Camera controllers"
+               },
+               "example" : [
+                  {
+                     "name" : "Wireless flash triggers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212104",
+               "title" : {
+                  "id" : 43212104,
+                  "name" : "Inkjet printers"
+               },
+               "example" : [
+                  {
+                     "name" : "Computer inkjet printers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121504",
+               "title" : {
+                  "id" : 45121504,
+                  "name" : "Digital cameras"
+               },
+               "example" : [
+                  {
+                     "name" : "Digital still cameras"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43212114",
+               "title" : {
+                  "id" : 43212114,
+                  "name" : "Digital image printers"
+               },
+               "example" : [
+                  {
+                     "name" : "Digital photo printers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/41111714",
+               "title" : {
+                  "id" : 41111714,
+                  "name" : "Loupes"
+               },
+               "example" : [
+                  {
+                     "name" : "Magnifier loupes"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43202005",
+               "title" : {
+                  "id" : 43202005,
+                  "name" : "Flash memory storage card"
+               },
+               "example" : [
+                  {
+                     "name" : "Flash memory data storage devices"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/44102405",
+               "title" : {
+                  "id" : 44102405,
+                  "name" : "Label making machines"
+               },
+               "example" : [
+                  {
+                     "name" : "Label printers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121705",
+               "title" : {
+                  "id" : 45121705,
+                  "name" : "Photographic enlargers"
+               },
+               "example" : [
+                  {
+                     "name" : "Image enlargers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211726",
+               "title" : {
+                  "id" : 43211726,
+                  "name" : "Digital pen"
+               },
+               "example" : [
+                  {
+                     "name" : "Digital pens"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121707",
+               "title" : {
+                  "id" : 45121707,
+                  "name" : "Photo print dryer"
+               },
+               "example" : [
+                  {
+                     "name" : "Electric print dryers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45121708",
+               "title" : {
+                  "id" : 45121708,
+                  "name" : "Photo print washer"
+               },
+               "example" : [
+                  {
+                     "name" : "Rapid photo print washers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/52161518",
+               "title" : {
+                  "id" : 52161518,
+                  "name" : "Global positioning system GPS receiver"
+               },
+               "example" : [
+                  {
+                     "name" : "Global positioning system GPS devices"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43201409",
+               "title" : {
+                  "id" : 43201409,
+                  "name" : "Wireless network interface cards"
+               },
+               "example" : [
+                  {
+                     "name" : "Mobile adapters"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/45111609",
+               "title" : {
+                  "id" : 45111609,
+                  "name" : "Multimedia projectors"
+               },
+               "example" : [
+                  {
+                     "name" : "Special effects projectors"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211712",
+               "title" : {
+                  "id" : 43211712,
+                  "name" : "Graphics tablets"
+               },
+               "example" : []
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211508",
+               "title" : {
+                  "id" : 43211508,
+                  "name" : "Personal computers"
+               },
+               "example" : []
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43211509",
+               "title" : {
+                  "id" : 43211509,
+                  "name" : "Tablet computers"
+               },
+               "example" : []
+            }
+         ]
+      },
+      "technology" : {
+         "category" : [
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232306",
+               "title" : {
+                  "id" : 43232306,
+                  "name" : "Data base user interface and query software"
+               },
+               "example" : [
+                  {
+                     "name" : "Cradoc fotoBiz"
+                  },
+                  {
+                     "hot_technology" : 30,
+                     "name" : "Microsoft Access"
+                  },
+                  {
+                     "name" : "SuccessWare"
+                  },
+                  {
+                     "name" : "Tave Studio Manager"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43231601",
+               "title" : {
+                  "id" : 43231601,
+                  "name" : "Accounting software"
+               },
+               "example" : [
+                  {
+                     "name" : "Blinkbid"
+                  },
+                  {
+                     "hot_technology" : 36,
+                     "name" : "Intuit QuickBooks"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232102",
+               "title" : {
+                  "id" : 43232102,
+                  "name" : "Graphics or photo imaging software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 20,
+                     "name" : "Adobe Systems Adobe Photoshop"
+                  },
+                  {
+                     "name" : "Adobe Systems Adobe Photoshop Lightroom"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232103",
+               "title" : {
+                  "id" : 43232103,
+                  "name" : "Video creation and editing software"
+               },
+               "example" : [
+                  {
+                     "name" : "Adobe Systems Adobe After Effects"
+                  },
+                  {
+                     "hot_technology" : 117,
+                     "name" : "Adobe Systems Adobe AfterEffects"
+                  },
+                  {
+                     "hot_technology" : 118,
+                     "name" : "Apple Final Cut Pro"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232107",
+               "title" : {
+                  "id" : 43232107,
+                  "name" : "Web page creation and editing software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 159,
+                     "name" : "Facebook"
+                  },
+                  {
+                     "name" : "WordPress"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232110",
+               "title" : {
+                  "id" : 43232110,
+                  "name" : "Spreadsheet software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 1,
+                     "name" : "Microsoft Excel"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43233501",
+               "title" : {
+                  "id" : 43233501,
+                  "name" : "Electronic mail software"
+               },
+               "example" : [
+                  {
+                     "name" : "Email software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232202",
+               "title" : {
+                  "id" : 43232202,
+                  "name" : "Document management software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 29,
+                     "name" : "Adobe Systems Adobe Acrobat"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232402",
+               "title" : {
+                  "id" : 43232402,
+                  "name" : "Development environment software"
+               },
+               "example" : [
+                  {
+                     "name" : "Adobe Systems Adobe Creative Suite"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232112",
+               "title" : {
+                  "id" : 43232112,
+                  "name" : "Desktop publishing software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 39,
+                     "name" : "Adobe Systems Adobe InDesign"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232104",
+               "title" : {
+                  "id" : 43232104,
+                  "name" : "Word processing software"
+               },
+               "example" : [
+                  {
+                     "name" : "Microsoft Word"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43233504",
+               "title" : {
+                  "id" : 43233504,
+                  "name" : "Instant messaging software"
+               },
+               "example" : [
+                  {
+                     "name" : "Twitter"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232705",
+               "title" : {
+                  "id" : 43232705,
+                  "name" : "Internet browser software"
+               },
+               "example" : [
+                  {
+                     "name" : "Web browser software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/tools_technology/43232108",
+               "title" : {
+                  "id" : 43232108,
+                  "name" : "Calendar and scheduling software"
+               },
+               "example" : [
+                  {
+                     "name" : "Genbook"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "knowledge" : {
+      "element" : [
+         {
+            "id" : "2.C.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.1.e",
+            "name" : "Customer and Personal Service",
+            "description" : "Knowledge of principles and processes for providing customer and personal services. This includes customer needs assessment, meeting quality standards for services, and evaluation of customer satisfaction."
+         },
+         {
+            "id" : "2.C.1.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.1.d",
+            "name" : "Sales and Marketing",
+            "description" : "Knowledge of principles and methods for showing, promoting, and selling products or services. This includes marketing strategy and tactics, product demonstration, sales techniques, and sales control systems."
+         },
+         {
+            "id" : "2.C.3.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.3.a",
+            "name" : "Computers and Electronics",
+            "description" : "Knowledge of circuit boards, processors, chips, electronic equipment, and computer hardware and software, including applications and programming."
+         },
+         {
+            "id" : "2.C.7.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.7.c",
+            "name" : "Fine Arts",
+            "description" : "Knowledge of the theory and techniques required to compose, produce, and perform works of music, dance, visual arts, drama, and sculpture."
+         },
+         {
+            "id" : "2.C.7.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.7.a",
+            "name" : "English Language",
+            "description" : "Knowledge of the structure and content of the English language including the meaning and spelling of words, rules of composition, and grammar."
+         },
+         {
+            "id" : "2.C.9.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.9.b",
+            "name" : "Communications and Media",
+            "description" : "Knowledge of media production, communication, and dissemination techniques and methods. This includes alternative ways to inform and entertain via written, oral, and visual media."
+         },
+         {
+            "id" : "2.C.4.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.4.e",
+            "name" : "Psychology",
+            "description" : "Knowledge of human behavior and performance; individual differences in ability, personality, and interests; learning and motivation; psychological research methods; and the assessment and treatment of behavioral and affective disorders."
+         },
+         {
+            "id" : "2.C.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/knowledge/2.C.1.a",
+            "name" : "Administration and Management",
+            "description" : "Knowledge of business and management principles involved in strategic planning, resource allocation, human resources modeling, leadership technique, production methods, and coordination of people and resources."
+         }
+      ]
+   },
+   "skills" : {
+      "element" : [
+         {
+            "id" : "2.A.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.A.1.b",
+            "name" : "Active Listening",
+            "description" : "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
+         },
+         {
+            "id" : "2.A.1.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.A.1.d",
+            "name" : "Speaking",
+            "description" : "Talking to others to convey information effectively."
+         },
+         {
+            "id" : "2.B.1.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.1.f",
+            "name" : "Service Orientation",
+            "description" : "Actively looking for ways to help people."
+         },
+         {
+            "id" : "2.B.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.1.a",
+            "name" : "Social Perceptiveness",
+            "description" : "Being aware of others' reactions and understanding why they react as they do."
+         },
+         {
+            "id" : "2.A.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.A.2.b",
+            "name" : "Active Learning",
+            "description" : "Understanding the implications of new information for both current and future problem-solving and decision-making."
+         },
+         {
+            "id" : "2.B.2.i",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.2.i",
+            "name" : "Complex Problem Solving",
+            "description" : "Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
+         },
+         {
+            "id" : "2.B.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.1.b",
+            "name" : "Coordination",
+            "description" : "Adjusting actions in relation to others' actions."
+         },
+         {
+            "id" : "2.A.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.A.2.a",
+            "name" : "Critical Thinking",
+            "description" : "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
+         },
+         {
+            "id" : "2.B.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.1.e",
+            "name" : "Instructing",
+            "description" : "Teaching others how to do something."
+         },
+         {
+            "id" : "2.B.4.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.4.e",
+            "name" : "Judgment and Decision Making",
+            "description" : "Considering the relative costs and benefits of potential actions to choose the most appropriate one."
+         },
+         {
+            "id" : "2.A.2.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.A.2.d",
+            "name" : "Monitoring",
+            "description" : "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
+         },
+         {
+            "id" : "2.A.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.A.1.a",
+            "name" : "Reading Comprehension",
+            "description" : "Understanding written sentences and paragraphs in work related documents."
+         },
+         {
+            "id" : "2.B.5.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/skills/2.B.5.a",
+            "name" : "Time Management",
+            "description" : "Managing one's own time and the time of others."
+         }
+      ]
+   },
+   "abilities" : {
+      "element" : [
+         {
+            "id" : "1.A.1.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.a.1",
+            "name" : "Oral Comprehension",
+            "description" : "The ability to listen to and understand information and ideas presented through spoken words and sentences."
+         },
+         {
+            "id" : "1.A.1.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.a.3",
+            "name" : "Oral Expression",
+            "description" : "The ability to communicate information and ideas in speaking so others will understand."
+         },
+         {
+            "id" : "1.A.1.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.2",
+            "name" : "Originality",
+            "description" : "The ability to come up with unusual or clever ideas about a given topic or situation, or to develop creative ways to solve a problem."
+         },
+         {
+            "id" : "1.A.1.f.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.f.2",
+            "name" : "Visualization",
+            "description" : "The ability to imagine how something will look after it is moved around or when its parts are moved or rearranged."
+         },
+         {
+            "id" : "1.A.4.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.4.a.2",
+            "name" : "Far Vision",
+            "description" : "The ability to see details at a distance."
+         },
+         {
+            "id" : "1.A.4.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.4.a.1",
+            "name" : "Near Vision",
+            "description" : "The ability to see details at close range (within a few feet of the observer)."
+         },
+         {
+            "id" : "1.A.1.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.1",
+            "name" : "Fluency of Ideas",
+            "description" : "The ability to come up with a number of ideas about a topic (the number of ideas is important, not their quality, correctness, or creativity)."
+         },
+         {
+            "id" : "1.A.1.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.a.2",
+            "name" : "Written Comprehension",
+            "description" : "The ability to read and understand information and ideas presented in writing."
+         },
+         {
+            "id" : "1.A.1.b.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.7",
+            "name" : "Category Flexibility",
+            "description" : "The ability to generate or use different sets of rules for combining or grouping things in different ways."
+         },
+         {
+            "id" : "1.A.4.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.4.a.3",
+            "name" : "Visual Color Discrimination",
+            "description" : "The ability to match or detect differences between colors, including shades of color and brightness."
+         },
+         {
+            "id" : "1.A.2.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.2.a.1",
+            "name" : "Arm-Hand Steadiness",
+            "description" : "The ability to keep your hand and arm steady while moving your arm or while holding your arm and hand in one position."
+         },
+         {
+            "id" : "1.A.1.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.4",
+            "name" : "Deductive Reasoning",
+            "description" : "The ability to apply general rules to specific problems to produce answers that make sense."
+         },
+         {
+            "id" : "1.A.2.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.2.a.3",
+            "name" : "Finger Dexterity",
+            "description" : "The ability to make precisely coordinated movements of the fingers of one or both hands to grasp, manipulate, or assemble very small objects."
+         },
+         {
+            "id" : "1.A.1.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.5",
+            "name" : "Inductive Reasoning",
+            "description" : "The ability to combine pieces of information to form general rules or conclusions (includes finding a relationship among seemingly unrelated events)."
+         },
+         {
+            "id" : "1.A.1.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.6",
+            "name" : "Information Ordering",
+            "description" : "The ability to arrange things or actions in a certain order or pattern according to a specific rule or set of rules (e.g., patterns of numbers, letters, words, pictures, mathematical operations)."
+         },
+         {
+            "id" : "1.A.2.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.2.a.2",
+            "name" : "Manual Dexterity",
+            "description" : "The ability to quickly move your hand, your hand together with your arm, or your two hands to grasp, manipulate, or assemble objects."
+         },
+         {
+            "id" : "1.A.1.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.b.3",
+            "name" : "Problem Sensitivity",
+            "description" : "The ability to tell when something is wrong or is likely to go wrong. It does not involve solving the problem, only recognizing there is a problem."
+         },
+         {
+            "id" : "1.A.4.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.4.b.5",
+            "name" : "Speech Clarity",
+            "description" : "The ability to speak clearly so others can understand you."
+         },
+         {
+            "id" : "1.A.1.g.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.1.g.1",
+            "name" : "Selective Attention",
+            "description" : "The ability to concentrate on a task over a period of time without being distracted."
+         },
+         {
+            "id" : "1.A.4.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/abilities/1.A.4.b.4",
+            "name" : "Speech Recognition",
+            "description" : "The ability to identify and understand the speech of another person."
+         }
+      ]
+   },
+   "work_activities" : {
+      "element" : [
+         {
+            "id" : "4.A.2.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.b.2",
+            "name" : "Thinking Creatively",
+            "description" : "Developing, designing, or creating new applications, ideas, relationships, systems, or products, including artistic contributions."
+         },
+         {
+            "id" : "4.A.3.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.3.b.1",
+            "name" : "Interacting With Computers",
+            "description" : "Using computers and computer systems (including hardware and software) to program, write software, set up functions, enter data, or process information."
+         },
+         {
+            "id" : "4.A.4.a.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.a.6",
+            "name" : "Selling or Influencing Others",
+            "description" : "Convincing others to buy merchandise/goods or to otherwise change their minds or actions."
+         },
+         {
+            "id" : "4.A.4.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.a.4",
+            "name" : "Establishing and Maintaining Interpersonal Relationships",
+            "description" : "Developing constructive and cooperative working relationships with others, and maintaining them over time."
+         },
+         {
+            "id" : "4.A.1.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.1.a.1",
+            "name" : "Getting Information",
+            "description" : "Observing, receiving, and otherwise obtaining information from all relevant sources."
+         },
+         {
+            "id" : "4.A.2.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.b.3",
+            "name" : "Updating and Using Relevant Knowledge",
+            "description" : "Keeping up-to-date technically and applying new knowledge to your job."
+         },
+         {
+            "id" : "4.A.4.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.a.3",
+            "name" : "Communicating with Persons Outside Organization",
+            "description" : "Communicating with people outside the organization, representing the organization to customers, the public, government, and other external sources. This information can be exchanged in person, in writing, or by telephone or e-mail."
+         },
+         {
+            "id" : "4.A.2.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.b.1",
+            "name" : "Making Decisions and Solving Problems",
+            "description" : "Analyzing information and evaluating results to choose the best solution and solve problems."
+         },
+         {
+            "id" : "4.A.2.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.b.6",
+            "name" : "Organizing, Planning, and Prioritizing Work",
+            "description" : "Developing specific goals and plans to prioritize, organize, and accomplish your work."
+         },
+         {
+            "id" : "4.A.4.a.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.a.8",
+            "name" : "Performing for or Working Directly with the Public",
+            "description" : "Performing for people or dealing directly with the public. This includes serving customers in restaurants and stores, and receiving clients or guests."
+         },
+         {
+            "id" : "4.A.3.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.3.a.1",
+            "name" : "Performing General Physical Activities",
+            "description" : "Performing physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials."
+         },
+         {
+            "id" : "4.A.2.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.b.4",
+            "name" : "Developing Objectives and Strategies",
+            "description" : "Establishing long-range objectives and specifying the strategies and actions to achieve them."
+         },
+         {
+            "id" : "4.A.2.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.b.5",
+            "name" : "Scheduling Work and Activities",
+            "description" : "Scheduling events, programs, and activities, as well as the work of others."
+         },
+         {
+            "id" : "4.A.3.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.3.a.2",
+            "name" : "Handling and Moving Objects",
+            "description" : "Using hands and arms in handling, installing, positioning, and moving materials, and manipulating things."
+         },
+         {
+            "id" : "4.A.4.c.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.c.3",
+            "name" : "Monitoring and Controlling Resources",
+            "description" : "Monitoring and controlling resources and overseeing the spending of money."
+         },
+         {
+            "id" : "4.A.4.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.c.1",
+            "name" : "Performing Administrative Activities",
+            "description" : "Performing day-to-day administrative tasks such as maintaining information files and processing paperwork."
+         },
+         {
+            "id" : "4.A.4.a.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.a.7",
+            "name" : "Resolving Conflicts and Negotiating with Others",
+            "description" : "Handling complaints, settling disputes, and resolving grievances and conflicts, or otherwise negotiating with others."
+         },
+         {
+            "id" : "4.A.4.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.b.1",
+            "name" : "Coordinating the Work and Activities of Others",
+            "description" : "Getting members of a group to work together to accomplish tasks."
+         },
+         {
+            "id" : "4.A.3.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.3.b.6",
+            "name" : "Documenting/Recording Information",
+            "description" : "Entering, transcribing, recording, storing, or maintaining information in written or electronic/magnetic form."
+         },
+         {
+            "id" : "4.A.1.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.1.b.2",
+            "name" : "Inspecting Equipment, Structures, or Material",
+            "description" : "Inspecting equipment, structures, or materials to identify the cause of errors or other problems or defects."
+         },
+         {
+            "id" : "4.A.2.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.2.a.1",
+            "name" : "Judging the Qualities of Things, Services, or People",
+            "description" : "Assessing the value, importance, or quality of things or people."
+         },
+         {
+            "id" : "4.A.4.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.4.a.2",
+            "name" : "Communicating with Supervisors, Peers, or Subordinates",
+            "description" : "Providing information to supervisors, co-workers, and subordinates by telephone, in written form, e-mail, or in person."
+         },
+         {
+            "id" : "4.A.1.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.1.b.1",
+            "name" : "Identifying Objects, Actions, and Events",
+            "description" : "Identifying information by categorizing, estimating, recognizing differences or similarities, and detecting changes in circumstances or events."
+         },
+         {
+            "id" : "4.A.1.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_activities/4.A.1.a.2",
+            "name" : "Monitor Processes, Materials, or Surroundings",
+            "description" : "Monitoring and reviewing information from materials, events, or the environment, to detect or assess problems."
+         }
+      ]
+   },
+   "detailed_work_activities" : {
+      "activity" : [
+         {
+            "id" : "4.A.3.a.3.I05.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.a.3.I05.D04",
+            "name" : "Operate still or video cameras or related equipment."
+         },
+         {
+            "id" : "4.A.2.b.1.I04.D13",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.2.b.1.I04.D13",
+            "name" : "Determine technical requirements of productions or projects."
+         },
+         {
+            "id" : "4.A.3.a.2.I46.D06",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.a.2.I46.D06",
+            "name" : "Set up still or video cameras or related equipment."
+         },
+         {
+            "id" : "4.A.2.b.2.I18.D17",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.2.b.2.I18.D17",
+            "name" : "Create computer-generated graphics or animation."
+         },
+         {
+            "id" : "4.A.3.b.1.I06.D11",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.b.1.I06.D11",
+            "name" : "Convert data among multiple digital or analog formats."
+         },
+         {
+            "id" : "4.A.4.a.2.I13.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.4.a.2.I13.D03",
+            "name" : "Confer with clients to determine needs."
+         },
+         {
+            "id" : "4.A.1.a.1.I01.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.1.a.1.I01.D01",
+            "name" : "Review art or design materials."
+         },
+         {
+            "id" : "4.A.4.c.3.I01.D05",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.4.c.3.I01.D05",
+            "name" : "Maintain inventories of materials, equipment, or products."
+         },
+         {
+            "id" : "4.A.3.b.6.I08.D09",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.b.6.I08.D09",
+            "name" : "Maintain records, documents, or other files."
+         },
+         {
+            "id" : "4.A.2.b.1.I10.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.2.b.1.I10.D03",
+            "name" : "Select materials or props."
+         },
+         {
+            "id" : "4.A.4.b.4.I12.D19",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.4.b.4.I12.D19",
+            "name" : "Coordinate activities of production personnel."
+         },
+         {
+            "id" : "4.A.3.b.4.I04.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.b.4.I04.D03",
+            "name" : "Maintain recording or broadcasting equipment."
+         },
+         {
+            "id" : "4.A.3.a.2.I45.D02",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.a.2.I45.D02",
+            "name" : "Apply finishes to artwork, crafts, or displays."
+         },
+         {
+            "id" : "4.A.1.a.1.I20.D08",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.1.a.1.I20.D08",
+            "name" : "Research new technologies."
+         },
+         {
+            "id" : "4.A.3.b.6.I12.D05",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.b.6.I12.D05",
+            "name" : "Write informational material."
+         },
+         {
+            "id" : "4.A.3.a.2.I28.D02",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.a.2.I28.D02",
+            "name" : "Construct distinctive physical objects for artistic, functional, or commercial purposes."
+         },
+         {
+            "id" : "4.A.3.a.2.I08.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.3.a.2.I08.D01",
+            "name" : "Arrange artwork, products, or props."
+         },
+         {
+            "id" : "4.A.1.a.1.I17.D02",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/detailed_work_activities/4.A.1.a.1.I17.D02",
+            "name" : "Obtain copyrights or other legal permissions."
+         }
+      ]
+   },
+   "work_context" : {
+      "element" : [
+         {
+            "id" : "4.C.1.a.2.h",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.a.2.h",
+            "name" : "Electronic Mail",
+            "description" : "How often do you use electronic mail in this job?",
+            "response" : [
+               {
+                  "percentage" : 88,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.a.2.f",
+            "name" : "Telephone",
+            "description" : "How often do you have telephone conversations in this job?",
+            "response" : [
+               {
+                  "percentage" : 72,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.c.1",
+            "name" : "Level of Competition",
+            "description" : "To what extent does this job require the worker to compete or to be aware of competitive pressures?",
+            "response" : [
+               {
+                  "percentage" : 64,
+                  "name" : "Extremely competitive"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.a.4",
+            "name" : "Freedom to Make Decisions",
+            "description" : "How much decision making freedom, without supervision, does the job offer?",
+            "response" : [
+               {
+                  "percentage" : 44,
+                  "name" : "A lot of freedom"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.a.4",
+            "name" : "Contact With Others",
+            "description" : "How much does this job require the worker to be in contact with others (face-to-face, by telephone, or otherwise) in order to perform it?",
+            "response" : [
+               {
+                  "percentage" : 58,
+                  "name" : "Contact with others most of the time"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.d.8",
+            "name" : "Duration of Typical Work Week",
+            "description" : "Number of hours typically worked in one week.",
+            "response" : [
+               {
+                  "percentage" : 64,
+                  "name" : "More than 40 hours"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.l",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.a.2.l",
+            "name" : "Face-to-Face Discussions",
+            "description" : "How often do you have to have face-to-face discussions with individuals or teams in this job?",
+            "response" : [
+               {
+                  "percentage" : 42,
+                  "name" : "Once a week or more but not every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.d.1",
+            "name" : "Time Pressure",
+            "description" : "How often does this job require the worker to meet strict deadlines?",
+            "response" : [
+               {
+                  "percentage" : 60,
+                  "name" : "Once a week or more but not every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.b.8",
+            "name" : "Structured versus Unstructured Work",
+            "description" : "To what extent is this job structured for the worker, rather than allowing the worker to determine tasks, priorities, and goals?",
+            "response" : [
+               {
+                  "percentage" : 52,
+                  "name" : "Some freedom"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.a.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.2.a.1.a",
+            "name" : "Indoors, Environmentally Controlled",
+            "description" : "How often does this job require working indoors in environmentally controlled conditions?",
+            "response" : [
+               {
+                  "percentage" : 38,
+                  "name" : "Once a week or more but not every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.b.1.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.b.1.f",
+            "name" : "Deal With External Customers",
+            "description" : "How important is it to work with external customers or the public in this job?",
+            "response" : [
+               {
+                  "percentage" : 40,
+                  "name" : "Extremely important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.b.4",
+            "name" : "Importance of Being Exact or Accurate",
+            "description" : "How important is being very exact or highly accurate in performing this job?",
+            "response" : [
+               {
+                  "percentage" : 56,
+                  "name" : "Very important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.2.a.3",
+            "name" : "Physical Proximity",
+            "description" : "To what extent does this job require the worker to perform job tasks in close physical proximity to other people?",
+            "response" : [
+               {
+                  "percentage" : 36,
+                  "name" : "Very close (near touching)"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.d.1.g",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.2.d.1.g",
+            "name" : "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls",
+            "description" : "How much does this job require using your hands to handle, control, or feel objects, tools or controls?",
+            "response" : [
+               {
+                  "percentage" : 32,
+                  "name" : "More than half the time"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.a.2.a",
+            "name" : "Impact of Decisions on Co-workers or Company Results",
+            "description" : "What results do your decisions usually have on other people or the image or reputation or financial resources of your employer?",
+            "response" : [
+               {
+                  "percentage" : 40,
+                  "name" : "Important results"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.j",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.a.2.j",
+            "name" : "Letters and Memos",
+            "description" : "How often does the job require written letters and memos?",
+            "response" : [
+               {
+                  "percentage" : 60,
+                  "name" : "Once a week or more but not every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.d.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.2.d.1.b",
+            "name" : "Spend Time Standing",
+            "description" : "How much does this job require standing?",
+            "response" : [
+               {
+                  "percentage" : 60,
+                  "name" : "About half the time"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.a.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.2.a.1.c",
+            "name" : "Outdoors, Exposed to Weather",
+            "description" : "How often does this job require working outdoors, exposed to all weather conditions?",
+            "response" : [
+               {
+                  "percentage" : 56,
+                  "name" : "Once a month or more but not every week"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.b.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.b.1.e",
+            "name" : "Work With Work Group or Team",
+            "description" : "How important is it to work with others in a group or team in this job?",
+            "response" : [
+               {
+                  "percentage" : 44,
+                  "name" : "Important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.a.2.b",
+            "name" : "Frequency of Decision Making",
+            "description" : "How frequently is the worker required to make decisions that affect other people, the financial resources, and/or the image and reputation of the organization?",
+            "response" : [
+               {
+                  "percentage" : 36,
+                  "name" : "Once a year or more but not every month"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.c.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.1.c.2",
+            "name" : "Responsibility for Outcomes and Results",
+            "description" : "How responsible is the worker for work outcomes and results of other workers?",
+            "response" : [
+               {
+                  "percentage" : 36,
+                  "name" : "High responsibility"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_context/4.C.3.d.4",
+            "name" : "Work Schedules",
+            "description" : "How regular are the work schedules for this job?",
+            "response" : [
+               {
+                  "percentage" : 80,
+                  "name" : "Irregular (changes with weather conditions, production demands, or contract duration)"
+               }
+            ]
+         }
+      ]
+   },
+   "job_zone" : {
+      "value" : 3,
+      "title" : "Job Zone Three: Medium Preparation Needed",
+      "education" : "Most occupations in this zone require training in vocational schools, related on-the-job experience, or an associate's degree.",
+      "related_experience" : "Previous work-related skill, knowledge, or experience is required for these occupations. For example, an electrician must have completed three or four years of apprenticeship or several years of vocational training, and often must have passed a licensing exam, in order to perform the job.",
+      "job_training" : "Employees in these occupations usually need one or two years of training involving both on-the-job experience and informal training with experienced workers. A recognized apprenticeship program may be associated with these occupations.",
+      "job_zone_examples" : "These occupations usually involve using communication and organizational skills to coordinate, supervise, manage, or train others to accomplish goals. Examples include hydroelectric production managers, travel guides, electricians, agricultural technicians, barbers, nannies, and medical assistants.",
+      "svp_range" : "(6.0 to < 7.0)"
+   },
+   "education" : {
+      "level_required" : {
+         "category" : [
+            {
+               "name" : "High school diploma or equivalent",
+               "description" : "or: GED, High School Equivalency Certificate",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 28
+               }
+            },
+            {
+               "name" : "Associate's degree",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 20
+               }
+            },
+            {
+               "name" : "Less than high school diploma",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 16
+               }
+            }
+         ]
+      }
+   },
+   "interests" : {
+      "high_point_code" : "AR",
+      "element" : [
+         {
+            "id" : "1.B.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/interests/1.B.1.c",
+            "name" : "Artistic",
+            "description" : "Artistic occupations frequently involve working with forms, designs and patterns. They often require self-expression and the work can be done without following a clear set of rules."
+         },
+         {
+            "id" : "1.B.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/interests/1.B.1.a",
+            "name" : "Realistic",
+            "description" : "Realistic occupations frequently involve work activities that include practical, hands-on problems and solutions. They often deal with plants, animals, and real-world materials like wood, tools, and machinery. Many of the occupations require working outside, and do not involve a lot of paperwork or working closely with others."
+         }
+      ]
+   },
+   "work_styles" : {
+      "element" : [
+         {
+            "id" : "1.C.5.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.5.a",
+            "name" : "Dependability",
+            "description" : "Job requires being reliable, responsible, and dependable, and fulfilling obligations."
+         },
+         {
+            "id" : "1.C.5.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.5.b",
+            "name" : "Attention to Detail",
+            "description" : "Job requires being careful about detail and thorough in completing work tasks."
+         },
+         {
+            "id" : "1.C.3.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.3.a",
+            "name" : "Cooperation",
+            "description" : "Job requires being pleasant with others on the job and displaying a good-natured, cooperative attitude."
+         },
+         {
+            "id" : "1.C.4.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.4.c",
+            "name" : "Adaptability/Flexibility",
+            "description" : "Job requires being open to change (positive or negative) and to considerable variety in the workplace."
+         },
+         {
+            "id" : "1.C.4.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.4.a",
+            "name" : "Self Control",
+            "description" : "Job requires maintaining composure, keeping emotions in check, controlling anger, and avoiding aggressive behavior, even in very difficult situations."
+         },
+         {
+            "id" : "1.C.5.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.5.c",
+            "name" : "Integrity",
+            "description" : "Job requires being honest and ethical."
+         },
+         {
+            "id" : "1.C.4.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.4.b",
+            "name" : "Stress Tolerance",
+            "description" : "Job requires accepting criticism and dealing calmly and effectively with high stress situations."
+         },
+         {
+            "id" : "1.C.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.1.b",
+            "name" : "Persistence",
+            "description" : "Job requires persistence in the face of obstacles."
+         },
+         {
+            "id" : "1.C.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.1.c",
+            "name" : "Initiative",
+            "description" : "Job requires a willingness to take on responsibilities and challenges."
+         },
+         {
+            "id" : "1.C.7.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.7.a",
+            "name" : "Innovation",
+            "description" : "Job requires creativity and alternative thinking to develop new ideas for and answers to work-related problems."
+         },
+         {
+            "id" : "1.C.3.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.3.b",
+            "name" : "Concern for Others",
+            "description" : "Job requires being sensitive to others' needs and feelings and being understanding and helpful on the job."
+         },
+         {
+            "id" : "1.C.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.1.a",
+            "name" : "Achievement/Effort",
+            "description" : "Job requires establishing and maintaining personally challenging achievement goals and exerting effort toward mastering tasks."
+         },
+         {
+            "id" : "1.C.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.6",
+            "name" : "Independence",
+            "description" : "Job requires developing one's own ways of doing things, guiding oneself with little or no supervision, and depending on oneself to get things done."
+         },
+         {
+            "id" : "1.C.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.2.b",
+            "name" : "Leadership",
+            "description" : "Job requires a willingness to lead, take charge, and offer opinions and direction."
+         },
+         {
+            "id" : "1.C.3.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.3.c",
+            "name" : "Social Orientation",
+            "description" : "Job requires preferring to work with others rather than alone, and being personally connected with others on the job."
+         },
+         {
+            "id" : "1.C.7.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_styles/1.C.7.b",
+            "name" : "Analytical Thinking",
+            "description" : "Job requires analyzing information and using logic to address work-related issues and problems."
+         }
+      ]
+   },
+   "work_values" : {
+      "element" : [
+         {
+            "id" : "1.B.2.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_values/1.B.2.f",
+            "name" : "Independence",
+            "description" : "Occupations that satisfy this work value allow employees to work on their own and make decisions. Corresponding needs are Creativity, Responsibility and Autonomy."
+         },
+         {
+            "id" : "1.B.2.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_values/1.B.2.d",
+            "name" : "Relationships",
+            "description" : "Occupations that satisfy this work value allow employees to provide service to others and work with co-workers in a friendly non-competitive environment. Corresponding needs are Co-workers, Moral Values and Social Service."
+         },
+         {
+            "id" : "1.B.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/27-4021.00/related/work_values/1.B.2.a",
+            "name" : "Achievement",
+            "description" : "Occupations that satisfy this work value are results oriented and allow employees to use their strongest abilities, giving them a feeling of accomplishment. Corresponding needs are Ability Utilization and Achievement."
+         }
+      ]
+   },
+   "related_occupations" : {
+      "occupation" : [
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/25-3021.00/",
+            "code" : "25-3021.00",
+            "title" : "Self-Enrichment Education Teachers",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/25-9041.00/",
+            "code" : "25-9041.00",
+            "title" : "Teacher Assistants",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/27-4031.00/",
+            "code" : "27-4031.00",
+            "title" : "Camera Operators, Television, Video, and Motion Picture",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/27-4032.00/",
+            "code" : "27-4032.00",
+            "title" : "Film and Video Editors",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/39-7011.00/",
+            "code" : "39-7011.00",
+            "title" : "Tour Guides and Escorts",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/39-7012.00/",
+            "code" : "39-7012.00",
+            "title" : "Travel Guides",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/41-2031.00/",
+            "code" : "41-2031.00",
+            "title" : "Retail Salespersons",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/43-4081.00/",
+            "code" : "43-4081.00",
+            "title" : "Hotel, Motel, and Resort Desk Clerks",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/51-5111.00/",
+            "code" : "51-5111.00",
+            "title" : "Prepress Technicians and Workers",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/51-9151.00/",
+            "code" : "51-9151.00",
+            "title" : "Photographic Process Workers and Processing Machine Operators",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         }
+      ]
+   },
+   "additional_information" : {
+      "source" : [
+         {
+            "url" : "https://www.bls.gov/OOH/media-and-communication/photographers.htm",
+            "name" : "Occupational Outlook Handbook: Photographers"
+         }
+      ]
+   }
+}

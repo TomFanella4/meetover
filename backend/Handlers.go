@@ -35,28 +35,42 @@ type MatchResponse struct {
 	Matches []MatchValue `json:"matches"`
 }
 
+// UserProfileResponse returned when requesting a user profile
+type UserProfileResponse struct {
+	Profile  Profile     `json:"profile"`
+	Location Geolocation `json:"location"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
 // ResponseCodes
 const (
+	Success             ResponseCode = 200
 	Unauthorized        ResponseCode = 401
 	FailedTokenExchange ResponseCode = 506
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508
 	FailedLocationQuery ResponseCode = 509
 	FailedUserInit      ResponseCode = 510
+	FailedSendPush      ResponseCode = 511
 )
 
-// GetUserProfile will give back a json object of user's LinkedIn Profile
+// GetUserProfile will give back a json object of user's Profile
 func GetUserProfile(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	accessToken := params["accessToken"]
-	profile, err := GetProfile(accessToken)
-	if err != nil {
-		respondWithError(w, FailedProfileFetch, err.Error())
+	if CheckAuthorized(w, r) {
+		params := mux.Vars(r)
+		id := params["id"]
+		user, err := GetUser(id)
+		if err != nil {
+			respondWithError(w, FailedProfileFetch, err.Error())
+			return
+		}
+		var profile UserProfileResponse
+		profile.Profile = user.Profile
+		profile.Location = user.Location
+		json.NewEncoder(w).Encode(profile)
 	}
-	json.NewEncoder(w).Encode(profile)
 }
 
 // Test returns a sample LinkedIn Profile JSON object
@@ -65,27 +79,9 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
-	} else if tt == "seedUser" {
-		users, err := fbClient.Ref("/users")
-		if err != nil {
-			fmt.Println(err)
-			respondWithError(w, FailedDBCall, err.Error())
-			return
-		}
-
-		umap := make(map[string]User, len(cachedUsers))
-
-		for _, u := range cachedUsers {
-			u.Profile.FormattedName = u.Profile.FirstName + " " + u.Profile.LastName
-			u.Profile.ID = u.ID
-			umap[u.ID] = u
-		}
-
-		if err := users.Update(umap); err != nil {
-			fmt.Println(err)
-		}
 	}
-	json.NewEncoder(w).Encode("Test")
+	resp := ServerResponse{Success, "Success", true}
+	json.NewEncoder(w).Encode(resp)
 }
 
 // GetAddress will give back a json object based on coordinates
@@ -106,11 +102,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		panic(err)
 	}
-}
-
-// GetUsers returns all users
-func GetUsers(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(cachedUsers)
 }
 
 // VerifyUser - token exchange and authentication at user login
@@ -164,31 +155,25 @@ func Match(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		userID := params["uid"]
 		// get requester's coords
-		var userLocation Geolocation
-		bodyBytes, _ := ioutil.ReadAll(r.Body)
-		defer r.Body.Close()
-		if err := json.Unmarshal(bodyBytes, &userLocation); err != nil {
-			bodyString := string(bodyBytes)
-			fmt.Println(bodyString)
-			return // no match was returned
+		user, err := GetUser(userID)
+		if err != nil {
+			fmt.Println(err)
+			return // Unable to get location
 		}
 		radius := 1     //1 km
 		lastUpdate := 2 // 2hrs
-		PMatchList, err := GetProspectiveUsers(userLocation, radius, lastUpdate)
+		PMatchList, err := GetProspectiveUsers(&user.Location, radius, lastUpdate)
 		if err != nil {
+			fmt.Println(err)
 			return // unable to get anyone from db
 		}
-		// fmt.Print("Trying to get matches")
 		MatchList, err := GetMatches(userID, PMatchList)
-		// fmt.Print("Got matches")
-		// fmt.Print(MatchList)
 		if err != nil {
+			fmt.Println(err)
 			return // unable to get anyone to match
 		}
 		json.NewEncoder(w).Encode(MatchList)
-		return
 	}
-	respondWithError(w, Unauthorized, "Unauthorized")
 }
 
 // RefreshCustomToken will refresh an authorized users Firebase custom token
@@ -207,34 +192,32 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 		resp.FirebaseCustomToken = customToken
 
 		json.NewEncoder(w).Encode(resp)
-		return
 	}
-	respondWithError(w, Unauthorized, "Unauthorized")
 }
 
 // InitiateMeetover called to begin the meetover appointment betwen two users
 func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
-		initiatorId := r.Header.Get("Identity")
+		initiatorID := r.Header.Get("Identity")
 		params := mux.Vars(r)
-		requestedId := params["otherId"]
+		requestedID := params["otherId"]
 
-		if err := AddThread(initiatorId, requestedId); err != nil {
+		if err := AddThread(initiatorID, requestedID); err != nil {
 			respondWithError(w, FailedDBCall, "Could not create chat thread")
-			fmt.Println("Failed to create the thread " + initiatorId + ", " + requestedId)
+			fmt.Println("Failed to create the thread " + initiatorID + ", " + requestedID)
 			return
 		}
 
 		// Send a push notification to the requested user
-		formattedName, err := fbClient.Ref("/users/" + initiatorId + "/profile/formattedName")
+		formattedName, err := fbClient.Ref("/users/" + initiatorID + "/profile/formattedName")
 		if err != nil {
-			json.NewEncoder(w).Encode("Could not send push notification")
+			respondWithError(w, FailedDBCall, "Could not send push notification")
 			fmt.Println(err.Error())
 			return
 		}
 		var name string
 		if err = formattedName.Value(&name); err != nil {
-			json.NewEncoder(w).Encode("Could not send push notification")
+			respondWithError(w, FailedDBCall, "Could not send push notification")
 			fmt.Println(err.Error())
 			return
 		}
@@ -242,18 +225,19 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 		title := "New MeetOver Request"
 		body := name + " would like to MeetOver"
 		pushNotification := PushNotification{
-			ID:    requestedId,
+			ID:    requestedID,
 			Title: title,
 			Body:  body,
 		}
 		err = SendPushNotification(&pushNotification)
 		if err != nil {
-			json.NewEncoder(w).Encode("Could not send push notification")
+			respondWithError(w, FailedSendPush, "Could not send push notification")
 			fmt.Println(err.Error())
 			return
 		}
+		resp := ServerResponse{Success, "Success", true}
+		json.NewEncoder(w).Encode(resp)
 	}
-	json.NewEncoder(w).Encode("Success")
 }
 
 // SendPush sends sends a push notification for a verified user
@@ -264,11 +248,18 @@ func SendPush(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 		if err := json.Unmarshal(bodyBytes, &pushNotification); err != nil {
 			fmt.Println("Unable to send push notification")
+			respondWithError(w, FailedSendPush, "Could not send push notification")
 			return
 		}
-		SendPushNotification(&pushNotification)
+		err := SendPushNotification(&pushNotification)
+		if err != nil {
+			respondWithError(w, FailedSendPush, "Could not send push notification")
+			fmt.Println(err.Error())
+			return
+		}
+		resp := ServerResponse{Success, "Success", true}
+		json.NewEncoder(w).Encode(resp)
 	}
-	json.NewEncoder(w).Encode("Success")
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

@@ -2,26 +2,21 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
   View,
-  Body,
   Button,
-  Card,
-  CardItem,
-  Container,
-  Content,
   Icon,
-  Left,
-  Thumbnail,
+  Container,
   Spinner
 } from 'native-base';
 import { connect } from 'react-redux';
 import { find } from 'lodash';
 
+import Profile from '../components/Profile';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 import { separator, serverURI } from '../constants/Common';
 import { StyledToast } from '../helpers';
 
-class ProfileScreen extends React.Component {
+class RequestScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.profile.formattedName}'s Profile`,
   });
@@ -32,12 +27,13 @@ class ProfileScreen extends React.Component {
   };
 
   componentDidMount() {
-    const { threadList } = this.props;
+    const { threadList, navigation } = this.props;
 
     if (threadList !== null) {
       // Thread list has been fetched from Firebase
       this.setState({ buttonDisabled: false });
     }
+    this._blurSub = navigation.addListener('didBlur', () => this._onBlur());
   }
 
   componentDidUpdate(prevProps) {
@@ -50,8 +46,11 @@ class ProfileScreen extends React.Component {
     }
   }
 
+  _onBlur() {
+    this.setState({ buttonDisabled: false, meetOverLoading: false });
+  }
+
   _renderLoading() {
-    // TODO: Add react navigation listener
     return (
       <Container style={styles.container}>
         <View style={styles.loadingView}>
@@ -107,7 +106,6 @@ class ProfileScreen extends React.Component {
       }
     }
 
-    this.setState({ buttonDisabled: false, meetOverLoading: false });
     navigation.navigate('ChatScreen', { _id: threadId, name: formattedName });
   };
 
@@ -115,44 +113,12 @@ class ProfileScreen extends React.Component {
     const { profile } = this.props.navigation.state.params;
     const { buttonDisabled, meetOverLoading } = this.state;
 
-    const positions = profile.positions.values.map((position, index) =>
-      <CardItem style={styles.listItem} key={index}>
-        <PTSansText style={styles.jobTitle}>
-          {position.title} at {position.company.name}
-        </PTSansText>
-        <PTSansText>{position.summary}</PTSansText>
-      </CardItem>
-    );
-
     if(meetOverLoading) {
       return this._renderLoading();
     } else {
       return (
         <Container style={styles.container}>
-          <Content style={styles.container}>
-            <Left style={styles.thumbnail}>
-              <Thumbnail source={{ uri: profile.pictureUrl }} />
-            </Left>
-            <Body>
-              <PTSansText style={styles.name}>{profile.formattedName}</PTSansText>
-              <PTSansText>{profile.headline}</PTSansText>
-              <PTSansText>
-                <Icon name='pin' style={styles.location} /> {profile.location.name}
-              </PTSansText>
-            </Body>
-            <Card>
-              <CardItem header>
-                <PTSansText style={styles.subtitle}>Summary</PTSansText>
-              </CardItem>
-              <CardItem><PTSansText>{profile.summary}</PTSansText></CardItem>
-            </Card>
-            <Card>
-              <CardItem header>
-                <PTSansText style={styles.subtitle}>Positions</PTSansText>
-              </CardItem>
-              {positions}
-            </Card>
-          </Content>
+          <Profile profile={profile} />
           <Button
             iconLeft
             full
@@ -167,6 +133,10 @@ class ProfileScreen extends React.Component {
       );
     }
   }
+
+  componentWillUnmount() {
+    this._blurSub.remove();
+  }
 };
 
 const mapStateToProps = state => ({
@@ -176,7 +146,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(ProfileScreen);
+)(RequestScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -188,32 +158,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  listItem: {
-    flexDirection: 'column',
-  },
-  location: {
-    fontSize: 18,
-    paddingRight: 2,
-  },
-  thumbnail: {
-    paddingTop: 5,
-    flex: 0
-  },
-  name: {
-    fontSize: 26
-  },
   chatButton: {
     backgroundColor: Colors.tintColor
   },
   request: {
     fontSize: 18
-  },
-  jobTitle: {
-    alignSelf: 'flex-start',
-    fontSize: 20
-  },
-  subtitle: {
-    alignSelf: 'flex-start',
-    fontSize: 22
-  },
+  }
 });

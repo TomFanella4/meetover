@@ -7,7 +7,7 @@ import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import RequestScreen from '../screens/RequestScreen';
 import ChatScreen from '../screens/ChatScreen';
 import Colors from '../constants/Colors';
 
@@ -15,7 +15,7 @@ const AppNavigator = StackNavigator(
   {
     Main: MainTabNavigator,
     SettingsScreen: SettingsScreen,
-    Profile: ProfileScreen,
+    RequestScreen: RequestScreen,
     ChatScreen: ChatScreen,
   },
   {

@@ -21,12 +21,6 @@ var routes = Routes{
 		Index,
 	},
 	Route{
-		"GetUsers",
-		"GET",
-		"/users",
-		GetUsers,
-	},
-	Route{
 		"Login",
 		"POST",
 		"/login/{code}",
@@ -45,16 +39,16 @@ var routes = Routes{
 		InitiateMeetover,
 	},
 	Route{
-		"Send Push Notification",
-		"POST",
-		"/sendPush",
-		SendPush,
+		"Get another user's profile",
+		"GET",
+		"/userprofile/{id}",
+		GetUserProfile,
 	},
 	Route{
-		"LinkedIn Profile",
-		"GET",
-		"/userinfo/{accessToken}",
-		GetUserProfile,
+		"Send Push Notification",
+		"POST",
+		"/sendpush",
+		SendPush,
 	},
 	Route{
 		"Matching",

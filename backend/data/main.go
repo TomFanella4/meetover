@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
-	"strings"
 	"time"
 )
 
@@ -13,16 +11,8 @@ func main() {
 	// rawFile := "rawTestUsers.json"
 	// sinkFile := "FinalTestUsers.json"
 	// GenTestUsers(rawFile, sinkFile)
-	files := otherJobFiles()
-	for _, f := range files {
-		js := jobDataToUsers(f, []User{})
-		fmt.Print(js.Description)
-		fmt.Print(" ")
-		fmt.Print(strings.Join(js.Titles, " "))
-		fmt.Print(" ")
-		fmt.Print(strings.Join(js.Skills, " "))
-	}
-
+	nt := genNonTechUsers(getRawUsers("rawTestUsers.json"))
+	updateJSONFile(nt, "nt.json")
 	// updateJSONFile(js, "testjs.json")
 
 	// modelFile := "meetOver.model"

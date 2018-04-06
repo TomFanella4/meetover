@@ -46,12 +46,14 @@ type ResponseCode int
 
 // ResponseCodes
 const (
+	Success             ResponseCode = 200
 	Unauthorized        ResponseCode = 401
 	FailedTokenExchange ResponseCode = 506
 	FailedDBCall        ResponseCode = 507
 	FailedProfileFetch  ResponseCode = 508
 	FailedLocationQuery ResponseCode = 509
 	FailedUserInit      ResponseCode = 510
+	FailedSendPush      ResponseCode = 511
 )
 
 // GetUserProfile will give back a json object of user's Profile
@@ -68,7 +70,6 @@ func GetUserProfile(w http.ResponseWriter, r *http.Request) {
 		profile.Profile = user.Profile
 		profile.Location = user.Location
 		json.NewEncoder(w).Encode(profile)
-		return
 	}
 }
 
@@ -79,7 +80,8 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
 	}
-	json.NewEncoder(w).Encode("Test")
+	resp := ServerResponse{Success, "Success", true}
+	json.NewEncoder(w).Encode(resp)
 }
 
 // GetAddress will give back a json object based on coordinates
@@ -171,7 +173,6 @@ func Match(w http.ResponseWriter, r *http.Request) {
 			return // unable to get anyone to match
 		}
 		json.NewEncoder(w).Encode(MatchList)
-		return
 	}
 }
 
@@ -191,7 +192,6 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 		resp.FirebaseCustomToken = customToken
 
 		json.NewEncoder(w).Encode(resp)
-		return
 	}
 }
 
@@ -211,13 +211,13 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 		// Send a push notification to the requested user
 		formattedName, err := fbClient.Ref("/users/" + initiatorID + "/profile/formattedName")
 		if err != nil {
-			json.NewEncoder(w).Encode("Could not send push notification")
+			respondWithError(w, FailedDBCall, "Could not send push notification")
 			fmt.Println(err.Error())
 			return
 		}
 		var name string
 		if err = formattedName.Value(&name); err != nil {
-			json.NewEncoder(w).Encode("Could not send push notification")
+			respondWithError(w, FailedDBCall, "Could not send push notification")
 			fmt.Println(err.Error())
 			return
 		}
@@ -231,11 +231,12 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 		}
 		err = SendPushNotification(&pushNotification)
 		if err != nil {
-			json.NewEncoder(w).Encode("Could not send push notification")
+			respondWithError(w, FailedSendPush, "Could not send push notification")
 			fmt.Println(err.Error())
 			return
 		}
-		json.NewEncoder(w).Encode("Success")
+		resp := ServerResponse{Success, "Success", true}
+		json.NewEncoder(w).Encode(resp)
 	}
 }
 
@@ -247,10 +248,17 @@ func SendPush(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 		if err := json.Unmarshal(bodyBytes, &pushNotification); err != nil {
 			fmt.Println("Unable to send push notification")
+			respondWithError(w, FailedSendPush, "Could not send push notification")
 			return
 		}
-		SendPushNotification(&pushNotification)
-		json.NewEncoder(w).Encode("Success")
+		err := SendPushNotification(&pushNotification)
+		if err != nil {
+			respondWithError(w, FailedSendPush, "Could not send push notification")
+			fmt.Println(err.Error())
+			return
+		}
+		resp := ServerResponse{Success, "Success", true}
+		json.NewEncoder(w).Encode(resp)
 	}
 }
 

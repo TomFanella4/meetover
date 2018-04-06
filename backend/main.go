@@ -17,7 +17,7 @@ func main() {
 	InitializeFirebase()
 
 	// demo data
-	LoadTestUsers()
+	// LoadTestUsers()
 
 	// ML
 	InitMLModel(WordModelContextWindow, WordModelDimension)

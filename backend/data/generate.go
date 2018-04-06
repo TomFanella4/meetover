@@ -50,19 +50,24 @@ func getRawUsers(rawFile string) []User {
 
 // GenTestUsers -
 func GenTestUsers(sourceFile, sinkFile string) {
+
 	numTech := 200
 	rawUsers := getRawUsers(sourceFile)
 	techUsers := genTechUsers(rawUsers[:numTech])
-	businessUsers := genBusinessUsers(rawUsers[numTech:])
 	fmt.Println(techUsers)
-	fmt.Println(businessUsers)
 }
 
-func jobDataToUsers(jobFile string, rawUsers []User) JobSummary {
-	jd := getJobJSON(jobFile)
+func jobDataToUser(jd JobData, rawUser User) User {
 	js := jobSummary(jd)
-	// fmt.Println(js)
-	return js
+	r := rand.Intn
+	start := r(len(js.Description)) / 2
+	rawUser.Profile.Greeting = js.Description[start:]
+	rawUser.Profile.Headline = js.Titles[r(len(js.Titles))]
+	rawUser.Profile.Industry = js.Skills[r(len(js.Skills))]
+	rawUser.Profile.FormattedName = rawUser.Profile.FirstName + " " + rawUser.Profile.LastName
+	start = r(len(js.Description)) / 2
+	rawUser.Profile.Summary = js.Description[start:]
+	return rawUser
 }
 
 func otherJobFiles() []string {
@@ -76,31 +81,17 @@ func otherJobFiles() []string {
 	}
 	return res
 }
-func genOtherUsers(rawUsers []User) []User {
-	files := []string{"agents.json", "education.json", "education-admins.json",
-		"engineering-professors.json", "english-professors.json", "judges.json",
-		"lawyers.json", "legislators.json", "mechanical.json", "statisticians.json",
-		"architects.json", "electricians.json"}
-	fmt.Println(files)
-	return []User{}
+func genNonTechUsers(rawUsers []User) []User {
+	nu := 0
+	files := otherJobFiles()
+	for _, f := range files {
+		jd := getJobJSON(f) // make 100 users for each type of job data
+		for ; nu%100 > 0 || nu == 0; nu++ {
+			rawUsers[nu] = jobDataToUser(jd, rawUsers[nu])
+		}
+	}
+	return rawUsers
 }
-
-func genArtUsers(rawUsers []User) []User {
-	files := []string{"actors.json", "arts.json", "english-professors.json",
-		"directors.json", "photographers.json", "singers.json"}
-	fmt.Println(files)
-	return []User{}
-}
-
-func genBusinessUsers(rawUsers []User) []User {
-	files := []string{"accountants.json", "directors.json",
-		"event-planners.json", "executives.json",
-		"financial-analyst.json", "hr.json", "insurance.json",
-		"managers.json", "traders.json"}
-	fmt.Println(files)
-	return []User{}
-}
-
 func genTechUsers(rawUsers []User) []User {
 	csvFile, err := os.Open("./jobs.csv")
 	if err != nil {

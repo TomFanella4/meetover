@@ -1,0 +1,1999 @@
+{
+   "code" : "13-1031.02",
+   "display" : "long",
+   "occupation" : {
+      "code" : "13-1031.02",
+      "title" : "Insurance Adjusters, Examiners, and Investigators",
+      "tags" : {
+         "bright_outlook" : false,
+         "green" : false
+      },
+      "description" : "Investigate, analyze, and determine the extent of insurance company's liability concerning personal, casualty, or property loss or damages, and attempt to effect settlement with claimants. Correspond with or interview medical specialists, agents, witnesses, or claimants to compile information. Calculate benefit payments and approve payment of claims within a certain monetary limit.",
+      "sample_of_reported_job_titles" : {
+         "title" : [
+            "Claim Representative",
+            "Claims Adjuster",
+            "Claims Analyst",
+            "Claims Examiner",
+            "Claims Representative",
+            "Claims Specialist",
+            "Field Liability Generalist",
+            "General Adjuster",
+            "Independent Insurance Adjuster",
+            "Litigation Claim Representative"
+         ]
+      },
+      "updated" : {
+         "partial" : false,
+         "year" : 2018,
+         "resource_updated" : [
+            {
+               "title" : "Abilities",
+               "source" : "Analyst",
+               "year" : 2009
+            },
+            {
+               "title" : "Alternate Titles",
+               "source" : "Multiple sources",
+               "year" : 2018
+            },
+            {
+               "title" : "Detailed Work Activities",
+               "source" : "Analyst",
+               "year" : 2014
+            },
+            {
+               "title" : "Education",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Interests",
+               "source" : "Analyst",
+               "year" : 2008
+            },
+            {
+               "title" : "Job Zone",
+               "source" : "Analyst",
+               "year" : 2009
+            },
+            {
+               "title" : "Knowledge",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Sample of Reported Titles",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Skills",
+               "source" : "Analyst",
+               "year" : 2010
+            },
+            {
+               "title" : "Tasks",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Tools & Technology",
+               "source" : "Employer Job Postings",
+               "year" : 2017
+            },
+            {
+               "title" : "Work Activities",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Work Context",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Work Needs",
+               "source" : "Legacy Analyst"
+            },
+            {
+               "title" : "Work Styles",
+               "source" : "Incumbent",
+               "year" : 2009
+            },
+            {
+               "title" : "Work Values",
+               "source" : "Analyst",
+               "year" : 2008
+            }
+         ]
+      },
+      "summary_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/tasks",
+               "title" : "Tasks"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/technology_skills",
+               "title" : "Technology Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/tools_used",
+               "title" : "Tools Used"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/tools_technology",
+               "title" : "Tools &amp; Technology"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/knowledge",
+               "title" : "Knowledge"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/skills",
+               "title" : "Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/abilities",
+               "title" : "Abilities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/work_activities",
+               "title" : "Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/detailed_work_activities",
+               "title" : "Detailed Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/work_context",
+               "title" : "Work Context"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/job_zone",
+               "title" : "Job Zone"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/education",
+               "title" : "Education"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/interests",
+               "title" : "Interests"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/work_styles",
+               "title" : "Work Styles"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/work_values",
+               "title" : "Work Values"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/related_occupations",
+               "title" : "Related Occupations"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/summary/additional_information",
+               "title" : "Sources of Additional Information"
+            }
+         ]
+      },
+      "details_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/tasks",
+               "title" : "Tasks"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/technology_skills",
+               "title" : "Technology Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/tools_used",
+               "title" : "Tools Used"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/tools_technology",
+               "title" : "Tools &amp; Technology"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/knowledge",
+               "title" : "Knowledge"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/skills",
+               "title" : "Skills"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/abilities",
+               "title" : "Abilities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/work_activities",
+               "title" : "Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/detailed_work_activities",
+               "title" : "Detailed Work Activities"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/work_context",
+               "title" : "Work Context"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/job_zone",
+               "title" : "Job Zone"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/education",
+               "title" : "Education"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/interests",
+               "title" : "Interests"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/work_styles",
+               "title" : "Work Styles"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/work_values",
+               "title" : "Work Values"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/related_occupations",
+               "title" : "Related Occupations"
+            },
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/details/additional_information",
+               "title" : "Sources of Additional Information"
+            }
+         ]
+      },
+      "custom_resources" : {
+         "resource" : [
+            {
+               "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/custom/work_activities_outline",
+               "title" : "Work Activities Outline"
+            }
+         ]
+      }
+   },
+   "tasks" : {
+      "task" : [
+         {
+            "id" : 1163,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1163",
+            "name" : "Examine claims forms and other records to determine insurance coverage."
+         },
+         {
+            "id" : 18465,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/18465",
+            "name" : "Investigate and assess damage to property and create or review property damage estimates."
+         },
+         {
+            "id" : 18466,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/18466",
+            "name" : "Interview or correspond with claimants, witnesses, police, physicians, or other relevant parties to determine claim settlement, denial, or review."
+         },
+         {
+            "id" : 18467,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/18467",
+            "name" : "Review police reports, medical treatment records, medical bills, or physical property damage to determine the extent of liability."
+         },
+         {
+            "id" : 1165,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1165",
+            "name" : "Negotiate claim settlements and recommend litigation when settlement cannot be negotiated."
+         },
+         {
+            "id" : 1164,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1164",
+            "name" : "Analyze information gathered by investigation and report findings and recommendations."
+         },
+         {
+            "id" : 1168,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1168",
+            "name" : "Interview or correspond with agents and claimants to correct errors or omissions and to investigate questionable claims."
+         },
+         {
+            "id" : 1166,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1166",
+            "name" : "Prepare report of findings of investigation."
+         },
+         {
+            "id" : 1169,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1169",
+            "name" : "Refer questionable claims to investigator or claims adjuster for investigation or settlement."
+         },
+         {
+            "id" : 1167,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1167",
+            "name" : "Collect evidence to support contested claims in court."
+         },
+         {
+            "id" : 1171,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1171",
+            "name" : "Obtain credit information from banks and other credit services."
+         },
+         {
+            "id" : 1170,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1170",
+            "name" : "Examine titles to property to determine validity and act as company agent in transactions with property owners."
+         },
+         {
+            "id" : 1172,
+            "green" : false,
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tasks/1172",
+            "name" : "Communicate with former associates to verify employment record and to obtain background information regarding persons or businesses applying for credit."
+         }
+      ]
+   },
+   "technology_skills" : {
+      "category" : [
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232202",
+            "title" : {
+               "id" : 43232202,
+               "name" : "Document management software"
+            },
+            "example" : [
+               {
+                  "name" : "Agency Management Systems AMS 360"
+               },
+               {
+                  "name" : "BCCORP Burkitt W5"
+               },
+               {
+                  "name" : "Document management system software"
+               },
+               {
+                  "name" : "InSystems Calligo Document Management System"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231511",
+            "title" : {
+               "id" : 43231511,
+               "name" : "Expert system software"
+            },
+            "example" : [
+               {
+                  "name" : "Axonwave Fraud and Abuse Management System"
+               },
+               {
+                  "name" : "Bill review software"
+               },
+               {
+                  "name" : "LexisNexis RiskWise"
+               },
+               {
+                  "name" : "StrataCare StrataWare eReview"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232604",
+            "title" : {
+               "id" : 43232604,
+               "hot_technology" : 177,
+               "name" : "Computer aided design CAD software"
+            },
+            "example" : [
+               {
+                  "name" : "4n6xprt Systems StiffCalcs"
+               },
+               {
+                  "name" : "ARSoftware WinSMAC"
+               },
+               {
+                  "name" : "MapScenes Evidence Recorder"
+               },
+               {
+                  "name" : "Visual Statement Investigator Suite"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231604",
+            "title" : {
+               "id" : 43231604,
+               "name" : "Financial analysis software"
+            },
+            "example" : [
+               {
+                  "name" : "Automatic Data Processing Estimating"
+               },
+               {
+                  "name" : "CSC Colossus"
+               },
+               {
+                  "name" : "Simsol for Adjusters"
+               },
+               {
+                  "name" : "Turtle Creek Software Goldenseal Architect"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232605",
+            "title" : {
+               "id" : 43232605,
+               "name" : "Analytical or scientific software"
+            },
+            "example" : [
+               {
+                  "name" : "Injury Sciences EDR InSight"
+               },
+               {
+                  "name" : "Insurance claims fraud detection software"
+               },
+               {
+                  "name" : "Magnify Predictive Targeting System"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232901",
+            "title" : {
+               "id" : 43232901,
+               "name" : "Access software"
+            },
+            "example" : [
+               {
+                  "name" : "CCC EZNet electronic communications network"
+               },
+               {
+                  "name" : "CSC Automated Work Distributor AWD"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231602",
+            "title" : {
+               "id" : 43231602,
+               "hot_technology" : 176,
+               "name" : "Enterprise resource planning ERP software"
+            },
+            "example" : [
+               {
+                  "name" : "ADP software"
+               },
+               {
+                  "name" : "CCC Pathways Appraisal Quality Solution"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232110",
+            "title" : {
+               "id" : 43232110,
+               "name" : "Spreadsheet software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 1,
+                  "name" : "Microsoft Excel"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232610",
+            "title" : {
+               "id" : 43232610,
+               "name" : "Medical software"
+            },
+            "example" : [
+               {
+                  "hot_technology" : 119,
+                  "name" : "Healthcare common procedure coding system HCPCS"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232703",
+            "title" : {
+               "id" : 43232703,
+               "name" : "Interactive voice response software"
+            },
+            "example" : [
+               {
+                  "name" : "Computerized voice stress analyzer CVSA software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231513",
+            "title" : {
+               "id" : 43231513,
+               "name" : "Office suite software"
+            },
+            "example" : [
+               {
+                  "name" : "Microsoft Office"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232104",
+            "title" : {
+               "id" : 43232104,
+               "name" : "Word processing software"
+            },
+            "example" : [
+               {
+                  "name" : "Microsoft Word"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232305",
+            "title" : {
+               "id" : 43232305,
+               "name" : "Data base reporting software"
+            },
+            "example" : [
+               {
+                  "name" : "Corporate Systems ClaimsPro"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232306",
+            "title" : {
+               "id" : 43232306,
+               "name" : "Data base user interface and query software"
+            },
+            "example" : [
+               {
+                  "name" : "Claims processing administration and management software"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232309",
+            "title" : {
+               "id" : 43232309,
+               "name" : "Information retrieval or search software"
+            },
+            "example" : [
+               {
+                  "name" : "CGI-AMS BureauLink Enterprise"
+               }
+            ]
+         }
+      ]
+   },
+   "tools_used" : {
+      "category" : [
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43211715",
+            "title" : {
+               "id" : 43211715,
+               "name" : "Portable data input terminals"
+            },
+            "example" : [
+               {
+                  "name" : "Data collectors"
+               },
+               {
+                  "name" : "Field computers"
+               },
+               {
+                  "name" : "Handheld computers"
+               },
+               {
+                  "name" : "Mobile wireless handheld communication devices"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/25173303",
+            "title" : {
+               "id" : 25173303,
+               "name" : "Automotive computer systems"
+            },
+            "example" : [
+               {
+                  "name" : "Event data recorders"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/41114204",
+            "title" : {
+               "id" : 41114204,
+               "name" : "Theodolites"
+            },
+            "example" : [
+               {
+                  "name" : "Total stations"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43211504",
+            "title" : {
+               "id" : 43211504,
+               "name" : "Personal digital assistant PDAs or organizers"
+            },
+            "example" : [
+               {
+                  "name" : "Personal digital assistants PDA"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/41111616",
+            "title" : {
+               "id" : 41111616,
+               "name" : "Measuring wheels for distance"
+            },
+            "example" : [
+               {
+                  "name" : "Measure markers"
+               }
+            ]
+         },
+         {
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43211507",
+            "title" : {
+               "id" : 43211507,
+               "name" : "Desktop computers"
+            },
+            "example" : []
+         }
+      ]
+   },
+   "tools_technology" : {
+      "tools" : {
+         "category" : [
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43211715",
+               "title" : {
+                  "id" : 43211715,
+                  "name" : "Portable data input terminals"
+               },
+               "example" : [
+                  {
+                     "name" : "Data collectors"
+                  },
+                  {
+                     "name" : "Field computers"
+                  },
+                  {
+                     "name" : "Handheld computers"
+                  },
+                  {
+                     "name" : "Mobile wireless handheld communication devices"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/25173303",
+               "title" : {
+                  "id" : 25173303,
+                  "name" : "Automotive computer systems"
+               },
+               "example" : [
+                  {
+                     "name" : "Event data recorders"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/41114204",
+               "title" : {
+                  "id" : 41114204,
+                  "name" : "Theodolites"
+               },
+               "example" : [
+                  {
+                     "name" : "Total stations"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43211504",
+               "title" : {
+                  "id" : 43211504,
+                  "name" : "Personal digital assistant PDAs or organizers"
+               },
+               "example" : [
+                  {
+                     "name" : "Personal digital assistants PDA"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/41111616",
+               "title" : {
+                  "id" : 41111616,
+                  "name" : "Measuring wheels for distance"
+               },
+               "example" : [
+                  {
+                     "name" : "Measure markers"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43211507",
+               "title" : {
+                  "id" : 43211507,
+                  "name" : "Desktop computers"
+               },
+               "example" : []
+            }
+         ]
+      },
+      "technology" : {
+         "category" : [
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232202",
+               "title" : {
+                  "id" : 43232202,
+                  "name" : "Document management software"
+               },
+               "example" : [
+                  {
+                     "name" : "Agency Management Systems AMS 360"
+                  },
+                  {
+                     "name" : "BCCORP Burkitt W5"
+                  },
+                  {
+                     "name" : "Document management system software"
+                  },
+                  {
+                     "name" : "InSystems Calligo Document Management System"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231511",
+               "title" : {
+                  "id" : 43231511,
+                  "name" : "Expert system software"
+               },
+               "example" : [
+                  {
+                     "name" : "Axonwave Fraud and Abuse Management System"
+                  },
+                  {
+                     "name" : "Bill review software"
+                  },
+                  {
+                     "name" : "LexisNexis RiskWise"
+                  },
+                  {
+                     "name" : "StrataCare StrataWare eReview"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232604",
+               "title" : {
+                  "id" : 43232604,
+                  "hot_technology" : 177,
+                  "name" : "Computer aided design CAD software"
+               },
+               "example" : [
+                  {
+                     "name" : "4n6xprt Systems StiffCalcs"
+                  },
+                  {
+                     "name" : "ARSoftware WinSMAC"
+                  },
+                  {
+                     "name" : "MapScenes Evidence Recorder"
+                  },
+                  {
+                     "name" : "Visual Statement Investigator Suite"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231604",
+               "title" : {
+                  "id" : 43231604,
+                  "name" : "Financial analysis software"
+               },
+               "example" : [
+                  {
+                     "name" : "Automatic Data Processing Estimating"
+                  },
+                  {
+                     "name" : "CSC Colossus"
+                  },
+                  {
+                     "name" : "Simsol for Adjusters"
+                  },
+                  {
+                     "name" : "Turtle Creek Software Goldenseal Architect"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232605",
+               "title" : {
+                  "id" : 43232605,
+                  "name" : "Analytical or scientific software"
+               },
+               "example" : [
+                  {
+                     "name" : "Injury Sciences EDR InSight"
+                  },
+                  {
+                     "name" : "Insurance claims fraud detection software"
+                  },
+                  {
+                     "name" : "Magnify Predictive Targeting System"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232901",
+               "title" : {
+                  "id" : 43232901,
+                  "name" : "Access software"
+               },
+               "example" : [
+                  {
+                     "name" : "CCC EZNet electronic communications network"
+                  },
+                  {
+                     "name" : "CSC Automated Work Distributor AWD"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231602",
+               "title" : {
+                  "id" : 43231602,
+                  "hot_technology" : 176,
+                  "name" : "Enterprise resource planning ERP software"
+               },
+               "example" : [
+                  {
+                     "name" : "ADP software"
+                  },
+                  {
+                     "name" : "CCC Pathways Appraisal Quality Solution"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232110",
+               "title" : {
+                  "id" : 43232110,
+                  "name" : "Spreadsheet software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 1,
+                     "name" : "Microsoft Excel"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232610",
+               "title" : {
+                  "id" : 43232610,
+                  "name" : "Medical software"
+               },
+               "example" : [
+                  {
+                     "hot_technology" : 119,
+                     "name" : "Healthcare common procedure coding system HCPCS"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232703",
+               "title" : {
+                  "id" : 43232703,
+                  "name" : "Interactive voice response software"
+               },
+               "example" : [
+                  {
+                     "name" : "Computerized voice stress analyzer CVSA software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43231513",
+               "title" : {
+                  "id" : 43231513,
+                  "name" : "Office suite software"
+               },
+               "example" : [
+                  {
+                     "name" : "Microsoft Office"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232104",
+               "title" : {
+                  "id" : 43232104,
+                  "name" : "Word processing software"
+               },
+               "example" : [
+                  {
+                     "name" : "Microsoft Word"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232305",
+               "title" : {
+                  "id" : 43232305,
+                  "name" : "Data base reporting software"
+               },
+               "example" : [
+                  {
+                     "name" : "Corporate Systems ClaimsPro"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232306",
+               "title" : {
+                  "id" : 43232306,
+                  "name" : "Data base user interface and query software"
+               },
+               "example" : [
+                  {
+                     "name" : "Claims processing administration and management software"
+                  }
+               ]
+            },
+            {
+               "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/tools_technology/43232309",
+               "title" : {
+                  "id" : 43232309,
+                  "name" : "Information retrieval or search software"
+               },
+               "example" : [
+                  {
+                     "name" : "CGI-AMS BureauLink Enterprise"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "knowledge" : {
+      "element" : [
+         {
+            "id" : "2.C.7.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/knowledge/2.C.7.a",
+            "name" : "English Language",
+            "description" : "Knowledge of the structure and content of the English language including the meaning and spelling of words, rules of composition, and grammar."
+         },
+         {
+            "id" : "2.C.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/knowledge/2.C.1.e",
+            "name" : "Customer and Personal Service",
+            "description" : "Knowledge of principles and processes for providing customer and personal services. This includes customer needs assessment, meeting quality standards for services, and evaluation of customer satisfaction."
+         },
+         {
+            "id" : "2.C.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/knowledge/2.C.1.b",
+            "name" : "Clerical",
+            "description" : "Knowledge of administrative and clerical procedures and systems such as word processing, managing files and records, stenography and transcription, designing forms, and other office procedures and terminology."
+         },
+         {
+            "id" : "2.C.8.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/knowledge/2.C.8.b",
+            "name" : "Law and Government",
+            "description" : "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules, and the democratic political process."
+         },
+         {
+            "id" : "2.C.4.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/knowledge/2.C.4.a",
+            "name" : "Mathematics",
+            "description" : "Knowledge of arithmetic, algebra, geometry, calculus, statistics, and their applications."
+         }
+      ]
+   },
+   "skills" : {
+      "element" : [
+         {
+            "id" : "2.A.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.1.b",
+            "name" : "Active Listening",
+            "description" : "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
+         },
+         {
+            "id" : "2.A.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.2.a",
+            "name" : "Critical Thinking",
+            "description" : "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
+         },
+         {
+            "id" : "2.A.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.1.a",
+            "name" : "Reading Comprehension",
+            "description" : "Understanding written sentences and paragraphs in work related documents."
+         },
+         {
+            "id" : "2.A.1.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.1.d",
+            "name" : "Speaking",
+            "description" : "Talking to others to convey information effectively."
+         },
+         {
+            "id" : "2.B.1.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.1.d",
+            "name" : "Negotiation",
+            "description" : "Bringing others together and trying to reconcile differences."
+         },
+         {
+            "id" : "2.A.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.1.c",
+            "name" : "Writing",
+            "description" : "Communicating effectively in writing as appropriate for the needs of the audience."
+         },
+         {
+            "id" : "2.A.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.2.b",
+            "name" : "Active Learning",
+            "description" : "Understanding the implications of new information for both current and future problem-solving and decision-making."
+         },
+         {
+            "id" : "2.B.4.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.4.e",
+            "name" : "Judgment and Decision Making",
+            "description" : "Considering the relative costs and benefits of potential actions to choose the most appropriate one."
+         },
+         {
+            "id" : "2.B.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.1.a",
+            "name" : "Social Perceptiveness",
+            "description" : "Being aware of others' reactions and understanding why they react as they do."
+         },
+         {
+            "id" : "2.B.2.i",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.2.i",
+            "name" : "Complex Problem Solving",
+            "description" : "Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
+         },
+         {
+            "id" : "2.B.5.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.5.a",
+            "name" : "Time Management",
+            "description" : "Managing one's own time and the time of others."
+         },
+         {
+            "id" : "2.B.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.1.b",
+            "name" : "Coordination",
+            "description" : "Adjusting actions in relation to others' actions."
+         },
+         {
+            "id" : "2.A.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.A.1.e",
+            "name" : "Mathematics",
+            "description" : "Using mathematics to solve problems."
+         },
+         {
+            "id" : "2.B.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.1.c",
+            "name" : "Persuasion",
+            "description" : "Persuading others to change their minds or behavior."
+         },
+         {
+            "id" : "2.B.1.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/skills/2.B.1.f",
+            "name" : "Service Orientation",
+            "description" : "Actively looking for ways to help people."
+         }
+      ]
+   },
+   "abilities" : {
+      "element" : [
+         {
+            "id" : "1.A.1.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.a.1",
+            "name" : "Oral Comprehension",
+            "description" : "The ability to listen to and understand information and ideas presented through spoken words and sentences."
+         },
+         {
+            "id" : "1.A.1.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.a.3",
+            "name" : "Oral Expression",
+            "description" : "The ability to communicate information and ideas in speaking so others will understand."
+         },
+         {
+            "id" : "1.A.1.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.a.2",
+            "name" : "Written Comprehension",
+            "description" : "The ability to read and understand information and ideas presented in writing."
+         },
+         {
+            "id" : "1.A.1.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.b.4",
+            "name" : "Deductive Reasoning",
+            "description" : "The ability to apply general rules to specific problems to produce answers that make sense."
+         },
+         {
+            "id" : "1.A.1.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.b.5",
+            "name" : "Inductive Reasoning",
+            "description" : "The ability to combine pieces of information to form general rules or conclusions (includes finding a relationship among seemingly unrelated events)."
+         },
+         {
+            "id" : "1.A.4.b.5",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.4.b.5",
+            "name" : "Speech Clarity",
+            "description" : "The ability to speak clearly so others can understand you."
+         },
+         {
+            "id" : "1.A.4.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.4.a.1",
+            "name" : "Near Vision",
+            "description" : "The ability to see details at close range (within a few feet of the observer)."
+         },
+         {
+            "id" : "1.A.1.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.b.3",
+            "name" : "Problem Sensitivity",
+            "description" : "The ability to tell when something is wrong or is likely to go wrong. It does not involve solving the problem, only recognizing there is a problem."
+         },
+         {
+            "id" : "1.A.1.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.a.4",
+            "name" : "Written Expression",
+            "description" : "The ability to communicate information and ideas in writing so others will understand."
+         },
+         {
+            "id" : "1.A.1.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.b.6",
+            "name" : "Information Ordering",
+            "description" : "The ability to arrange things or actions in a certain order or pattern according to a specific rule or set of rules (e.g., patterns of numbers, letters, words, pictures, mathematical operations)."
+         },
+         {
+            "id" : "1.A.4.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.4.b.4",
+            "name" : "Speech Recognition",
+            "description" : "The ability to identify and understand the speech of another person."
+         },
+         {
+            "id" : "1.A.1.b.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.b.7",
+            "name" : "Category Flexibility",
+            "description" : "The ability to generate or use different sets of rules for combining or grouping things in different ways."
+         },
+         {
+            "id" : "1.A.1.c.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.c.2",
+            "name" : "Number Facility",
+            "description" : "The ability to add, subtract, multiply, or divide quickly and correctly."
+         },
+         {
+            "id" : "1.A.1.g.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.g.1",
+            "name" : "Selective Attention",
+            "description" : "The ability to concentrate on a task over a period of time without being distracted."
+         },
+         {
+            "id" : "1.A.4.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.4.a.2",
+            "name" : "Far Vision",
+            "description" : "The ability to see details at a distance."
+         },
+         {
+            "id" : "1.A.1.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.c.1",
+            "name" : "Mathematical Reasoning",
+            "description" : "The ability to choose the right mathematical methods or formulas to solve a problem."
+         },
+         {
+            "id" : "1.A.1.e.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.e.3",
+            "name" : "Perceptual Speed",
+            "description" : "The ability to quickly and accurately compare similarities and differences among sets of letters, numbers, objects, pictures, or patterns. The things to be compared may be presented at the same time or one after the other. This ability also includes comparing a presented object with a remembered object."
+         },
+         {
+            "id" : "1.A.1.e.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.e.1",
+            "name" : "Speed of Closure",
+            "description" : "The ability to quickly make sense of, combine, and organize information into meaningful patterns."
+         },
+         {
+            "id" : "1.A.1.e.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/abilities/1.A.1.e.2",
+            "name" : "Flexibility of Closure",
+            "description" : "The ability to identify or detect a known pattern (a figure, object, word, or sound) that is hidden in other distracting material."
+         }
+      ]
+   },
+   "work_activities" : {
+      "element" : [
+         {
+            "id" : "4.A.1.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.1.b.1",
+            "name" : "Identifying Objects, Actions, and Events",
+            "description" : "Identifying information by categorizing, estimating, recognizing differences or similarities, and detecting changes in circumstances or events."
+         },
+         {
+            "id" : "4.A.3.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.3.b.1",
+            "name" : "Interacting With Computers",
+            "description" : "Using computers and computer systems (including hardware and software) to program, write software, set up functions, enter data, or process information."
+         },
+         {
+            "id" : "4.A.1.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.1.a.1",
+            "name" : "Getting Information",
+            "description" : "Observing, receiving, and otherwise obtaining information from all relevant sources."
+         },
+         {
+            "id" : "4.A.3.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.3.b.6",
+            "name" : "Documenting/Recording Information",
+            "description" : "Entering, transcribing, recording, storing, or maintaining information in written or electronic/magnetic form."
+         },
+         {
+            "id" : "4.A.2.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.a.2",
+            "name" : "Processing Information",
+            "description" : "Compiling, coding, categorizing, calculating, tabulating, auditing, or verifying information or data."
+         },
+         {
+            "id" : "4.A.2.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.a.3",
+            "name" : "Evaluating Information to Determine Compliance with Standards",
+            "description" : "Using relevant information and individual judgment to determine whether events or processes comply with laws, regulations, or standards."
+         },
+         {
+            "id" : "4.A.2.b.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.b.1",
+            "name" : "Making Decisions and Solving Problems",
+            "description" : "Analyzing information and evaluating results to choose the best solution and solve problems."
+         },
+         {
+            "id" : "4.A.4.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.a.2",
+            "name" : "Communicating with Supervisors, Peers, or Subordinates",
+            "description" : "Providing information to supervisors, co-workers, and subordinates by telephone, in written form, e-mail, or in person."
+         },
+         {
+            "id" : "4.A.2.b.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.b.6",
+            "name" : "Organizing, Planning, and Prioritizing Work",
+            "description" : "Developing specific goals and plans to prioritize, organize, and accomplish your work."
+         },
+         {
+            "id" : "4.A.4.a.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.a.7",
+            "name" : "Resolving Conflicts and Negotiating with Others",
+            "description" : "Handling complaints, settling disputes, and resolving grievances and conflicts, or otherwise negotiating with others."
+         },
+         {
+            "id" : "4.A.4.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.a.3",
+            "name" : "Communicating with Persons Outside Organization",
+            "description" : "Communicating with people outside the organization, representing the organization to customers, the public, government, and other external sources. This information can be exchanged in person, in writing, or by telephone or e-mail."
+         },
+         {
+            "id" : "4.A.2.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.b.3",
+            "name" : "Updating and Using Relevant Knowledge",
+            "description" : "Keeping up-to-date technically and applying new knowledge to your job."
+         },
+         {
+            "id" : "4.A.2.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.a.1",
+            "name" : "Judging the Qualities of Things, Services, or People",
+            "description" : "Assessing the value, importance, or quality of things or people."
+         },
+         {
+            "id" : "4.A.2.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.2.a.4",
+            "name" : "Analyzing Data or Information",
+            "description" : "Identifying the underlying principles, reasons, or facts of information by breaking down information or data into separate parts."
+         },
+         {
+            "id" : "4.A.4.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.a.4",
+            "name" : "Establishing and Maintaining Interpersonal Relationships",
+            "description" : "Developing constructive and cooperative working relationships with others, and maintaining them over time."
+         },
+         {
+            "id" : "4.A.1.b.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.1.b.3",
+            "name" : "Estimating the Quantifiable Characteristics of Products, Events, or Information",
+            "description" : "Estimating sizes, distances, and quantities; or determining time, costs, resources, or materials needed to perform a work activity."
+         },
+         {
+            "id" : "4.A.4.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.c.1",
+            "name" : "Performing Administrative Activities",
+            "description" : "Performing day-to-day administrative tasks such as maintaining information files and processing paperwork."
+         },
+         {
+            "id" : "4.A.4.a.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.a.1",
+            "name" : "Interpreting the Meaning of Information for Others",
+            "description" : "Translating or explaining what information means and how it can be used."
+         },
+         {
+            "id" : "4.A.4.a.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.4.a.8",
+            "name" : "Performing for or Working Directly with the Public",
+            "description" : "Performing for people or dealing directly with the public. This includes serving customers in restaurants and stores, and receiving clients or guests."
+         },
+         {
+            "id" : "4.A.1.a.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.1.a.2",
+            "name" : "Monitor Processes, Materials, or Surroundings",
+            "description" : "Monitoring and reviewing information from materials, events, or the environment, to detect or assess problems."
+         },
+         {
+            "id" : "4.A.1.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_activities/4.A.1.b.2",
+            "name" : "Inspecting Equipment, Structures, or Material",
+            "description" : "Inspecting equipment, structures, or materials to identify the cause of errors or other problems or defects."
+         }
+      ]
+   },
+   "detailed_work_activities" : {
+      "activity" : [
+         {
+            "id" : "4.A.2.a.1.I09.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.2.a.1.I09.D03",
+            "name" : "Appraise property values."
+         },
+         {
+            "id" : "4.A.2.a.4.I07.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.2.a.4.I07.D01",
+            "name" : "Calculate data to inform organizational operations."
+         },
+         {
+            "id" : "4.A.1.a.1.I23.D09",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.1.a.1.I23.D09",
+            "name" : "Interview witnesses, suspects, or claimants."
+         },
+         {
+            "id" : "4.A.2.b.1.I01.D06",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.2.b.1.I01.D06",
+            "name" : "Estimate costs of goods or services."
+         },
+         {
+            "id" : "4.A.4.b.6.I08.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.4.b.6.I08.D04",
+            "name" : "Advise others on legal or regulatory compliance matters."
+         },
+         {
+            "id" : "4.A.4.a.7.I02.D09",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.4.a.7.I02.D09",
+            "name" : "Negotiate agreements to resolve disputes."
+         },
+         {
+            "id" : "4.A.3.b.6.I14.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.3.b.6.I14.D01",
+            "name" : "Prepare legal or investigatory documentation."
+         },
+         {
+            "id" : "4.A.1.a.1.I03.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.1.a.1.I03.D04",
+            "name" : "Investigate legal issues."
+         },
+         {
+            "id" : "4.A.4.a.2.I03.D10",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.4.a.2.I03.D10",
+            "name" : "Report information to managers or other personnel."
+         },
+         {
+            "id" : "4.A.1.a.1.I03.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.1.a.1.I03.D01",
+            "name" : "Collect evidence for legal proceedings."
+         },
+         {
+            "id" : "4.A.1.a.1.I04.D04",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.1.a.1.I04.D04",
+            "name" : "Gather financial records."
+         },
+         {
+            "id" : "4.A.2.a.2.I01.D01",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.2.a.2.I01.D01",
+            "name" : "Verify accuracy of records."
+         },
+         {
+            "id" : "4.A.2.a.2.I05.D03",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/detailed_work_activities/4.A.2.a.2.I05.D03",
+            "name" : "Verify application data to determine program eligibility."
+         }
+      ]
+   },
+   "work_context" : {
+      "element" : [
+         {
+            "id" : "4.C.3.a.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.a.2.b",
+            "name" : "Frequency of Decision Making",
+            "description" : "How frequently is the worker required to make decisions that affect other people, the financial resources, and/or the image and reputation of the organization?",
+            "response" : [
+               {
+                  "percentage" : 82,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.h",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.a.2.h",
+            "name" : "Electronic Mail",
+            "description" : "How often do you use electronic mail in this job?",
+            "response" : [
+               {
+                  "percentage" : 85,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.j",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.a.2.j",
+            "name" : "Letters and Memos",
+            "description" : "How often does the job require written letters and memos?",
+            "response" : []
+         },
+         {
+            "id" : "4.C.1.a.2.l",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.a.2.l",
+            "name" : "Face-to-Face Discussions",
+            "description" : "How often do you have to have face-to-face discussions with individuals or teams in this job?",
+            "response" : [
+               {
+                  "percentage" : 69,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.2.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.a.2.f",
+            "name" : "Telephone",
+            "description" : "How often do you have telephone conversations in this job?",
+            "response" : [
+               {
+                  "percentage" : 15,
+                  "name" : "Once a month or more but not every week"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.2.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.a.2.a",
+            "name" : "Impact of Decisions on Co-workers or Company Results",
+            "description" : "What results do your decisions usually have on other people or the image or reputation or financial resources of your employer?",
+            "response" : [
+               {
+                  "percentage" : 60,
+                  "name" : "Very important results"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.b.4",
+            "name" : "Importance of Being Exact or Accurate",
+            "description" : "How important is being very exact or highly accurate in performing this job?",
+            "response" : [
+               {
+                  "percentage" : 61,
+                  "name" : "Extremely important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.d.1",
+            "name" : "Time Pressure",
+            "description" : "How often does this job require the worker to meet strict deadlines?",
+            "response" : [
+               {
+                  "percentage" : 62,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.a.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.2.a.1.a",
+            "name" : "Indoors, Environmentally Controlled",
+            "description" : "How often does this job require working indoors in environmentally controlled conditions?",
+            "response" : [
+               {
+                  "percentage" : 77,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.d.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.2.d.1.a",
+            "name" : "Spend Time Sitting",
+            "description" : "How much does this job require sitting?",
+            "response" : [
+               {
+                  "percentage" : 60,
+                  "name" : "Continually or almost continually"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.a.4",
+            "name" : "Contact With Others",
+            "description" : "How much does this job require the worker to be in contact with others (face-to-face, by telephone, or otherwise) in order to perform it?",
+            "response" : [
+               {
+                  "percentage" : 15,
+                  "name" : "Occasional contact with others"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.a.4",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.a.4",
+            "name" : "Freedom to Make Decisions",
+            "description" : "How much decision making freedom, without supervision, does the job offer?",
+            "response" : [
+               {
+                  "percentage" : 45,
+                  "name" : "A lot of freedom"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.d.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.d.1",
+            "name" : "Frequency of Conflict Situations",
+            "description" : "How often are there conflict situations the employee has to face in this job?",
+            "response" : [
+               {
+                  "percentage" : 46,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.d.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.d.2",
+            "name" : "Deal With Unpleasant or Angry People",
+            "description" : "How frequently does the worker have to deal with unpleasant, angry, or discourteous individuals as part of the job requirements?",
+            "response" : [
+               {
+                  "percentage" : 39,
+                  "name" : "Every day"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.b.8",
+            "name" : "Structured versus Unstructured Work",
+            "description" : "To what extent is this job structured for the worker, rather than allowing the worker to determine tasks, priorities, and goals?",
+            "response" : [
+               {
+                  "percentage" : 49,
+                  "name" : "A lot of freedom"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.b.1.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.b.1.f",
+            "name" : "Deal With External Customers",
+            "description" : "How important is it to work with external customers or the public in this job?",
+            "response" : [
+               {
+                  "percentage" : 24,
+                  "name" : "Not important at all"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.1.b.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.1.b.1.e",
+            "name" : "Work With Work Group or Team",
+            "description" : "How important is it to work with others in a group or team in this job?",
+            "response" : [
+               {
+                  "percentage" : 44,
+                  "name" : "Important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.7",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.b.7",
+            "name" : "Importance of Repeating Same Tasks",
+            "description" : "How important is repeating the same physical activities (e.g., key entry) or mental activities (e.g., checking entries in a ledger) over and over, without stopping, to performing this job?",
+            "response" : [
+               {
+                  "percentage" : 30,
+                  "name" : "Extremely important"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.d.1.i",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.2.d.1.i",
+            "name" : "Spend Time Making Repetitive Motions",
+            "description" : "How much does this job require making repetitive motions?",
+            "response" : [
+               {
+                  "percentage" : 31,
+                  "name" : "More than half the time"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.d.8",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.d.8",
+            "name" : "Duration of Typical Work Week",
+            "description" : "Number of hours typically worked in one week.",
+            "response" : [
+               {
+                  "percentage" : 52,
+                  "name" : "40 hours"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.b.2",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.b.2",
+            "name" : "Degree of Automation",
+            "description" : "How automated is the job?",
+            "response" : [
+               {
+                  "percentage" : 33,
+                  "name" : "Moderately automated"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.2.a.3",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.2.a.3",
+            "name" : "Physical Proximity",
+            "description" : "To what extent does this job require the worker to perform job tasks in close physical proximity to other people?",
+            "response" : [
+               {
+                  "percentage" : 37,
+                  "name" : "Moderately close (at arm's length)"
+               }
+            ]
+         },
+         {
+            "id" : "4.C.3.c.1",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_context/4.C.3.c.1",
+            "name" : "Level of Competition",
+            "description" : "To what extent does this job require the worker to compete or to be aware of competitive pressures?",
+            "response" : [
+               {
+                  "percentage" : 57,
+                  "name" : "Moderately competitive"
+               }
+            ]
+         }
+      ]
+   },
+   "job_zone" : {
+      "value" : 3,
+      "title" : "Job Zone Three: Medium Preparation Needed",
+      "education" : "Most occupations in this zone require training in vocational schools, related on-the-job experience, or an associate's degree.",
+      "related_experience" : "Previous work-related skill, knowledge, or experience is required for these occupations. For example, an electrician must have completed three or four years of apprenticeship or several years of vocational training, and often must have passed a licensing exam, in order to perform the job.",
+      "job_training" : "Employees in these occupations usually need one or two years of training involving both on-the-job experience and informal training with experienced workers. A recognized apprenticeship program may be associated with these occupations.",
+      "job_zone_examples" : "These occupations usually involve using communication and organizational skills to coordinate, supervise, manage, or train others to accomplish goals. Examples include hydroelectric production managers, travel guides, electricians, agricultural technicians, barbers, nannies, and medical assistants.",
+      "svp_range" : "(6.0 to < 7.0)"
+   },
+   "education" : {
+      "level_required" : {
+         "category" : [
+            {
+               "name" : "Bachelor's degree",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 35
+               }
+            },
+            {
+               "name" : "Post-secondary certificate",
+               "description" : "Awarded for training completed after high school (for example, in Personnel Services, Engineering-related Technologies, Vocational Home Economics, Construction Trades, Mechanics and Repairers, Precision Production Trades)",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 25
+               }
+            },
+            {
+               "name" : "Post-baccalaureate certificate",
+               "description" : "Awarded for completion of an organized program of study; designed for people who have completed a Baccalaureate degree, but do not meet the requirements of academic degrees carrying the title of Master",
+               "score" : {
+                  "scale" : "Percentage of Respondents",
+                  "value" : 14
+               }
+            }
+         ]
+      }
+   },
+   "interests" : {
+      "high_point_code" : "CE",
+      "element" : [
+         {
+            "id" : "1.B.1.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/interests/1.B.1.f",
+            "name" : "Conventional",
+            "description" : "Conventional occupations frequently involve following set procedures and routines. These occupations can include working with data and details more than with ideas. Usually there is a clear line of authority to follow."
+         },
+         {
+            "id" : "1.B.1.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/interests/1.B.1.e",
+            "name" : "Enterprising",
+            "description" : "Enterprising occupations frequently involve starting up and carrying out projects. These occupations can involve leading people and making many decisions. Sometimes they require risk taking and often deal with business."
+         }
+      ]
+   },
+   "work_styles" : {
+      "element" : [
+         {
+            "id" : "1.C.5.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.5.b",
+            "name" : "Attention to Detail",
+            "description" : "Job requires being careful about detail and thorough in completing work tasks."
+         },
+         {
+            "id" : "1.C.5.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.5.a",
+            "name" : "Dependability",
+            "description" : "Job requires being reliable, responsible, and dependable, and fulfilling obligations."
+         },
+         {
+            "id" : "1.C.4.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.4.b",
+            "name" : "Stress Tolerance",
+            "description" : "Job requires accepting criticism and dealing calmly and effectively with high stress situations."
+         },
+         {
+            "id" : "1.C.5.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.5.c",
+            "name" : "Integrity",
+            "description" : "Job requires being honest and ethical."
+         },
+         {
+            "id" : "1.C.4.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.4.a",
+            "name" : "Self Control",
+            "description" : "Job requires maintaining composure, keeping emotions in check, controlling anger, and avoiding aggressive behavior, even in very difficult situations."
+         },
+         {
+            "id" : "1.C.3.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.3.a",
+            "name" : "Cooperation",
+            "description" : "Job requires being pleasant with others on the job and displaying a good-natured, cooperative attitude."
+         },
+         {
+            "id" : "1.C.1.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.1.c",
+            "name" : "Initiative",
+            "description" : "Job requires a willingness to take on responsibilities and challenges."
+         },
+         {
+            "id" : "1.C.4.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.4.c",
+            "name" : "Adaptability/Flexibility",
+            "description" : "Job requires being open to change (positive or negative) and to considerable variety in the workplace."
+         },
+         {
+            "id" : "1.C.7.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.7.b",
+            "name" : "Analytical Thinking",
+            "description" : "Job requires analyzing information and using logic to address work-related issues and problems."
+         },
+         {
+            "id" : "1.C.6",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.6",
+            "name" : "Independence",
+            "description" : "Job requires developing one's own ways of doing things, guiding oneself with little or no supervision, and depending on oneself to get things done."
+         },
+         {
+            "id" : "1.C.1.a",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.1.a",
+            "name" : "Achievement/Effort",
+            "description" : "Job requires establishing and maintaining personally challenging achievement goals and exerting effort toward mastering tasks."
+         },
+         {
+            "id" : "1.C.1.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.1.b",
+            "name" : "Persistence",
+            "description" : "Job requires persistence in the face of obstacles."
+         },
+         {
+            "id" : "1.C.3.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.3.b",
+            "name" : "Concern for Others",
+            "description" : "Job requires being sensitive to others' needs and feelings and being understanding and helpful on the job."
+         },
+         {
+            "id" : "1.C.3.c",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.3.c",
+            "name" : "Social Orientation",
+            "description" : "Job requires preferring to work with others rather than alone, and being personally connected with others on the job."
+         },
+         {
+            "id" : "1.C.2.b",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_styles/1.C.2.b",
+            "name" : "Leadership",
+            "description" : "Job requires a willingness to lead, take charge, and offer opinions and direction."
+         }
+      ]
+   },
+   "work_values" : {
+      "element" : [
+         {
+            "id" : "1.B.2.e",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_values/1.B.2.e",
+            "name" : "Support",
+            "description" : "Occupations that satisfy this work value offer supportive management that stands behind employees. Corresponding needs are Company Policies, Supervision: Human Relations and Supervision: Technical."
+         },
+         {
+            "id" : "1.B.2.d",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_values/1.B.2.d",
+            "name" : "Relationships",
+            "description" : "Occupations that satisfy this work value allow employees to provide service to others and work with co-workers in a friendly non-competitive environment. Corresponding needs are Co-workers, Moral Values and Social Service."
+         },
+         {
+            "id" : "1.B.2.f",
+            "related" : "https://services.onetcenter.org/ws/online/occupations/13-1031.02/related/work_values/1.B.2.f",
+            "name" : "Independence",
+            "description" : "Occupations that satisfy this work value allow employees to work on their own and make decisions. Corresponding needs are Creativity, Responsibility and Autonomy."
+         }
+      ]
+   },
+   "related_occupations" : {
+      "occupation" : [
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/11-3011.00/",
+            "code" : "11-3011.00",
+            "title" : "Administrative Services Managers",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-1031.01/",
+            "code" : "13-1031.01",
+            "title" : "Claims Examiners, Property and Casualty Insurance",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2021.01/",
+            "code" : "13-2021.01",
+            "title" : "Assessors",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2072.00/",
+            "code" : "13-2072.00",
+            "title" : "Loan Officers",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/13-2081.00/",
+            "code" : "13-2081.00",
+            "title" : "Tax Examiners and Collectors, and Revenue Agents",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/23-2011.00/",
+            "code" : "23-2011.00",
+            "title" : "Paralegals and Legal Assistants",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/43-3061.00/",
+            "code" : "43-3061.00",
+            "title" : "Procurement Clerks",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/43-4011.00/",
+            "code" : "43-4011.00",
+            "title" : "Brokerage Clerks",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/43-4061.00/",
+            "code" : "43-4061.00",
+            "title" : "Eligibility Interviewers, Government Programs",
+            "tags" : {
+               "bright_outlook" : false,
+               "green" : false
+            }
+         },
+         {
+            "href" : "https://services.onetcenter.org/ws/online/occupations/43-4131.00/",
+            "code" : "43-4131.00",
+            "title" : "Loan Interviewers and Clerks",
+            "tags" : {
+               "bright_outlook" : true,
+               "green" : false
+            }
+         }
+      ]
+   },
+   "additional_information" : {
+      "source" : [
+         {
+            "url" : "http://www.aiadc.org/",
+            "name" : "American Insurance Association"
+         },
+         {
+            "url" : "https://www.claim.org/",
+            "name" : "International Claim Association"
+         },
+         {
+            "url" : "http://www.lossexecutives.com/",
+            "name" : "Loss Executives Association"
+         },
+         {
+            "url" : "https://www.naiia.com/",
+            "name" : "National Association of Independent Insurance Adjusters"
+         },
+         {
+            "url" : "https://www.bls.gov/OOH/business-and-financial/claims-adjusters-appraisers-examiners-and-investigators.htm",
+            "name" : "Occupational Outlook Handbook: Claims adjusters, appraisers, examiners, and investigators"
+         },
+         {
+            "url" : "https://www.cpcusociety.org/",
+            "name" : "Society of Chartered Property and Casualty Underwriters"
+         },
+         {
+            "url" : "http://rpa-adjuster.com/",
+            "name" : "Society of Registered Professional Adjusters"
+         }
+      ]
+   }
+}

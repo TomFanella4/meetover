@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"math/rand"
 	"os"
 	"strings"
@@ -29,7 +30,7 @@ func getJobJSON(fileName string) JobData {
 		fmt.Printf("File error: %v\n", e)
 		os.Exit(1)
 	}
-	fmt.Printf("Reading job from %s\n", string(file))
+	// fmt.Printf("Read: %s\n", string(file))
 	var jobd JobData
 	json.Unmarshal(file, &jobd)
 	// fmt.Printf("Results: %v\n", jsontype)
@@ -55,26 +56,38 @@ func GenTestUsers(sourceFile, sinkFile string) {
 	businessUsers := genBusinessUsers(rawUsers[numTech:])
 	fmt.Println(techUsers)
 	fmt.Println(businessUsers)
-
 }
 
-func jobDataToUsers(jobFile string, rawUsers []User) []User {
+func jobDataToUsers(jobFile string, rawUsers []User) JobSummary {
 	jd := getJobJSON(jobFile)
-
-	return []User{}
+	js := jobSummary(jd)
+	// fmt.Println(js)
+	return js
 }
 
+func otherJobFiles() []string {
+	files, err := ioutil.ReadDir("./otherJobs")
+	if err != nil {
+		log.Fatal(err)
+	}
+	res := []string{}
+	for _, f := range files {
+		res = append(res, "./otherJobs/"+f.Name())
+	}
+	return res
+}
 func genOtherUsers(rawUsers []User) []User {
 	files := []string{"agents.json", "education.json", "education-admins.json",
 		"engineering-professors.json", "english-professors.json", "judges.json",
-		"lawyers.json", "legislators.json", "mechanical.json", "statisticians.json"}
+		"lawyers.json", "legislators.json", "mechanical.json", "statisticians.json",
+		"architects.json", "electricians.json"}
 	fmt.Println(files)
 	return []User{}
 }
 
 func genArtUsers(rawUsers []User) []User {
 	files := []string{"actors.json", "arts.json", "english-professors.json",
-		"movies.json", "photographers.json", "singers.json"}
+		"directors.json", "photographers.json", "singers.json"}
 	fmt.Println(files)
 	return []User{}
 }
@@ -259,8 +272,6 @@ func jobSummary(jd JobData) JobSummary {
 			res.Skills = append(res.Skills, v2.Name)
 		}
 	}
-	cf := []interface{}{jd.Knowledge, jd.Skills, jd.Abilities, jd.WorkActivities}
-
 	for _, v := range jd.Knowledge.Element {
 		res.Skills = append(res.Skills, v.Name)
 		res.Description += v.Description + " "

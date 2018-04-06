@@ -12,6 +12,8 @@ import (
 	"strings"
 )
 
+// RawUsers - no. of unprocessed users generate by the json generator tool
+
 func updateJSONFile(newJSON interface{}, fileName string) {
 	bytes, err := json.Marshal(newJSON)
 	if err != nil {
@@ -21,8 +23,20 @@ func updateJSONFile(newJSON interface{}, fileName string) {
 	err = ioutil.WriteFile(fileName, bytes, 0644)
 	return
 }
+func getJobJSON(fileName string) JobData {
+	file, e := ioutil.ReadFile(fileName)
+	if e != nil {
+		fmt.Printf("File error: %v\n", e)
+		os.Exit(1)
+	}
+	fmt.Printf("Reading job from %s\n", string(file))
+	var jobd JobData
+	json.Unmarshal(file, &jobd)
+	// fmt.Printf("Results: %v\n", jsontype)
+	return jobd
+}
 
-func getUsers(rawFile string) []User {
+func getRawUsers(rawFile string) []User {
 	raw, err := ioutil.ReadFile(rawFile)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -33,7 +47,48 @@ func getUsers(rawFile string) []User {
 	return users
 }
 
-func generateTestUsers(rawFile string, sinkFile string) {
+// GenTestUsers -
+func GenTestUsers(sourceFile, sinkFile string) {
+	numTech := 200
+	rawUsers := getRawUsers(sourceFile)
+	techUsers := genTechUsers(rawUsers[:numTech])
+	businessUsers := genBusinessUsers(rawUsers[numTech:])
+	fmt.Println(techUsers)
+	fmt.Println(businessUsers)
+
+}
+
+func jobDataToUsers(jobFile string, rawUsers []User) []User {
+	jd := getJobJSON(jobFile)
+
+	return []User{}
+}
+
+func genOtherUsers(rawUsers []User) []User {
+	files := []string{"agents.json", "education.json", "education-admins.json",
+		"engineering-professors.json", "english-professors.json", "judges.json",
+		"lawyers.json", "legislators.json", "mechanical.json", "statisticians.json"}
+	fmt.Println(files)
+	return []User{}
+}
+
+func genArtUsers(rawUsers []User) []User {
+	files := []string{"actors.json", "arts.json", "english-professors.json",
+		"movies.json", "photographers.json", "singers.json"}
+	fmt.Println(files)
+	return []User{}
+}
+
+func genBusinessUsers(rawUsers []User) []User {
+	files := []string{"accountants.json", "directors.json",
+		"event-planners.json", "executives.json",
+		"financial-analyst.json", "hr.json", "insurance.json",
+		"managers.json", "traders.json"}
+	fmt.Println(files)
+	return []User{}
+}
+
+func genTechUsers(rawUsers []User) []User {
 	csvFile, err := os.Open("./jobs.csv")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -46,9 +101,8 @@ func generateTestUsers(rawFile string, sinkFile string) {
 	fmt.Println("Headers: ")
 	fmt.Println(headers) // 1 - desc, 3 - title, 4 - skills
 	r := rand.Intn
-	users := getUsers(rawFile)
 	textLength := 250
-	for i, u := range users {
+	for i, u := range rawUsers {
 		line, error := reader.Read()
 		if error == io.EOF {
 			fmt.Println("OEF in dataset")
@@ -75,11 +129,10 @@ func generateTestUsers(rawFile string, sinkFile string) {
 		} else {
 			profile.Summary = summary
 		}
-		users[i] = u
-		users[i].Profile = profile
+		rawUsers[i] = u
+		rawUsers[i].Profile = profile
 	}
-	fmt.Println(users[25])
-	updateJSONFile(users, sinkFile)
+	return rawUsers
 }
 
 // Geolocation - latitide and longitude and last time of update
@@ -177,4 +230,181 @@ type User struct {
 	Profile      Profile        `json:"profile"`
 	IsSearching  bool           `json:"isSearching"`
 	IsMatchedNow bool           `json:"isMatched"` // set directly from the mobile app
+}
+
+// JobSummary -
+type JobSummary struct {
+	Titles      []string `json:"titles"`
+	Description string   `json:"description"`
+	Skills      []string `json:"skills"`
+}
+
+func jobSummary(jd JobData) JobSummary {
+	var res JobSummary
+	res.Description = ""
+	res.Skills = []string{}
+	res.Titles = jd.Occupation.SampleOfReportedJobTitles.Title
+	for _, v := range jd.Tasks.Task {
+		res.Description += v.Name + " "
+	}
+	for _, v := range jd.TechnologySkills.Category {
+		res.Skills = append(res.Skills, v.Title.Name)
+		for _, v2 := range v.Example {
+			res.Skills = append(res.Skills, v2.Name)
+		}
+	}
+	for _, v := range jd.ToolsTechnology.Technology.Category {
+		res.Skills = append(res.Skills, v.Title.Name)
+		for _, v2 := range v.Example {
+			res.Skills = append(res.Skills, v2.Name)
+		}
+	}
+	cf := []interface{}{jd.Knowledge, jd.Skills, jd.Abilities, jd.WorkActivities}
+
+	for _, v := range jd.Knowledge.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.Skills.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.Abilities.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.WorkActivities.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.DetailedWorkActivities.Activity {
+		res.Description += v.Name + " "
+	}
+	for _, v := range jd.RelatedOccupations.Occupation {
+		res.Titles = append(res.Titles, v.Title)
+	}
+	for _, v := range jd.AdditionalInformation.Source {
+		res.Description += v.Name + " "
+	}
+	return res
+}
+
+// JobData -
+type JobData struct {
+	Occupation struct {
+		Code  string `json:"code"`
+		Title string `json:"title"` // job name
+		Tags  struct {
+			BrightOutlook bool `json:"bright_outlook"`
+			Green         bool `json:"green"`
+		} `json:"tags"`
+		Description               string `json:"description"` //d
+		SampleOfReportedJobTitles struct {
+			Title []string `json:"title"` // title list
+		} `json:"sample_of_reported_job_titles"`
+	} `json:"occupation"`
+	Tasks struct {
+		Task []struct {
+			ID      int    `json:"id"`
+			Green   bool   `json:"green"`
+			Related string `json:"related"`
+			Name    string `json:"name"` // d
+		} `json:"task"`
+	} `json:"tasks"`
+	TechnologySkills struct {
+		Category []struct {
+			Related string `json:"related"`
+			Title   struct {
+				ID   int    `json:"id"`
+				Name string `json:"name"` //skill
+			} `json:"title"`
+			Example []struct {
+				HotTechnology int    `json:"hot_technology,omitempty"`
+				Name          string `json:"name"` // skill
+			} `json:"example"`
+		} `json:"category"`
+	} `json:"technology_skills"`
+	ToolsTechnology struct {
+		Tools struct {
+			Category []struct {
+				Related string `json:"related"`
+				Title   struct {
+					ID   int    `json:"id"`
+					Name string `json:"name"`
+				} `json:"title"`
+				Example []struct {
+					Name string `json:"name"` // skill
+				} `json:"example"`
+			} `json:"category"`
+		} `json:"tools"`
+		Technology struct {
+			Category []struct {
+				Related string `json:"related"`
+				Title   struct {
+					ID   int    `json:"id"`
+					Name string `json:"name"` // skill
+				} `json:"title"`
+				Example []struct {
+					HotTechnology int    `json:"hot_technology,omitempty"`
+					Name          string `json:"name"` // skill
+				} `json:"example"`
+			} `json:"category"`
+		} `json:"technology"`
+	} `json:"tools_technology"`
+	Knowledge struct {
+		Element []struct {
+			ID          string `json:"id"`
+			Related     string `json:"related"`
+			Name        string `json:"name"`        // s
+			Description string `json:"description"` // desc
+		} `json:"element"`
+	} `json:"knowledge"`
+	Skills struct {
+		Element []struct {
+			ID          string `json:"id"`
+			Related     string `json:"related"`
+			Name        string `json:"name"`        // s
+			Description string `json:"description"` // desc
+		} `json:"element"`
+	} `json:"skills"`
+	Abilities struct {
+		Element []struct {
+			ID          string `json:"id"`
+			Related     string `json:"related"`
+			Name        string `json:"name"`        // s
+			Description string `json:"description"` // d
+		} `json:"element"`
+	} `json:"abilities"`
+	WorkActivities struct {
+		Element []struct {
+			ID          string `json:"id"`
+			Related     string `json:"related"`
+			Name        string `json:"name"`        // s
+			Description string `json:"description"` // d
+		} `json:"element"`
+	} `json:"work_activities"`
+	DetailedWorkActivities struct {
+		Activity []struct {
+			ID      string `json:"id"`
+			Related string `json:"related"`
+			Name    string `json:"name"` // d
+		} `json:"activity"`
+	} `json:"detailed_work_activities"`
+	RelatedOccupations struct {
+		Occupation []struct {
+			Href  string `json:"href"`
+			Code  string `json:"code"`
+			Title string `json:"title"` // title
+			Tags  struct {
+				BrightOutlook bool `json:"bright_outlook"`
+				Green         bool `json:"green"`
+			} `json:"tags"`
+		} `json:"occupation"`
+	} `json:"related_occupations"`
+	AdditionalInformation struct {
+		Source []struct {
+			URL  string `json:"url"`
+			Name string `json:"name"` //desc
+		} `json:"source"`
+	} `json:"additional_information"`
 }

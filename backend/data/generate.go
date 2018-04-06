@@ -28,7 +28,6 @@ func getUsers(rawFile string) []User {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
-
 	var users []User
 	json.Unmarshal(raw, &users)
 	return users
@@ -39,7 +38,6 @@ func generateTestUsers(rawFile string, sinkFile string) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-
 	reader := csv.NewReader(bufio.NewReader(csvFile))
 	headers, error := reader.Read() // headers
 	if error == io.EOF {

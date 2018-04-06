@@ -70,7 +70,6 @@ func GetUserProfile(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(profile)
 		return
 	}
-	respondWithError(w, Unauthorized, "Unauthorized")
 }
 
 // Test returns a sample LinkedIn Profile JSON object
@@ -174,7 +173,6 @@ func Match(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(MatchList)
 		return
 	}
-	respondWithError(w, Unauthorized, "Unauthorized")
 }
 
 // RefreshCustomToken will refresh an authorized users Firebase custom token
@@ -195,7 +193,6 @@ func RefreshCustomToken(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(resp)
 		return
 	}
-	respondWithError(w, Unauthorized, "Unauthorized")
 }
 
 // InitiateMeetover called to begin the meetover appointment betwen two users
@@ -238,8 +235,8 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err.Error())
 			return
 		}
+		json.NewEncoder(w).Encode("Success")
 	}
-	json.NewEncoder(w).Encode("Success")
 }
 
 // SendPush sends sends a push notification for a verified user
@@ -253,8 +250,8 @@ func SendPush(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		SendPushNotification(&pushNotification)
+		json.NewEncoder(w).Encode("Success")
 	}
-	json.NewEncoder(w).Encode("Success")
 }
 
 func respondWithError(w http.ResponseWriter, code ResponseCode, message string) {

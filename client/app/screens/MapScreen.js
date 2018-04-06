@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Spinner, View, Thumbnail, } from 'native-base';
 
-// import matches from '../mocks/matches';
 import { PTSansText } from '../components/StyledText';
 import IsSearchingBar from '../components/IsSearchingBar';
 import Colors from '../constants/Colors';
@@ -20,26 +19,32 @@ class MapScreen extends React.Component {
   }
 
   _viewProfile(match) {
-    this.props.navigation.navigate('Profile', { profile: match });
+    this.props.navigation.navigate('RequestScreen', { profile: match });
   }
 
   render() {
     const { matches } = this.props;
 
     const matchMarkers = matches.map(match => (
-      <MapView.Marker coordinate={match.location} key={match.id}>
+      match.location &&
+      <MapView.Marker coordinate={match.location} key={match.profile.id}>
         <MapView.Callout
           style={styles.mapViewCallout}
-          onPress={() => this._viewProfile(match)}
+          onPress={() => this._viewProfile(match.profile)}
         >
-          <Thumbnail source={{ uri: match.pictureUrl }} />
+          {
+            match.profile.pictureUrl !== '' ?
+              <Thumbnail source={{ uri: match.profile.pictureUrl }} />
+            :
+              <Thumbnail source={require('../../assets/images/icon.png')} />
+          }
           <View style={styles.mapViewCalloutSection}>
             <PTSansText style={styles.name}>
-              {match.formattedName}
+              {match.profile.formattedName}
             </PTSansText>
             <PTSansText style={styles.headline}>
-              {match.headline.substring(0,25)}
-              {match.headline.length >= 25 && '...'}
+              {match.profile.headline.substring(0,25)}
+              {match.profile.headline.length >= 25 && '...'}
             </PTSansText>
           </View>
           <View style={styles.mapViewCalloutSection}>

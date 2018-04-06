@@ -100,16 +100,12 @@ type Profile struct {
 // User is user on MeetOver
 type User struct {
 	ID           string         `json:"uid,omitempty"`
-	Location     *Geolocation   `json:"location,omitempty"`
+	Location     Geolocation    `json:"location,omitempty"`
 	AccessToken  ATokenResponse `json:"accessToken"`
 	Profile      Profile        `json:"profile"`
 	IsSearching  bool           `json:"isSearching"`
 	IsMatchedNow bool           `json:"isMatched"` // set directly from the mobile app
 }
-
-// cachedUsers is the set of active users. Involved in matching or searching.
-// Cache changes to this local var and update DB periodically as needed to save time
-var cachedUsers []User
 
 // ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {
@@ -238,20 +234,4 @@ func InitUser(p Profile, aTokenResp ATokenResponse) (bool, error) {
 		defer userRef.Set(user)
 	}
 	return userExists, nil
-}
-
-// LoadTestUsers gets test users generated from a random data generator
-func LoadTestUsers() {
-	raw, err := ioutil.ReadFile("./ml/MLTestUsers.json")
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
-	var testUsers []User
-	if err = json.Unmarshal(raw, &testUsers); err != nil {
-		fmt.Println("[-] Unable to load test users")
-		fmt.Println(err.Error())
-		return
-	}
-	cachedUsers = append(cachedUsers, testUsers...)
 }

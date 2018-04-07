@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/csv"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -50,16 +51,26 @@ func getRawUsers(rawFile string) []User {
 
 // GenTestUsers -
 func GenTestUsers(sourceFile, sinkFile string) {
-
-	numTech := 200
+	numTech := 2699
 	rawUsers := getRawUsers(sourceFile)
+	fmt.Printf("No. of raw users: %d\n", len(rawUsers))
 	techUsers := genTechUsers(rawUsers[:numTech])
-	fmt.Println(techUsers)
+	fmt.Printf("No. of tech users: %d\n", len(techUsers))
+	otherUsers := genNonTechUsers(rawUsers[numTech:])
+	fmt.Printf("No. of non-tech users: %d\n", len(otherUsers))
+	finalUsers := append(otherUsers, techUsers...)
+	fmt.Printf("No. of total users generated: %d\n", len(finalUsers))
+	fmt.Printf("Saved to  %s\n", sinkFile)
+	updateJSONFile(finalUsers, sinkFile)
 }
 
-func jobDataToUser(jd JobData, rawUser User) User {
+func jobDataToUser(jd JobData, rawUser User) (User, error) {
 	js := jobSummary(jd)
 	r := rand.Intn
+	if len(js.Titles) < 1 || len(js.Skills) < 1 || len(js.Description) == 0 {
+		fmt.Println(js.Name + ": in sufficient info in dataset")
+		return User{}, errors.New("insufficient data")
+	}
 	start := r(len(js.Description)) / 2
 	rawUser.Profile.Greeting = js.Description[start:]
 	rawUser.Profile.Headline = js.Titles[r(len(js.Titles))]
@@ -67,7 +78,7 @@ func jobDataToUser(jd JobData, rawUser User) User {
 	rawUser.Profile.FormattedName = rawUser.Profile.FirstName + " " + rawUser.Profile.LastName
 	start = r(len(js.Description)) / 2
 	rawUser.Profile.Summary = js.Description[start:]
-	return rawUser
+	return rawUser, nil
 }
 
 func otherJobFiles() []string {
@@ -84,13 +95,68 @@ func otherJobFiles() []string {
 func genNonTechUsers(rawUsers []User) []User {
 	nu := 0
 	files := otherJobFiles()
+	nonTechUsers := []User{}
 	for _, f := range files {
 		jd := getJobJSON(f) // make 100 users for each type of job data
-		for ; nu%100 > 0 || nu == 0; nu++ {
-			rawUsers[nu] = jobDataToUser(jd, rawUsers[nu])
+		for i := 0; i < 100; i++ {
+			nntu, err := jobDataToUser(jd, rawUsers[nu])
+			if err != nil {
+				break // job dataset not valid
+			}
+			nonTechUsers = append(nonTechUsers, nntu)
+			nu++
 		}
 	}
-	return rawUsers
+	return nonTechUsers
+}
+func jobSummary(jd JobData) JobSummary {
+	var res JobSummary
+	res.Description = ""
+	res.Skills = []string{}
+	res.Titles = jd.Occupation.SampleOfReportedJobTitles.Title
+
+	res.Name = jd.Occupation.Title
+	for _, v := range jd.Tasks.Task {
+		res.Description += v.Name + " "
+	}
+	for _, v := range jd.TechnologySkills.Category {
+		res.Skills = append(res.Skills, v.Title.Name)
+		for _, v2 := range v.Example {
+			res.Skills = append(res.Skills, v2.Name)
+		}
+	}
+	for _, v := range jd.ToolsTechnology.Technology.Category {
+		res.Skills = append(res.Skills, v.Title.Name)
+		for _, v2 := range v.Example {
+			res.Skills = append(res.Skills, v2.Name)
+		}
+	}
+	for _, v := range jd.Knowledge.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.Skills.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.Abilities.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.WorkActivities.Element {
+		res.Skills = append(res.Skills, v.Name)
+		res.Description += v.Description + " "
+	}
+	for _, v := range jd.DetailedWorkActivities.Activity {
+		res.Description += v.Name + " "
+	}
+	for _, v := range jd.RelatedOccupations.Occupation {
+		res.Titles = append(res.Titles, v.Title)
+	}
+	for _, v := range jd.AdditionalInformation.Source {
+		res.Description += v.Name + " "
+	}
+	return res
 }
 func genTechUsers(rawUsers []User) []User {
 	csvFile, err := os.Open("./jobs.csv")
@@ -98,12 +164,12 @@ func genTechUsers(rawUsers []User) []User {
 		fmt.Println(err.Error())
 	}
 	reader := csv.NewReader(bufio.NewReader(csvFile))
-	headers, error := reader.Read() // headers
+	_, error := reader.Read() // headers
 	if error == io.EOF {
 		fmt.Println("OEF in dataset")
 	}
-	fmt.Println("Headers: ")
-	fmt.Println(headers) // 1 - desc, 3 - title, 4 - skills
+	// fmt.Println("Headers: ")
+	// fmt.Println(headers) // 1 - desc, 3 - title, 4 - skills
 	r := rand.Intn
 	textLength := 250
 	for i, u := range rawUsers {
@@ -238,57 +304,10 @@ type User struct {
 
 // JobSummary -
 type JobSummary struct {
+	Name        string   `json:"job_name"`
 	Titles      []string `json:"titles"`
 	Description string   `json:"description"`
 	Skills      []string `json:"skills"`
-}
-
-func jobSummary(jd JobData) JobSummary {
-	var res JobSummary
-	res.Description = ""
-	res.Skills = []string{}
-	res.Titles = jd.Occupation.SampleOfReportedJobTitles.Title
-	for _, v := range jd.Tasks.Task {
-		res.Description += v.Name + " "
-	}
-	for _, v := range jd.TechnologySkills.Category {
-		res.Skills = append(res.Skills, v.Title.Name)
-		for _, v2 := range v.Example {
-			res.Skills = append(res.Skills, v2.Name)
-		}
-	}
-	for _, v := range jd.ToolsTechnology.Technology.Category {
-		res.Skills = append(res.Skills, v.Title.Name)
-		for _, v2 := range v.Example {
-			res.Skills = append(res.Skills, v2.Name)
-		}
-	}
-	for _, v := range jd.Knowledge.Element {
-		res.Skills = append(res.Skills, v.Name)
-		res.Description += v.Description + " "
-	}
-	for _, v := range jd.Skills.Element {
-		res.Skills = append(res.Skills, v.Name)
-		res.Description += v.Description + " "
-	}
-	for _, v := range jd.Abilities.Element {
-		res.Skills = append(res.Skills, v.Name)
-		res.Description += v.Description + " "
-	}
-	for _, v := range jd.WorkActivities.Element {
-		res.Skills = append(res.Skills, v.Name)
-		res.Description += v.Description + " "
-	}
-	for _, v := range jd.DetailedWorkActivities.Activity {
-		res.Description += v.Name + " "
-	}
-	for _, v := range jd.RelatedOccupations.Occupation {
-		res.Titles = append(res.Titles, v.Title)
-	}
-	for _, v := range jd.AdditionalInformation.Source {
-		res.Description += v.Name + " "
-	}
-	return res
 }
 
 // JobData -

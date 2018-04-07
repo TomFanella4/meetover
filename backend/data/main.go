@@ -8,11 +8,9 @@ import (
 func main() {
 	rand.Seed(time.Now().Unix())
 	// vectorTest()
-	// rawFile := "rawTestUsers.json"
-	// sinkFile := "FinalTestUsers.json"
-	// GenTestUsers(rawFile, sinkFile)
-	nt := genNonTechUsers(getRawUsers("rawTestUsers.json"))
-	updateJSONFile(nt, "nt.json")
+	rawFile := "rawTestUsers.json"
+	sinkFile := "FinalTestUsers.json"
+	GenTestUsers(rawFile, sinkFile)
 	// updateJSONFile(js, "testjs.json")
 
 	// modelFile := "meetOver.model"

@@ -7,3 +7,4 @@ debug
 vendor/
 .env
 firebase-config.json
+data/otherJobs/

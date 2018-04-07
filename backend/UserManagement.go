@@ -100,16 +100,12 @@ type Profile struct {
 // User is user on MeetOver
 type User struct {
 	ID           string         `json:"uid,omitempty"`
-	Location     *Geolocation   `json:"location,omitempty"`
+	Location     Geolocation    `json:"location,omitempty"`
 	AccessToken  ATokenResponse `json:"accessToken"`
 	Profile      Profile        `json:"profile"`
 	IsSearching  bool           `json:"isSearching"`
 	IsMatchedNow bool           `json:"isMatched"` // set directly from the mobile app
 }
-
-// cachedUsers is the set of active users. Involved in matching or searching.
-// Cache changes to this local var and update DB periodically as needed to save time
-var cachedUsers []User
 
 // ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {

@@ -7,6 +7,7 @@ import (
 	"log"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -15,13 +16,25 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
-// Test uid:  5abc5152c2d9048b32bfc917
-
-// MatchValue represents each porspecive user in their distance from the caller
+// MatchValue represents each perspective user in their distance from the caller
 type MatchValue struct {
-	Usr  Profile      `json:"profile"`
-	Dist float64      `json:"distance"`
-	Loc  *Geolocation `json:"location"`
+	Usr  Profile     `json:"profile"`
+	Dist float64     `json:"distance"`
+	Loc  Geolocation `json:"location"`
+}
+
+type byDistance []MatchValue
+
+func (b byDistance) Len() int {
+	return len(b)
+}
+
+func (b byDistance) Swap(i, j int) {
+	b[i], b[j] = b[j], b[i]
+}
+
+func (b byDistance) Less(i, j int) bool {
+	return b[i].Dist < b[j].Dist
 }
 
 // WordModel is the vector representation of the words in the corpus file
@@ -60,27 +73,11 @@ func GetOrder(caller User, prospUsers []User, model map[string][]float64) MatchR
 		distance := nestedDistance(callerVec, prospVec)
 		mr.Matches = append(mr.Matches, MatchValue{pu.Profile, distance, pu.Location})
 	}
+	sort.Sort(byDistance(mr.Matches))
 	elapsed := time.Since(start)
 	fmt.Println("Destance Calculation took: " + elapsed.String())
 	return mr
 }
-
-// // sortMap - returns uid's with shortest distance first
-// func sortMap(m map[string]float64) []string {
-// 	reverseMap := map[float64]string{}
-// 	distances := []float64{}
-// 	for uid, d := range m {
-// 		reverseMap[d] = uid
-// 		distances = append(distances, d)
-// 	}
-// 	sort.Float64s(distances)
-// 	res := []string{}
-// 	for _, d := range distances {
-// 		res = append(res, reverseMap[d])
-// 	}
-// 	fmt.Println(res)
-// 	return res
-// }
 
 // nestedDistance - distance metric between par vectors
 func nestedDistance(src []*mat.VecDense, dst []*mat.VecDense) float64 {
@@ -138,10 +135,7 @@ func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 				vec := mat.NewVecDense(WordModelDimension, val)
 				res = append(res, vec)
 				i++
-			} // else {
-			// 	fmt.Printf("[Meetover model warning!!] length of "+
-			// 		"vector in model: %d for word : %s\n", len(val), randomWord)
-			// }
+			}
 		}
 	}
 	return res
@@ -220,6 +214,10 @@ func readModel(modelFile string) map[string][]float64 {
 		floatVector := make([]float64, len(vector))
 		for jj := range vector {
 			floatVector[jj], err = strconv.ParseFloat(vector[jj], 64)
+			if err != nil {
+				fmt.Println(err)
+				return make(map[string][]float64)
+			}
 		}
 		model[word] = floatVector
 	}

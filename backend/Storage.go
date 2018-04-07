@@ -25,11 +25,24 @@ var fbClient *firego.Firebase
 const separator = "|"
 
 // GetProspectiveUsers Get the list of people for matching in the area
-func GetProspectiveUsers(coords Geolocation, radius int, lastUpdate int) ([]User, error) {
+func GetProspectiveUsers(coords *Geolocation, radius int, lastUpdate int) ([]User, error) {
 	// TODO:
-	// returns a list of cachedUsers within radius of coords
-	// that updated their location within lastUpdate hours
-	return cachedUsers, nil
+	// Filter users by Geolocation and radius
+	userMap := map[string]User{}
+	users := []User{}
+	userRef, err := fbClient.Ref("/users")
+	if err != nil {
+		return []User{}, err
+	}
+	if err := userRef.Value(&userMap); err != nil {
+		return []User{}, err
+	}
+
+	for k := range userMap {
+		users = append(users, userMap[k])
+	}
+
+	return users, nil
 }
 
 // random - helper for tests
@@ -90,6 +103,9 @@ func GetUser(uid string) (User, error) {
 	if err := userRef.Value(&user); err != nil {
 		return User{}, err
 	}
+	if user.ID == "" {
+		return User{}, errors.New("Failed to get user from Firebase")
+	}
 	return user, nil
 }
 
@@ -121,6 +137,7 @@ func CreateCustomToken(ID string) (string, error) {
 	return token, nil
 }
 
+// GetExpoPushToken Returns the push token for a specified user
 func GetExpoPushToken(ID string) (string, error) {
 	expoPushToken, err := fbClient.Ref("/users/" + ID + "/expoPushToken")
 	if err != nil {
@@ -138,8 +155,9 @@ func GetExpoPushToken(ID string) (string, error) {
 	return token, nil
 }
 
-func CreateThreadForUser(ID1 string, threadId string, ID2 string) error {
-	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadId)
+// CreateThreadForUser Adds a threadlist entry for a user w/ID1
+func CreateThreadForUser(ID1 string, threadID string, ID2 string) error {
+	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadID)
 	if err != nil {
 		return err
 	}
@@ -155,7 +173,7 @@ func CreateThreadForUser(ID1 string, threadId string, ID2 string) error {
 	}
 
 	threadInfo := map[string]interface{}{
-		"_id":  threadId,
+		"_id":  threadID,
 		"name": name,
 	}
 	if err := threadList.Update(threadInfo); err != nil {
@@ -165,6 +183,7 @@ func CreateThreadForUser(ID1 string, threadId string, ID2 string) error {
 	return nil
 }
 
+// AddThread Creates a messaging thread between two users
 func AddThread(P1 string, P2 string) error {
 	ID1, ID2 := "", ""
 
@@ -176,16 +195,16 @@ func AddThread(P1 string, P2 string) error {
 		ID1, ID2 = P2, P1
 	}
 
-	threadId := ID1 + separator + ID2
+	threadID := ID1 + separator + ID2
 
-	if err := CreateThreadForUser(ID1, threadId, ID2); err != nil {
+	if err := CreateThreadForUser(ID1, threadID, ID2); err != nil {
 		return err
 	}
-	if err := CreateThreadForUser(ID2, threadId, ID1); err != nil {
+	if err := CreateThreadForUser(ID2, threadID, ID1); err != nil {
 		return err
 	}
 
-	thread, err := fbClient.Ref("/messages/" + threadId + "/0")
+	thread, err := fbClient.Ref("/messages/" + threadID + "/0")
 	if err != nil {
 		return err
 	}
@@ -202,23 +221,6 @@ func AddThread(P1 string, P2 string) error {
 
 	return nil
 }
-
-// func addGeolocation(coord Geolocation) {
-// 	addGeo := make(map[string]interface{})
-//
-// 	loc := coord
-// 	// TODO: look for the user and add/update the
-// 	// Geolocation json WITHIN the User struct
-//
-// 	// addGeo[loc.ID] = loc
-// 	geo, err := fbClient.Ref("/Geo")
-//
-// 	if err != nil {
-// 		fmt.Println("Adding Geo to DB error")
-// 		return
-// 	}
-// 	defer geo.Update(addGeo)
-// }
 
 // CheckAuthorized checks if a user is authorized to make a request
 func CheckAuthorized(w http.ResponseWriter, r *http.Request) bool {

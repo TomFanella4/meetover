@@ -1,14 +1,11 @@
 package main
 
-<<<<<<< HEAD
 import (
 	"fmt"
 	"math"
 	"time"
 )
 
-=======
->>>>>>> bee7fb6071bb480318387e66e00de20d2ef8657e
 // Address is a our location metric
 type Address struct {
 	City  string `json:"city,omitempty"`

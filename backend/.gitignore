@@ -8,3 +8,4 @@ vendor/
 .env
 firebase-config.json
 data/otherJobs/
+data/data.exe

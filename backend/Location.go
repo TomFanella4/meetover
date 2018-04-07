@@ -1,11 +1,14 @@
 package main
 
+<<<<<<< HEAD
 import (
 	"fmt"
 	"math"
 	"time"
 )
 
+=======
+>>>>>>> bee7fb6071bb480318387e66e00de20d2ef8657e
 // Address is a our location metric
 type Address struct {
 	City  string `json:"city,omitempty"`
@@ -15,9 +18,10 @@ type Address struct {
 
 // Geolocation - latitide and longitude and last time of update
 type Geolocation struct {
-	Lat       float64 `json:"lat,omitempty"`
-	Long      float64 `json:"long,omitempty"`
-	TimeStamp float64 `json:"timestamp,omitempty"`
+	Accuracy  float64 `json:"accuracy"`
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
+	TimeStamp float64 `json:"timestamp"`
 }
 
 // QueryLocation will return the location for the given coordinates

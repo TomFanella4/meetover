@@ -11,7 +11,6 @@ func main() {
 	rawFile := "rawTestUsers.json"
 	sinkFile := "FinalTestUsers.json"
 	GenTestUsers(rawFile, sinkFile)
-	// updateJSONFile(js, "testjs.json")
 
 	// modelFile := "meetOver.model"
 	// createModel(modelFile)

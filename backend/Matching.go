@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"math"
@@ -162,7 +163,9 @@ func InitMLModel(windowSize int, wordDimensions int) {
 		corpusFile := "./data/corpus.dat"
 		createModel(modelFile, corpusFile, windowSize, wordDimensions)
 	}
-	WordModel = readModel(modelFile)
+	defer r.Close()
+	WordModel = readModel(r)
+	fmt.Println("Model Loaded")
 }
 
 // createModel uses the word2vec algo to create word embeddings
@@ -195,8 +198,8 @@ func createModel(destinationFileName string, corpusFile string, windowSize int, 
 }
 
 // readModel converts the generated model to an in-memory object
-func readModel(modelFile string) map[string][]float64 {
-	content, err := ioutil.ReadFile(modelFile)
+func readModel(r io.Reader) map[string][]float64 {
+	content, err := ioutil.ReadAll(r)
 	if err != nil {
 		log.Fatal(err)
 	}

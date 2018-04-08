@@ -11,6 +11,7 @@ import (
 	"os"
 	"time"
 
+	"cloud.google.com/go/storage"
 	firebase "firebase.google.com/go"
 	"github.com/zabawaba99/firego"
 
@@ -21,6 +22,7 @@ import (
 
 var fbApp *firebase.App
 var fbClient *firego.Firebase
+var fbBucket *storage.BucketHandle
 
 const separator = "|"
 
@@ -73,8 +75,11 @@ func InitializeFirebase() {
 		}
 		config = string(buf)
 	}
+	storageConfig := &firebase.Config{
+		StorageBucket: "meetoverdb.appspot.com",
+	}
 	opt := option.WithCredentialsFile("./firebase-config.json")
-	app, err := firebase.NewApp(context.Background(), nil, opt)
+	app, err := firebase.NewApp(context.Background(), storageConfig, opt)
 	if err != nil {
 		log.Fatalf("error initializing app: %v\n", err)
 	}
@@ -88,8 +93,19 @@ func InitializeFirebase() {
 		log.Fatalf("error initializing Google OAuth Config")
 	}
 
+	client, err := app.Storage(context.Background())
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	bucket, err := client.DefaultBucket()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	fbApp = app
 	fbClient = firego.New("https://meetoverdb.firebaseio.com/", conf.Client(oauth2.NoContext))
+	fbBucket = bucket
 }
 
 // GetUser returns the user with uid in firebase

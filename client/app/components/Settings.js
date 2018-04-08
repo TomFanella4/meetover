@@ -2,11 +2,14 @@ import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import {
+  View,
   Item,
   Label,
   Input,
+  Button,
   Switch,
   Form,
+  Thumbnail
 } from 'native-base';
 
 import Colors from '../constants/Colors';
@@ -14,16 +17,30 @@ import { settingsStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
 import { modifyProfile } from '../actions/userActions';
 
-const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified }) => {
-
+const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified, navigation }) => {
+  const formItems = [];
   const formItemStyle = {
     color: !userProfile.isAuthenticated ? 'white' : null,
     fontFamily: 'pt-sans',
   };
 
-  // TODO: Add check for empty user profile fields
-  const formItems = formOptions.map(option => (
-    <Item key={option.item} floatingLabel>
+  formItems.push(
+    userProfile.pictureUrl !== '' ?
+      <Thumbnail
+        style={styles.picture}
+        key='picture'
+        source={{ uri: userProfile.pictureUrl }}
+      />
+    :
+      <Thumbnail
+        style={styles.picture}
+        key='picture'
+        source={require('../../assets/images/icon.png')}
+      />
+  );
+
+  formItems.push(formOptions.map(option => (
+    <Item key={option.item} stackedLabel>
       <Label style={formItemStyle}>
         {option.label}
       </Label>
@@ -40,10 +57,10 @@ const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified }
         )}
       />
     </Item>
-  ));
+  )));
 
   formItems.push(
-    <Item style={styles.shareLocationView} key={'shareLocation'} last>
+    <Item style={styles.shareLocationView} key='shareLocation'>
       <PTSansText style={
         userProfile.isAuthenticated ?
           styles.shareLocationText
@@ -94,6 +111,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  picture: {
+    marginTop: 10,
+    alignSelf: 'center'
   },
   shareLocationView: {
     flexDirection: 'row',

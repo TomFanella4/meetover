@@ -60,7 +60,7 @@ class ListScreen extends React.Component {
         </Left>
         <Body>
           <PTSansText style={styles.name}>{match.profile.formattedName}</PTSansText>
-          <PTSansText style={styles.headline}>{match.profile.headline}</PTSansText>
+          <PTSansText note>{match.profile.headline}</PTSansText>
         </Body>
       </ListItem>
     ));
@@ -110,8 +110,5 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20
-  },
-  headline: {
-    fontSize: 12
   }
 });

@@ -1,9 +1,19 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Content, View, List, ListItem, Spinner } from 'native-base';
+import {
+  Container,
+  Content,
+  View,
+  List,
+  ListItem,
+  Left,
+  Body,
+  Spinner
+} from 'native-base';
 import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import Colors from '../constants/Colors';
 import { chatScreenStrings } from '../constants/Strings';
 import IsSearchingBar from '../components/IsSearchingBar';
@@ -13,24 +23,34 @@ class ChatsScreen extends React.Component {
     title: 'Chats',
   };
 
-  _viewChatThread(_id, name) {
-    this.props.navigation.navigate('ChatScreen', { _id, name });
+  _viewChatThread(thread) {
+    thread.status === 'pending' && thread.origin === 'receiver' ?
+      this.props.navigation.navigate('ConfirmScreen', thread)
+    :
+      this.props.navigation.navigate('ChatScreen', thread);
   }
 
   render() {
     const { threadList } = this.props;
+    const threadItems = [];
 
-    const threadItems = threadList ?
-      threadList.map(thread => (
+    threadList.forEach(thread => (
+      thread.status !== 'declined' && threadItems.push(
         <ListItem
           key={thread._id}
-          onPress={() => this._viewChatThread(thread._id, thread.name)}
+          onPress={() => this._viewChatThread(thread)}
+          avatar
         >
-          <PTSansText>{thread.name}</PTSansText>
+          <Left>
+            <ProfileImage pictureUrl={thread.profile.pictureUrl} />
+          </Left>
+          <Body>
+            <PTSansText style={styles.name}>{thread.profile.formattedName}</PTSansText>
+            <PTSansText note>{thread.profile.headline}</PTSansText>
+          </Body>
         </ListItem>
-      ))
-    :
-      null;
+      )
+    ));
 
     return (
       <Container style={styles.container}>
@@ -72,5 +92,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  name: {
+    fontSize: 20
   }
 });

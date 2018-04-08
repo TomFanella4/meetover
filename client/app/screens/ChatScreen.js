@@ -9,6 +9,7 @@ import {
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import { chatMessagesToLoad } from '../constants/Common';
 import Colors from '../constants/Colors';
 import { sendFirebaseMessage } from '../firebase';
@@ -19,7 +20,16 @@ import {
 
 class ChatScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `Chat with ${navigation.state.params.name}`,
+    title: `${navigation.state.params.profile.formattedName}`,
+    headerRight: (
+      <Button
+        style={styles.headerButton}
+        onPress={() => navigation.navigate('ProfileScreen', { profile: navigation.state.params.profile })}
+        transparent
+      >
+        <ProfileImage style={styles.headerThumbnail} pictureUrl={navigation.state.params.profile.pictureUrl} />
+      </Button>
+    )
   });
 
   onSend(messages = []) {
@@ -110,5 +120,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  headerButton: {
+    padding: 20,
+    alignSelf: 'center'
+  },
+  headerThumbnail: {
+    width: 35,
+    height: 35
   }
 });

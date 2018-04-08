@@ -6,6 +6,7 @@ backend.exe
 debug
 vendor/
 .env
+.envrc
 firebase-config.json
 ml/jobs.csv
 ml/transcripts.csv

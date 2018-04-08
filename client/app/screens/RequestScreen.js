@@ -63,12 +63,11 @@ class RequestScreen extends React.Component {
 
   async _initiateMeetover() {
     const { navigation, signedInProfile, threadList } = this.props;
-    const { formattedName, id } = navigation.state.params.profile;
+    const profile = navigation.state.params.profile;
+    const id = profile.id;
     const signedInId = signedInProfile.id;
     const accessToken = signedInProfile.token.access_token;
     let threadId;
-
-    this.setState({ buttonDisabled: true, meetOverLoading: true });
 
     if (signedInId < id) {
       threadId = signedInId + separator + id;
@@ -76,9 +75,10 @@ class RequestScreen extends React.Component {
       threadId = id + separator + signedInId;
     }
 
-    const exists = (find(threadList, { '_id': threadId }) !== undefined);
+    const thread = find(threadList, { '_id': threadId });
 
-    if (!exists) {
+    if (thread === undefined || (thread.status === 'declined' && thread.origin === 'receiver')) {
+      this.setState({ buttonDisabled: true, meetOverLoading: true });
       const uri = `${serverURI}/meetover/${id}`;
       const init = {
         method: 'POST',
@@ -104,9 +104,15 @@ class RequestScreen extends React.Component {
 
         return;
       }
+      navigation.navigate('ChatScreen', { '_id': threadId, profile });
+    } else {
+      StyledToast({
+        text: 'Could not initate MeetOver',
+        buttonText: 'Okay',
+        type: 'danger',
+        duration: 3000,
+      });
     }
-
-    navigation.navigate('ChatScreen', { _id: threadId, name: formattedName });
   };
 
   render() {

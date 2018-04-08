@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import {
   Spinner,
   View,
-  Button,
-  Thumbnail
+  Button
 } from 'native-base';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import { chatMessagesToLoad } from '../constants/Common';
 import Colors from '../constants/Colors';
 import { sendFirebaseMessage } from '../firebase';
@@ -27,18 +27,7 @@ class ChatScreen extends React.Component {
         onPress={() => navigation.navigate('ProfileScreen', { profile: navigation.state.params.profile })}
         transparent
       >
-        {
-          navigation.state.params.profile.pictureUrl !== '' ?
-            <Thumbnail
-              style={styles.headerThumbnail}
-              source={{ uri: navigation.state.params.profile.pictureUrl }}
-            />
-          :
-            <Thumbnail
-              style={styles.headerThumbnail}
-              source={require('../../assets/images/icon.png')}
-            />
-        }
+        <ProfileImage style={styles.headerThumbnail} pictureUrl={navigation.state.params.profile.pictureUrl} />
       </Button>
     )
   });

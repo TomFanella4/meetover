@@ -8,12 +8,12 @@ import {
   ListItem,
   Left,
   Body,
-  Thumbnail,
   Spinner
 } from 'native-base';
 import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import Colors from '../constants/Colors';
 import { chatScreenStrings } from '../constants/Strings';
 import IsSearchingBar from '../components/IsSearchingBar';
@@ -42,12 +42,7 @@ class ChatsScreen extends React.Component {
           avatar
         >
           <Left>
-            {
-              thread.profile.pictureUrl !== '' ?
-                <Thumbnail source={{ uri: thread.profile.pictureUrl }} />
-              :
-                <Thumbnail source={require('../../assets/images/icon.png')} />
-            }
+            <ProfileImage pictureUrl={thread.profile.pictureUrl} />
           </Left>
           <Body>
             <PTSansText style={styles.name}>{thread.profile.formattedName}</PTSansText>

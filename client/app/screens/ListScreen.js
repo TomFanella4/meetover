@@ -7,12 +7,12 @@ import {
   Left,
   List,
   ListItem,
-  Thumbnail,
   Spinner
 } from 'native-base'
 import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import Colors from '../constants/Colors';
 import IsSearchingBar from '../components/IsSearchingBar';
 import { fetchMatchesAsync } from '../actions/matchesActions';
@@ -51,12 +51,7 @@ class ListScreen extends React.Component {
         avatar
       >
         <Left>
-          {
-            match.profile.pictureUrl !== '' ?
-              <Thumbnail source={{ uri: match.profile.pictureUrl }} />
-            :
-              <Thumbnail source={require('../../assets/images/icon.png')} />
-          }
+          <ProfileImage pictureUrl={match.profile.pictureUrl} />
         </Left>
         <Body>
           <PTSansText style={styles.name}>{match.profile.formattedName}</PTSansText>

@@ -8,13 +8,13 @@ import {
   Input,
   Button,
   Switch,
-  Form,
-  Thumbnail
+  Form
 } from 'native-base';
 
 import Colors from '../constants/Colors';
 import { settingsStrings } from '../constants/Strings';
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import { modifyProfile } from '../actions/userActions';
 
 const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified, navigation }) => {
@@ -25,18 +25,7 @@ const Settings = ({ userProfile, formOptions, modifyProfile, onProfileModified, 
   };
 
   formItems.push(
-    userProfile.pictureUrl !== '' ?
-      <Thumbnail
-        style={styles.picture}
-        key='picture'
-        source={{ uri: userProfile.pictureUrl }}
-      />
-    :
-      <Thumbnail
-        style={styles.picture}
-        key='picture'
-        source={require('../../assets/images/icon.png')}
-      />
+    <ProfileImage style={styles.picture} key='picture' pictureUrl={userProfile.pictureUrl} />
   );
 
   formItems.push(formOptions.map(option => (

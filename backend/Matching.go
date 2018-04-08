@@ -220,16 +220,14 @@ func createModel(modelObject *storage.ObjectHandle, corpusReader io.Reader, wind
 	if err := modelWriter.Close(); err != nil {
 		return err
 	}
-	_, err = modelObject.Update(ctx, storage.ObjectAttrsToUpdate{
+	if _, err := modelObject.Update(ctx, storage.ObjectAttrsToUpdate{
 		ContentType: "application/octet-stream",
-	})
-	if err != nil {
+	}); err != nil {
 		return err
 	}
 
 	// Remove temp contents
-	err = os.Remove("temp")
-	if err != nil {
+	if err := os.Remove("temp"); err != nil {
 		return err
 	}
 

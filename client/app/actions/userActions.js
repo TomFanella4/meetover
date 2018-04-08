@@ -3,7 +3,7 @@ import { LI_APP_ID } from 'react-native-dotenv';
 
 import { serverURI } from '../constants/Common';
 import { StyledToast } from '../helpers';
-import { fetchIdToken } from '../firebase';
+import { fetchIdToken, signInToFirebase } from '../firebase';
 import {
   CREATE_PROFILE,
   LOGIN,
@@ -53,6 +53,7 @@ export const authenticateAndCreateProfile = () => (
       const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
 
+      await signInToFirebase(firebaseCustomToken, token.access_token, profile.id);
       isAuthenticated = userExists;
 
       const userProfile = {

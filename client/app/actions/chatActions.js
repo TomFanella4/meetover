@@ -1,3 +1,4 @@
+import { serverURI } from '../constants/Common';
 import {
   registerFetchFirebaseThreadList,
   registerFetchFirebaseNewMessage,
@@ -30,10 +31,37 @@ const fetchEarlierMessages = (_id, messages) => ({
 });
 
 export const registerFetchThreadListAsync = () => {
-  return async dispatch => {
-    registerFetchFirebaseThreadList(
-      threadList => dispatch(fetchThreadList(threadList))
-    );
+  return async (dispatch, getState) => {
+    registerFetchFirebaseThreadList(async threadList => {
+      const state = getState();
+      const accessToken = state.userProfile.token.access_token;
+      const userId = state.userProfile.id;
+      const ids = [];
+
+      threadList.forEach(thread => !thread.profile && ids.push(thread.userID));
+      const uri = `${serverURI}/userprofiles`;
+      const init = {
+        method: 'POST',
+        body: JSON.stringify(ids),
+        headers: new Headers({
+          'Token': accessToken,
+          'Identity': userId
+        })
+      };
+
+      const response = await fetch(uri, init)
+        .catch(err => console.log(err));
+      const result = await response.json()
+        .catch(err => console.log(err));
+
+      threadList.forEach(thread => {
+        if (result[thread.userID]) {
+          thread.profile = result[thread.userID].profile;
+        }
+      });
+
+      dispatch(fetchThreadList(threadList));
+    });
   };
 };
 

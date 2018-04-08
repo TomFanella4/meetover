@@ -53,7 +53,9 @@ export const authenticateAndCreateProfile = () => (
       const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
         .catch(err => null);
 
-      await signInToFirebase(firebaseCustomToken, token.access_token, profile.id);
+      await signInToFirebase(firebaseCustomToken, token.access_token, profile.id)
+        .catch(err => console.error(err));
+
       isAuthenticated = userExists;
 
       const userProfile = {

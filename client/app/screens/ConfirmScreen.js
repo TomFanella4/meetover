@@ -48,7 +48,7 @@ class ConfirmScreen extends React.Component {
   _declineMeetover() {
     const { navigation } = this.props;
     this._sendDecision('declined');
-    StyledToast({ text: `Declined ${navigation.state.params.profile.formattedName}'s request'` });
+    StyledToast({ text: `Declined ${navigation.state.params.profile.formattedName}'s request` });
     this.props.navigation.goBack();
   }
 

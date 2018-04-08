@@ -156,25 +156,17 @@ func GetExpoPushToken(ID string) (string, error) {
 }
 
 // CreateThreadForUser Adds a threadlist entry for a user w/ID1
-func CreateThreadForUser(ID1 string, threadID string, ID2 string) error {
+func CreateThreadForUser(ID1 string, threadID string, ID2 string, origin string) error {
 	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadID)
 	if err != nil {
 		return err
 	}
 
-	otherUserName, err := fbClient.Ref("/users/" + ID2 + "/profile/formattedName")
-	if err != nil {
-		return err
-	}
-
-	var name string
-	if err := otherUserName.Value(&name); err != nil {
-		return err
-	}
-
 	threadInfo := map[string]interface{}{
-		"_id":  threadID,
-		"name": name,
+		"_id":    threadID,
+		"userID": ID2,
+		"origin": origin,
+		"status": "pending",
 	}
 	if err := threadList.Update(threadInfo); err != nil {
 		return err
@@ -186,21 +178,24 @@ func CreateThreadForUser(ID1 string, threadID string, ID2 string) error {
 // AddThread Creates a messaging thread between two users
 func AddThread(P1 string, P2 string) error {
 	ID1, ID2 := "", ""
+	origin1, origin2 := "", ""
 
 	if P1 == P2 {
 		return errors.New("Cannot start a thread with only one user")
 	} else if P1 < P2 {
 		ID1, ID2 = P1, P2
+		origin1, origin2 = "sender", "receiver"
 	} else {
 		ID1, ID2 = P2, P1
+		origin1, origin2 = "receiver", "sender"
 	}
 
 	threadID := ID1 + separator + ID2
 
-	if err := CreateThreadForUser(ID1, threadID, ID2); err != nil {
+	if err := CreateThreadForUser(ID1, threadID, ID2, origin1); err != nil {
 		return err
 	}
-	if err := CreateThreadForUser(ID2, threadID, ID1); err != nil {
+	if err := CreateThreadForUser(ID2, threadID, ID1, origin2); err != nil {
 		return err
 	}
 
@@ -219,6 +214,17 @@ func AddThread(P1 string, P2 string) error {
 		return err
 	}
 
+	return nil
+}
+
+// SetThreadStatus Sets the status of a thread to the specified value
+func SetThreadStatus(userID string, threadID string, status string) error {
+	threadRef, err := fbClient.Ref("/users/" + userID + "/threadList/" + threadID)
+	if err != nil {
+		return err
+	}
+	statusMap := map[string]string{"status": status}
+	threadRef.Update(statusMap)
 	return nil
 }
 

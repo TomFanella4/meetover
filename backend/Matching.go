@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -13,6 +15,7 @@ import (
 	"strings"
 	"time"
 
+	"cloud.google.com/go/storage"
 	"github.com/ynqa/word-embedding/builder"
 	"gonum.org/v1/gonum/mat"
 )
@@ -169,11 +172,8 @@ func InitMLModel(windowSize int, wordDimensions int) {
 }
 
 // createModel uses the word2vec algo to create word embeddings
-func createModel(destinationFileName string, corpusFile string, windowSize int, wordDimensions int) {
-	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
-		fmt.Println("[-] Corpus file not found. No model created")
-		return
-	}
+func createModel(modelObject *storage.ObjectHandle, corpusReader io.Reader, windowSize int, wordDimensions int) error {
+	// Initialize word embeddings
 	b := builder.NewWord2VecBuilder()
 	b.SetDimension(wordDimensions).
 		SetWindow(windowSize).
@@ -183,23 +183,62 @@ func createModel(destinationFileName string, corpusFile string, windowSize int, 
 		SetVerbose()
 	m, err := b.Build()
 	if err != nil {
-		fmt.Println("[-] Unable to build word2vec neural net")
+		return err
 	}
-	inputFile1, _ := os.Open(corpusFile)
-	f1, err := m.Preprocess(inputFile1)
+
+	// Read corpus file
+	fmt.Println("[+] Reading Corpus from Firebase Storage...")
+	content, err := ioutil.ReadAll(corpusReader)
 	if err != nil {
-		fmt.Println("Failed to Preprocess.")
+		return err
+	}
+	corpusByteReader := bytes.NewReader(content)
+
+	fmt.Println("[+] Corpus loaded. Creating Model...")
+	f1, err := m.Preprocess(corpusByteReader)
+	if err != nil {
+		return err
 	}
 	// Start to Train.
 	m.Train(f1)
 	f1.Close()
-	// Save word vectors to a text file.
-	m.Save(destinationFileName)
+
+	// Save contents to disk temporarily because we can't access the model directly
+	fmt.Println("[+] Model created. Saving Model to Firebase...")
+	m.Save("temp")
+	modelContent, err := ioutil.ReadFile("temp")
+	if err != nil {
+		return err
+	}
+
+	// Save word vectors to firebase storage.
+	ctx := context.Background()
+	modelWriter := modelObject.NewWriter(ctx)
+	if _, err := fmt.Fprint(modelWriter, string(modelContent)); err != nil {
+		return err
+	}
+	if err := modelWriter.Close(); err != nil {
+		return err
+	}
+	_, err = modelObject.Update(ctx, storage.ObjectAttrsToUpdate{
+		ContentType: "application/octet-stream",
+	})
+	if err != nil {
+		return err
+	}
+
+	// Remove temp contents
+	err = os.Remove("temp")
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // readModel converts the generated model to an in-memory object
-func readModel(r io.Reader) map[string][]float64 {
-	content, err := ioutil.ReadAll(r)
+func readModel(modelReader io.Reader) map[string][]float64 {
+	content, err := ioutil.ReadAll(modelReader)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   Spinner,
   View,
-  Button
+  Button,
+  Thumbnail
 } from 'native-base';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
@@ -19,7 +20,27 @@ import {
 
 class ChatScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `Chat with ${navigation.state.params.name}`,
+    title: `${navigation.state.params.profile.formattedName}`,
+    headerRight: (
+      <Button
+        style={styles.headerButton}
+        onPress={() => navigation.navigate('ProfileScreen', { profile: navigation.state.params.profile })}
+        transparent
+      >
+        {
+          navigation.state.params.profile.pictureUrl !== '' ?
+            <Thumbnail
+              style={styles.headerThumbnail}
+              source={{ uri: navigation.state.params.profile.pictureUrl }}
+            />
+          :
+            <Thumbnail
+              style={styles.headerThumbnail}
+              source={require('../../assets/images/icon.png')}
+            />
+        }
+      </Button>
+    )
   });
 
   onSend(messages = []) {
@@ -110,5 +131,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  headerButton: {
+    padding: 20,
+    alignSelf: 'center'
+  },
+  headerThumbnail: {
+    width: 35,
+    height: 35
   }
 });

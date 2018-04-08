@@ -107,7 +107,7 @@ func Test(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(bodyString)
 			return // no match was returned
 		} //40.4259° N, 86.9081° W
-		res := InRadius(Geolocation{Long: -86.9081, Lat: 40.4259}, testLoc, 20)
+		res := InRadius(Geolocation{Longitude: -86.9081, Latitude: 40.4259}, testLoc, 20)
 		rj := make(map[string]bool)
 		rj["res"] = res
 		respondWithJSON(w, 200, rj)

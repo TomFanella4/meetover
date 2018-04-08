@@ -1,14 +1,11 @@
 package main
 
-<<<<<<< HEAD
 import (
 	"fmt"
 	"math"
 	"time"
 )
 
-=======
->>>>>>> bee7fb6071bb480318387e66e00de20d2ef8657e
 // Address is a our location metric
 type Address struct {
 	City  string `json:"city,omitempty"`
@@ -37,7 +34,7 @@ func QueryLocation(coords string) (Address, error) {
 // InRadius - checks if distance between two points is within radius
 func InRadius(center Geolocation, point Geolocation, radius float64) bool {
 	radius = radius * 1000 // convert to meters
-	dist := Distance(center.Lat, center.Long, point.Lat, point.Long)
+	dist := Distance(center.Latitude, center.Longitude, point.Latitude, point.Longitude)
 	if dist < radius {
 		return true
 	}

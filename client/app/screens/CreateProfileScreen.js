@@ -38,7 +38,10 @@ class CreateProfileScreen extends React.Component {
             <PTSansText style={styles.titleSubtext}>
               {createProfileScreenStrings.subtitle}
             </PTSansText>
-            <Settings formOptions={this.formOptions} />
+            <Settings
+              formOptions={this.formOptions}
+              navigation={this.props.navigation}
+            />
         </Content>
         <View style={styles.finishView}>
           <Button

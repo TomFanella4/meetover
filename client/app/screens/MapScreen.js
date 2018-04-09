@@ -3,9 +3,10 @@ import { Platform, StyleSheet, Image } from 'react-native';
 import { Permissions, MapView, Marker, Callout } from 'expo';
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
-import { Spinner, View, Thumbnail, } from 'native-base';
+import { Spinner, View } from 'native-base';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 import IsSearchingBar from '../components/IsSearchingBar';
 import Colors from '../constants/Colors';
 
@@ -32,12 +33,7 @@ class MapScreen extends React.Component {
           style={styles.mapViewCallout}
           onPress={() => this._viewProfile(match.profile)}
         >
-          {
-            match.profile.pictureUrl !== '' ?
-              <Thumbnail source={{ uri: match.profile.pictureUrl }} />
-            :
-              <Thumbnail source={require('../../assets/images/icon.png')} />
-          }
+          <ProfileImage pictureUrl={match.profile.pictureUrl} />
           <View style={styles.mapViewCalloutSection}>
             <PTSansText style={styles.name}>
               {match.profile.formattedName}

@@ -41,6 +41,12 @@ type UserProfileResponse struct {
 	Location Geolocation `json:"location"`
 }
 
+// MeetOverDecisionBody processed for a meetover decision
+type MeetOverDecisionBody struct {
+	Status   string `json:"status"`
+	ThreadID string `json:"_id"`
+}
+
 // ResponseCode Global codes for client - backend connections
 type ResponseCode int
 
@@ -54,22 +60,35 @@ const (
 	FailedLocationQuery ResponseCode = 509
 	FailedUserInit      ResponseCode = 510
 	FailedSendPush      ResponseCode = 511
+	FailedMeetOver      ResponseCode = 512
 )
 
-// GetUserProfile will give back a json object of user's Profile
-func GetUserProfile(w http.ResponseWriter, r *http.Request) {
+// GetUserProfiles will give back a json object of user's Profile
+func GetUserProfiles(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
-		params := mux.Vars(r)
-		id := params["id"]
-		user, err := GetUser(id)
-		if err != nil {
-			respondWithError(w, FailedProfileFetch, err.Error())
+		var ids []string
+		profiles := make(map[string]UserProfileResponse)
+		bodyBytes, _ := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		if err := json.Unmarshal(bodyBytes, &ids); err != nil {
+			fmt.Println(err.Error())
+			respondWithError(w, FailedProfileFetch, "Unable to get user profiles")
 			return
 		}
-		var profile UserProfileResponse
-		profile.Profile = user.Profile
-		profile.Location = user.Location
-		json.NewEncoder(w).Encode(profile)
+
+		for _, id := range ids {
+			user, err := GetUser(id)
+			if err != nil {
+				fmt.Println(err.Error())
+				respondWithError(w, FailedProfileFetch, "Failed to get User")
+				return
+			}
+			var profile UserProfileResponse
+			profile.Profile = user.Profile
+			profile.Location = user.Location
+			profiles[id] = profile
+		}
+		json.NewEncoder(w).Encode(profiles)
 	}
 }
 
@@ -211,7 +230,7 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 	if CheckAuthorized(w, r) {
 		initiatorID := r.Header.Get("Identity")
 		params := mux.Vars(r)
-		requestedID := params["otherId"]
+		requestedID := params["otherID"]
 
 		if err := AddThread(initiatorID, requestedID); err != nil {
 			respondWithError(w, FailedDBCall, "Could not create chat thread")
@@ -244,6 +263,62 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			respondWithError(w, FailedSendPush, "Could not send push notification")
 			fmt.Println(err.Error())
+			return
+		}
+		resp := ServerResponse{Success, "Success", true}
+		json.NewEncoder(w).Encode(resp)
+	}
+}
+
+// ProcessDecision Updates the status of the specified user pair
+func ProcessDecision(w http.ResponseWriter, r *http.Request) {
+	if CheckAuthorized(w, r) {
+		requestedID := r.Header.Get("Identity")
+		params := mux.Vars(r)
+		initiatorID := params["otherID"]
+
+		var decision MeetOverDecisionBody
+		bodyBytes, _ := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		if err := json.Unmarshal(bodyBytes, &decision); err != nil {
+			fmt.Println(err.Error())
+			respondWithError(w, FailedMeetOver, "Failed to set MeetOver decision")
+			return
+		}
+
+		if err := SetThreadStatus(requestedID, decision.ThreadID, decision.Status); err != nil {
+			fmt.Println(err.Error())
+			respondWithError(w, FailedMeetOver, "Failed to set MeetOver decision")
+			return
+		}
+		if err := SetThreadStatus(initiatorID, decision.ThreadID, decision.Status); err != nil {
+			fmt.Println(err.Error())
+			respondWithError(w, FailedMeetOver, "Failed to set MeetOver decision")
+			return
+		}
+
+		// Send a push notification to the initiator
+		formattedName, err := fbClient.Ref("/users/" + requestedID + "/profile/formattedName")
+		if err != nil {
+			respondWithError(w, FailedDBCall, "Could not send push notification")
+			fmt.Println(err.Error())
+			return
+		}
+		var name string
+		if err = formattedName.Value(&name); err != nil {
+			respondWithError(w, FailedDBCall, "Could not send push notification")
+			fmt.Println(err.Error())
+			return
+		}
+
+		pushNotification := PushNotification{
+			ID:    initiatorID,
+			Title: name + " " + decision.Status + " request",
+			Body:  "",
+		}
+		if err := SendPushNotification(&pushNotification); err != nil {
+			fmt.Println("Unable to send push notification")
+			respondWithError(w, FailedSendPush, "Could not send push notification")
 			return
 		}
 		resp := ServerResponse{Success, "Success", true}

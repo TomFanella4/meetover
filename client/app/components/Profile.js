@@ -6,11 +6,11 @@ import {
   CardItem,
   Content,
   Icon,
-  Left,
-  Thumbnail
+  Left
 } from 'native-base';
 
 import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
 
 const Profile = ({ profile }) => {
 
@@ -44,12 +44,7 @@ const Profile = ({ profile }) => {
   return (
     <Content>
       <Left style={styles.thumbnail}>
-        {
-          profile.pictureUrl !== '' ?
-            <Thumbnail source={{ uri: profile.pictureUrl }} />
-          :
-            <Thumbnail source={require('../../assets/images/icon.png')} />
-        }
+        <ProfileImage pictureUrl={profile.pictureUrl} />
       </Left>
       <Body>
         <PTSansText style={styles.name}>{profile.formattedName}</PTSansText>

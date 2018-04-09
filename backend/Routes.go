@@ -35,14 +35,20 @@ var routes = Routes{
 	Route{
 		"Initiate Meetover",
 		"POST",
-		"/meetover/{otherId}",
+		"/meetover/{otherID}",
 		InitiateMeetover,
 	},
 	Route{
-		"Get another user's profile",
-		"GET",
-		"/userprofile/{id}",
-		GetUserProfile,
+		"Processes the user's decision to MeetOver",
+		"POST",
+		"/meetover/decision/{otherID}",
+		ProcessDecision,
+	},
+	Route{
+		"Get other user's profile(s)",
+		"POST",
+		"/userprofiles",
+		GetUserProfiles,
 	},
 	Route{
 		"Send Push Notification",

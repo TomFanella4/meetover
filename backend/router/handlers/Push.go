@@ -1,10 +1,12 @@
-package main
+package handlers
 
 import (
 	"bytes"
 	"errors"
 	"fmt"
 	"net/http"
+
+	"meetover/backend/firebase"
 )
 
 // PushNotification struct
@@ -17,7 +19,7 @@ type PushNotification struct {
 // SendPushNotification sends a push notification to the speicifed recipient
 func SendPushNotification(pushNotification *PushNotification) error {
 	endpoint := "https://exp.host/--/api/v2/push/send"
-	expoPushToken, err := GetExpoPushToken(pushNotification.ID)
+	expoPushToken, err := firebase.GetExpoPushToken(pushNotification.ID)
 	if err != nil {
 		return errors.New("Failed to send push notification to " + pushNotification.ID)
 	}

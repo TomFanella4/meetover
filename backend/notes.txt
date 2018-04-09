@@ -16,6 +16,9 @@ git fetch -p
 https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
 git subtree push --prefix backend heroku master
 
+If LinkedIn authentication isn't working, make sure to unset the LI_REDIRECT_URI
+variable on your machine, and remove it from your .env file.
+
 
 // JSON test data generator
 [
@@ -23,7 +26,7 @@ git subtree push --prefix backend heroku master
   {
     uid: '{{objectId()}}',
     location : {
-      lat: '{{floating(40.4187, 40.4287)}}', 
+      lat: '{{floating(40.4187, 40.4287)}}',
       long: '{{floating(-87.0212, -86.8212)}}',
       timestamp: '{{integer(1521669397, 99999999999)}}'
     },
@@ -43,7 +46,7 @@ git subtree push --prefix backend heroku master
       pictureUrl: 'http://placehold.it/32x32',
       summary: '{{lorem(1, "paragraphs")}}',
       shareLocation : true,
-      positions: {        
+      positions: {
         values: [
           '{{repeat(5)}}',
           {
@@ -58,7 +61,7 @@ git subtree push --prefix backend heroku master
                 name: '{{street()}}, {{city()}}, {{state()}}, {{country()}}'
               }
             }
-          }           
+          }
         ]
       },
       currentShare: {

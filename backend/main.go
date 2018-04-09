@@ -16,6 +16,9 @@ func main() {
 	// database & chat
 	InitializeFirebase()
 
+	// Init files
+	InitializeFiles()
+
 	// ML
 	InitMLModel(WordModelContextWindow, WordModelDimension)
 	rand.Seed(time.Now().Unix())

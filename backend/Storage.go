@@ -111,7 +111,7 @@ func InitializeFirebase() {
 // InitializeFiles Initializes the files
 func InitializeFiles() error {
 	fmt.Println("[+] Initializing files...")
-	modelFile := "./ml/meetOver.model"
+	modelFile := "./data/meetOver.model"
 	// Check fs for model
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
 		// Check Firebase for model
@@ -123,7 +123,7 @@ func InitializeFiles() error {
 		if err != nil {
 			// Check fs for corpus
 			fmt.Println("[-] Model not found in Firebase. Checking for Corpus file...")
-			corpusFile := "./ml/corpus.dat"
+			corpusFile := "./data/corpus.dat"
 
 			if _, err = os.Stat(corpusFile); os.IsNotExist(err) {
 				// Check Firebase for corpus

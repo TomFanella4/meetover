@@ -10,3 +10,9 @@ vendor/
 firebase-config.json
 data/otherJobs/
 data/data.exe
+data/FinalTestUsers.json
+data/corpus.dat
+data/jobs.csv
+data/meetOver.model
+data/rawTestUsers.json
+data/transcripts.csv

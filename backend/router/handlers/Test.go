@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"meetover/backend/location"
 	"net/http"
-	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -15,10 +14,7 @@ import (
 func Test(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	tt := params["testType"]
-	if tt == "profile" {
-		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
-		return
-	} else if tt == "distance" {
+	if tt == "distance" {
 		var testLoc location.Geolocation
 		bodyBytes, _ := ioutil.ReadAll(r.Body)
 		defer r.Body.Close()

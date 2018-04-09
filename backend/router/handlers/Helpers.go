@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	// "meetover/backend/matching"
 	"encoding/json"
 	"fmt"
 	"meetover/backend/firebase"

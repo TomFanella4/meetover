@@ -108,7 +108,7 @@ type User struct {
 }
 
 // cachedUsers - temp var for testing
-var cachedUsers []User
+// var cachedUsers []User
 
 // ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {
@@ -237,20 +237,4 @@ func InitUser(p Profile, aTokenResp ATokenResponse) (bool, error) {
 		defer userRef.Set(user)
 	}
 	return userExists, nil
-}
-
-// LoadTestUsers gets test users generated from a random data generator
-func LoadTestUsers() {
-	raw, err := ioutil.ReadFile("./data/FinalTestUsers.json")
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
-	var testUsers []User
-	if err = json.Unmarshal(raw, &testUsers); err != nil {
-		fmt.Println("[-] Unable to load test users")
-		fmt.Println(err.Error())
-		return
-	}
-	cachedUsers = append(cachedUsers, testUsers...)
 }

@@ -98,6 +98,21 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
+		return
+	} else if tt == "distance" {
+		var testLoc Geolocation
+		bodyBytes, _ := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		if err := json.Unmarshal(bodyBytes, &testLoc); err != nil {
+			bodyString := string(bodyBytes)
+			fmt.Println(bodyString)
+			return // no match was returned
+		} //40.4259° N, 86.9081° W
+		res := InRadius(Geolocation{Longitude: -86.9081, Latitude: 40.4259}, testLoc, 20)
+		rj := make(map[string]bool)
+		rj["res"] = res
+		respondWithJSON(w, 200, rj)
+		return
 	}
 	resp := ServerResponse{Success, "Success", true}
 	json.NewEncoder(w).Encode(resp)

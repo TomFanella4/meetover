@@ -8,5 +8,5 @@ vendor/
 .env
 .envrc
 firebase-config.json
-ml/jobs.csv
-ml/transcripts.csv
+data/otherJobs/
+data/data.exe

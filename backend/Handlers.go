@@ -98,6 +98,7 @@ func Test(w http.ResponseWriter, r *http.Request) {
 	tt := params["testType"]
 	if tt == "profile" {
 		json.NewEncoder(w).Encode(strings.Replace(sampleProfile, "\n", "", -1))
+		return
 	} else if tt == "distance" {
 		var testLoc Geolocation
 		bodyBytes, _ := ioutil.ReadAll(r.Body)
@@ -111,7 +112,10 @@ func Test(w http.ResponseWriter, r *http.Request) {
 		rj := make(map[string]bool)
 		rj["res"] = res
 		respondWithJSON(w, 200, rj)
+		return
 	}
+	resp := ServerResponse{Success, "Success", true}
+	json.NewEncoder(w).Encode(resp)
 }
 
 // GetAddress will give back a json object based on coordinates

@@ -156,10 +156,10 @@ func userToString(u User) string {
 
 // InitMLModel check if model has been created or creates it
 func InitMLModel(windowSize int, wordDimensions int) {
-	modelFile := "./ml/meetOver.model"
+	modelFile := "./data/meetOver.model"
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
 		fmt.Println("Model does not exist. Creating Model")
-		corpusFile := "./ml/corpus.dat"
+		corpusFile := "./data/corpus.dat"
 		createModel(modelFile, corpusFile, windowSize, wordDimensions)
 	}
 	WordModel = readModel(modelFile)

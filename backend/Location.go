@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"time"
 )
 
 // Address is a our location metric
@@ -57,8 +56,4 @@ func Distance(lat1, lon1, lat2, lon2 float64) float64 {
 	r = 6378100 // Earth radius in METERS
 	h := hsin(la2-la1) + math.Cos(la1)*math.Cos(la2)*hsin(lo2-lo1)
 	return 2 * r * math.Asin(math.Sqrt(h))
-}
-
-func makeTimestamp() int64 {
-	return time.Now().UnixNano() / int64(time.Millisecond)
 }

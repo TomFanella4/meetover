@@ -107,9 +107,6 @@ type User struct {
 	IsMatchedNow bool           `json:"isMatched"` // set directly from the mobile app
 }
 
-// cachedUsers - temp var for testing
-// var cachedUsers []User
-
 // ExchangeToken does the auhentication using client code and secret
 func ExchangeToken(TempClientCode string, RedirectURI string) (ATokenResponse, error) {
 

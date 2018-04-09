@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
 import { Root } from "native-base";
 import Expo, { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,22 +7,25 @@ import AppNavigation from './navigation';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-import { middleware } from './store/middleware';
 import reducers from './reducers';
+import { signInToFirebase } from './firebase';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
 
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
     store: {},
-    preloadedState: {}
+    userProfile: {}
   };
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
-          startAsync={this._loadResourcesAsync}
+          startAsync={this._loadAll}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
         />
@@ -33,19 +36,27 @@ export default class App extends React.Component {
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
             {/* {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />} */}
-            <AppNavigation />
+            <AppNavigation
+              id={this.state.userProfile.id}
+              isAuthenticated={this.state.userProfile.isAuthenticated}
+            />
           </View>
         </Provider>
       );
     }
   }
 
+  _loadAll = async () => {
+    const userProfile = (await this._loadResourcesAsync())[2];
+    userProfile && await this._validateCustomToken(userProfile);
+  };
+
   _loadResourcesAsync = async () => {
     return Promise.all([
-      // Asset.loadAsync([
-      //   require('./assets/images/robot-dev.png'),
-      //   require('./assets/images/robot-prod.png'),
-      // ]),
+      Asset.loadAsync([
+        require('../assets/images/current_location.png'),
+        require('../assets/images/icon.png'),
+      ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
         ...Ionicons.font,
@@ -55,12 +66,27 @@ export default class App extends React.Component {
         'Roboto_medium': require("native-base/Fonts/Roboto_medium.ttf")
       }),
       Expo.SecureStore.getItemAsync('userProfile')
-      .then(userProfile => userProfile && this.setState({
-        preloadedState: {
-          userProfile: JSON.parse(userProfile)
+      .then(userProfileString => {
+        if (userProfileString) {
+          return JSON.parse(userProfileString);
         }
-      }))
+      })
     ]);
+  };
+
+  _validateCustomToken = async userProfile => {
+    const { firebaseCustomToken, token, id } = userProfile;
+
+    const verifiedToken = await signInToFirebase(firebaseCustomToken, token.access_token, id)
+    .catch(() => {
+      Expo.SecureStore.deleteItemAsync('userProfile');
+      throw 'Unable to verify Firebase custom token.';
+    });
+
+    userProfile.firebaseCustomToken = verifiedToken;
+
+    this.setState({ userProfile });
+    Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile));
   };
 
   _handleLoadingError = error => {
@@ -74,8 +100,8 @@ export default class App extends React.Component {
       isLoadingComplete: true,
       store: createStore(
         reducers,
-        this.state.preloadedState,
-        applyMiddleware(...middleware)
+        { userProfile: this.state.userProfile },
+        applyMiddleware(thunk)
       )
     });
   };

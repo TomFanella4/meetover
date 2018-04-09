@@ -12,24 +12,67 @@
     "internal/atomiccache",
     "internal/fields",
     "internal/optional",
+    "internal/trace",
     "internal/version",
     "storage"
   ]
-  revision = "767c40d6a2e058483c25fa193e963a22da17236d"
-  version = "v0.18.0"
+  revision = "4b98a6370e36d7a85192e7bad08a4ebd82eac2a8"
+  version = "v0.20.0"
 
 [[projects]]
   name = "firebase.google.com/go"
   packages = [
     ".",
     "auth",
+    "db",
     "iid",
     "internal",
     "messaging",
     "storage"
   ]
-  revision = "f1f98c42944f2d44c936a4fecdaefa7b0c1c8876"
-  version = "v2.5.0"
+  revision = "c5db67b02a346bd4b8829369e1a5acd147bfb7a6"
+  version = "v2.6.1"
+
+[[projects]]
+  name = "github.com/awalterschulze/gographviz"
+  packages = [
+    ".",
+    "ast",
+    "internal/errors",
+    "internal/lexer",
+    "internal/parser",
+    "internal/token"
+  ]
+  revision = "c84395e536e1a1199093a4e6253d1bee99e4cd2a"
+  version = "v2.0"
+
+[[projects]]
+  name = "github.com/chewxy/hm"
+  packages = ["."]
+  revision = "61efb3290a086d1335e8954b3734c102126818ba"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/chewxy/lingo"
+  packages = [
+    ".",
+    "corpus",
+    "treebank"
+  ]
+  revision = "5df599b29592fc42add176fac2873423a17691e7"
+
+[[projects]]
+  name = "github.com/chewxy/math32"
+  packages = ["."]
+  revision = "d1e7b22839c693f54edf7811dd9487623abf2cd2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/fsnotify/fsnotify"
+  packages = ["."]
+  revision = "c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9"
+  version = "v1.4.7"
 
 [[projects]]
   name = "github.com/golang/protobuf"
@@ -66,10 +109,141 @@
   version = "v1.6.1"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/hcl"
+  packages = [
+    ".",
+    "hcl/ast",
+    "hcl/parser",
+    "hcl/printer",
+    "hcl/scanner",
+    "hcl/strconv",
+    "hcl/token",
+    "json/parser",
+    "json/scanner",
+    "json/token"
+  ]
+  revision = "f40e974e75af4e271d97ce0fc917af5898ae7bda"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/leesper/go_rng"
+  packages = ["."]
+  revision = "5344a9259b21627d94279721ab1f27eb029194e7"
+
+[[projects]]
+  name = "github.com/magiconair/properties"
+  packages = ["."]
+  revision = "c3beff4c2358b44d0493c7dda585e7db7ff28ae6"
+  version = "v1.7.6"
+
+[[projects]]
+  name = "github.com/mattn/go-runewidth"
+  packages = ["."]
+  revision = "9e777a8366cce605130a531d2cd6363d07ad7317"
+  version = "v0.0.2"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/mapstructure"
+  packages = ["."]
+  revision = "00c29f56e2386353d58c599509e8dc3801b0d716"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mpace965/word-embedding"
+  packages = ["builder"]
+  revision = "8e4b0cf83e310ced1adb53b64450c4d3bca7b057"
+
+[[projects]]
+  name = "github.com/pelletier/go-toml"
+  packages = ["."]
+  revision = "acdc4509485b587f5e675510c4f2c63e90ff68a8"
+  version = "v1.1.0"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
+  name = "github.com/spf13/afero"
+  packages = [
+    ".",
+    "mem"
+  ]
+  revision = "bb8f1927f2a9d3ab41c9340aa034f6b803f4359c"
+  version = "v1.0.2"
+
+[[projects]]
+  name = "github.com/spf13/cast"
+  packages = ["."]
+  revision = "8965335b8c7107321228e3e3702cab9832751bac"
+  version = "v1.2.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/jwalterweatherman"
+  packages = ["."]
+  revision = "7c0cea34c8ece3fbeb2b27ab9b59511d360fb394"
+
+[[projects]]
+  name = "github.com/spf13/pflag"
+  packages = ["."]
+  revision = "e57e3eeb33f795204c1ca35f56c44f83227c6e66"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/spf13/viper"
+  packages = ["."]
+  revision = "b5e8006cbee93ec955a89ab31e0e3ce3204f3736"
+  version = "v1.0.2"
+
+[[projects]]
+  name = "github.com/xtgo/set"
+  packages = ["."]
+  revision = "708d80f4a27458f99f8ca12bd0e638c6ee65627f"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/ynqa/word-embedding"
+  packages = [
+    "config",
+    "model",
+    "model/glove",
+    "model/word2vec"
+  ]
+  revision = "75a4f38c2fcb0c2210142b10f9ffd6533e9f8566"
+
+[[projects]]
   branch = "v1"
   name = "github.com/zabawaba99/firego"
-  packages = ["sync"]
+  packages = [
+    ".",
+    "sync"
+  ]
   revision = "4d07741c1dde0b0d76218e8365baea10c33cf968"
+
+[[projects]]
+  name = "go.opencensus.io"
+  packages = [
+    "exporter/stackdriver/propagation",
+    "internal",
+    "internal/tagencoding",
+    "plugin/ocgrpc",
+    "plugin/ochttp",
+    "plugin/ochttp/propagation/b3",
+    "stats",
+    "stats/internal",
+    "stats/view",
+    "tag",
+    "trace",
+    "trace/propagation"
+  ]
+  revision = "6e3f034057826b530038d93267906ec3c012183f"
+  version = "v0.6.0"
 
 [[projects]]
   branch = "master"
@@ -84,7 +258,7 @@
     "lex/httplex",
     "trace"
   ]
-  revision = "cbe0f9307d0156177f9dd5dc85da1a31abc5f2fb"
+  revision = "6078986fec03a1dcc236c34816c71b0e05018fda"
 
 [[projects]]
   branch = "master"
@@ -96,10 +270,15 @@
     "jws",
     "jwt"
   ]
-  revision = "543e37812f10c46c622c9575afd7ad22f22a12ba"
+  revision = "fdc9e635145ae97e6c2cb777c48305600cf515cb"
 
 [[projects]]
   branch = "master"
+  name = "golang.org/x/sys"
+  packages = ["unix"]
+  revision = "378d26f46672a356c46195c28f61bdb4c0a781dd"
+
+[[projects]]
   name = "golang.org/x/text"
   packages = [
     "collate",
@@ -117,7 +296,32 @@
     "unicode/norm",
     "unicode/rangetable"
   ]
-  revision = "4e4a3210bb54bb31f6ab2cdca2edcc0b50c420c1"
+  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
+  version = "v0.3.0"
+
+[[projects]]
+  name = "gonum.org/v1/gonum"
+  packages = [
+    "blas",
+    "blas/blas64",
+    "blas/gonum",
+    "floats",
+    "graph",
+    "graph/internal/linear",
+    "graph/internal/ordered",
+    "graph/internal/set",
+    "graph/topo",
+    "graph/traverse",
+    "internal/asm/c128",
+    "internal/asm/f32",
+    "internal/asm/f64",
+    "internal/math32",
+    "lapack",
+    "lapack/gonum",
+    "lapack/lapack64",
+    "mat"
+  ]
+  revision = "f818f8f7a9e59de54e475b747a3dc9c86ed141f1"
 
 [[projects]]
   branch = "master"
@@ -136,7 +340,7 @@
     "transport/grpc",
     "transport/http"
   ]
-  revision = "c76a25da6c114df45a86acb8873ae83eda1430b9"
+  revision = "a213db537ac9b393526194a5c85ad6e546f7923f"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -164,10 +368,11 @@
     "googleapis/api/annotations",
     "googleapis/firestore/v1beta1",
     "googleapis/iam/v1",
+    "googleapis/rpc/code",
     "googleapis/rpc/status",
     "googleapis/type/latlng"
   ]
-  revision = "2b5a72b8730b0b16380010cfe5286c42108d88e7"
+  revision = "ab0870e398d5dd054b868c0db1481ab029b9a9f2"
 
 [[projects]]
   name = "google.golang.org/grpc"
@@ -197,18 +402,58 @@
     "tap",
     "transport"
   ]
-  revision = "8e4536a86ab602859c20df5ebfd0bd4228d08655"
-  version = "v1.10.0"
+  revision = "afc05b9e1d36f289ea16ba294894486a3e458246"
+  version = "v1.11.0"
 
 [[projects]]
-  branch = "v1"
-  name = "gopkg.in/zabawaba99/firego.v1"
+  name = "gopkg.in/cheggaaa/pb.v1"
   packages = ["."]
-  revision = "4d07741c1dde0b0d76218e8365baea10c33cf968"
+  revision = "72b964305fba1230d3d818711138195f22b9ceea"
+  version = "v1.0.22"
+
+[[projects]]
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
+  version = "v2.2.1"
+
+[[projects]]
+  name = "gorgonia.org/cu"
+  packages = ["."]
+  revision = "32f165836e285c14a4f78c455872d069e0cc5a7d"
+  version = "v0.8.0"
+
+[[projects]]
+  name = "gorgonia.org/gorgonia"
+  packages = ["."]
+  revision = "92b0be6ab616e396b280bafbdb3b793219880812"
+  version = "v0.8.2"
+
+[[projects]]
+  name = "gorgonia.org/tensor"
+  packages = [
+    ".",
+    "internal/execution",
+    "internal/storage"
+  ]
+  revision = "2ab2564f998fe504b94a1679c1c95277cdedea47"
+  version = "v0.8.1"
+
+[[projects]]
+  branch = "master"
+  name = "gorgonia.org/vecf32"
+  packages = ["."]
+  revision = "da24147133d9b1c7aa847b9e9d77d6ffa3980e0b"
+
+[[projects]]
+  branch = "master"
+  name = "gorgonia.org/vecf64"
+  packages = ["."]
+  revision = "6314d1b6cefc75ece7e9b787afabac009c892b1e"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "65220663e7b40b5f5b1f768bb6d7bab637a877cfb8b2a42a70a2c139796391e4"
+  inputs-digest = "6811904bb418626044680bb91f02b611636434cb5ea6ab9e0dc3936d6c227d8a"
   solver-name = "gps-cdcl"
   solver-version = 1

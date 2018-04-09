@@ -1,4 +1,4 @@
-package main
+package router
 
 import (
 	"log"
@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// Logger Places a wrapper around every handler from Routes.go
 func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()

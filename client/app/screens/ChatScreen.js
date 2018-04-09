@@ -1,0 +1,132 @@
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import {
+  Spinner,
+  View,
+  Button
+} from 'native-base';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+
+import { PTSansText } from '../components/StyledText';
+import { ProfileImage } from '../components/ProfileImage';
+import { chatMessagesToLoad } from '../constants/Common';
+import Colors from '../constants/Colors';
+import { sendFirebaseMessage } from '../firebase';
+import {
+  registerFetchNewMessageAsync,
+  fetchEarlierMessagesAsync
+} from '../actions/chatActions';
+
+class ChatScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `${navigation.state.params.profile.formattedName}`,
+    headerRight: (
+      <Button
+        style={styles.headerButton}
+        onPress={() => navigation.navigate('ProfileScreen', { profile: navigation.state.params.profile })}
+        transparent
+      >
+        <ProfileImage style={styles.headerThumbnail} pictureUrl={navigation.state.params.profile.pictureUrl} />
+      </Button>
+    )
+  });
+
+  onSend(messages = []) {
+    const _id = this.props.navigation.state.params._id;
+    const access_token = this.props.userProfile.token.access_token;
+
+    sendFirebaseMessage(_id, messages, access_token);
+  }
+
+  onLoadEarlier() {
+    const {
+      messages,
+      navigation,
+      fetchEarlierMessagesAsync,
+    } = this.props;
+    const _id = navigation.state.params._id;
+
+    fetchEarlierMessagesAsync(_id, chatMessagesToLoad, messages[messages.length - 1]._id);
+  }
+
+  renderBubble (props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: Colors.tintColor
+          }
+        }}
+      />
+    )
+  }
+
+  render() {
+    const { navigation, userProfile, messages } = this.props;
+    return (
+      <View style={styles.container}>
+        <GiftedChat
+          messages={messages}
+          onSend={messages => this.onSend(messages)}
+          messageIdGenerator={() => null}
+          user={{
+            _id: userProfile.id,
+            name: userProfile.formattedName,
+            avatar: userProfile.pictureUrl
+          }}
+          loadEarlier={messages && messages[messages.length - 1]._id !== 0}
+          onLoadEarlier={() => this.onLoadEarlier()}
+          renderLoading={() => <Spinner color={Colors.tintColor} />}
+          renderBubble={this.renderBubble}
+          inverted={true}
+        />
+      </View>
+    );
+  }
+
+  componentDidMount() {
+    const {
+      messages,
+      navigation,
+      registerFetchNewMessageAsync,
+      fetchEarlierMessagesAsync
+    } = this.props;
+
+    if (!messages) {
+      fetchEarlierMessagesAsync(navigation.state.params._id, chatMessagesToLoad);
+      registerFetchNewMessageAsync(navigation.state.params._id);
+    }
+  }
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  userProfile: state.userProfile,
+  messages: state.chat.messageThreads[ownProps.navigation.state.params._id]
+});
+
+const mapDispatchToProps = {
+  registerFetchNewMessageAsync,
+  fetchEarlierMessagesAsync
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChatScreen);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  headerButton: {
+    padding: 20,
+    alignSelf: 'center'
+  },
+  headerThumbnail: {
+    width: 35,
+    height: 35
+  }
+});

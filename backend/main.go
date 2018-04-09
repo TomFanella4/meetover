@@ -2,27 +2,35 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"net/http"
 	"os"
+	"time"
+
+	"meetover/backend/firebase"
+	"meetover/backend/matching"
+	"meetover/backend/router"
 )
 
 // our main function
 func main() {
 
-	// Test Data
-	people = append(people, Person{ID: "1", Firstname: "John", Lastname: "Doe", Address: &Address{City: "Chicago", State: "IL", Area: "ORD"}})
-	people = append(people, Person{ID: "2", Firstname: "Koko", Lastname: "Doe", Address: &Address{City: "Chicago", State: "IL", Area: "ORD"}})
-	people = append(people, Person{ID: "3", Firstname: "Francis", Lastname: "Sunday", Address: &Address{City: "New York", State: "NY", Area: "JFK"}})
+	router := router.NewRouter()
 
-	router := NewRouter()
+	// Initialiaze database, chat, and static storage
+	firebase.InitializeFirebase()
+	firebase.InitializeFiles()
 
-	InitializeFirebase()
+	// ML
+	matching.InitMLModel(matching.WordModelContextWindow, matching.WordModelDimension)
+	rand.Seed(time.Now().Unix())
 
 	port, deployMode := os.LookupEnv("PORT")
 	if deployMode {
 		fmt.Println(http.ListenAndServe(":"+port, router))
 	} else {
-		fmt.Println("running in dubug mode")
+		fmt.Println("running in debug mode")
 		fmt.Println(http.ListenAndServe(":8080", router))
 	}
+
 }

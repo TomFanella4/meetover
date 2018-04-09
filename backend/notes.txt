@@ -2,16 +2,93 @@
 git commit // any pending changes
 git pull origin development
 // fix any merge conflicts and add the conflicted files to new commit
-git push //current feature branch
-// make pull request in github.com
+git push current_feature_branch
+// make pull request in github.com (base: development)
 
+// delete old branch
+git branch -d the_local_branch
+git push origin --delete the_remote_branch
 
+// update branches from remote
+git fetch -p
+
+// pushing only one folder in repo
 https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
-
-
 git subtree push --prefix backend heroku master
 
+If LinkedIn authentication isn't working, make sure to unset the LI_REDIRECT_URI
+variable on your machine, and remove it from your .env file.
 
+
+// JSON test data generator
+[
+  '{{repeat(200)}}',
+  {
+    uid: '{{objectId()}}',
+    location : {
+      lat: '{{floating(40.4187, 40.4287)}}',
+      long: '{{floating(-87.0212, -86.8212)}}',
+      timestamp: '{{integer(1521669397, 99999999999)}}'
+    },
+    accessToken: {
+      token: '{{guid()}}',
+      expiry: '{{integer(1521669397, 99999999999)}}'
+    },
+    isSearching: '{{bool()}}',
+    isMatched: false,
+    profile: {
+      firstName: '{{firstName()}}',
+      id: this.uid,
+      industry: '{{company()}}',
+      lastName: '{{surname()}}',
+      headline: '{{lorem(1, "sentences")}}',
+      greeting: '{{lorem(1, "sentences")}}',
+      pictureUrl: 'http://placehold.it/32x32',
+      summary: '{{lorem(1, "paragraphs")}}',
+      shareLocation : true,
+      positions: {
+        values: [
+          '{{repeat(5)}}',
+          {
+            company: {
+              name: '{{company()}}',
+              type: '{{company().toUpperCase()}}',
+              industry:'{{random("software", "computer hardware", "aviation", "paint and hardware")}}',
+              isCurrent: '{{bool()}}',
+              summary: '{{lorem(1, "paragraphs")}}',
+              title: '{{random("engineer", "program manager", "pilot", "store manager")}}',
+              location: {
+                name: '{{street()}}, {{city()}}, {{state()}}, {{country()}}'
+              }
+            }
+          }
+        ]
+      },
+      currentShare: {
+        comment: '{{lorem(1, "sentences")}}',
+        author: {
+          firstName: '{{firstName()}}',
+          id: '{{guid()}}'
+        }
+      },
+      location: {
+        country: {
+          code: '{{country().toUpperCase()}}'
+        },
+        name: '{{country()}}'
+      }
+    }
+  }
+]
+
+// Test User
+
+
+
+
+
+
+// sample LinkedIn Profile
 {
   "currentShare": {
     "attribution": {"share": {

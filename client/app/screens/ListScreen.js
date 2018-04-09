@@ -7,16 +7,20 @@ import {
   Left,
   List,
   ListItem,
-  Thumbnail
+  Spinner
 } from 'native-base'
 import { connect } from 'react-redux';
 
 import { PTSansText } from '../components/StyledText';
-import { fetchMatchesAsync } from '../actions';
+import { ProfileImage } from '../components/ProfileImage';
+import Colors from '../constants/Colors';
+import IsSearchingBar from '../components/IsSearchingBar';
+import { fetchMatchesAsync } from '../actions/matchesActions';
 
 class ListScreen extends React.Component {
   state = {
-      refreshing: false
+    loading: true,
+    refreshing: false
   };
 
   static navigationOptions = {
@@ -24,56 +28,64 @@ class ListScreen extends React.Component {
   };
 
   componentDidMount() {
-    this._onRefresh('userId');
+    const { userId, accessToken } = this.props;
+    this._onRefresh(userId, accessToken);
   }
 
-  _onRefresh(userId) {
+  _onRefresh(userId, accessToken) {
     this.setState({ refreshing: true });
-    this.props.fetchMatchesAsync(userId)
-      .then(() => this.setState({ refreshing: false }));
+    this.props.fetchMatchesAsync(userId, accessToken)
+      .then(() => this.setState({ loading: false, refreshing: false }));
   }
 
-  _viewProfile(userId, name) {
-    const { navigation } = this.props;
-
-    navigation.navigate('Profile', {
-      userId,
-      name,
-    });
+  _viewProfile(match) {
+    this.props.navigation.navigate('RequestScreen', { profile: match });
   }
 
   render() {
-    const { matches } = this.props;
-    const list = matches.map((match, index) =>
-      <ListItem style={styles.container} key={index} onPress={() => this._viewProfile(match.id, match.formattedName)}>
-        <Left style={styles.thumbnail}>
-          <Thumbnail source={{ uri: match.pictureUrl }} />
+    const { matches, userId, accessToken } = this.props;
+    const list = matches.map(match => (
+      <ListItem
+        key={match.profile.id}
+        onPress={() => this._viewProfile(match.profile)}
+        avatar
+      >
+        <Left>
+          <ProfileImage pictureUrl={match.profile.pictureUrl} />
         </Left>
         <Body>
-          <PTSansText style={styles.name}>{match.formattedName}</PTSansText>
-          <PTSansText style={styles.headline}>{match.headline}</PTSansText>
+          <PTSansText style={styles.name}>{match.profile.formattedName}</PTSansText>
+          <PTSansText note>{match.profile.headline}</PTSansText>
         </Body>
       </ListItem>
-    );
+    ));
 
     const refresh = (
       <RefreshControl
-        onRefresh={() => this._onRefresh('userId')}
+        onRefresh={() => this._onRefresh(userId, accessToken)}
         refreshing={this.state.refreshing}
       />
     );
 
     return (
       <Container style={styles.container}>
-        <Content refreshControl={refresh}>
-          <List>{list}</List>
-        </Content>
+        <IsSearchingBar />
+        {
+          !this.state.loading ?
+            <Content refreshControl={refresh}>
+              <List>{list}</List>
+            </Content>
+          :
+            <Spinner color={Colors.tintColor} />
+        }
       </Container>
     );
   }
 };
 
 const mapStateToProps = state => ({
+  userId: state.userProfile.id,
+  accessToken: state.userProfile.token.access_token,
   matches: state.matchList.matches
 });
 
@@ -91,13 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  thumbnail: {
-    flex: 0
-  },
   name: {
     fontSize: 20
-  },
-  headline: {
-    fontSize: 12
   }
 });

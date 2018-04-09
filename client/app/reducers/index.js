@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux';
 
-import matchList from './matchList'
-import navigation from './navigation';
+import matchList from './matchList';
+import chat from './chat';
 import userProfile from './userProfile';
 
 const rootReducer = combineReducers({
   matchList,
-  navigation,
+  chat,
   userProfile
-  // Add future reducers here
 });
 
 export default rootReducer;

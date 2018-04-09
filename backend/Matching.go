@@ -1,11 +1,8 @@
 package main
 
 import (
-	"bytes"
-	"context"
 	"errors"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"math"
@@ -15,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"cloud.google.com/go/storage"
 	"github.com/ynqa/word-embedding/builder"
 	"gonum.org/v1/gonum/mat"
 )
@@ -160,20 +156,21 @@ func userToString(u User) string {
 
 // InitMLModel check if model has been created or creates it
 func InitMLModel(windowSize int, wordDimensions int) {
-	modelFile := "./data/meetOver.model"
+	modelFile := "./ml/meetOver.model"
 	if _, err := os.Stat(modelFile); os.IsNotExist(err) {
 		fmt.Println("Model does not exist. Creating Model")
-		corpusFile := "./data/corpus.dat"
+		corpusFile := "./ml/corpus.dat"
 		createModel(modelFile, corpusFile, windowSize, wordDimensions)
 	}
-	defer r.Close()
-	WordModel = readModel(r)
-	fmt.Println("Model Loaded")
+	WordModel = readModel(modelFile)
 }
 
 // createModel uses the word2vec algo to create word embeddings
-func createModel(modelObject *storage.ObjectHandle, corpusReader io.Reader, windowSize int, wordDimensions int) error {
-	// Initialize word embeddings
+func createModel(destinationFileName string, corpusFile string, windowSize int, wordDimensions int) {
+	if _, err := os.Stat(corpusFile); os.IsNotExist(err) {
+		fmt.Println("[-] Corpus file not found. No model created")
+		return
+	}
 	b := builder.NewWord2VecBuilder()
 	b.SetDimension(wordDimensions).
 		SetWindow(windowSize).
@@ -183,60 +180,23 @@ func createModel(modelObject *storage.ObjectHandle, corpusReader io.Reader, wind
 		SetVerbose()
 	m, err := b.Build()
 	if err != nil {
-		return err
+		fmt.Println("[-] Unable to build word2vec neural net")
 	}
-
-	// Read corpus file
-	fmt.Println("[+] Reading Corpus from Firebase Storage...")
-	content, err := ioutil.ReadAll(corpusReader)
+	inputFile1, _ := os.Open(corpusFile)
+	f1, err := m.Preprocess(inputFile1)
 	if err != nil {
-		return err
-	}
-	corpusByteReader := bytes.NewReader(content)
-
-	fmt.Println("[+] Corpus loaded. Creating Model...")
-	f1, err := m.Preprocess(corpusByteReader)
-	if err != nil {
-		return err
+		fmt.Println("Failed to Preprocess.")
 	}
 	// Start to Train.
 	m.Train(f1)
 	f1.Close()
-
-	// Save contents to disk temporarily because we can't access the model directly
-	fmt.Println("[+] Model created. Saving Model to Firebase...")
-	m.Save("temp")
-	modelContent, err := ioutil.ReadFile("temp")
-	if err != nil {
-		return err
-	}
-
-	// Save word vectors to firebase storage.
-	ctx := context.Background()
-	modelWriter := modelObject.NewWriter(ctx)
-	if _, err := fmt.Fprint(modelWriter, string(modelContent)); err != nil {
-		return err
-	}
-	if err := modelWriter.Close(); err != nil {
-		return err
-	}
-	if _, err := modelObject.Update(ctx, storage.ObjectAttrsToUpdate{
-		ContentType: "application/octet-stream",
-	}); err != nil {
-		return err
-	}
-
-	// Remove temp contents
-	if err := os.Remove("temp"); err != nil {
-		return err
-	}
-
-	return nil
+	// Save word vectors to a text file.
+	m.Save(destinationFileName)
 }
 
 // readModel converts the generated model to an in-memory object
-func readModel(modelReader io.Reader) map[string][]float64 {
-	content, err := ioutil.ReadAll(modelReader)
+func readModel(modelFile string) map[string][]float64 {
+	content, err := ioutil.ReadFile(modelFile)
 	if err != nil {
 		log.Fatal(err)
 	}

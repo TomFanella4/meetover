@@ -6,6 +6,7 @@ import {
   Container,
   Content,
   Button,
+  Text
 } from 'native-base';
 
 import Colors from '../constants/Colors';
@@ -16,9 +17,21 @@ import { deleteProfileAndLogoutAsync } from '../actions/userActions';
 import { modifyFirebaseUserProfile } from '../firebase';
 
 class CreateProfileScreen extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Settings',
-  };
+    headerRight: (
+      <Button
+        style={styles.headerButton}
+        transparent
+        onPress={() => {
+          const params = navigation.state.params;
+          params && navigation.navigate('ProfileScreen', { profile: params.profile })
+        }}
+      >
+        <Text style={styles.headerText}>View Profile</Text>
+      </Button>
+    )
+  });
 
   formOptions = [
     { label: 'Name', item: 'formattedName' },
@@ -35,6 +48,7 @@ class CreateProfileScreen extends React.Component {
           <Settings
             formOptions={this.formOptions}
             onProfileModified={this._handleProfileModification.bind(this)}
+            navigation={this.props.navigation}
           />
           <Button
             onPress={() => this._handleSignOutButtonPress()}
@@ -47,6 +61,11 @@ class CreateProfileScreen extends React.Component {
         </Content>
       </Container>
     );
+  }
+
+  componentDidMount() {
+    const { navigation, userProfile } = this.props;
+    navigation.setParams({ profile: userProfile });
   }
 
   _handleProfileModification(key, value) {
@@ -94,6 +113,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  headerButton: {
+    alignSelf: 'center'
+  },
+  headerText: {
+    color: '#fff'
   },
   signOutButton: {
     alignSelf: 'center',

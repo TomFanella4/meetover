@@ -65,13 +65,21 @@ func GetUser(uid string) (user.User, error) {
 func GetProspectiveUsers(coords location.Geolocation, radius int, lastUpdate int) ([]user.User, error) {
 	// TODO:
 	// Filter users by Geolocation and radius
+
 	userMap := map[string]user.User{}
 	users := []user.User{}
 	userRef, err := fbClient.Ref("/users")
+	
+	//create oldest date acceptable
+	oldestStamp := location.MakeTimestamp(lastUpdate)
+	if oldestStamp < 0 {
+		//oldestStamp will be used to limit the users by time 
+		//ex: userRef.OrderBy("timestamp").StartAt(oldestStamp).Value(&userMap)
+	}
 	if err != nil {
 		return []user.User{}, err
 	}
-	if err := userRef.Value(&userMap); err != nil {
+	if err := userRef.OrderBy("timestamp").Value(&userMap); err != nil {
 		return []user.User{}, err
 	}
 

@@ -63,6 +63,6 @@ func Distance(lat1, lon1, lat2, lon2 float64) float64 {
 }
 
 //Records Timestamps
-func makeTimestamp(setback int) int64 {
+func MakeTimestamp(setback int) int64 {
     return (time.Now().UnixNano() / int64(time.Millisecond) - MILI_HOUR*(int64)(setback))
 }

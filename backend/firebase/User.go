@@ -71,7 +71,7 @@ func GetProspectiveUsers(coords location.Geolocation, radius int, lastUpdate int
 	userRef, err := fbClient.Ref("/users")
 	
 	//create oldest date acceptable
-	oldestStamp := location.MakeTimestamp(lastUpdate)
+	oldestStamp := location.MakeTimestamp((int64)(lastUpdate))
 	if oldestStamp < 0 {
 		//oldestStamp will be used to limit the users by time 
 		//ex: userRef.OrderBy("timestamp").StartAt(oldestStamp).Value(&userMap)

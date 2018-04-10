@@ -15,10 +15,10 @@ type Address struct {
 
 // Geolocation - latitide and longitude and last time of update
 type Geolocation struct {
-	Accuracy  float64 `json:"accuracy"`
+	Accuracy  int64 `json:"accuracy"`
 	Latitude  float64 `json:"latitude"`
 	Longitude float64 `json:"longitude"`
-	TimeStamp float64 `json:"timestamp"`
+	TimeStamp int64 `json:"timestamp"`
 }
 
 //hour in miliseconds
@@ -63,6 +63,6 @@ func Distance(lat1, lon1, lat2, lon2 float64) float64 {
 }
 
 //Records Timestamps
-func MakeTimestamp(setback int) int64 {
+func MakeTimestamp(setback int64) int64 {
     return (time.Now().UnixNano() / int64(time.Millisecond) - MILI_HOUR*(int64)(setback))
 }

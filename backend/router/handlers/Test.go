@@ -41,7 +41,7 @@ func Test(w http.ResponseWriter, r *http.Request) {
 		}
 
 		//Mock Radius & refresh
-		radi := 5
+		radi := 20.0
 		refre := 2
 
 		firebase.GetProspectiveUsers(testCoords, radi , refre)

@@ -94,9 +94,9 @@ class MainTabNavigation extends React.Component {
       this._registerForPushNotifications(),
       this.props.registerFetchThreadListAsync()
     ])
-    .then(values => {
-      this._locationSubscription = values[0];
-      this._notificationSubscription = values[1];
+    .then(([locationSub, notificationSub]) => {
+      this._locationSubscription = locationSub;
+      this._notificationSubscription = notificationSub;
     })
     .catch(err => console.log(err));
   }

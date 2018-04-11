@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import { registerFetchThreadListAsync } from '../actions/chatActions';
-import { modifyFirebaseUserState } from '../firebase';
+import { modifyFirebaseUserState, signOutOfFirebase } from '../firebase';
 
 import ListScreen from '../screens/ListScreen';
 import MapScreen from '../screens/MapScreen';
@@ -74,7 +74,9 @@ class MainTabNavigation extends React.Component {
   static router = MainTabNavigator.router;
 
   componentWillUnmount() {
+    this._locationSubscription && this._locationSubscription.remove();
     this._notificationSubscription && this._notificationSubscription.remove();
+    signOutOfFirebase();
   }
 
   render() {
@@ -87,30 +89,38 @@ class MainTabNavigation extends React.Component {
   }
 
   componentDidMount() {
-    this._registerForLocationUpdating();
-    this._registerForPushNotifications();
-    this.props.registerFetchThreadListAsync();
+    Promise.all([
+      this._registerForLocationUpdating(),
+      this._registerForPushNotifications(),
+      this.props.registerFetchThreadListAsync()
+    ])
+    .then(values => {
+      this._locationSubscription = values[0];
+      this._notificationSubscription = values[1];
+    })
+    .catch(err => console.log(err));
   }
 
   async _registerForLocationUpdating() {
 
+    // Get user permissions
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
 
-    if (status === 'granted') {
-      const location = await Expo.Location.watchPositionAsync({
-        distanceInterval: 5
-      }, location => (
-        modifyFirebaseUserState('location', {
-          accuracy: location.coords.accuracy,
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          timestamp: location.timestamp
-        })
-      ))
-      .catch(err => console.error(err));
-    } else {
-      throw new Error('Location permission not granted');
+    // Stop here if the user did not grant permissions
+    if (status !== 'granted') {
+      return;
     }
+
+    return Expo.Location.watchPositionAsync({
+      distanceInterval: 5
+    }, location => (
+      modifyFirebaseUserState('location', {
+        accuracy: location.coords.accuracy,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        timestamp: location.timestamp
+      })
+    ));
   }
 
   async _registerForPushNotifications() {
@@ -127,12 +137,12 @@ class MainTabNavigation extends React.Component {
     }
 
     // Get the token that uniquely identifies this device
-    // TODO check if error when logged out
-    let token = await Notifications.getExpoPushTokenAsync();
+    let token = await Notifications.getExpoPushTokenAsync()
+      .catch(err => console.log(err));
     modifyFirebaseUserState('expoPushToken', token);
 
     // Watch for incoming notifications
-    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+    return Notifications.addListener(this._handleNotification);
   }
 
   _handleNotification = ({ origin, data }) => {

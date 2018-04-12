@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {
   View,
   Button,
   Icon,
   Container,
+  Form,
+  Textarea,
   Spinner
 } from 'native-base';
+import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import { find } from 'lodash';
 
@@ -22,51 +25,17 @@ class RequestScreen extends React.Component {
   });
 
   state = {
-    buttonDisabled: true,
-    meetOverLoading: false
+    isModalVisible: false,
+    isKeyboardVisible: false,
+    modalText: '',
+    modalViewType: 'request',
+    thread: undefined
   };
 
-  componentDidMount() {
-    const { threadList, navigation } = this.props;
-
-    if (threadList !== null) {
-      // Thread list has been fetched from Firebase
-      this.setState({ buttonDisabled: false });
-    }
-    this._blurSub = navigation.addListener('didBlur', () => this._onBlur());
-  }
-
-  componentDidUpdate(prevProps) {
-    const { threadList } = this.props;
-    const prevThreadList = prevProps.threadList;
-
-    if (prevThreadList === null && threadList !== null) {
-      // Thread list has been fetched from Firebase
-      this.setState({ buttonDisabled: false });
-    }
-  }
-
-  _onBlur() {
-    this.setState({ buttonDisabled: false, meetOverLoading: false });
-  }
-
-  _renderLoading() {
-    return (
-      <Container style={styles.container}>
-        <View style={styles.loadingView}>
-          <PTSansText>Sending MeetOver Request...</PTSansText>
-          <Spinner color={Colors.tintColor} />
-        </View>
-      </Container>
-    );
-  }
-
-  async _initiateMeetover() {
-    const { navigation, signedInProfile, threadList } = this.props;
-    const profile = navigation.state.params.profile;
-    const id = profile.id;
+  _loadThread() {
+    const { threadList, navigation, signedInProfile } = this.props;
+    const id = navigation.state.params.profile.id;
     const signedInId = signedInProfile.id;
-    const accessToken = signedInProfile.token.access_token;
     let threadId;
 
     if (signedInId < id) {
@@ -76,11 +45,102 @@ class RequestScreen extends React.Component {
     }
 
     const thread = find(threadList, { '_id': threadId });
+    this.setState({ thread });
+  }
 
-    if (thread !== undefined) {
-     navigation.navigate('ChatScreen', { '_id': threadId, profile });
-   } else if (thread === undefined || (thread.status === 'declined' && thread.origin === 'receiver')) {
-      this.setState({ buttonDisabled: true, meetOverLoading: true });
+  componentWillMount() {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => this._keyboardDidShow());
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => this._keyboardDidHide());
+    this._blurSub = this.props.navigation.addListener('didBlur', () => this._onBlur());
+  }
+
+  componentDidMount() {
+    if (this.props.threadList !== null) {
+      // Thread list has been fetched from Firebase
+      this._loadThread();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((prevProps.threadList === null && this.props.threadList !== null) ||
+         prevProps.threadList.length !== this.props.threadList.length ) {
+      // Thread list has been fetched from Firebase
+      this._loadThread();
+    }
+  }
+
+  _onBlur() {
+    this.setState({ meetOverLoading: false });
+  }
+
+  _keyboardDidShow() {
+    this.setState({ isKeyboardVisible: true });
+  }
+
+  _keyboardDidHide() {
+    this.setState({ isKeyboardVisible: false });
+  }
+
+  _renderRequestModal() {
+    const { modalText } = this.state;
+    return (
+      <View style={styles.modalContent}>
+        <PTSansText style={styles.modalText}>Request Message</PTSansText>
+        <Form style={styles.form}>
+          <Textarea
+            value={modalText}
+            onChangeText={modalText => this.setState({ modalText })}
+            rowSpan={5}
+            bordered
+            placeholder={'Hello, I\'d like to MeetOver!'}
+          />
+        </Form>
+        <Button
+          style={styles.confirmRequestButton}
+          onPress={() => this._initiateMeetover()}
+        >
+          <PTSansText style={styles.request}>Request MeetOver</PTSansText>
+        </Button>
+      </View>
+    );
+  }
+
+  _renderLoadingModal() {
+    return (
+      <View style={styles.modalContent}>
+        <PTSansText style={styles.modalText}>Sending MeetOver Request...</PTSansText>
+        <Spinner color={Colors.tintColor} />
+      </View>
+    );
+  }
+
+  _renderSuccessModal() {
+    return (
+      <View style={styles.modalContent}>
+        <PTSansText style={styles.modalText}>Success!</PTSansText>
+      </View>
+    );
+  }
+
+  _handleBackdropPress() {
+    const { isKeyboardVisible, modalViewType } = this.state;
+    if (isKeyboardVisible) {
+      Keyboard.dismiss();
+    } else if (modalViewType === 'request') {
+      this.setState({ isModalVisible: false });
+    }
+  }
+
+  async _initiateMeetover() {
+    const { navigation, signedInProfile } = this.props;
+    const { thread } = this.state;
+    const id = navigation.state.params.profile.id;
+    const signedInId = signedInProfile.id;
+    const accessToken = signedInProfile.token.access_token;
+
+    this.setState({ modalViewType: 'loading' });
+
+    if (thread === undefined || (thread.status === 'declined' && thread.origin === 'receiver')) {
       const uri = `${serverURI}/meetover/${id}`;
       const init = {
         method: 'POST',
@@ -106,7 +166,9 @@ class RequestScreen extends React.Component {
 
         return;
       }
-      navigation.navigate('ChatScreen', { '_id': threadId, profile });
+
+      this.setState({ modalViewType: 'success' });
+
     } else {
       StyledToast({
         text: 'Could not initate MeetOver',
@@ -117,33 +179,79 @@ class RequestScreen extends React.Component {
     }
   };
 
+  _handleRequestButtonPress() {
+    const { thread } = this.state;
+
+    thread === undefined ?
+      this.setState({ isModalVisible: true })
+    :
+      this.props.navigation.navigate('ChatScreen', {
+        _id: thread._id,
+        profile: thread.profile
+      });
+  }
+
   render() {
     const { profile } = this.props.navigation.state.params;
-    const { buttonDisabled, meetOverLoading } = this.state;
+    const { isModalVisible, modalViewType, thread } = this.state;
+    const buttonDisabled = thread !== undefined && thread.status === 'pending';
 
-    if(meetOverLoading) {
-      return this._renderLoading();
-    } else {
-      return (
-        <Container style={styles.container}>
-          <Profile profile={profile} />
-          <Button
-            iconLeft
-            full
-            style={!buttonDisabled ? styles.chatButton : null}
-            disabled={buttonDisabled}
-            onPress={() => this._initiateMeetover()}
-          >
-            <Icon name='chatboxes' />
-            <PTSansText style={styles.request}>Request MeetOver</PTSansText>
-          </Button>
-        </Container>
-      );
+    let modalView;
+
+    switch(modalViewType) {
+      case 'request':
+        modalView = this._renderRequestModal();
+        break;
+
+      case 'loading':
+        modalView = this._renderLoadingModal();
+        break;
+
+      case 'success':
+        modalView = this._renderSuccessModal();
+        setTimeout(() => this.setState({ isModalVisible: false, }), 2000);
+        break;
     }
+
+    let buttonText;
+    if (thread === undefined) {
+      buttonText = 'Request MeetOver'
+    } else if (thread.status === 'pending') {
+      buttonText = 'Awaiting Response'
+    } else if (thread.status === 'accepted') {
+      buttonText = 'Open Chat'
+    }
+
+    return (
+      <Container style={styles.container}>
+        <Modal
+          isVisible={isModalVisible}
+          onBackdropPress={() => this._handleBackdropPress()}
+          onModalHide={() => this.setState({ modalViewType: 'request' })}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            {modalView}
+          </TouchableWithoutFeedback>
+        </Modal>
+        <Profile profile={profile} />
+        <Button
+          iconLeft
+          full
+          style={!buttonDisabled ? styles.requestButton : null}
+          disabled={buttonDisabled}
+          onPress={() => this._handleRequestButtonPress()}
+        >
+          <Icon name='chatboxes' />
+          <PTSansText style={styles.request}>{buttonText}</PTSansText>
+        </Button>
+      </Container>
+    );
   }
 
   componentWillUnmount() {
     this._blurSub.remove();
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
   }
 };
 
@@ -166,8 +274,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  chatButton: {
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  modalText: {
+    alignSelf: 'center'
+  },
+  form: {
+    paddingTop: 5,
+    paddingBottom: 10
+  },
+  requestButton: {
     backgroundColor: Colors.tintColor
+  },
+  confirmRequestButton: {
+    backgroundColor: Colors.tintColor,
+    alignSelf: 'center'
   },
   request: {
     fontSize: 18

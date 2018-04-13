@@ -65,21 +65,20 @@ func GetUser(uid string) (user.User, error) {
 func GetProspectiveUsers(coords location.Geolocation, radius float64, lastUpdate int) ([]user.User, error) {
 	// TODO:
 	// Filter users by Geolocation and radius
-	fmt.Println("Hello?")
 	userMap := map[string]user.User{}
 	users := []user.User{}
-	userRef, err := fbClient.Ref("/users")
-	
+	realMatches := []user.User{}
+
 	//create oldest date acceptable
 	oldestStamp := location.MakeTimestamp((int64)(lastUpdate))
-	if oldestStamp < 0 {
-		//oldestStamp will be used to limit the users by time 
-		//ex: userRef.OrderBy("timestamp").StartAt(oldestStamp).Value(&userMap)
-	}
+	
+	userRef, err := fbClient.Ref("/users")
 	if err != nil {
 		fmt.Println("error getting userRef\n", err)
 		return []user.User{}, err
 	}
+
+	
 	if err := userRef.Value(&userMap); err != nil {
 		fmt.Println("error getting users\n", err)
 		return []user.User{}, err
@@ -88,18 +87,18 @@ func GetProspectiveUsers(coords location.Geolocation, radius float64, lastUpdate
 	for k := range userMap {
 		users = append(users, userMap[k])
 	}
-	fmt.Println("Reaching?")
+
+
 	for _, pmatch := range users {
 		if pmatch.Location.TimeStamp > oldestStamp {
 			if location.InRadius(coords, pmatch.Location, radius) {
-				fmt.Println(pmatch)
+				realMatches = append(realMatches, pmatch)
 			}
 		}
 	}
 
-	fmt.Println("users: ", users)
 
-	return users, nil
+	return realMatches, nil
 }
 
 // GetFormattedName Gets the formatted name of the user with the supplied uid

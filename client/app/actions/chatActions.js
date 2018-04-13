@@ -37,8 +37,9 @@ export const registerFetchThreadListAsync = () => {
       const accessToken = state.userProfile.token.access_token;
       const userId = state.userProfile.id;
       const ids = [];
+      const threads = Object.values(threadList);
 
-      threadList.forEach(thread => !thread.profile && ids.push(thread.userID));
+      threads.forEach(thread => !thread.profile && ids.push(thread.userID));
       const uri = `${serverURI}/userprofiles`;
       const init = {
         method: 'POST',
@@ -54,9 +55,9 @@ export const registerFetchThreadListAsync = () => {
       const result = await response.json()
         .catch(err => console.log(err));
 
-      threadList.forEach(thread => {
+      threads.forEach(thread => {
         if (result[thread.userID]) {
-          thread.profile = result[thread.userID].profile;
+          threadList[thread._id].profile = result[thread.userID].profile;
         }
       });
 

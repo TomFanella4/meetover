@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+  StyleSheet,
+  Platform,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
+} from 'react-native';
 import {
   View,
   Button,
@@ -11,12 +17,13 @@ import {
 } from 'native-base';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
-import { find } from 'lodash';
 
 import Profile from '../components/Profile';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
 import { separator, serverURI } from '../constants/Common';
+import { requestScreenStrings } from '../constants/Strings';
+import Layout from '../constants/Layout';
 import { StyledToast } from '../helpers';
 
 class RequestScreen extends React.Component {
@@ -32,20 +39,31 @@ class RequestScreen extends React.Component {
     thread: undefined
   };
 
-  _loadThread() {
+  _loadThread(prevThreadList) {
     const { threadList, navigation, signedInProfile } = this.props;
     const id = navigation.state.params.profile.id;
     const signedInId = signedInProfile.id;
     let threadId;
 
+    // Thread List has not been fetched from firebase yet
+    if (threadList === null) {
+      return;
+    }
+
+    // Get threadId
     if (signedInId < id) {
       threadId = signedInId + separator + id;
     } else {
       threadId = id + separator + signedInId;
     }
 
-    const thread = find(threadList, { '_id': threadId });
-    this.setState({ thread });
+    // The thread has not changed
+    if (prevThreadList && prevThreadList[threadId] === threadList[threadId]) {
+      return;
+    }
+
+    // Update the current thread
+    this.setState({ thread: threadList[threadId] });
   }
 
   componentWillMount() {
@@ -55,18 +73,11 @@ class RequestScreen extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.threadList !== null) {
-      // Thread list has been fetched from Firebase
-      this._loadThread();
-    }
+    this._loadThread();
   }
 
   componentDidUpdate(prevProps) {
-    if ((prevProps.threadList === null && this.props.threadList !== null) ||
-         prevProps.threadList.length !== this.props.threadList.length ) {
-      // Thread list has been fetched from Firebase
-      this._loadThread();
-    }
+    this._loadThread(prevProps.threadList);
   }
 
   _onBlur() {
@@ -85,21 +96,21 @@ class RequestScreen extends React.Component {
     const { modalText } = this.state;
     return (
       <View style={styles.modalContent}>
-        <PTSansText style={styles.modalText}>Request Message</PTSansText>
+        <PTSansText style={styles.modalText}>Message</PTSansText>
         <Form style={styles.form}>
           <Textarea
             value={modalText}
             onChangeText={modalText => this.setState({ modalText })}
             rowSpan={5}
             bordered
-            placeholder={'Hello, I\'d like to MeetOver!'}
+            placeholder={requestScreenStrings.initialMessage}
           />
         </Form>
         <Button
           style={styles.confirmRequestButton}
           onPress={() => this._initiateMeetover()}
         >
-          <PTSansText style={styles.request}>Request MeetOver</PTSansText>
+          <PTSansText style={styles.request}>Request</PTSansText>
         </Button>
       </View>
     );
@@ -108,7 +119,7 @@ class RequestScreen extends React.Component {
   _renderLoadingModal() {
     return (
       <View style={styles.modalContent}>
-        <PTSansText style={styles.modalText}>Sending MeetOver Request...</PTSansText>
+        <PTSansText style={styles.modalText}>Sending MeetOver Request</PTSansText>
         <Spinner color={Colors.tintColor} />
       </View>
     );
@@ -116,8 +127,9 @@ class RequestScreen extends React.Component {
 
   _renderSuccessModal() {
     return (
-      <View style={styles.modalContent}>
-        <PTSansText style={styles.modalText}>Success!</PTSansText>
+      <View style={styles.modalSuccessContent}>
+        <PTSansText style={styles.modalText}>Request Sent</PTSansText>
+        <Icon style={styles.successIcon} name='checkmark-circle' />
       </View>
     );
   }
@@ -133,7 +145,7 @@ class RequestScreen extends React.Component {
 
   async _initiateMeetover() {
     const { navigation, signedInProfile } = this.props;
-    const { thread } = this.state;
+    const { thread, modalText } = this.state;
     const id = navigation.state.params.profile.id;
     const signedInId = signedInProfile.id;
     const accessToken = signedInProfile.token.access_token;
@@ -141,9 +153,11 @@ class RequestScreen extends React.Component {
     this.setState({ modalViewType: 'loading' });
 
     if (thread === undefined || (thread.status === 'declined' && thread.origin === 'receiver')) {
+      const initialMessage = modalText !== '' ? modalText : requestScreenStrings.initialMessage;
       const uri = `${serverURI}/meetover/${id}`;
       const init = {
         method: 'POST',
+        body: JSON.stringify({ initialMessage }),
         headers: new Headers({
           'Token': accessToken,
           'Identity': signedInId
@@ -180,21 +194,42 @@ class RequestScreen extends React.Component {
   };
 
   _handleRequestButtonPress() {
+    const { navigation } = this.props;
     const { thread } = this.state;
 
-    thread === undefined ?
-      this.setState({ isModalVisible: true })
-    :
-      this.props.navigation.navigate('ChatScreen', {
-        _id: thread._id,
-        profile: thread.profile
-      });
+    if (thread) {
+      switch(thread.status) {
+        case 'pending':
+          if (thread.origin === 'receiver') {
+            navigation.navigate('ConfirmScreen', {
+              _id: thread._id,
+              profile: thread.profile
+            });
+            return;
+          }
+          break;
+
+        case 'accepted':
+          navigation.navigate('ChatScreen', {
+            _id: thread._id,
+            profile: thread.profile
+          });
+          return;
+
+        case 'declined':
+          if (thread.origin === 'sender') {
+            return;
+          }
+          break;
+      }
+    }
+
+    this.setState({ isModalVisible: true });
   }
 
   render() {
     const { profile } = this.props.navigation.state.params;
     const { isModalVisible, modalViewType, thread } = this.state;
-    const buttonDisabled = thread !== undefined && thread.status === 'pending';
 
     let modalView;
 
@@ -209,17 +244,34 @@ class RequestScreen extends React.Component {
 
       case 'success':
         modalView = this._renderSuccessModal();
-        setTimeout(() => this.setState({ isModalVisible: false, }), 2000);
+        isModalVisible && setTimeout(() => this.setState({ isModalVisible: false }), 2000);
         break;
     }
 
-    let buttonText;
-    if (thread === undefined) {
-      buttonText = 'Request MeetOver'
-    } else if (thread.status === 'pending') {
-      buttonText = 'Awaiting Response'
-    } else if (thread.status === 'accepted') {
-      buttonText = 'Open Chat'
+    let buttonText = 'Request MeetOver';
+    let buttonDisabled;
+    if (thread) {
+      switch(thread.status) {
+        case 'pending':
+          if (thread.origin === 'receiver') {
+            buttonText = 'View Request';
+          } else {
+            buttonText = 'Request Sent';
+            buttonDisabled = true;
+          }
+          break;
+
+        case 'accepted':
+          buttonText = 'Open Chat';
+          break;
+
+        case 'declined':
+          if (thread.origin === 'sender') {
+            buttonText = 'Unavailable';
+            buttonDisabled = true;
+          }
+          break;
+      }
     }
 
     return (
@@ -229,9 +281,14 @@ class RequestScreen extends React.Component {
           onBackdropPress={() => this._handleBackdropPress()}
           onModalHide={() => this.setState({ modalViewType: 'request' })}
         >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            {modalView}
-          </TouchableWithoutFeedback>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'position' : null}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 32 : 0}
+          >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              {modalView}
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
         </Modal>
         <Profile profile={profile} />
         <Button
@@ -280,8 +337,20 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: 'rgba(0, 0, 0, 0.1)',
   },
+  modalSuccessContent: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    padding: 22,
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
   modalText: {
+    paddingRight: 10,
     alignSelf: 'center'
+  },
+  successIcon: {
+    color: Colors.success
   },
   form: {
     paddingTop: 5,

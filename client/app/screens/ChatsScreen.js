@@ -23,22 +23,34 @@ class ChatsScreen extends React.Component {
     title: 'Chats',
   };
 
-  _viewChatThread(thread) {
-    thread.status === 'pending' && thread.origin === 'receiver' ?
-      this.props.navigation.navigate('ConfirmScreen', thread)
-    :
-      this.props.navigation.navigate('ChatScreen', thread);
+  _viewThread(thread) {
+    switch(thread.status) {
+      case 'pending':
+        if (thread.origin === 'receiver') {
+          this.props.navigation.navigate('ConfirmScreen', thread);
+          break;
+        }
+
+      case 'accepted':
+        this.props.navigation.navigate('ChatScreen', thread);
+         break;
+
+      case 'declined':
+        if (thread.origin === 'receiver') {
+          this.props.navigation.navigate('RequestScreen', thread);
+          break;
+        }
+        this.props.navigation.navigate('ProfileScreen', thread);
+    }
   }
 
-  render() {
-    const { threadList } = this.props;
-    const threadItems = [];
-
-    threadList.forEach(thread => (
-      thread.status !== 'declined' && threadItems.push(
+  _buildThreadList(threads) {
+    const acceptedItems = [], pendingItems = [], declinedItems = [], threadItems = [];
+    threads.forEach(thread => {
+      const threadItem = (
         <ListItem
           key={thread._id}
-          onPress={() => this._viewChatThread(thread)}
+          onPress={() => this._viewThread(thread)}
           avatar
         >
           <Left>
@@ -49,8 +61,49 @@ class ChatsScreen extends React.Component {
             <PTSansText note>{thread.profile.headline}</PTSansText>
           </Body>
         </ListItem>
-      )
-    ));
+      );
+
+      switch(thread.status) {
+        case 'pending':
+          pendingItems.push(threadItem);
+          break;
+
+        case 'accepted':
+          acceptedItems.push(threadItem);
+          break;
+
+        case 'declined':
+          declinedItems.push(threadItem);
+          break;
+      }
+    });
+
+    if (pendingItems.length > 0) {
+      threadItems.push(<ListItem key={'pending'} itemDivider><PTSansText>Pending</PTSansText></ListItem>);
+      threadItems.push(...pendingItems);
+    }
+
+    if (acceptedItems.length > 0) {
+      threadItems.push(<ListItem key={'accepted'} itemDivider><PTSansText>Accepted</PTSansText></ListItem>);
+      threadItems.push(...acceptedItems);
+    }
+
+    if (declinedItems.length > 0) {
+      threadItems.push(<ListItem key={'declined'} itemDivider><PTSansText>Declined</PTSansText></ListItem>);
+      threadItems.push(...declinedItems);
+    }
+
+    return threadItems;
+  }
+
+  render() {
+    const { threadList } = this.props;
+    const threads = threadList ? Object.values(threadList) : null;
+    let threadItems;
+
+    if (threadList) {
+      threadItems = this._buildThreadList(threads);
+    }
 
     return (
       <Container style={styles.container}>

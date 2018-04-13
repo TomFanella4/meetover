@@ -41,6 +41,11 @@ type UserProfileResponse struct {
 	Location location.Geolocation `json:"location"`
 }
 
+// MeetOverRequestBody processed for a meetover request
+type MeetOverRequestBody struct {
+	InitialMessage string `json:"initialMessage"`
+}
+
 // MeetOverDecisionBody processed for a meetover decision
 type MeetOverDecisionBody struct {
 	Status   string `json:"status"`

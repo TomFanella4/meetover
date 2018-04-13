@@ -90,10 +90,8 @@ func GetProspectiveUsers(coords location.Geolocation, radius float64, lastUpdate
 
 
 	for _, pmatch := range users {
-		if pmatch.Location.TimeStamp > oldestStamp {
-			if location.InRadius(coords, pmatch.Location, radius) {
+		if (pmatch.Location.TimeStamp > oldestStamp) && location.InRadius(coords, pmatch.Location, radius) {
 				realMatches = append(realMatches, pmatch)
-			}
 		}
 	}
 

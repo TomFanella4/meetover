@@ -24,24 +24,29 @@ class ChatsScreen extends React.Component {
   };
 
   _viewThread(thread) {
+    const { navigation } = this.props;
+
     switch(thread.status) {
       case 'pending':
         if (thread.origin === 'receiver') {
-          this.props.navigation.navigate('ConfirmScreen', thread);
-          break;
+          navigation.navigate('ConfirmScreen', thread);
+          return;
         }
+        break;
 
       case 'accepted':
-        this.props.navigation.navigate('ChatScreen', thread);
-         break;
+        navigation.navigate('ChatScreen', thread);
+        return;
 
       case 'declined':
         if (thread.origin === 'receiver') {
-          this.props.navigation.navigate('RequestScreen', thread);
-          break;
+          navigation.navigate('RequestScreen', thread);
+          return;
         }
-        this.props.navigation.navigate('ProfileScreen', thread);
+        break;
     }
+
+    navigation.navigate('ProfileScreen', thread);
   }
 
   _buildThreadList(threads) {

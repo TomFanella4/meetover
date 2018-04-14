@@ -31,6 +31,28 @@ export const modifyProfile = (key, value) => ({
   value
 });
 
+const fetchUserProfile = async (uri, init) => {
+  const response = await fetch(uri, init);
+  const { profile, token, firebaseCustomToken, userExists } = await response.json();
+  const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
+    .catch(err => null);
+
+  await signInToFirebase(firebaseCustomToken, token.access_token, profile.id)
+    .catch(err => console.error(err));
+
+  isAuthenticated = userExists;
+
+  const userProfile = {
+    ...profile,
+    token,
+    firebaseCustomToken,
+    firebaseIdToken,
+    isAuthenticated
+  };
+
+  return userProfile;
+};
+
 export const authenticateAndCreateProfile = () => (
   async dispatch => {
     let isAuthenticated = false;
@@ -47,30 +69,26 @@ export const authenticateAndCreateProfile = () => (
       const uri = `${serverURI}/login/${result.params.code}` +
         `?redirect_uri=${encodeURIComponent(redirectUri)}`;
       const init = { method: 'POST' };
+      const userProfile = await fetchUserProfile(uri, init);
 
-      const response = await fetch(uri, init);
-      const { profile, token, firebaseCustomToken, userExists } = await response.json();
-      const firebaseIdToken = await fetchIdToken(firebaseCustomToken)
-        .catch(err => null);
-
-      await signInToFirebase(firebaseCustomToken, token.access_token, profile.id)
-        .catch(err => console.error(err));
-
-      isAuthenticated = userExists;
-
-      const userProfile = {
-        ...profile,
-        token,
-        firebaseCustomToken,
-        firebaseIdToken,
-        isAuthenticated
-      };
+      isAuthenticated = userProfile.isAuthenticated;
 
       dispatch(createProfile(userProfile));
       Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile));
     }
 
     return { type: result.type, isAuthenticated };
+  }
+);
+
+export const imitateUser = uid => (
+  async dispatch => {
+    const uri = `${serverURI}/imitateuser/${uid}`;
+    const init = { method: 'POST' };
+    const userProfile = await fetchUserProfile(uri, init);
+
+    dispatch(createProfile(userProfile));
+    Expo.SecureStore.setItemAsync('userProfile', JSON.stringify(userProfile));
   }
 );
 

@@ -18,6 +18,7 @@ Mobile application for iOS and Android used to connect busy professionals on the
     - `GET: /`
     - `POST: /login/<linkedin code>`
     - `POST: /test/<type of test>`
+    - `POST: /imitateuser/<user id>`
 - Authenticated
     - `POST: /refreshtoken`
     - `POST: /meetover/<other user id>`

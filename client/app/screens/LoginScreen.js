@@ -31,7 +31,8 @@ class LoginScreen extends React.Component {
       return (
         <Form>
           <Item>
-            <Input placeholder='uid'
+            <Input
+              placeholder='uid'
               onChangeText={imitateUID => this.setState({ imitateUID })}
             />
             <Button

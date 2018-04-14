@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-const allowImitate = true
+const allowImitate = false
 
 // ImitateUser allows someone to sign in to an existing user for demo purposes
 func ImitateUser(w http.ResponseWriter, r *http.Request) {

@@ -52,6 +52,10 @@ export const signInToFirebase = async (token, accessToken, id) => {
   }
 };
 
+export const signOutOfFirebase = () => {
+  firebase.auth().signOut();
+}
+
 export async function fetchIdToken(token) {
   return await firebase.auth().currentUser.getIdToken(true)
     .catch(err => {

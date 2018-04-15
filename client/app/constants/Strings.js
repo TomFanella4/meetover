@@ -16,3 +16,7 @@ export const isSearchingBarStrings = {
 export const chatScreenStrings = {
   noChatsText: 'You don\'t have any chats yet! :('
 };
+
+export const requestScreenStrings = {
+  initialMessage: 'Hello, I noticed your profile and am interested in chatting. Would you like to MeetOver?'
+}

@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"meetover/backend/firebase"
@@ -17,7 +18,16 @@ func InitiateMeetover(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		requestedID := params["otherID"]
 
-		if err := firebase.AddThread(initiatorID, requestedID); err != nil {
+		var request MeetOverRequestBody
+		bodyBytes, _ := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		if err := json.Unmarshal(bodyBytes, &request); err != nil {
+			fmt.Println(err.Error())
+			respondWithError(w, FailedMeetOver, "Failed to send MeetOver request")
+			return
+		}
+
+		if err := firebase.AddThread(initiatorID, requestedID, request.InitialMessage); err != nil {
 			respondWithError(w, FailedDBCall, "Could not create chat thread")
 			fmt.Println("Failed to create the thread " + initiatorID + ", " + requestedID)
 			return

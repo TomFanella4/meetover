@@ -5,6 +5,7 @@ export default {
   header: '#fff',
   tabIconSelected: tintColor,
   tabBar: '#fefefe',
+  success: '#4caf50',
   errorBackground: 'red',
   errorText: '#fff',
   warningBackground: '#EAEB5E',

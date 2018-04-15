@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Platform,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import {
   View,
   Button,
@@ -18,6 +12,7 @@ import {
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 
+import MeetOverModal from '../components/MeetOverModal';
 import Profile from '../components/Profile';
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
@@ -33,7 +28,6 @@ class RequestScreen extends React.Component {
 
   state = {
     isModalVisible: false,
-    isKeyboardVisible: false,
     modalText: '',
     modalViewType: 'request',
     thread: undefined
@@ -67,8 +61,6 @@ class RequestScreen extends React.Component {
   }
 
   componentWillMount() {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => this._keyboardDidShow());
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => this._keyboardDidHide());
     this._blurSub = this.props.navigation.addListener('didBlur', () => this._onBlur());
   }
 
@@ -84,18 +76,10 @@ class RequestScreen extends React.Component {
     this.setState({ meetOverLoading: false });
   }
 
-  _keyboardDidShow() {
-    this.setState({ isKeyboardVisible: true });
-  }
-
-  _keyboardDidHide() {
-    this.setState({ isKeyboardVisible: false });
-  }
-
   _renderRequestModal() {
     const { modalText } = this.state;
     return (
-      <View style={styles.modalContent}>
+      <View>
         <PTSansText style={styles.modalText}>Message</PTSansText>
         <Form style={styles.form}>
           <Textarea
@@ -118,7 +102,7 @@ class RequestScreen extends React.Component {
 
   _renderLoadingModal() {
     return (
-      <View style={styles.modalContent}>
+      <View>
         <PTSansText style={styles.modalText}>Sending MeetOver Request</PTSansText>
         <Spinner color={Colors.tintColor} />
       </View>
@@ -132,15 +116,6 @@ class RequestScreen extends React.Component {
         <Icon style={styles.successIcon} name='checkmark-circle' />
       </View>
     );
-  }
-
-  _handleBackdropPress() {
-    const { isKeyboardVisible, modalViewType } = this.state;
-    if (isKeyboardVisible) {
-      Keyboard.dismiss();
-    } else if (modalViewType === 'request') {
-      this.setState({ isModalVisible: false });
-    }
   }
 
   async _initiateMeetover() {
@@ -276,20 +251,13 @@ class RequestScreen extends React.Component {
 
     return (
       <Container style={styles.container}>
-        <Modal
+        <MeetOverModal
           isVisible={isModalVisible}
-          onBackdropPress={() => this._handleBackdropPress()}
+          onBackdropPress={() => this.setState({ isModalVisible: false })}
           onModalHide={() => this.setState({ modalViewType: 'request' })}
         >
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'position' : null}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? 32 : 0}
-          >
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              {modalView}
-            </TouchableWithoutFeedback>
-          </KeyboardAvoidingView>
-        </Modal>
+          {modalView}
+        </MeetOverModal>
         <Profile profile={profile} />
         <Button
           iconLeft
@@ -307,8 +275,6 @@ class RequestScreen extends React.Component {
 
   componentWillUnmount() {
     this._blurSub.remove();
-    this.keyboardDidShowListener.remove();
-    this.keyboardDidHideListener.remove();
   }
 };
 
@@ -331,19 +297,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 22,
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
-  },
   modalSuccessContent: {
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    padding: 22,
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
   },
   modalText: {
     paddingRight: 10,

@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  Platform,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
   Keyboard,
 } from 'react-native';
 import { View } from 'native-base'
@@ -42,17 +40,13 @@ class MeetOverModal extends React.Component {
         isVisible={this.props.isVisible}
         onBackdropPress={() => this._handleBackdropPress()}
         onModalHide={this.props.onModalHide}
+        avoidKeyboard={true}
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'position' : null}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 32 : 0}
-        >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.modalContent}>
-              {this.props.children}
-            </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            {this.props.children}
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
     );
   }

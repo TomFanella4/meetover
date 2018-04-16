@@ -43,6 +43,12 @@ var routes = Routes{
 		handlers.InitiateMeetover,
 	},
 	Route{
+		"Imitate User",
+		"POST",
+		"/imitateuser/{uid}",
+		handlers.ImitateUser,
+	},
+	Route{
 		"Processes the user's decision to MeetOver",
 		"POST",
 		"/meetover/decision/{otherID}",

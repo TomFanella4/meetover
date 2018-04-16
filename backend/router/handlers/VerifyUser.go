@@ -45,11 +45,13 @@ func VerifyUser(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, FailedTokenExchange, err.Error())
 		return
 	}
-	var resp AuthResponse
-	resp.AccessToken = aTokenResp
-	resp.Profile = p
-	resp.FirebaseCustomToken = customToken
-	resp.UserExists = userExists
+
+	resp := AuthResponse{
+		AccessToken:         aTokenResp,
+		Profile:             p,
+		FirebaseCustomToken: customToken,
+		UserExists:          userExists,
+	}
 
 	json.NewEncoder(w).Encode(resp)
 }

@@ -151,7 +151,7 @@ func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 // userToString converts the user object to a paragraph for vector translation
 func userToString(u user.User) string {
 	var res string
-	res = u.Profile.Greeting + " " + u.Profile.Headline + " " + u.Profile.Summary + " " + u.Profile.Industry
+	res = u.MatchStatus.Greeting + " " + u.Profile.Headline + " " + u.Profile.Summary + " " + u.Profile.Industry
 	for _, pos := range u.Profile.Positions.Values {
 		res += pos.Company.Industry + " "
 		res += pos.Company.Name + " "

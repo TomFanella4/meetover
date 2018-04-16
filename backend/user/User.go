@@ -86,15 +86,34 @@ type Profile struct {
 	} `json:"positions"`
 	Summary       string `json:"summary"`
 	ShareLocation bool   `json:"shareLocation"`
+}
+
+// MatchStatus is the JSON object representing the status of a match
+type MatchStatus struct {
+	IsSearching   bool   `json:"isSearching"`
+	IsMatched     bool   `json:"isMatched"`
 	Greeting      string `json:"greeting"`
+	TimeAvailable int64  `json:"timeAvailable"`
+	Origin        string `json:"origin"`
+	Destination   string `json:"destination"`
+}
+
+// Thread is the JSON object representing a thread
+type Thread struct {
+	ID     string `json:"_id"`
+	UserID string `json:"userID"`
+	Origin string `json:"origin"`
+	Status string `json:"status"`
+	Review string `json:"review"`
 }
 
 // User is user on MeetOver
 type User struct {
-	ID           string               `json:"uid,omitempty"`
-	Location     location.Geolocation `json:"location,omitempty"`
-	AccessToken  ATokenResponse       `json:"accessToken"`
-	Profile      Profile              `json:"profile"`
-	IsSearching  bool                 `json:"isSearching"`
-	IsMatchedNow bool                 `json:"isMatched"` // set directly from the mobile app
+	ID            string               `json:"uid"`
+	Location      location.Geolocation `json:"location,omitempty"`
+	AccessToken   ATokenResponse       `json:"accessToken"`
+	Profile       Profile              `json:"profile"`
+	MatchStatus   MatchStatus          `json:"matchStatus,omitempty"`
+	ThreadList    map[string]Thread    `json:"threadList,omitempty"`
+	ExpoPushToken string               `json:"expoPushToken,omitempty"`
 }

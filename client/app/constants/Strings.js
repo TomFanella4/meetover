@@ -11,6 +11,7 @@ export const settingsStrings = {
 export const isSearchingBarStrings = {
   startText: 'Tap the slider to start searching!',
   searchingText: 'Searching for professionals nearby...',
+  initialGreeting: 'I\'m looking to have a chat with a like minded business professional!'
 };
 
 export const chatScreenStrings = {
@@ -19,4 +20,4 @@ export const chatScreenStrings = {
 
 export const requestScreenStrings = {
   initialMessage: 'Hello, I noticed your profile and am interested in chatting. Would you like to MeetOver?'
-}
+};

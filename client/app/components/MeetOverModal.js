@@ -41,6 +41,7 @@ class MeetOverModal extends React.Component {
         onBackdropPress={() => this._handleBackdropPress()}
         onModalHide={this.props.onModalHide}
         avoidKeyboard={true}
+        onBackButtonPress={() => this._handleBackdropPress()}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.modalContent}>

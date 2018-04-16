@@ -23,7 +23,7 @@ func Match(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err)
 			return // Unable to get location
 		}
-		radius := 1     //1 km
+		radius := 1.0     //1 km
 		lastUpdate := 2 // 2hrs
 		PMatchList, err := firebase.GetProspectiveUsers(user.Location, radius, lastUpdate)
 		if err != nil {

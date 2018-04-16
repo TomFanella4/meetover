@@ -62,21 +62,29 @@ func GetUser(uid string) (user.User, error) {
 }
 
 // GetProspectiveUsers Get the list of people for matching in the area
-func GetProspectiveUsers(coords location.Geolocation, radius int, lastUpdate int) ([]user.User, error) {
-	// TODO:
+func GetProspectiveUsers(coords location.Geolocation, radius float64, lastUpdate int) ([]user.User, error) {
 	// Filter users by Geolocation and radius
 	userMap := map[string]user.User{}
 	users := []user.User{}
+
+	//create oldest date acceptable
+	oldestStamp := location.MakeTimestamp((int64)(lastUpdate))
+
 	userRef, err := fbClient.Ref("/users")
 	if err != nil {
-		return []user.User{}, err
-	}
-	if err := userRef.Value(&userMap); err != nil {
+		fmt.Println("error getting userRef\n", err)
 		return []user.User{}, err
 	}
 
-	for k := range userMap {
-		users = append(users, userMap[k])
+	if err := userRef.Value(&userMap); err != nil {
+		fmt.Println("error getting users\n", err)
+		return []user.User{}, err
+	}
+
+	for _, user := range userMap {
+		if (user.Location.TimeStamp > oldestStamp) && location.InRadius(coords, user.Location, radius) {
+			users = append(users, user)
+		}
 	}
 
 	return users, nil

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"meetover/backend/location"
+	"meetover/backend/firebase"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -28,6 +29,24 @@ func Test(w http.ResponseWriter, r *http.Request) {
 		rj["res"] = res
 		respondWithJSON(w, 200, rj)
 		return
+	} else if tt == "query" {
+		//NAECC Coords
+
+		hour := (int64)(1)
+		testCoords := location.Geolocation{
+			Latitude: 40.4291,
+			Longitude: -86.91686,
+			TimeStamp: location.MakeTimestamp(hour),
+			Accuracy: 100,
+		}
+
+		//Mock Radius & refresh
+		radi := 20.0
+		refre := 2
+
+		firebase.GetProspectiveUsers(testCoords, radi , refre)
+		/*testCoords.timeStamp = makeTimestamp(1)
+		GetProspectiveUsers(testCoords, radi , refre)*/
 	}
 	resp := ServerResponse{Success, "Success", true}
 	json.NewEncoder(w).Encode(resp)

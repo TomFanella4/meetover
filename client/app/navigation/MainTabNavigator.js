@@ -115,10 +115,10 @@ class MainTabNavigation extends React.Component {
       distanceInterval: 5
     }, location => (
       modifyFirebaseUserState('location', {
-        accuracy: location.coords.accuracy,
+        accuracy: Math.round(location.coords.accuracy),
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        timestamp: location.timestamp
+        timestamp: Math.round(location.timestamp)
       })
     ));
   }

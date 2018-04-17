@@ -6,55 +6,37 @@ import (
 	"math"
 	"math/rand"
 	"meetover/backend/user"
-	"regexp"
 	"strings"
 
 	"gonum.org/v1/gonum/mat"
 )
 
 // getStopWords - gets the stop words from file
-func getStopWords(fileName string) []string {
+func getStopWords(fileName string) map[string]bool {
 	b, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		fmt.Print(err)
 	}
-	str := string(b) // convert content to a 'string'
-	res := strings.Split(str, "\n")
-	// end := len(res) - 1
-	// return res[:end]
-	return res
+	str := string(b)
+	swarr := strings.Split(str, "\n")
+	swm := make(map[string]bool)
+	for _, sw := range swarr {
+		swm[sw] = true
+	}
+	return swm
 }
 
-// stripStopWords -
-func StripStopWords(str []string) string {
-	str = strings.ToLower(str)
+// StripStopWords -
+func StripStopWords(str []string) []string {
 	stopFile := DataDir + "stopwords.txt"
 	stopWords := getStopWords(stopFile)
-	// i := 172
-	// sw := stopWords[i]
-	// fmt.Println(len(sw))
-	// fmt.Println("err: ---" + string(sw[4]) + "---")
-	// fmt.Println("removing: *" + sw + "*")
-	spaceRep, _ := regexp.Compile("[ \t\r\n\v\f]+")
-	res := ""
-	for _, sw := range stopWords {
-		fmt.Print("removing " + sw)
-		stopRep, err := regexp.Compile("[ \t\r\n\v\f]*" + sw + "[ \t\r\n\v\f]*")
-		if err != nil {
-			temp := stopRep.ReplaceAllString(str, " ")
-			res = temp
-		} else {
-			fmt.Println("Unable to regex for: " + sw)
-			fmt.Println(len(sw))
-			fmt.Println(err.Error())
-			break
+	for i, w := range str {
+		if _, exists := stopWords[strings.ToLower(w)]; exists {
+			// fmt.Println("found :" + w)
+			str = append(str[:i], str[i+1:]...)
 		}
-
 	}
-	res = spaceRep.ReplaceAllString(res, " ")
-	// r := strings.NewReplacer(sw, "")
-	// res := r.Replace(str)
-	return res
+	return str
 }
 
 // nestedDistance - distance metric between par vectors
@@ -82,13 +64,10 @@ func flattenVector(rows int, vec mat.Matrix) float64 {
 func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 	res := []*mat.VecDense{}
 	par := strings.Split(userStr, " ")
-	n := WordModelRandomParam
-	i := 0
-	for i < n {
-		l := len(par)
-		randomWord := par[random(0, l)]
-		randomWord = strings.TrimSpace(strings.ToLower(randomWord))
-		if val, found := model[randomWord]; found {
+	par = StripStopWords(par)
+	for i, w := range par {
+		w = strings.TrimSpace(strings.ToLower(w))
+		if val, found := model[w]; found {
 			if len(val) == WordModelDimension {
 				vec := mat.NewVecDense(WordModelDimension, val)
 				res = append(res, vec)

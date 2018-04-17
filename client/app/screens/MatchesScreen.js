@@ -17,14 +17,14 @@ import Colors from '../constants/Colors';
 import IsSearchingBar from '../components/IsSearchingBar';
 import { fetchMatchesAsync } from '../actions/matchesActions';
 
-class ListScreen extends React.Component {
+class MatchesScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Matches',
+  };
+
   state = {
     loading: true,
     refreshing: false
-  };
-
-  static navigationOptions = {
-    title: 'List',
   };
 
   componentDidMount() {
@@ -96,7 +96,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListScreen);
+)(MatchesScreen);
 
 const styles = StyleSheet.create({
   container: {

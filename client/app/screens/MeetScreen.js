@@ -18,9 +18,9 @@ import Colors from '../constants/Colors';
 import { chatScreenStrings } from '../constants/Strings';
 import IsSearchingBar from '../components/IsSearchingBar';
 
-class ChatsScreen extends React.Component {
+class MeetScreen extends React.Component {
   static navigationOptions = {
-    title: 'Chats',
+    title: 'Meet',
   };
 
   _viewThread(thread) {
@@ -139,7 +139,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(ChatsScreen);
+)(MeetScreen);
 
 const styles = StyleSheet.create({
   container: {

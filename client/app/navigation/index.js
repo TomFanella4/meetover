@@ -3,6 +3,7 @@ import { Platform, BackHandler } from "react-native";
 import { StackNavigator, SwitchNavigator } from 'react-navigation';
 import { Root } from 'native-base';
 
+import IntroScreen from '../screens/IntroScreen';
 import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import CreateProfileScreen from '../screens/CreateProfileScreen';
@@ -44,14 +45,15 @@ export default Navigation = ({ id, isAuthenticated }) => {
   } else if (id) {
     initialRouteName = 'CreateProfile';
   } else {
-    initialRouteName = 'Login';
+    initialRouteName = 'Intro';
   }
 
   const AuthNavigator = SwitchNavigator(
     {
       Login: LoginScreen,
       CreateProfile: CreateProfileScreen,
-      App: AppNavigator
+      App: AppNavigator,
+      Intro: IntroScreen
     },
     {
       initialRouteName

@@ -16,6 +16,7 @@
     "native-base": "^2.3.8",
     "react": "16.3.0-alpha.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-26.0.0.tar.gz",
+    "react-native-app-intro-slider": "^0.2.4",
     "react-native-gifted-chat": "^0.4.1",
     "react-native-modal": "^5.4.0",
     "react-native-modal-datetime-picker": "^5.1.0",

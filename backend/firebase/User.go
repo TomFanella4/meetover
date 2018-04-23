@@ -9,6 +9,8 @@ import (
 	"meetover/backend/user"
 )
 
+const filterUsers = false
+
 // InitUser Updates access token if user exists or adds a new User as user in firebase
 func InitUser(p user.Profile, aTokenResp user.ATokenResponse) (bool, error) {
 	// Check if token exists
@@ -82,7 +84,7 @@ func GetProspectiveUsers(coords location.Geolocation, radius float64, lastUpdate
 	}
 
 	for _, user := range userMap {
-		if (user.Location.TimeStamp > oldestStamp) && location.InRadius(coords, user.Location, radius) {
+		if !filterUsers || (user.Location.TimeStamp > oldestStamp && location.InRadius(coords, user.Location, radius)) {
 			users = append(users, user)
 		}
 	}

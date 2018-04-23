@@ -10,15 +10,15 @@ import Colors from '../constants/Colors';
 import { registerFetchThreadListAsync } from '../actions/chatActions';
 import { modifyFirebaseUserState, signOutOfFirebase } from '../firebase';
 
-import ListScreen from '../screens/ListScreen';
+import MatchesScreen from '../screens/MatchesScreen';
 import MapScreen from '../screens/MapScreen';
-import ChatsScreen from '../screens/ChatsScreen';
+import MeetScreen from '../screens/MeetScreen';
 
 const MainTabNavigator = TabNavigator(
   {
-    List: ListScreen,
+    List: MatchesScreen,
     Map: MapScreen,
-    Chats: ChatsScreen,
+    Chats: MeetScreen,
   },
   {
     navigationOptions: ({ navigation }) => ({

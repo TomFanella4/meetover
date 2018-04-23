@@ -58,16 +58,11 @@ class MapScreen extends React.Component {
         <IsSearchingBar />
         {
           this.state.location ?
-            <MapView style={styles.mapView} initialRegion={this.state.location}>
-              <MapView.Marker
-                coordinate={this.state.location}
-                title='My Location'
-              >
-                <Image
-                  source={require('../../assets/images/current_location.png')}
-                  style={{ width: 25, height: 25 }}
-                />
-              </MapView.Marker>
+            <MapView
+              style={styles.mapView}
+              initialRegion={this.state.location}
+              showsUserLocation={true}
+            >
               {matchMarkers}
             </MapView>
           :

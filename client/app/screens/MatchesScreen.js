@@ -4,10 +4,12 @@ import {
   Body,
   Container,
   Content,
+  View,
   Left,
   List,
   ListItem,
-  Spinner
+  Spinner,
+  Icon
 } from 'native-base'
 import { connect } from 'react-redux';
 
@@ -17,14 +19,14 @@ import Colors from '../constants/Colors';
 import IsSearchingBar from '../components/IsSearchingBar';
 import { fetchMatchesAsync } from '../actions/matchesActions';
 
-class ListScreen extends React.Component {
+class MatchesScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Matches',
+  };
+
   state = {
     loading: true,
     refreshing: false
-  };
-
-  static navigationOptions = {
-    title: 'List',
   };
 
   componentDidMount() {
@@ -69,12 +71,20 @@ class ListScreen extends React.Component {
 
     return (
       <Container style={styles.container}>
-        <IsSearchingBar />
+        <IsSearchingBar isModalVisible={true} />
         {
           !this.state.loading ?
-            <Content refreshControl={refresh}>
-              <List>{list}</List>
-            </Content>
+            list.length > 0 ?
+              <Content refreshControl={refresh}>
+                <List>{list}</List>
+              </Content>
+            :
+              <View style={styles.startView}>
+                <Icon style={styles.startIcon} name='arrow-round-up' />
+                <PTSansText style={styles.startText}>
+                  Start searching to view your matches!
+                </PTSansText>
+              </View>
           :
             <Spinner color={Colors.tintColor} />
         }
@@ -96,7 +106,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListScreen);
+)(MatchesScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -105,5 +115,17 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20
+  },
+  startView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  startText: {
+    color: '#9E9E9E',
+  },
+  startIcon: {
+    color: '#9E9E9E',
+    fontSize: 40
   }
 });

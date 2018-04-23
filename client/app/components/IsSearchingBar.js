@@ -25,7 +25,7 @@ import { isSearchingBarStrings } from '../constants/Strings';
 class IsSearchingBar extends React.Component {
 
   state = {
-    isModalVisible: false,
+    isModalVisible: this.props.isModalVisible,
     isDateTimePickerVisible: false,
     greeting: '',
     timeAvailable: moment(),

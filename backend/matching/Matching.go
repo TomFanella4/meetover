@@ -1,6 +1,7 @@
 package matching
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -36,11 +37,11 @@ func (b byDistance) Less(i, j int) bool {
 }
 
 // GetMatches returns an ordered list of user uid's from closest to furthest to the caller
-func GetMatches(UserID string, testUser user.User, neighbors []user.User) ([]MatchValue, error) {
+func GetMatches(UserID string, neighbors []user.User) ([]MatchValue, error) {
 	callingUser, err := firebase.GetUser(UserID)
 	if err != nil {
-		// return nil, errors.New("Unable to fetch calling user with uid: " + UserID)
-		callingUser = testUser
+		return nil, errors.New("Unable to fetch calling user with uid: " + UserID)
+		// callingUser = testUser
 	}
 	order := GetOrder(callingUser, neighbors, WordModel)
 	return order, nil

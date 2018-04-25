@@ -41,7 +41,6 @@ func GetMatches(UserID string, neighbors []user.User) ([]MatchValue, error) {
 	callingUser, err := firebase.GetUser(UserID)
 	if err != nil {
 		return nil, errors.New("Unable to fetch calling user with uid: " + UserID)
-		// callingUser = testUser
 	}
 	order := GetOrder(callingUser, neighbors, WordModel)
 	return order, nil

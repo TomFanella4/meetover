@@ -21,7 +21,7 @@ var WordModelContextWindow = 20
 var WordModelDimension = 8
 
 // WordModelRandomParam - number of words considered for similarity
-var WordModelRandomParam = 50
+var WordModelRandomParam = 100
 
 // InitMLModel check if model has been created or creates it
 func InitMLModel(windowSize int, wordDimensions int) {

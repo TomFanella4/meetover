@@ -68,6 +68,9 @@ func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 	for i := 0; i < WordModelRandomParam; {
 		w := par[random(0, len(par))]
 		w = strings.TrimSpace(strings.ToLower(w))
+		if len(w) <= 1 {
+			continue
+		}
 		if val, found := model[w]; found {
 			if len(val) == WordModelDimension {
 				vec := mat.NewVecDense(WordModelDimension, val)

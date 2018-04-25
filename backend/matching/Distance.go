@@ -10,6 +10,9 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
+// distanceThresh - minimum meaningful distance
+var distanceThresh = 100.0
+
 // getStopWords - gets the stop words from file
 func getStopWords(fileName string) map[string]bool {
 	b, err := ioutil.ReadFile(fileName)
@@ -49,7 +52,10 @@ func nestedDistance(src []*mat.VecDense, dst []*mat.VecDense) float64 {
 		}
 	}
 	// fmt.Printf("distance: %f\n", d)
-	return d
+	if d < distanceThresh {
+		return d
+	}
+	return math.MaxFloat64
 }
 func flattenVector(rows int, vec mat.Matrix) float64 {
 	res := 0.0

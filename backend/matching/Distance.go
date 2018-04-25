@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math"
-	"math/rand"
 	"meetover/backend/user"
 	"strings"
 
 	"gonum.org/v1/gonum/mat"
 )
+
+// distanceThresh - minimum meaningful distance
+var distanceThresh = 100.0
 
 // getStopWords - gets the stop words from file
 func getStopWords(fileName string) map[string]bool {
@@ -49,7 +51,11 @@ func nestedDistance(src []*mat.VecDense, dst []*mat.VecDense) float64 {
 			d += flattenVector(WordModelDimension, temp)
 		}
 	}
-	return d
+	// fmt.Printf("distance: %f\n", d)
+	if d < distanceThresh {
+		return d
+	}
+	return math.MaxFloat64
 }
 func flattenVector(rows int, vec mat.Matrix) float64 {
 	res := 0.0
@@ -65,8 +71,12 @@ func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 	res := []*mat.VecDense{}
 	par := strings.Split(userStr, " ")
 	par = StripStopWords(par)
-	for i, w := range par {
+	for i := 0; i < WordModelRandomParam; {
+		w := par[random(0, len(par))]
 		w = strings.TrimSpace(strings.ToLower(w))
+		if len(w) <= 1 {
+			continue
+		}
 		if val, found := model[w]; found {
 			if len(val) == WordModelDimension {
 				vec := mat.NewVecDense(WordModelDimension, val)
@@ -89,9 +99,4 @@ func userToString(u user.User) string {
 		res += pos.Title
 	}
 	return res
-}
-
-// random - helper for tests
-func random(min, max int) int {
-	return rand.Intn(max-min) + min
 }

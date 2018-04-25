@@ -3,6 +3,7 @@ package matching
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 	"sort"
 	"time"
 
@@ -39,7 +40,7 @@ func (b byDistance) Less(i, j int) bool {
 func GetMatches(UserID string, neighbors []user.User) ([]MatchValue, error) {
 	callingUser, err := firebase.GetUser(UserID)
 	if err != nil {
-		return nil, errors.New("Unable to fetch calling user")
+		return nil, errors.New("Unable to fetch calling user with uid: " + UserID)
 	}
 	order := GetOrder(callingUser, neighbors, WordModel)
 	return order, nil
@@ -77,4 +78,9 @@ func removeCaller(caller user.User, prospUsers []user.User) []user.User {
 	}
 	return append(prospUsers[:s], prospUsers[s+1:]...)
 
+}
+
+// random - helper for tests
+func random(min, max int) int {
+	return rand.Intn(max-min) + min
 }

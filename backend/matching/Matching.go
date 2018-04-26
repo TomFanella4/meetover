@@ -12,14 +12,15 @@ import (
 	"meetover/backend/user"
 )
 
-// Relative path to data directory. Relative from location of backend binary
+// DataDir is the relative path to data directory. Relative from location of backend binary
 var DataDir = "./data/"
 
 // MatchValue represents each perspective user in their distance from the caller
 type MatchValue struct {
-	Usr  user.Profile         `json:"profile"`
-	Dist float64              `json:"distance"`
-	Loc  location.Geolocation `json:"location"`
+	Usr    user.Profile         `json:"profile"`
+	Dist   float64              `json:"distance"`
+	Loc    location.Geolocation `json:"location"`
+	Status user.MatchStatus     `json:"matchStatus"`
 }
 
 type byDistance []MatchValue
@@ -57,7 +58,7 @@ func GetOrder(caller user.User, prospUsers []user.User, model map[string][]float
 		prospStr := userToString(pu)
 		prospVec := parToVector(prospStr, model)
 		distance := nestedDistance(callerVec, prospVec)
-		matches = append(matches, MatchValue{pu.Profile, distance, pu.Location})
+		matches = append(matches, MatchValue{pu.Profile, distance, pu.Location, pu.MatchStatus})
 	}
 	sort.Sort(byDistance(matches))
 	elapsed := time.Since(start)

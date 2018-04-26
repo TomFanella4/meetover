@@ -5,17 +5,18 @@ import (
 	"time"
 )
 
-func createThreadForUser(ID1 string, threadID string, ID2 string, origin string) error {
+func createThreadForUser(ID1 string, threadID string, ID2 string, origin string, initialMessage string) error {
 	threadList, err := fbClient.Ref("/users/" + ID1 + "/threadList/" + threadID)
 	if err != nil {
 		return err
 	}
 
 	threadInfo := map[string]interface{}{
-		"_id":    threadID,
-		"userID": ID2,
-		"origin": origin,
-		"status": "pending",
+		"_id":            threadID,
+		"userID":         ID2,
+		"origin":         origin,
+		"status":         "pending",
+		"requestMessage": initialMessage,
 	}
 	if err := threadList.Update(threadInfo); err != nil {
 		return err
@@ -41,10 +42,10 @@ func AddThread(P1 string, P2 string, initialMessage string) error {
 
 	threadID := ID1 + separator + ID2
 
-	if err := createThreadForUser(ID1, threadID, ID2, origin1); err != nil {
+	if err := createThreadForUser(ID1, threadID, ID2, origin1, initialMessage); err != nil {
 		return err
 	}
-	if err := createThreadForUser(ID2, threadID, ID1, origin2); err != nil {
+	if err := createThreadForUser(ID2, threadID, ID1, origin2, initialMessage); err != nil {
 		return err
 	}
 

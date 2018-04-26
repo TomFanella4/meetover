@@ -50,6 +50,7 @@ class IsSearchingBar extends React.Component {
   };
 
   _renderModal() {
+    const { modifyProfile } = this.props;
     const { greeting, timeAvailable, origin, destination } = this.state;
     return (
       <View>
@@ -90,6 +91,7 @@ class IsSearchingBar extends React.Component {
           style={styles.modalButton}
           onPress={() => {
             Keyboard.dismiss();
+            modifyProfile('isSearching', true);
             this.setState({ isModalVisible: false });
             const matchState = {
               isSearching: true,

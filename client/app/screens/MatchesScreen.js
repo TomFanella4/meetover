@@ -42,8 +42,7 @@ class MatchesScreen extends React.Component {
 
   _viewProfile(match) {
     const { profile, matchStatus } = match;
-    // TODO clean up data flow
-    this.props.navigation.navigate('RequestScreen', { profile: {...profile, ...matchStatus} });
+    this.props.navigation.navigate('RequestScreen', { profile, matchStatus });
   }
 
   render() {

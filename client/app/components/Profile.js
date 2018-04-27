@@ -13,10 +13,10 @@ import moment from 'moment';
 import { PTSansText } from '../components/StyledText';
 import { ProfileImage } from '../components/ProfileImage';
 
-const Profile = ({ profile }) => {
-  // // TODO cleanup data flow
-  const { isSearching, isMatched, greeting, timeAvailable, origin, destination } = profile;
-  const showMatchCard = greeting || (origin && destination) || timeAvailable;
+const Profile = ({ profile, matchStatus = {}, requestMessage }) => {
+  const { isSearching, isMatched } = profile;
+  const { greeting, timeAvailable, origin, destination } = matchStatus;
+  const showMatchCard = greeting || (origin && destination) || timeAvailable || requestMessage;
 
   const matchCard = showMatchCard && (
     <Card>
@@ -26,6 +26,12 @@ const Profile = ({ profile }) => {
       {
         greeting ?
           <CardItem><PTSansText>{greeting}</PTSansText></CardItem>
+        :
+          null
+      }
+      {
+        requestMessage ?
+          <CardItem><PTSansText>{requestMessage}</PTSansText></CardItem>
         :
           null
       }

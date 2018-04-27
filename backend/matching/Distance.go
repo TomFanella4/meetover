@@ -71,7 +71,24 @@ func parToVector(userStr string, model map[string][]float64) []*mat.VecDense {
 	res := []*mat.VecDense{}
 	par := strings.Split(userStr, " ")
 	par = StripStopWords(par)
-	for i := 0; i < WordModelRandomParam; {
+	i := 0
+	for _, w := range par {
+		w = strings.TrimSpace(strings.ToLower(w))
+		if len(w) <= 1 {
+			continue
+		}
+		if val, found := model[w]; found {
+			if len(val) == WordModelDimension {
+				vec := mat.NewVecDense(WordModelDimension, val)
+				res = append(res, vec)
+				i++
+			}
+		}
+		if i > WordModelRandomParam {
+			break
+		}
+	}
+	for i < WordModelRandomParam {
 		w := par[random(0, len(par))]
 		w = strings.TrimSpace(strings.ToLower(w))
 		if len(w) <= 1 {

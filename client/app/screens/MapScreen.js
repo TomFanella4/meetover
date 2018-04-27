@@ -20,7 +20,9 @@ class MapScreen extends React.Component {
   }
 
   _viewProfile(match) {
-    this.props.navigation.navigate('RequestScreen', { profile: match });
+    const { profile, matchStatus } = match;
+    // TODO clean up data flow
+    this.props.navigation.navigate('RequestScreen', { profile: {...profile, ...matchStatus} });
   }
 
   render() {
@@ -31,7 +33,7 @@ class MapScreen extends React.Component {
       <MapView.Marker coordinate={match.location} key={match.profile.id}>
         <MapView.Callout
           style={styles.mapViewCallout}
-          onPress={() => this._viewProfile(match.profile)}
+          onPress={() => this._viewProfile(match)}
         >
           <ProfileImage pictureUrl={match.profile.pictureUrl} />
           <View style={styles.mapViewCalloutSection}>

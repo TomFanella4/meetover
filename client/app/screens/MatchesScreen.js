@@ -41,7 +41,9 @@ class MatchesScreen extends React.Component {
   }
 
   _viewProfile(match) {
-    this.props.navigation.navigate('RequestScreen', { profile: match });
+    const { profile, matchStatus } = match;
+    // TODO clean up data flow
+    this.props.navigation.navigate('RequestScreen', { profile: {...profile, ...matchStatus} });
   }
 
   render() {
@@ -49,7 +51,7 @@ class MatchesScreen extends React.Component {
     const list = matches.map(match => (
       <ListItem
         key={match.profile.id}
-        onPress={() => this._viewProfile(match.profile)}
+        onPress={() => this._viewProfile(match)}
         avatar
       >
         <Left>

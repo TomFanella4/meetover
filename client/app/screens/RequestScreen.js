@@ -203,7 +203,7 @@ class RequestScreen extends React.Component {
   }
 
   render() {
-    const { profile } = this.props.navigation.state.params;
+    const { profile, matchStatus } = this.props.navigation.state.params;
     const { isModalVisible, modalViewType, thread } = this.state;
 
     let modalView;
@@ -258,7 +258,7 @@ class RequestScreen extends React.Component {
         >
           {modalView}
         </MeetOverModal>
-        <Profile profile={profile} />
+        <Profile profile={profile} matchStatus={matchStatus} />
         <Button
           iconLeft
           full

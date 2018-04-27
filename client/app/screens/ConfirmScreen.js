@@ -53,10 +53,10 @@ class ConfirmScreen extends React.Component {
   }
 
   render() {
-    const { profile } = this.props.navigation.state.params;
+    const { profile, requestMessage } = this.props.navigation.state.params;
     return (
       <Container style={styles.container}>
-        {profile && <Profile profile={profile} />}
+        {profile && <Profile profile={profile} requestMessage={requestMessage} />}
         <View style={{ flexDirection: 'row' }}>
           <Button
             full

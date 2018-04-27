@@ -100,11 +100,12 @@ type MatchStatus struct {
 
 // Thread is the JSON object representing a thread
 type Thread struct {
-	ID     string `json:"_id"`
-	UserID string `json:"userID"`
-	Origin string `json:"origin"`
-	Status string `json:"status"`
-	Review string `json:"review"`
+	ID             string `json:"_id"`
+	UserID         string `json:"userID"`
+	Origin         string `json:"origin"`
+	Status         string `json:"status"`
+	RequestMessage string `json:"requestMessage"`
+	Review         string `json:"review"`
 }
 
 // User is user on MeetOver

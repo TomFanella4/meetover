@@ -52,7 +52,7 @@ func nestedDistance(src []*mat.VecDense, dst []*mat.VecDense) float64 {
 		}
 	}
 	// fmt.Printf("distance: %f\n", d)
-	if d < distanceThresh {
+	if d > distanceThresh {
 		return d
 	}
 	return math.MaxFloat64

@@ -16,7 +16,7 @@ import { ProfileImage } from '../components/ProfileImage';
 const Profile = ({ profile }) => {
   // // TODO cleanup data flow
   const { isSearching, isMatched, greeting, timeAvailable, origin, destination } = profile;
-  const showMatchCard = true;
+  const showMatchCard = greeting || (origin && destination) || timeAvailable;
 
   const matchCard = showMatchCard && (
     <Card>
@@ -89,7 +89,7 @@ const Profile = ({ profile }) => {
           <Icon name='pin' style={styles.location} /> {profile.location.name}
         </PTSansText>
       </Body>
-      {matchCard}
+      {showMatchCard ? matchCard : null}
       {summaryCard}
       {positionsCard}
     </Content>

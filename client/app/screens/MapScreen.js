@@ -20,7 +20,8 @@ class MapScreen extends React.Component {
   }
 
   _viewProfile(match) {
-    this.props.navigation.navigate('RequestScreen', { profile: match });
+    const { profile, matchStatus } = match;
+    this.props.navigation.navigate('RequestScreen', { profile, matchStatus });
   }
 
   render() {
@@ -31,7 +32,7 @@ class MapScreen extends React.Component {
       <MapView.Marker coordinate={match.location} key={match.profile.id}>
         <MapView.Callout
           style={styles.mapViewCallout}
-          onPress={() => this._viewProfile(match.profile)}
+          onPress={() => this._viewProfile(match)}
         >
           <ProfileImage pictureUrl={match.profile.pictureUrl} />
           <View style={styles.mapViewCalloutSection}>
@@ -58,16 +59,11 @@ class MapScreen extends React.Component {
         <IsSearchingBar />
         {
           this.state.location ?
-            <MapView style={styles.mapView} initialRegion={this.state.location}>
-              <MapView.Marker
-                coordinate={this.state.location}
-                title='My Location'
-              >
-                <Image
-                  source={require('../../assets/images/current_location.png')}
-                  style={{ width: 25, height: 25 }}
-                />
-              </MapView.Marker>
+            <MapView
+              style={styles.mapView}
+              initialRegion={this.state.location}
+              showsUserLocation={true}
+            >
               {matchMarkers}
             </MapView>
           :

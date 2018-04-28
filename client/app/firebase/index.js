@@ -52,6 +52,10 @@ export const signInToFirebase = async (token, accessToken, id) => {
   }
 };
 
+export const signOutOfFirebase = () => {
+  firebase.auth().signOut();
+}
+
 export async function fetchIdToken(token) {
   return await firebase.auth().currentUser.getIdToken(true)
     .catch(err => {
@@ -88,11 +92,7 @@ export const modifyFirebaseUserProfile = async (key, value) => {
 export const registerFetchFirebaseThreadList = updateFn => {
   const user = firebase.auth().currentUser;
   const threadListRef = firebase.database().ref(`users/${user.uid}/threadList`);
-  threadListRef.on('value', snapshot => {
-    let threadList = snapshot.val();
-    threadList = threadList ? Object.values(threadList) : [];
-    updateFn(threadList);
-  });
+  threadListRef.on('value', snapshot => updateFn(snapshot.val() || {}));
 };
 
 export const registerFetchFirebaseNewMessage = (_id, updateFn) => {

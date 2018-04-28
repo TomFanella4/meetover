@@ -22,7 +22,7 @@ variable on your machine, and remove it from your .env file.
 
 // JSON test data generator
 [
-  '{{repeat(200)}}',
+  '{{repeat(5000)}}',
   {
     uid: '{{objectId()}}',
     location : {
@@ -38,9 +38,10 @@ variable on your machine, and remove it from your .env file.
     isMatched: false,
     profile: {
       firstName: '{{firstName()}}',
-      id: this.uid,
+      id: '{{objectId()}}',
       industry: '{{company()}}',
       lastName: '{{surname()}}',
+      formattedName: '{{surname()}}',
       headline: '{{lorem(1, "sentences")}}',
       greeting: '{{lorem(1, "sentences")}}',
       pictureUrl: 'http://placehold.it/32x32',

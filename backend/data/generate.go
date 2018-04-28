@@ -76,8 +76,14 @@ func jobDataToUser(jd JobData, rawUser User) (User, error) {
 	rawUser.Profile.Headline = js.Titles[r(len(js.Titles))]
 	rawUser.Profile.Industry = js.Skills[r(len(js.Skills))]
 	rawUser.Profile.FormattedName = rawUser.Profile.FirstName + " " + rawUser.Profile.LastName
+	rawUser.Profile.ID = rawUser.ID
 	start = r(len(js.Description)) / 2
-	rawUser.Profile.Summary = js.Description[start:]
+	summaryLen := 150
+	if len(js.Description[start:]) > summaryLen {
+		rawUser.Profile.Summary = js.Description[start : start+summaryLen]
+	} else {
+		rawUser.Profile.Summary = js.Description[start:]
+	}
 	return rawUser, nil
 }
 
@@ -199,6 +205,7 @@ func genTechUsers(rawUsers []User) []User {
 		} else {
 			profile.Summary = summary
 		}
+		profile.ID = u.ID
 		rawUsers[i] = u
 		rawUsers[i].Profile = profile
 	}

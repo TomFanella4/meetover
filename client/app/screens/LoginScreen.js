@@ -1,12 +1,20 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, View, Spinner } from 'native-base';
+import {
+  Button,
+  Form,
+  Input,
+  Item,
+  Spinner,
+  View,
+} from 'native-base';
 
 import { connect } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import { PTSansText } from '../components/StyledText';
-import { authenticateAndCreateProfile } from '../actions/userActions';
+import { authenticateAndCreateProfile, imitateUser } from '../actions/userActions';
+import { allowImitate } from '../constants/Common';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -14,7 +22,31 @@ class LoginScreen extends React.Component {
   };
 
   state = {
-    isLoading: false
+    isLoading: false,
+    imitateUID: '',
+  }
+
+  _renderImitateForm() {
+    if (allowImitate) {
+      return (
+        <Form>
+          <Item>
+            <Input
+              placeholder='uid'
+              onChangeText={imitateUID => this.setState({ imitateUID })}
+            />
+            <Button
+              style={styles.button}
+              onPress={this._handleImitatePressAsync}
+            >
+              <PTSansText>Imitate</PTSansText>
+            </Button>
+          </Item>
+        </Form>
+      );
+    }
+
+    return null;
   }
 
   render() {
@@ -44,8 +76,20 @@ class LoginScreen extends React.Component {
             By signing in you accept our terms of service
           </PTSansText>
         </View>
+        {this._renderImitateForm()}
       </View>
     );
+  }
+
+  _handleImitatePressAsync = async () => {
+    const { imitateUID } = this.state;
+    const { imitateUser, navigation } = this.props;
+
+    this.setState({ isLoading: true });
+    await imitateUser(imitateUID);
+    this.setState({ isLoading: false });
+
+    navigation.navigate('App');
   }
 
   _handleSignInPressAsync = async () => {
@@ -65,7 +109,8 @@ class LoginScreen extends React.Component {
 }
 
 const mapDispatchToProps = {
-  authenticateAndCreateProfile
+  authenticateAndCreateProfile,
+  imitateUser
 };
 
 export default connect(
